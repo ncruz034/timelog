@@ -9,10 +9,10 @@ import { ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListComponent } from './components/currency/list/list.component';
-import { CreateComponent } from './components/currency/create/create.component';
-import { EditComponent } from './components/currency/edit/edit.component';
-import { CurrencyService} from './currency.service';
+import { ListComponent } from './components/time/list/list.component';
+import { CreateComponent } from './components/time/create/create.component';
+import { EditComponent } from './components/time/edit/edit.component';
+import { TimeService} from './time.service';
 
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
@@ -46,7 +46,7 @@ const routes: Routes = [
     MatSnackBarModule,
     ReactiveFormsModule
   ],
-  providers: [CurrencyService],
+  providers: [TimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

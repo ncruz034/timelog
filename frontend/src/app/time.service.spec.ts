@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CurrencyService } from './currency.service';
+import { TimeService } from './time.service';
 
 describe('CurrencyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CurrencyService]
+      providers: [TimeService]
     });
   });
 
-  it('should be created', inject([CurrencyService], (service: CurrencyService) => {
+  it('should be created', inject([TimeService], (service: TimeService) => {
     expect(service).toBeTruthy();
   }));
 });

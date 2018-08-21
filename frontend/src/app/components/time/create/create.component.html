@@ -1,0 +1,55 @@
+<div>
+  <br>
+  <mat-card>
+    <section class = "mat-typography>">
+      <h3> Add new Time</h3>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+
+      <mat-form-field class="field-full-with">
+        <input matInput placeholder = "Date" formControlName="date" #date>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-with">
+        <input matInput placeholder = "Order" formControlName="order" #order>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-with">
+          <mat-select placeholder = "Name" formControlName="name" #name>
+            <mat-option value = "Buy">Limit</mat-option>
+            <mat-option value = "Sale">Market</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      <mat-form-field class="field-full-with">
+        <mat-select placeholder = "Last" formControlName="last" #last>
+          <mat-option value = "Buy">Buy</mat-option>
+          <mat-option value = "Sale">Sale</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-with">
+        <input matInput placeholder = "Description" formControlName="description" #description>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-with">
+        <input matInput placeholder = "Time" formControlName="time" #time>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+    </form>
+      <br><br>
+      <button mat-raised-button color = "accent" routerLink="/list">Back</button>
+      <button type="submit" (click)="addCurrency(date.value,
+                                                 order.balue,
+                                                 name.value,
+                                                 last.value,
+                                                 description.value,
+                                                 time.value" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>&nbsp;
+  
+  </mat-card>
+</div>

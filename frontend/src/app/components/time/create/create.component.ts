@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
-import { CurrencyService } from '../../../currency.service';
+import { TimeService } from '../../../time.service';
 import { Router } from '@angular/router';
 //import { MatTableDataSource } from '@angular/material';
 //import { Currency } from '../../../currency.model';
@@ -13,26 +13,22 @@ export class CreateComponent implements OnInit {
 
   createForm: FormGroup;
 
-  constructor(private currencyService: CurrencyService, private fb:FormBuilder, private router:Router) {
+  constructor(private timeService: TimeService, private fb:FormBuilder, private router:Router) {
     this.createForm = this.fb.group({
       date:['',Validators.required],
-      pair: '',
-      type: '', 
-      side: '',
-      price:'',
-      balance:'',
-      priceInUSD:'',
-      balanceInBTC:'',
-      symbol:'',
-      priceOfBTC:''
+      order: '',
+      name: '',
+      last: '',
+      description: '',
+      time:0
     });
     }
 
-    addCurrency(date,pair,type,side,price,balance,priceInUSD,balanceInBTC,symbol,priceOfBTC){
+    addTime(date,order,name,last,description,time){
       //TODO:
       //Calculate the price in USD base on data
-      let priceUsd = balance / priceOfBTC;
-      this.currencyService.addCurrency(date,pair,type,side,price,balance,priceInUSD,balanceInBTC,symbol,priceOfBTC).subscribe(()=>{
+      //let priceUsd = balance / priceOfBTC;
+      this.timeService.addTime(date,order,name,last,description,time).subscribe(()=>{
         this.router.navigate(['/list']);
       });
     }
