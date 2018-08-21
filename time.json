@@ -1,5 +1,5 @@
 [
- {
+{
    "order": 205033,
    "name": "NELSON",
    "last": "CRUZ",
@@ -2007,12 +2007,12 @@
    "time": 1.5,
    "date": "3/2/2016"
  },
- {
-   "order": 0,
-   "name": "NELSON",
-   "last": "CRUZ",
-   "description": "FIXING PLUMBING PLAN",
-   "time": 2,
-   "date": "3/3/2016"
- }
+{
+  "order": 0,
+  "name": "NELSON",
+  "last": "CRUZ",
+  "description": "FIXING PLUMBING PLAN",
+  "time": 2,
+  "date": "3/3/2016"
+}
 ]
