@@ -7,7 +7,7 @@ const cors = require('cors');
 require("babel-polyfill");
 
 const times = require('./routes/times');
-//const home = require('./routes/home');
+const users = require('./routes/users');
 //const express = require('express');
 //const mongoose = require('mongoose');
 const app = express();
@@ -108,6 +108,7 @@ async function deleteCurrency(id){
 */
 app.use(express.json());
 app.use('/api/times', times);
+app.use('/api/users',users)
 const port = process.env.PORT || 3000;
 
 app.listen(port ,()=>{console.log(`Listening on port ${port}...`);})
