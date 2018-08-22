@@ -21,8 +21,9 @@ export class TimeService {
       order: order,
       name: name,
       last: last,
-      time: time,
-      description:description
+      description:description,
+      time: time
+     
     };
     return this.http.post(`${this.uri}/times/add`,newTime);
   }
@@ -32,8 +33,8 @@ export class TimeService {
       order: order,
       name: name,
       last: last,
-      time: time,
-      description:description
+      description:description,
+      time: time
     };
     return this.http.post(`${this.uri}/times/update${id}`,updatedTime);
   }

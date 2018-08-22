@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
+//import mongoose from 'mongoose';
 const Joi = require('Joi');
 
 const Time = mongoose.model('Time',new mongoose.Schema({
-    userId:ObjectId,
     date:{type: Date, default: Date.now},
     order:{type:Number, required:true},
-    client: {type:String, required:true},
+    name: {type:String, required:true},
+    last: {type:String, required:true},
     description:{type:String, required:true}, 
     time:{type:Number, required:true}
     }));
+
+ 
 
 
 function validateTime(time){
@@ -19,5 +22,5 @@ function validateTime(time){
     //check if there is any error
 }
 
-exports.User = Time;
+exports.Time = Time;
 exports.validate = validateTime;

@@ -6,7 +6,7 @@ const cors = require('cors');
 //import cors from 'cors';
 require("babel-polyfill");
 
-//const times = require('./routes/times');
+const times = require('./routes/times');
 //const home = require('./routes/home');
 //const express = require('express');
 //const mongoose = require('mongoose');
@@ -17,7 +17,7 @@ app.use(cors());
 mongoose.connect('mongodb://localhost:27017/shiskindb')
     .then(()=> console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB',err))
-
+/*
     const timeSchema = mongoose.Schema({
         date:{type: Date, default: Date.now},
         order:{type:Number, required:true},
@@ -46,9 +46,8 @@ async function createTime(){
     }
     
 }
-
 createTime();
-/*
+
 //Get all currencies
 async function getCurrencies(){
     const currencies = await Currency
@@ -108,7 +107,7 @@ async function deleteCurrency(id){
 //getCurrencies();
 */
 app.use(express.json());
-//app.use('/api/times', times);
+app.use('/api/times', times);
 const port = process.env.PORT || 3000;
 
 app.listen(port ,()=>{console.log(`Listening on port ${port}...`);})

@@ -44,12 +44,12 @@
     </form>
       <br><br>
       <button mat-raised-button color = "accent" routerLink="/list">Back</button>
-      <button type="submit" (click)="addCurrency(date.value,
+      <button type="submit" (click)="addTime(date.value,
                                                  order.balue,
                                                  name.value,
                                                  last.value,
                                                  description.value,
-                                                 time.value" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>&nbsp;
+                                                 time.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>&nbsp;
   
   </mat-card>
 </div>
