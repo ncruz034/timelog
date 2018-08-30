@@ -2,9 +2,9 @@
   "name": "timelog",
   "version": "1.0.0",
   "description": "SSA work performed time keeping app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "babel-watch server.js"
   },
   "repository": {
@@ -21,18 +21,25 @@
   },
   "homepage": "https://github.com/ncruz034/timelog#readme",
   "dependencies": {
+    "bcrypt": "^3.0.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "express-async-errors": "^3.0.0",
     "joi": "^13.6.0",
+    "jsonwebtoken": "^8.3.0",
+    "loadash": "^1.0.0",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.6",
-    "node-binance-api": "^0.8.1"
+    "node-binance-api": "^0.8.1",
+    "winston": "^2.4.0",
+    "winston-mongodb": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "babel-watch": "^2.0.7"
+    "babel-watch": "^2.0.7",
+    "jest": "^23.5.0"
   }
 }

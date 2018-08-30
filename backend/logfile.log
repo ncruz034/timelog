@@ -1,0 +1,10 @@
+{"level":"error","message":"failed to reconnect after 30 attempts with interval 1000 ms","timestamp":"2018-08-29T22:22:29.873Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-29T22:41:41.220Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-29T22:46:59.462Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-29T22:47:42.801Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-29T22:58:45.854Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-30T00:19:20.837Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-30T00:20:44.456Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-30T00:22:12.194Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-30T00:22:20.343Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-08-30T00:22:29.809Z"}

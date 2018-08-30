@@ -2,12 +2,17 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const {Time, validate} = require('../models/time');
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
+//const asyncMIddleware = require('../middleware/async');
+
 
 //Get all times
-router.get('/', async (req,res) =>{
-    const times = await Time.find().sort('symbol');
-    res.send(times);
-});
+router.get('/', async (req, res,) => {
+       // throw new Error({error:'Error'});
+        const times = await Time.find().sort('symbol');
+        res.send(times);
+    });
 
 //Get a time by id
 router.get('/:id',async (req,res) =>{
@@ -17,7 +22,8 @@ router.get('/:id',async (req,res) =>{
     res.send(time);
 });
 
-router.put('/:id',async (req,res) =>{
+
+router.put('/:id',auth,async (req,res) =>{
      //validate the input
      const {error} = validate(req.body);
      //check if there is any error
@@ -31,7 +37,8 @@ router.put('/:id',async (req,res) =>{
     res.send(time);
 });
 
-router.post('/',async (req,res) =>{
+router.post('/',auth,async (req,res) =>{
+
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -46,7 +53,7 @@ router.post('/',async (req,res) =>{
     res.send(time);
 });
 
-router.delete('/delete/:id',async (req,res) =>{
+router.delete('/delete/:id',[auth,admin], async (req,res) =>{
     const time = await Time.findByIdAndRemove(req.params.id);
     if(!time) return res.status(404).send('The time was not found');
     res.send(time);
