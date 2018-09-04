@@ -4,21 +4,32 @@ import { Router,Routes, RouterModule} from '@angular/router';
 import { MatToolbarModule,MatTableModule,MatFormFieldModule,MatInputModule,MatOptionModule,
          MatSelectModule,MatIconModule,MatButtonModule,MatCardModule,MatDividerModule,
          MatSnackBarModule} from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+//import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule} from '@angular/forms';
+
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './components/time/list/list.component';
 import { CreateComponent } from './components/time/create/create.component';
 import { EditComponent } from './components/time/edit/edit.component';
-import { TimeService} from './time.service';
+import { TimeService} from './services/time.service';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
   {path:  'edit/:id', component: EditComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'list', component: ListComponent},
-  {path: '', redirectTo: 'list', pathMatch: 'full'}
+  {path: 'auth', component: LoginComponent},
+  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -26,7 +37,10 @@ const routes: Routes = [
     AppComponent,
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,9 +58,11 @@ const routes: Routes = [
     MatCardModule,
     MatDividerModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    MatSidenavModule
   ],
-  providers: [TimeService],
+  providers: [TimeService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

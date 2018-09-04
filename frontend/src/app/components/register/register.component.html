@@ -1,0 +1,28 @@
+<mat-card>
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Name" required formControlName = "name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Last" required formControlName = "last">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" [formControl]="email" required formControlName = "email">
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required formControlName = "password">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="button-row">
+      <button mat-fab color="primary" type="submit" value="Submit Form" [disabled]="!registerForm.valid">Register</button>
+      <button mat-fab color="accent" routerLink="/list">Cancel</button>
+  </div>
+</form>
+</mat-card>

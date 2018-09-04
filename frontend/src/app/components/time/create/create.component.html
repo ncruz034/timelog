@@ -2,7 +2,7 @@
   <br>
   <mat-card>
     <section class = "mat-typography>">
-      <h3> Add new Time</h3>
+      <h3> Add Time</h3>
     </section>
 
     <mat-divider></mat-divider>
@@ -19,17 +19,11 @@
       </mat-form-field>
 
       <mat-form-field class="field-full-with">
-          <mat-select placeholder = "Name" formControlName="name" #name>
-            <mat-option value = "Buy">Limit</mat-option>
-            <mat-option value = "Sale">Market</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <input matInput placeholder = "Name" formControlName="order" #name>
+      </mat-form-field>
 
       <mat-form-field class="field-full-with">
-        <mat-select placeholder = "Last" formControlName="last" #last>
-          <mat-option value = "Buy">Buy</mat-option>
-          <mat-option value = "Sale">Sale</mat-option>
-        </mat-select>
+        <input matInput placeholder = "Last" formControlName="order" #last>
       </mat-form-field>
 
       <mat-form-field class="field-full-with">
@@ -44,12 +38,13 @@
     </form>
       <br><br>
       <button mat-raised-button color = "accent" routerLink="/list">Back</button>
-      <button type="submit" (click)="addTime(date.value,
-                                                 order.balue,
-                                                 name.value,
-                                                 last.value,
-                                                 description.value,
-                                                 time.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">Save</button>&nbsp;
+      <button type="submit" (click)="addTime(
+                  date.value,
+                  order.balue,
+                  name.value,
+                  last.value,
+                  description.value,
+                  time.value)" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
   
   </mat-card>
 </div>

@@ -15,7 +15,7 @@ export class TimeService {
   getTimeById(id){
     return this.http.get(`${this.uri}/times/${id}`);
   }
-  addTime(date,order,name,last,time,description){
+  addTime(date,order,name,last,description,time){
     const newTime = {
       date: date,
       order: order,
@@ -25,9 +25,9 @@ export class TimeService {
       time: time
      
     };
-    return this.http.post(`${this.uri}/times/add`,newTime);
+    return this.http.post(`${this.uri}/times`,newTime);
   }
-  updateCurrency(id,date,order,name,last,time,description){
+  updateTimes(id,date,order,name,last,description,time){
     const updatedTime = {
       date: date,
       order: order,

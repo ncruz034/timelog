@@ -1,5 +1,3 @@
-
-
 require("babel-polyfill");
 const winston = require('winston');
 const cors = require('cors');
@@ -7,8 +5,8 @@ const express = require('express');
 const app = express();
 app.use(cors());
 
-require('./startup/logging');
 require('./startup/routes')(app);
+require('./startup/logging');
 require('./startup/databaseInit')();
 require('./startup/config')();
 //require('./startup/validation')();

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { TimeService } from './time.service';
+import { TimeService } from '../services/time.service';
 
 describe('CurrencyService', () => {
   beforeEach(() => {

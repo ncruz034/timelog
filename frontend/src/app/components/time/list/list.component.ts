@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TimeService } from '../../../time.service';
+import { TimeService } from '../../../services/time.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
-import { Time } from '../../../time.model';
+import { Time } from '../../../models/time.model';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +12,7 @@ import { Time } from '../../../time.model';
 export class ListComponent implements OnInit {
 
   times: Time[];
-  displayedColumns = ['order','date','name','last','description','time'];
+  displayedColumns = ['order','date','name','last','description','time','actions'];
 
   constructor(private timeService : TimeService, private router:Router) { }
 

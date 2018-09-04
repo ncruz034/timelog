@@ -22,7 +22,6 @@ router.get('/:id',async (req,res) =>{
     res.send(time);
 });
 
-
 router.put('/:id',auth,async (req,res) =>{
      //validate the input
      const {error} = validate(req.body);
