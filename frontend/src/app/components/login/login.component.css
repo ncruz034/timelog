@@ -1,3 +1,6 @@
+.card-alignment{
+  width:25%;
+}
 .example-container {
   display: flex;
   flex-direction: column;
@@ -5,7 +8,9 @@
 
 .example-container > * {
   width: 100%;
+
 }
+
 .button-row button,
 .button-row a {
   margin-right: 8px;

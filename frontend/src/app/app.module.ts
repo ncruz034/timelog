@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Router,Routes, RouterModule} from '@angular/router';
+//import { Router,Routes, RouterModule} from '@angular/router';
+import {AppRoutingModule } from './app-routing.module';
 import { MatToolbarModule,MatTableModule,MatFormFieldModule,MatInputModule,MatOptionModule,
          MatSelectModule,MatIconModule,MatButtonModule,MatCardModule,MatDividerModule,
          MatSnackBarModule} from '@angular/material';
@@ -16,21 +17,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './components/time/list/list.component';
 import { CreateComponent } from './components/time/create/create.component';
 import { EditComponent } from './components/time/edit/edit.component';
+
+import { OrderListComponent } from './components/time/order/order-list.component';
+import { OrderCreateComponent } from './components/order/create/order-create.component';
+import { OrderEditComponent } from './components/order/edit/order-edit.component';
+
 import { TimeService} from './services/time.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
-
-const routes: Routes = [
-  {path: 'create', component: CreateComponent},
-  {path:  'edit/:id', component: EditComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'list', component: ListComponent},
-  {path: 'auth', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
-];
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +37,14 @@ const routes: Routes = [
     EditComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
     MatToolbarModule,
     MatTableModule,
     MatFormFieldModule,
