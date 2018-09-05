@@ -31,8 +31,9 @@ export class RegisterComponent  {
    }
 
   onRegister(user){
-    this.authService.register(user.name,user.last,user.email,user.password).subscribe((token)=>{
-      console.log(`This is the token: ${token}`);
+    this.authService.register(user.name,user.last,user.email,user.password).subscribe((res)=>{
+      console.log(`This is the token: ${res}`);
+     // localStorage.setItem('token',res)
     });
     //return this.http.post(this._registerUrl,user);
     //this.user = user;

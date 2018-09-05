@@ -11,11 +11,19 @@ import { EditComponent } from './components/time/edit/edit.component';
 import { OrderListComponent } from './components/order/list/order-list.component';
 import { OrderCreateComponent } from './components/order/create/order-create.component';
 import { OrderEditComponent } from './components/order/edit/order-edit.component';
+
+import { ClientListComponent } from './components/clients/list/client-list.component';
+import { ClientCreateComponent } from './components/clients/create/client-create.component';
+import { ClientEditComponent } from './components/clients/edit/client-edit.component';
+
 const routes: Routes =[
   {path: 'create', component: CreateComponent},
   {path:  'edit/:id', component: EditComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'orders/create', component: OrderCreateComponent},
+  {path: 'orders/edit', component: OrderEditComponent},
+  {path: 'clients/create', component: ClientCreateComponent},
+  {path: 'clients/edit', component: ClientEditComponent},
   {path: 'list', component: ListComponent},
   {path: 'auth', component: LoginComponent},
   {path: 'home', component: HomeComponent},

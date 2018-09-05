@@ -1,14 +1,15 @@
-.card-alignment{
-  width:25%;
+
+
+.card-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }
+
 .example-container {
   display: flex;
   flex-direction: column;
-}
-
-.example-container > * {
-  width: 100%;
-
 }
 
 .button-row button,

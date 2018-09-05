@@ -14,13 +14,19 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { ListComponent } from './components/time/list/list.component';
 import { CreateComponent } from './components/time/create/create.component';
 import { EditComponent } from './components/time/edit/edit.component';
 
-import { OrderListComponent } from './components/time/order/order-list.component';
+import { OrderListComponent } from './components/order/list/order-list.component';
 import { OrderCreateComponent } from './components/order/create/order-create.component';
 import { OrderEditComponent } from './components/order/edit/order-edit.component';
+
+
+import { ClientListComponent } from './components/clients/list/client-list.component';
+import { ClientCreateComponent } from './components/clients/create/client-create.component';
+import { ClientEditComponent } from './components/clients/edit/client-edit.component';
 
 import { TimeService} from './services/time.service';
 import { AuthService } from './services/auth.service';
@@ -38,7 +44,13 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    OrderListComponent,
+    OrderCreateComponent,
+    OrderEditComponent,
+    ClientListComponent,
+    ClientEditComponent,
+    ClientCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +71,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ReactiveFormsModule,
     FormsModule,
     MatSidenavModule
+
   ],
   providers: [TimeService,AuthService],
   bootstrap: [AppComponent]

@@ -1,7 +1,5 @@
-<div layout="column" layout-align="center">
-<div flex="50" layout="row" layout-align="center">
-
-    <mat-card flex="50">
+<div class="card-content">
+    <mat-card >
         <form [formGroup]="registerForm" (ngSubmit)="onLogin(registerForm.value)">
         <div class="example-container">
           <mat-form-field>
@@ -22,5 +20,4 @@
        
       </form>
       </mat-card>
-</div>
 </div>
