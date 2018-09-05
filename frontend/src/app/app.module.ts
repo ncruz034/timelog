@@ -2,11 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //import { Router,Routes, RouterModule} from '@angular/router';
 import {AppRoutingModule } from './app-routing.module';
-import { MatToolbarModule,MatTableModule,MatFormFieldModule,MatInputModule,MatOptionModule,
-         MatSelectModule,MatIconModule,MatButtonModule,MatCardModule,MatDividerModule,
-         MatSnackBarModule} from '@angular/material';
+import { MatToolbarModule,MatTableModule,
+         MatFormFieldModule,MatInputModule,MatOptionModule,
+         MatSelectModule,MatIconModule,MatButtonModule,
+         MatCardModule,MatDividerModule, MatSnackBarModule} from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 //import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -70,8 +71,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSidenavModule
-
+    MatSidenavModule,
+    MatSlideToggleModule
   ],
   providers: [TimeService,AuthService],
   bootstrap: [AppComponent]

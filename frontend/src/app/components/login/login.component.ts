@@ -17,11 +17,11 @@ export class LoginComponent {
   email = new FormControl(null, [Validators.required, Validators.email]);
   password:String = '';
 
-  registerForm:FormGroup;
+  loginForm:FormGroup;
   user:User;
 
   constructor(private authService: AuthService, private fb:FormBuilder, private http:HttpClient) { 
-    this.registerForm = fb.group({
+    this.loginForm = fb.group({
       'email':this.email,
       'password':[null,Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(16)])]
     });
@@ -29,8 +29,10 @@ export class LoginComponent {
 
     onLogin(user){
       this.authService.login(user.email,user.password).subscribe((token)=>{
-        console.log(`This is the token:  ${token}`);
-      });
+        console.log('This is the token:' + token);
+        localStorage.setItem('token',token.toString());
+      },
+    error=>{console.log('There was an error...')});
 
      // this.user = user;
       //console.log(this.user);

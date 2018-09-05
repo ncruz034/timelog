@@ -16,12 +16,15 @@ export class AuthService {
     return this.http.post(`${this.uri}/auth`,auth);
   }
 
-  register(name,last,email,password){
+  register(name,last,salary,position,email,password,isAdmin){
     const auth ={
       name:name,
       last:last,
+      salary:salary,
+      position:position,
       email:email,
-      password:password
+      password:password,
+      isAdmin:isAdmin
     };
     return this.http.post(`${this.uri}/users`,auth);
   }
