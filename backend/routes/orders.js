@@ -7,7 +7,7 @@ const router = express.Router();
 const {Order, validate} = require('../models/order');
 const asyncMIddleware = require('../middleware/async');
 
-//Register a new Order
+//Register a new Order; this route should be protected to only admin users.
 router.post('/', async (req,res) =>{
 
     const {error} = validate(req.body);
@@ -26,11 +26,19 @@ router.post('/', async (req,res) =>{
     res.send(order);
 });
 
-//Get a order by id
-router.get('/me',auth, async (req,res) =>{
-   
-    const users = await User.findById(req.user._id).select('-password');
-    res.send(users);
+//Get all orders
+router.get('/', async (req, res,) => {
+    // throw new Error({error:'Error'});
+     const orders = await Order.find().sort('date');
+     res.send(orders);
+ });
+
+//Get an order by id
+router.get('/:id',async (req,res) =>{
+ const order = await Order.findById(req.params.id);
+  //check if there is any error
+  if(!order) return res.status(400).send('The order with the given id is not valid');
+ res.send(order);
 });
 
 module.exports = router;

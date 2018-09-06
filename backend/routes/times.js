@@ -27,12 +27,14 @@ router.put('/:id',auth,async (req,res) =>{
      const {error} = validate(req.body);
      //check if there is any error
      if(error) return res.status(400).send(error.details[0].message);
-    const time = await Time.findByIdAndUpdate(req.params.id,{ symbol: req.body.symbol},{
+    const time = await Time.findByIdAndUpdate(req.params.id,{
+                 symbol: req.body.symbol,
+
+                },{
         new: true
     });
 
-    if(!time) return res.status(404).send('The tiem does not exists');
-   
+    if(!time) return res.status(404).send('The tiem does not exists'); 
     res.send(time);
 });
 

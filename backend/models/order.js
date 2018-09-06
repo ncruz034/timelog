@@ -14,6 +14,7 @@ const Order = mongoose.model('Order',new mongoose.Schema({
 
 function validateOrder(order){
     const schema = {
+        date: Joi.string().required(),
         client: Joi.string().min(3).required(),
         project: Joi.string().required(),
         description: Joi.string().required(),
