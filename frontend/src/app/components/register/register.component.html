@@ -30,8 +30,9 @@
         </mat-form-field>
     
         <section class="admin-section">
-            <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled">
+            <mat-slide-toggle [(ngModel)] = "isAdmin" [color]="color" [checked]="checked" [disabled]="disabled">
                 Is Admin!</mat-slide-toggle>
+                {{isAdmin}}
         </section>
         
         <div class="button-row">
@@ -44,49 +45,3 @@
     
     </mat-card>
     </div>
-<!--
-<div>
-<mat-card >
-  <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
-  <div class="example-container">
-    <mat-form-field>
-      <input matInput placeholder="Name" required formControlName = "name">
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput placeholder="Last" required formControlName = "last">
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput placeholder="Salary" required formControlName = "salary">
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput placeholder="Position" required formControlName = "position">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Enter your email" [formControl]="email" required formControlName = "email">
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required formControlName = "password">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled">
-                Is Admin!</mat-slide-toggle>
-      </mat-form-field>
-
-    <div class="button-row">
-        <button mat-fab color="primary" type="submit" value="Submit Form" [disabled]="!registerForm.valid">Register</button>
-        <button mat-fab color="accent" routerLink="/list">Cancel</button>
-    </div>
-  </div>
-</form>
-
-</mat-card>
-</div>
--->

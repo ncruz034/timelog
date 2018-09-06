@@ -28,14 +28,9 @@ export class LoginComponent {
   }
 
     onLogin(user){
-      this.authService.login(user.email,user.password).subscribe((token)=>{
-        console.log('This is the token:' + token);
-        localStorage.setItem('token',token.toString());
-      },
-    error=>{console.log('There was an error...')});
-
-     // this.user = user;
-      //console.log(this.user);
+      this.authService.login(user.email,user.password).subscribe(
+        //token=>{console.log('This is the token:' + token)}
+      )
     }
     
     getErrorMessage() {
