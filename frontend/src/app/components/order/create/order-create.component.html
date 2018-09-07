@@ -1,3 +1,49 @@
-<p>
-  create works!
-</p>
+<div>
+    <br>
+    <mat-card>
+      <section class = "mat-typography>">
+        <h3> Add New Order</h3>
+      </section>
+  
+      <mat-divider></mat-divider>  
+      <br>
+      <form [formGroup]="createForm" class="create-form">
+  
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Date" formControlName="date" #date>
+        </mat-form-field>
+  
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Client" formControlName="client" #client>
+        </mat-form-field>
+  
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Project" formControlName="project" #project>
+        </mat-form-field>
+  
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Desctiption" formControlName="description" #description>
+        </mat-form-field>
+  
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Is Billed" formControlName="isBilled" #isBilled>
+        </mat-form-field>
+  
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Status" formControlName="status" #status>
+        </mat-form-field>
+  
+        <mat-divider></mat-divider>
+      </form>
+        <br><br>
+        <button mat-raised-button color = "accent" routerLink="/list">Back</button>
+        <button type="submit" (click)="addOrder(
+                    date.value,
+                    client.value,
+                    project.value,
+                    description.value,
+                    isBilled.value,
+                    status.value)" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
+    
+    </mat-card>
+  </div>
