@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { TimeService } from '../../../services/time.service';
 import { Router } from '@angular/router';
-//import { MatTableDataSource } from '@angular/material';
-//import { Currency } from '../../../currency.model';
+
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-edit',
+  templateUrl: './time-edit.component.html',
+  styleUrls: ['./time-edit.component.css']
 })
-export class CreateComponent implements OnInit {
+export class TimeEditComponent {
 
   createForm: FormGroup;
 
@@ -27,12 +26,10 @@ export class CreateComponent implements OnInit {
 
     addTime(date,order,name,last,description,time){
  
-      this.timeService.addTime(date,order,name,last,description,time).subscribe(()=>{
-        this.router.navigate(['/list']);
+      this.timeService.editTime(id,date,order,name,last,description,time).subscribe(()=>{
+        this.router.navigate(['/times']);
       });
     }
 
-  ngOnInit() {
-  }
 
 }

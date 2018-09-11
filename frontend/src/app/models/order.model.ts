@@ -1,5 +1,6 @@
 
 export interface Order {
+    id: {type:String},
     date: {type:Date},
     cient: {type:String},
     project: {type:String},

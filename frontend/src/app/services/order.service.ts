@@ -29,7 +29,7 @@ export class OrderService {
     };
     return this.http.post(`${this.uri}/orders`,newOrder);
   }
-  updateOrder(id,date,client,project,description,isBilled,status){
+  editOrder(id,date,client,project,description,isBilled,status){
     const updatedOrder = {
       date: date,
       client: client,

@@ -11,8 +11,8 @@ import { Order } from '../../../models/order.model';
 })
 export class OrderListComponent implements OnInit {
 
-  order: Order[];
-  displayedColumns = ['date','client','project','description','isBilled','status'];
+  orders: Order[];
+  displayedColumns = ['date','client','project','description','isBilled','status','actions'];
 
   constructor(private orderService : OrderService, private router:Router) { }
 
@@ -23,13 +23,13 @@ export class OrderListComponent implements OnInit {
   fetchOrders(){
     this.orderService.getOrders().subscribe(
       (data: Order[])=>{
-        this.order = data;
+        this.orders = data;
         console.log('Data requested...');
-        console.log(this.order);
+        console.log(this.orders);
       });
   }
   editOrder(id){
-    this.router.navigate([`/edit/${id}`]);
+    this.router.navigate([`orders/edit/${id}`]);
   }
   deleteTime(id){
     this.orderService.deleteOrder(id).subscribe(()=>{
