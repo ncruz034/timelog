@@ -7,6 +7,7 @@ const router = express.Router();
 const {User} = require('../models/user');
 const mongoose = require('mongoose');
 
+//Login a user
 router.post('/', async (req,res) =>{
     //This is the first level of validation provided by Joi; it checks for valid input.
     const {error} = validate(req.body);
@@ -19,7 +20,7 @@ router.post('/', async (req,res) =>{
     if(!validPassword) return res.status(400).send('Invalid email or password');
     //If all the checks are negative, a token is generated and return to the calling app.
     const token = user.generateAuthToken();
-    res.send(token);
+    res.json(token);
 });
 
 //Validate the input provided by the calling application.

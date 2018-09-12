@@ -4,47 +4,47 @@
           <section class = "mat-typography>">
             <h3> Edit Time</h3>
           </section>
-      
+
           <mat-divider></mat-divider>
-      
+
           <br>
-          <form [formGroup]="createForm" class="create-form">
-      
+          <form [formGroup]="editForm" class="create-form">
+
             <mat-form-field class="field-full-with">
               <input matInput placeholder = "Date" formControlName="date" #date>
             </mat-form-field>
-      
+
             <mat-form-field class="field-full-with">
               <input matInput placeholder = "Order" formControlName="order" #order>
             </mat-form-field>
-      
+
             <mat-form-field class="field-full-with">
               <input matInput placeholder = "Name" formControlName="order" #name>
             </mat-form-field>
-      
+
             <mat-form-field class="field-full-with">
               <input matInput placeholder = "Last" formControlName="order" #last>
             </mat-form-field>
-      
+
             <mat-form-field class="field-full-with">
               <input matInput placeholder = "Description" formControlName="description" #description>
             </mat-form-field>
-      
+
             <mat-form-field class="field-full-with">
               <input matInput placeholder = "Time" formControlName="time" #time>
             </mat-form-field>
-      
+
             <mat-divider></mat-divider>
           </form>
             <br><br>
             <button mat-raised-button color = "accent" routerLink="/times">Back</button>
-            <button type="submit" (click)="addTime(
+            <button type="submit" (click)="editTime(
                         date.value,
                         order.balue,
                         name.value,
                         last.value,
                         description.value,
-                        time.value)" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
-        
+                        time.value)" [disabled]="editForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
+
         </mat-card>
       </div>
