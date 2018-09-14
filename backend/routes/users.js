@@ -18,10 +18,22 @@ router.post('/', async (req,res) =>{
     user = new User(_.pick(req.body,[ 'name','last','salary','position','email','password','isAdmin']));
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password,salt);
-    await user.save();
+   /*
+    await user.save();  
+    const token = user.generateAuthToken();
+    res.header('x-auth-token', token).send( _.pick(user,['_id','name','last','email']));
+    */
+
+   await user.save((error)=>{
+       if(error){
+           console.log(error);
+       }else {
+        const token = user.generateAuthToken();
+        res.header('x-auth-token', token).send( _.pick(user,['_id','name','last','email']));
+       }
+   });
     
-   const token = user.generateAuthToken();
-   res.header('x-auth-token', token).send( _.pick(user,['_id','name','last','email']));
+  
 });
 
 //Get all users

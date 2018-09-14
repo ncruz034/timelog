@@ -18,7 +18,7 @@ import { ClientEditComponent } from './components/clients/edit/client-edit.compo
 
 const routes: Routes =[
   {path: 'create', component: TimeCreateComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'users/register', component: RegisterComponent},
   {path: 'orders', component: OrderListComponent},
   {path: 'orders/create', component: OrderCreateComponent},
   {path: 'orders/edit/:id', component: OrderEditComponent},

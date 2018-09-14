@@ -30,9 +30,8 @@
         </mat-form-field>
     
         <section class="admin-section">
-            <mat-slide-toggle [(ngModel)] = "isAdmin" [color]="color" [checked]="checked" [disabled]="disabled">
-                Is Admin!</mat-slide-toggle>
-                {{isAdmin}}
+            <mat-slide-toggle [(ngModel)] = "isAdmin" [ngModelOptions]="{standalone: true}" [color]="color" [checked]="checked" [disabled]="disabled">
+                Is Admin</mat-slide-toggle>
         </section>
         
         <div class="button-row">

@@ -22,11 +22,11 @@ export class RegisterComponent  {
   last:String = '';
   salary:Number=null;
   position:String = '';
-  isAdmin:Boolean = true;
+  isAdmin:Boolean = false;
   password:String = '';
   registerForm:FormGroup;
   user:User;
-  private _registerUrl = "http://localhost:3000/api/auth";
+  //private _registerUrl = "http://localhost:3000/api/auth";
 
   constructor(private fb:FormBuilder, private http:HttpClient, private authService:AuthService) {
 

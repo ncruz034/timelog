@@ -37,7 +37,8 @@ export class LoginComponent {
           } else {
             console.log('Error: Login in...');
           }
-        }
+        },
+        err => {console.log(err);}
       );
     }
 
