@@ -8,14 +8,14 @@ const admin = require('../middleware/admin');
 
 
 //Get all times
-router.get('/', async (req, res,) => {
+router.get('/', auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('symbol');
         res.send(times);
     });
 
 //Get a time by id
-router.get('/:id',async (req,res) =>{
+router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
      //check if there is any error
      if(!time) return res.status(400).send('The time with the given symbol is not valid');
@@ -38,7 +38,7 @@ router.put('/:id',auth,async (req,res) =>{
     res.send(time);
 });
 
-router.post('/',async (req,res) =>{
+router.post('/', auth, async (req,res) =>{
 
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);

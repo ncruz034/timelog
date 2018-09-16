@@ -8,7 +8,7 @@ const {Order, validate} = require('../models/order');
 const asyncMIddleware = require('../middleware/async');
 
 //Register a new Order; this route should be protected to only admin users.
-router.post('/', async (req,res) =>{
+router.post('/', auth, async (req,res) =>{
 
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -27,14 +27,14 @@ router.post('/', async (req,res) =>{
 });
 
 //Get all orders
-router.get('/', async (req, res,) => {
+router.get('/', auth, async (req, res,) => {
     // throw new Error({error:'Error'});
      const orders = await Order.find().sort('date');
      res.send(orders);
  });
 
 //Get an order by id
-router.get('/:id',async (req,res) =>{
+router.get('/:id', auth, async (req,res) =>{
  const order = await Order.findById(req.params.id);
   //check if there is any error
   if(!order) return res.status(400).send('The order with the given id is not valid');
