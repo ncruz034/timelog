@@ -10,7 +10,7 @@ const admin = require('../middleware/admin');
 //Get all times
 router.get('/', auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
-        const times = await Time.find().sort('symbol');
+        const times = await Time.find().sort('date');
         res.send(times);
     });
 
@@ -45,10 +45,11 @@ router.post('/', auth, async (req,res) =>{
 
     let time = new Time({
         date: req.body.date,
-        order: req.body.order,
+        orderId: req.body.orderId,
         client: req.body.client,
         description: req.body.description,
-        time:req.body.time
+        time:req.body.time,
+        userId: req.body.userId
     });
     time = await time.save();
     res.send(time);

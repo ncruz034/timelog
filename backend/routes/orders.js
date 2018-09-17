@@ -13,7 +13,8 @@ router.post('/', auth, async (req,res) =>{
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
    
-    let order = new Order({orderId:req.body.orderId,
+    let order = new Order({
+                           orderId:req.body.orderId,
                            date:req.body.date,
                            client:req.body.client,
                            project:req.body.project,

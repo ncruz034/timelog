@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.post(`${this.uri}/auth`, auth);
   }
 
-  loggedIn(){
+  loggedIn() {
     return !!localStorage.getItem('x-auth-token');
   }
 
@@ -36,12 +36,12 @@ export class AuthService {
     };
     return this.http.post(`${this.uri}/users`, auth);
   }
-  
-  getToken(){
+
+  getToken() {
     return localStorage.getItem('x-auth-token');
   }
-  
-  getUser(){
+
+  getUser() {
     return localStorage.getItem('user');
   }
 
@@ -54,7 +54,7 @@ export class AuthService {
     this.user = user;
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('x-auth-token');
     localStorage.removeItem('user');
     localStorage.removeItem('name');
