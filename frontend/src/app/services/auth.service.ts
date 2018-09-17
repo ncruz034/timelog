@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from '../models/user.model';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +10,7 @@ export class AuthService {
   uri = 'http://localhost:3000/api';
   authToken;
   user;
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   login(email, password) {
     const auth = {
@@ -16,6 +18,10 @@ export class AuthService {
       password: password
     };
     return this.http.post(`${this.uri}/auth`, auth);
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('x-auth-token');
   }
 
   register(name, last, salary, position, email, password, isAdmin) {
@@ -31,10 +37,29 @@ export class AuthService {
     return this.http.post(`${this.uri}/users`, auth);
   }
   
-  storeUserData(token, user) {
+  getToken(){
+    return localStorage.getItem('x-auth-token');
+  }
+  
+  getUser(){
+    return localStorage.getItem('user');
+  }
+
+  storeUserData(token, name,  user) {
     localStorage.setItem('x-auth-token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('name', name);
+    localStorage.setItem('user', user);
+    //localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
   }
+
+  logout(){
+    localStorage.removeItem('x-auth-token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('name');
+    this.router.navigate(['./home']);
+  }
+
+
 }

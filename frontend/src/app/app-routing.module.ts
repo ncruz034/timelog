@@ -15,16 +15,17 @@ import { OrderEditComponent } from './components/order/edit/order-edit.component
 import { ClientListComponent } from './components/clients/list/client-list.component';
 import { ClientCreateComponent } from './components/clients/create/client-create.component';
 import { ClientEditComponent } from './components/clients/edit/client-edit.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes =[
   {path: 'create', component: TimeCreateComponent},
   {path: 'users/register', component: RegisterComponent},
-  {path: 'orders', component: OrderListComponent},
+  {path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
   {path: 'orders/create', component: OrderCreateComponent},
   {path: 'orders/edit/:id', component: OrderEditComponent},
   {path: 'clients/create', component: ClientCreateComponent},
   {path: 'clients/edit', component: ClientEditComponent},
-  {path: 'times', component: TimeListComponent},
+  {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},
   {path: 'auth', component: LoginComponent},
   {path: 'home', component: HomeComponent},

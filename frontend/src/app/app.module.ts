@@ -9,7 +9,7 @@ import { MatToolbarModule,MatTableModule,
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 //import {ErrorStateMatcher} from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
@@ -35,6 +35,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,13 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatSidenavModule,
     MatSlideToggleModule
   ],
-  providers: [TimeService,AuthService],
+  providers: [TimeService,AuthService, AuthGuard, 
+    {
+      provide: HTTP_INTERCEPTORS,
+     useClass: TokenInterceptorService,
+     multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

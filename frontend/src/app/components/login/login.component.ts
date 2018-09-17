@@ -19,6 +19,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   user: User;
+  data = <any>{};
 
   constructor(private authService: AuthService, private fb: FormBuilder,
               private http: HttpClient, private router: Router) {
@@ -30,10 +31,11 @@ export class LoginComponent {
 
     onLogin(user) {
       this.authService.login(user.email, user.password).subscribe(
-        data => {
+        data=> {
           if (data) {
-            this.authService.storeUserData(data, user);
-            this.router.navigate(['/times']);
+            this.data = data;
+           this.authService.storeUserData(this.data.token, this.data.name, user.email);
+           this.router.navigate(['/times']);
           } else {
             console.log('Error: Login in...');
           }

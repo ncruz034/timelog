@@ -1,10 +1,17 @@
 <mat-toolbar class="dark-primary-color" >
   <span class="text-primary-color"  >Schwebke-Shiskin & Associates, inc.</span>
-  <span class="text-primary-color" >(Current User Info)</span>
+  <span  class="text-primary-color" >{{authService.getUser()}}</span>
 <span class="example-fill-remaining-space"></span>
+<div *ngIf="authService.loggedIn()">
 <span>  <button class="text-primary-color" mat-button routerLink="/times">Time</button></span>
 <span>  <button class="text-primary-color" mat-button routerLink="/orders">Orders</button></span>
 <span>  <button class="text-primary-color" mat-button routerLink="">Clients</button></span>
 <span>  <button class="text-primary-color" mat-button routerLink="">Users</button></span>
-<span><a routerLink="/auth"><i class="material-icons">account_circle</i></a></span>
+<span>  <button class="text-primary-color" mat-button (click)="authService.logout()">Logout</button></span>
+</div>
+<div *ngIf="!authService.loggedIn()" >
+  <span><button class="text-primary-color" mat-button routerLink="/auth">Login</button></span>
+  <span><button class="text-primary-color" mat-button routerLink="/users/register">Register</button></span>
+</div>
+
 </mat-toolbar>
