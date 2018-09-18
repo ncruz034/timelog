@@ -5,9 +5,12 @@ import {AppRoutingModule } from './app-routing.module';
 import { MatToolbarModule,MatTableModule,
          MatFormFieldModule,MatInputModule,MatOptionModule,
          MatSelectModule,MatIconModule,MatButtonModule,
-         MatCardModule,MatDividerModule, MatSnackBarModule} from '@angular/material';
+         MatCardModule,MatDividerModule, MatSnackBarModule, MatNativeDateModule} from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 //import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
@@ -53,7 +56,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     OrderEditComponent,
     ClientListComponent,
     ClientEditComponent,
-    ClientCreateComponent
+    ClientCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,10 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     ReactiveFormsModule,
     FormsModule,
     MatSidenavModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule
   ],
   providers: [TimeService,AuthService, AuthGuard, 
     {
