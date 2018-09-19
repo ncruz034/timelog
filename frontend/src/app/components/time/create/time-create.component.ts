@@ -16,7 +16,7 @@ import { Order } from '../../../models/order.model';
 })
 export class TimeCreateComponent implements OnInit {
   myControl = new FormControl();
-  options: string[] = [''];//['One', 'Two', 'Three'];
+  options: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
   createForm: FormGroup;
   orders: Order[]=null;
@@ -35,7 +35,6 @@ export class TimeCreateComponent implements OnInit {
     private _filter(value: string): string[] {
       const filterValue = value.toLowerCase();
      
-
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
 
@@ -46,16 +45,19 @@ export class TimeCreateComponent implements OnInit {
       });
     }
 
-    fetchOrders(){
-      this.orderService.getOrders().subscribe(
+    async fetchProjects(){
+      this.orderService.getProjects().subscribe(
         (data: Order[])=>{
-          this.orders = data
-          let order;
-          this.orders.forEach(function(order){
-            this.options = order.cient;
-          });
-          //console.log('Data requested...');
-          //console.log(this.orders);
+
+
+         for(let i = 0; i < data.length; i++){
+
+            this.options.push(Object.values(data[i])[2])
+         }
+
+          //this.options = data;
+     
+      
         },
         err => {
           if(err instanceof HttpErrorResponse){
@@ -67,12 +69,14 @@ export class TimeCreateComponent implements OnInit {
       );
     }
   ngOnInit() {
-    this.fetchOrders();
-    this.filteredOptions = this.myControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
+    this.fetchProjects().then(()=>{
+      this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    });
+   
   }
 
 }

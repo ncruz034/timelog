@@ -28,6 +28,14 @@ router.post('/', auth, async (req,res) =>{
 });
 
 //Get all orders
+router.get('/projects', auth, async (req, res,) => {
+    // throw new Error({error:'Error'});
+     const orders = await Order.find().sort('date');
+    
+     res.send(orders);
+ });
+
+//Get all orders
 router.get('/', auth, async (req, res,) => {
     // throw new Error({error:'Error'});
      const orders = await Order.find().sort('date');

@@ -14,9 +14,14 @@ export class OrderService {
   getOrders(){
     return this.http.get(`${this.uri}/orders`);
   }
+
+  getProjects(){
+    return this.http.get(`${this.uri}/orders/projects`);
+  }
   getOrderById(id){
     return this.http.get(`${this.uri}/orders/${id}`);
   }
+
   addOrder(date,client,project,description,isBilled,status){
     const newOrder = {
       date: date,

@@ -14,6 +14,8 @@ router.get('/', auth,  async (req, res,) => {
         res.send(times);
     });
 
+ 
+
 //Get a time by id
 router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
@@ -21,6 +23,7 @@ router.get('/:id', auth, async (req,res) =>{
      if(!time) return res.status(400).send('The time with the given symbol is not valid');
     res.send(time);
 });
+
 
 router.put('/:id',auth,async (req,res) =>{
      //validate the input
