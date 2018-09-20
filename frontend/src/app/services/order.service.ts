@@ -10,14 +10,10 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  
   getOrders(){
     return this.http.get(`${this.uri}/orders`);
   }
 
-  getProjects(){
-    return this.http.get(`${this.uri}/orders/projects`);
-  }
   getOrderById(id){
     return this.http.get(`${this.uri}/orders/${id}`);
   }
@@ -34,6 +30,7 @@ export class OrderService {
     };
     return this.http.post(`${this.uri}/orders`,newOrder);
   }
+
   editOrder(id,date,client,project,description,isBilled,status){
     const updatedOrder = {
       date: date,

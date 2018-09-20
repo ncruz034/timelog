@@ -12,13 +12,13 @@
 
 
         <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+            <input type="text" placeholder="Select a client" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option}}
+              <mat-option *ngFor="let client of filteredClients | async" [value]="client">
+                {{client}}
               </mat-option>
             </mat-autocomplete>
-          </mat-form-field>
+        </mat-form-field>
           
       <mat-form-field>
           <input matInput [matDatepicker]="datePicker" 
@@ -28,15 +28,16 @@
       </mat-form-field>
 
       <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Order" formControlName="order" #order>
+          <input matInput placeholder = "Order" formControlName="order" #order [value]="orderNumber">
+          {{orderNumber}}
+        </mat-form-field>
+
+      <mat-form-field class="field-full-with">
+        <input matInput placeholder = "Name" formControlName="name" #name>
       </mat-form-field>
 
       <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Name" formControlName="order" #name>
-      </mat-form-field>
-
-      <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Last" formControlName="order" #last>
+        <input matInput placeholder = "Last" formControlName="last" #last>
       </mat-form-field>
 
       <mat-form-field class="field-full-with">

@@ -16,10 +16,12 @@ import { Order } from '../../../models/order.model';
 })
 export class TimeCreateComponent implements OnInit {
   myControl = new FormControl();
-  options: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  clients: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
+  orderNumber: string[]=[];
+  filteredClients: Observable<string[]>;
   createForm: FormGroup;
   orders: Order[]=null;
+
   constructor(private orderService:OrderService, private timeService: TimeService, private fb:FormBuilder, private router:Router) {
     
     this.createForm = this.fb.group({
@@ -33,32 +35,23 @@ export class TimeCreateComponent implements OnInit {
     }
 
     private _filter(value: string): string[] {
-      const filterValue = value.toLowerCase();
-     
-      return this.options.filter(option => option.toLowerCase().includes(filterValue));
+        const filterValue = value.toLowerCase();
+      return this.clients.filter(client => client.toLowerCase().includes(filterValue));
     }
 
     addTime(date,order,name,last,description,time){
- 
       this.timeService.addTime(date,order,name,last,description,time).subscribe(()=>{
         this.router.navigate(['/times']);
       });
     }
 
     async fetchProjects(){
-      this.orderService.getProjects().subscribe(
+      this.orderService.getOrders().subscribe(
         (data: Order[])=>{
-
-
          for(let i = 0; i < data.length; i++){
-
-            this.options.push(Object.values(data[i])[2])
-         }
-
-          //this.options = data;
-     
-      
-        },
+            this.clients.push(Object.values(data[i])[2]);
+            console.log(this.orderNumber.push(Object.values(data[i])[1]));
+         }},
         err => {
           if(err instanceof HttpErrorResponse){
               if(err.status === 401){
@@ -68,15 +61,14 @@ export class TimeCreateComponent implements OnInit {
         }
       );
     }
+
   ngOnInit() {
     this.fetchProjects().then(()=>{
-      this.filteredOptions = this.myControl.valueChanges
+      this.filteredClients = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
     });
-   
   }
-
 }
