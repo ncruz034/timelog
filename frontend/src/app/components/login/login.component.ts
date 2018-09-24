@@ -34,7 +34,7 @@ export class LoginComponent {
         data=> {
           if (data) {
             this.data = data;
-           this.authService.storeUserData(this.data.token, this.data.name, user.email);
+           this.authService.storeUserData(this.data.token, this.data.name, user.email, this.data.user_id);
            this.router.navigate(['/times']);
           } else {
             console.log('Error: Login in...');

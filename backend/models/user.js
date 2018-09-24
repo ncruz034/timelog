@@ -6,7 +6,7 @@ const Joi = require('Joi');
 //const {User, validate} = require('./models/user');
 
 const userSchema = new mongoose.Schema({
-    //  id:{type:Number,required:true},
+      _id:{type: mongoose.Schema.ObjectId},
       name:{type:String, required:true,minlength:2,maxlength:50},
       last:{type:String, required:true,minlength:2,maxlength:50},
       salary: {type:Number, required:true},
@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
       email:{type:String, required:true,minlength:5,maxlength:255,unique:true},
       password:{type:String, required:true,minlength:5,maxlength:1024},
       isAdmin:{type:Boolean},
-     // time:[]
+      time:[{type: mongoose.Schema.ObjectId, ref:'Time'}],
+      timeDetails:[{type: mongoose.Schema.ObjectId, ref:'Time'}],
       });
 
     userSchema.methods.generateAuthToken = function(){

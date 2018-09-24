@@ -10,7 +10,7 @@
     <br>
     <form [formGroup]="createForm" class="create-form">
 
-
+      <!---
         <mat-form-field class="example-full-width">
             <input type="text" placeholder="Select a client" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
@@ -19,17 +19,16 @@
               </mat-option>
             </mat-autocomplete>
         </mat-form-field>
-          
+      -->
       <mat-form-field>
           <input matInput [matDatepicker]="datePicker" 
             formControlName="date" placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-          <mat-datepicker #datePicker></mat-datepicker>
+          <mat-datepicker #date></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Order" formControlName="order" #order [value]="orderNumber">
-          {{orderNumber}}
+          <input matInput placeholder = "Order Number" formControlName="orderNumber" #orderNumber>
         </mat-form-field>
 
       <mat-form-field class="field-full-with">
@@ -54,7 +53,7 @@
       <button mat-raised-button color = "accent" routerLink="/times">Back</button>
       <button type="submit" (click)="addTime(
                   date.value,
-                  order.balue,
+                  orderNumber.value,
                   name.value,
                   last.value,
                   description.value,

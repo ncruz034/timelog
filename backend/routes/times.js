@@ -48,12 +48,17 @@ router.post('/', auth, async (req,res) =>{
 
     let time = new Time({
         date: req.body.date,
-        orderId: req.body.orderId,
+        orderNumber: req.body.orderNumber,
         client: req.body.client,
         description: req.body.description,
         time:req.body.time,
-        userId: req.body.userId
+        user_id: req.body.user_id
     });
+    const order = await order.find({orderNumber: req.body.orderId},function(err,order){
+        if(err) return console.log("Error saving time to order...");
+        order.time.push(req.body.user_id);
+    });
+
     time = await time.save();
     res.send(time);
 });

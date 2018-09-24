@@ -21,8 +21,8 @@ router.post('/', async (req,res) =>{
     //If all the checks are negative, a token is generated and return to the calling app.
     const token = user.generateAuthToken();
     //res.json(token);
-    
-    res.json({"token":token,"name":user.name, "email":user.email});
+  
+    res.json({"token":token,"name":user.name, "email":user.email,"user_id": user._id});
 });
 
 //Validate the input provided by the calling application.

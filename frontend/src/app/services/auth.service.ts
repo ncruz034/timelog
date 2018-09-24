@@ -45,10 +45,11 @@ export class AuthService {
     return localStorage.getItem('user');
   }
 
-  storeUserData(token, name,  user) {
+  storeUserData(token, name,  user, user_id) {
     localStorage.setItem('x-auth-token', token);
     localStorage.setItem('name', name);
     localStorage.setItem('user', user);
+    localStorage.setItem('user_id',user_id);
     //localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;

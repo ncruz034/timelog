@@ -15,42 +15,47 @@ import { Order } from '../../../models/order.model';
   styleUrls: ['./time-create.component.css']
 })
 export class TimeCreateComponent implements OnInit {
-  myControl = new FormControl();
-  clients: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
-  orderNumber: string[]=[];
-  filteredClients: Observable<string[]>;
+  //myControl = new FormControl();
+ // clients: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
+  //orderNumber: string[]=[];
+ // filteredClients: Observable<string[]>;
   createForm: FormGroup;
   orders: Order[]=null;
+  user_id;
 
   constructor(private orderService:OrderService, private timeService: TimeService, private fb:FormBuilder, private router:Router) {
     
     this.createForm = this.fb.group({
       date: [new Date(), Validators.required],
-      order:['',Validators.required],
+      orderNumber:['',Validators.required],
       name: ['',Validators.required],
       last: ['',Validators.required],
       description: ['',Validators.required],
-      time:0,
+      time:[0,Validators.required],
     });
     }
+    
+    
+    addTime(date,orderNumber,name,last,description,time){
+      console.log(date);
+      this.timeService.addTime(date,orderNumber,name,last,description,time,localStorage.getItem('user_id')).subscribe(()=>{
+        this.router.navigate(['/times']);
+      });
+    }
 
+   /*
     private _filter(value: string): string[] {
         const filterValue = value.toLowerCase();
       return this.clients.filter(client => client.toLowerCase().includes(filterValue));
     }
 
-    addTime(date,order,name,last,description,time){
-      this.timeService.addTime(date,order,name,last,description,time).subscribe(()=>{
-        this.router.navigate(['/times']);
-      });
-    }
-
-    async fetchProjects(){
+     async fetchProjects(){
       this.orderService.getOrders().subscribe(
         (data: Order[])=>{
          for(let i = 0; i < data.length; i++){
-            this.clients.push(Object.values(data[i])[2]);
-            console.log(this.orderNumber.push(Object.values(data[i])[1]));
+            this.clients.push(Object.values(data[i])[3]);
+           console.log(this.clients);
+          // console.log(data);
          }},
         err => {
           if(err instanceof HttpErrorResponse){
@@ -61,8 +66,14 @@ export class TimeCreateComponent implements OnInit {
         }
       );
     }
+    */
+
+    
+   
 
   ngOnInit() {
+    this.user_id = localStorage.getItem('user_id');
+    /*
     this.fetchProjects().then(()=>{
       this.filteredClients = this.myControl.valueChanges
       .pipe(
@@ -70,5 +81,6 @@ export class TimeCreateComponent implements OnInit {
         map(value => this._filter(value))
       );
     });
+    */
   }
 }
