@@ -36,6 +36,24 @@ router.post('/', async (req,res) =>{
   
 });
 
+router.post('/time/:id', async (req,res) =>{
+    //const {error} = validate(req.body);
+   // if (error) return res.status(400).send(error.details[0].message);
+   
+        await User.findByIdAndUpdate(req.params._id, function(err,doc){
+        if (err) return console.log('Error updating time to user');
+        console.log(doc.time);
+        //doc.time.push(req.time_id);
+        doc.save();
+    });
+
+
+
+});
+
+
+
+
 //Get all users
 router.get('/', async (req, res,) => {
     // throw new Error({error:'Error'});
@@ -44,8 +62,7 @@ router.get('/', async (req, res,) => {
  });
 
 //Get a user by id
-router.get('/me',auth, async (req,res) =>{
-   
+router.get('/me', auth, async (req,res) =>{
     const users = await User.findById(req.user._id).select('-password');
     res.send(users);
 });

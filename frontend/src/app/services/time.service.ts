@@ -9,39 +9,36 @@ export class TimeService {
   uri = 'http://localhost:3000/api';
   constructor(private http: HttpClient) { }
 
-  getTimes(){
+  getTimes() {
     return this.http.get(`${this.uri}/times`);
   }
-  getTimeById(id){
+  getTimeById(id) {
     return this.http.get(`${this.uri}/times/${id}`);
   }
 
-  addTime(date,orderNumber,name,last,description,time,user_id){
+  addTime(date, order_id, description, time, user_id) {
     const newTime = {
       date: date,
-      orderNumber: orderNumber,
-      name: name,
-      last: last,
-      description:description,
+      order_id: order_id,
+      description: description,
       time: time,
-      user_id:user_id
+      user_id: user_id
     };
-    return this.http.post(`${this.uri}/times`,newTime);
+
+    return this.http.post(`${this.uri}/times`, newTime);
   }
 
-   editTime(id,date,order,name,last,description,time){
+   editTime(id, date, order, description, time) {
     const updatedTime = {
       date: date,
       order: order,
-      name: name,
-      last: last,
-      description:description,
+      description: description,
       time: time
     };
-    return this.http.post(`${this.uri}/times/update${id}`,updatedTime);
+    return this.http.post(`${this.uri}/times/update${id}`, updatedTime);
   }
 
-  deleteTime(id){
+  deleteTime(id) {
     return this.http.delete(`${this.uri}/times/delete/${id}`);
   }
 }

@@ -1,8 +1,7 @@
 export interface Time {
+    user_id: {type:String },
     date: {type:Date},
-    orderNumber: {type:String},
-    name: {type:String},
-    last: {type:String},
+    order_id: {type:String},
     time: {type:Number},
     description:{type:String}
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {User} from '../models/user.model';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -49,8 +48,7 @@ export class AuthService {
     localStorage.setItem('x-auth-token', token);
     localStorage.setItem('name', name);
     localStorage.setItem('user', user);
-    localStorage.setItem('user_id',user_id);
-    //localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user_id', user_id);
     this.authToken = token;
     this.user = user;
   }
