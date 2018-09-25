@@ -36,23 +36,29 @@ router.post('/', async (req,res) =>{
   
 });
 
-router.post('/time/:id', async (req,res) =>{
-    //const {error} = validate(req.body);
-   // if (error) return res.status(400).send(error.details[0].message);
-   
-        await User.findByIdAndUpdate(req.params._id, function(err,doc){
-        if (err) return console.log('Error updating time to user');
-        console.log(doc.time);
-        //doc.time.push(req.time_id);
-        doc.save();
+
+    router.get('/time', auth, async (req,res) =>{
+        const id = "5b90741f721b5bf5f8a699a4";
+        const user = await User.findById(id);
+         //check if there is any error
+         if(!user) return res.status(400).send('The user with the given id is not valid');
+        res.send(user);
     });
 
+router.post('/time', async (req,res) =>{  
+        const user = await User.findById(req.body.user_id);
+        if (!user) return res.status(400).send('No user found with provided id...');
 
+        user.time.push(req.body.time_id);
 
+       await user.save((error) =>{
+           if(error){
+               console.log(error);
+           }else{
+               res.send(user);
+           }
+       });
 });
-
-
-
 
 //Get all users
 router.get('/', async (req, res,) => {

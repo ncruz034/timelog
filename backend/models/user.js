@@ -14,8 +14,7 @@ const userSchema = new mongoose.Schema({
       email:{type:String, required:true,minlength:5,maxlength:255,unique:true},
       password:{type:String, required:true,minlength:5,maxlength:1024},
       isAdmin:{type:Boolean},
-      time:[{type: mongoose.Schema.ObjectId, ref:'Time'}],
-      timeDetails:[{type: mongoose.Schema.ObjectId, ref:'Time'}],
+      time:[{type: mongoose.Schema.Types.ObjectId, ref:'Time'}]
       });
 
     userSchema.methods.generateAuthToken = function(){
