@@ -21,23 +21,15 @@
         </mat-form-field>
       -->
       <mat-form-field>
-          <input matInput [matDatepicker]="datePicker" 
+          <input matInput [matDatepicker]="date"
             formControlName="date" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
           <mat-datepicker #date></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="field-full-with">
           <input matInput placeholder = "Order Number" formControlName="orderNumber" #orderNumber>
         </mat-form-field>
-
-      <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Name" formControlName="name" #name>
-      </mat-form-field>
-
-      <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Last" formControlName="last" #last>
-      </mat-form-field>
 
       <mat-form-field class="field-full-with">
         <input matInput placeholder = "Description" formControlName="description" #description>
@@ -52,12 +44,10 @@
       <br><br>
       <button mat-raised-button color = "accent" routerLink="/times">Back</button>
       <button type="submit" (click)="addTime(
-                  date.value,
+                  '01/17/2018',
                   orderNumber.value,
-                  name.value,
-                  last.value,
                   description.value,
                   time.value)" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
-  
+
   </mat-card>
 </div>

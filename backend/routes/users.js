@@ -37,12 +37,11 @@ router.post('/', async (req,res) =>{
 });
 
 
-    router.get('/time', auth, async (req,res) =>{
-        const id = "5b90741f721b5bf5f8a699a4";
-        const user = await User.findById(id);
-         //check if there is any error
+    router.get('/time/:user_id', async (req,res) =>{
+        const user = await User.findById(req.params.user_id).populate('time',['order','date','client','description', 'time']);
          if(!user) return res.status(400).send('The user with the given id is not valid');
-        res.send(user);
+
+        res.send(user.time);
     });
 
 router.post('/time', async (req,res) =>{  

@@ -42,15 +42,15 @@ router.put('/:id',auth,async (req,res) =>{
 });
 
 router.post('/', auth, async (req,res) =>{
-
+    
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
+  
     let time = new Time({
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,
         order_id: req.body.order_id,       //The _id of the work order on which work was prformed
-        //client: req.body.client,
         description: req.body.description, //What type of work was done on this job
         time:req.body.time,                //How much time was invested in this job
         user_id: req.body.user_id          //The _id of the user that work on the job

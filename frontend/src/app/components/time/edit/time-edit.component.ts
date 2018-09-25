@@ -29,8 +29,7 @@ export class TimeEditComponent implements OnInit {
     }
 
     editTime(date, order, name, last, description, time) {
-
-      this.timeService.editTime(this.id, date, order, name, last, description, time).subscribe(() => {
+      this.timeService.editTime(this.id, date, order, description, time).subscribe(() => {
         this.snackBar.open('Time updated succesfully', 'OK', {
           duration: 3000
         });

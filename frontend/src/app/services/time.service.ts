@@ -24,7 +24,6 @@ export class TimeService {
       time: time,
       user_id: user_id
     };
-
     return this.http.post(`${this.uri}/times`, newTime);
   }
 

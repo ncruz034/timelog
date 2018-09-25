@@ -11,26 +11,26 @@ import { Time } from '../../../models/time.model';
 export class TimeListComponent implements OnInit {
 
   times: Time[];
-  displayedColumns = ['order','date','name','last','description','time','actions'];
+  displayedColumns = ['order', 'date', 'name', 'last', 'description', 'time', 'actions'];
 
-  constructor(private timeService : TimeService, private router:Router) { }
+  constructor(private timeService: TimeService, private router: Router) { }
 
   ngOnInit() {
     this.fetchTimes();
   }
-  fetchTimes(){
+  fetchTimes() {
     this.timeService.getTimes().subscribe(
-      (data: Time[])=>{
+      (data: Time[]) => {
         this.times = data;
         console.log('Data requested...');
         console.log(this.times);
       });
   }
-  editTime(id){
+  editTime(id) {
     this.router.navigate([`times/edit/${id}`]);
   }
-  deleteTime(id){
-    this.timeService.deleteTime(id).subscribe(()=>{
+  deleteTime(id) {
+    this.timeService.deleteTime(id).subscribe(() => {
       this.fetchTimes();
     });
   }

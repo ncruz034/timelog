@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  addUserTime(user_id, time_id) {
+  addTimeToUser(user_id, time_id) {
     const updatedUserTime = {
       time_id: time_id,
     };

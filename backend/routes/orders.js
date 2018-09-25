@@ -27,6 +27,29 @@ router.post('/', auth, async (req,res) =>{
     res.send(order);
 });
 
+router.get('/time/:order_id', async (req,res) =>{
+    const order = await Order.findById(req.params.order_id).populate('time',['date', 'description', 'time']);
+     if(!order) return res.status(400).send('The user with the given id is not valid');
+
+    res.send(order.time);
+});
+
+router.post('/time', async (req,res) =>{  
+    const order = await Order.findById(req.body.order_id);
+    if (!order) return res.status(400).send('No user found with provided id...');
+
+    order.time.push(req.body.order_id);
+
+   await order.save((error) =>{
+       if(error){
+           console.log(error);
+       }else{
+           res.send(order);
+       }
+   });
+});
+
+
 //Get all orders
 router.get('/', auth, async (req, res,) => {
     // throw new Error({error:'Error'});
