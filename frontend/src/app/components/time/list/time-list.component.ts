@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { Router } from '@angular/router';
 import { Time } from '../../../models/time.model';
+import { MomentModule } from 'ngx-moment';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +12,7 @@ import { Time } from '../../../models/time.model';
 export class TimeListComponent implements OnInit {
 
   times: Time[];
-  displayedColumns = ['order', 'date', 'name', 'last', 'description', 'time', 'actions'];
+  displayedColumns = ['orderNumber', 'date', 'description', 'time', 'actions'];
 
   constructor(private timeService: TimeService, private router: Router) { }
 

@@ -9,7 +9,7 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
-import { MomentModule } from 'ngx-moment';
+//import { MomentModule } from 'ngx-moment';
 
 @Component({
   selector: 'app-create',
@@ -21,30 +21,34 @@ export class TimeCreateComponent implements OnInit {
  // clients: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
   //orderNumber: string[]=[];
  // filteredClients: Observable<string[]>;
+ time: Time = new Time();
+
   createForm: FormGroup;
   orders: Order[] = null;
   user_id;
 
 
   constructor(private userService: UserService, private timeService: TimeService, private fb: FormBuilder, private router: Router) {
-
+   /*
     this.createForm = this.fb.group({
       dateOfWork: [new Date, Validators.required],
-      //date: [new Date(), Validators.required],
       orderNumber: ['', Validators.required],
       description: ['', Validators.required],
       time: [0, Validators.required],
     });
+*/
     }
 
+    addTime() {
 
-    addTime(date,orderNumber, description, time) {
-      this.timeService.addTime(date,orderNumber, description, time, localStorage.getItem('user_id')).subscribe((data: any) => {
-        this.userService.addTimeToUser(localStorage.getItem('user_id'), data._id);
-        this.router.navigate(['/times']);
+      this.timeService.addTime(this.createForm.value.date.toDateString(),
+                               this.createForm.value.orderNumber,
+                               this.createForm.value.description, this.createForm.value.time,
+                               localStorage.getItem('user_id')).subscribe((data: any) => {
+                               this.userService.addTimeToUser(localStorage.getItem('user_id'), data._id);
+                               this.router.navigate(['/times']);
       });
     }
-
 
    /*
     private _filter(value: string): string[] {
@@ -76,6 +80,14 @@ export class TimeCreateComponent implements OnInit {
 
   ngOnInit() {
     this.user_id = localStorage.getItem('user_id');
+
+    this.createForm = this.fb.group({
+      'date': [this.time.date, Validators.required],
+      'orderNumber': [this.time.orderNumber, Validators.required],
+      'description': [this.time.description, Validators.required],
+      'time': [this.time.time, Validators.required],
+    });
+
     /*
     this.fetchProjects().then(()=>{
       this.filteredClients = this.myControl.valueChanges

@@ -22,12 +22,11 @@
       -->
       <mat-form-field>
           <input matInput [matDatepicker]="date"
-            formControlName="dateOfWork" placeholder="Choose a date">
+            formControlName="date" placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
           <mat-datepicker #date></mat-datepicker>
       </mat-form-field>
-      
-      Last updated: {{myDate | amTimeAgo}}
+
 
       <mat-form-field class="field-full-with">
           <input matInput placeholder = "Order Number" formControlName="orderNumber" #orderNumber>
@@ -45,11 +44,7 @@
     </form>
       <br><br>
       <button mat-raised-button color = "accent" routerLink="/times">Back</button>
-      <button type="submit" (click)="addTime(
-                  dateOfWork.value,
-                  orderNumber.value,
-                  description.value,
-                  time.value)" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
+      <button type="submit" (click)="addTime()"  mat-raised-button color="primary">Save</button>&nbsp;
 
   </mat-card>
 </div>

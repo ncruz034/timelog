@@ -27,10 +27,10 @@ export class TimeService {
     return this.http.post(`${this.uri}/times`, newTime);
   }
 
-   editTime(id, date, order, description, time) {
+   editTime(id, date, orderNumber, description, time) {
     const updatedTime = {
       date: date,
-      order: order,
+      order: orderNumber,
       description: description,
       time: time
     };
