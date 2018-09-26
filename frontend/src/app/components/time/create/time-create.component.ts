@@ -9,7 +9,8 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
-import * as moment from 'moment';
+import { MomentModule } from 'ngx-moment';
+
 @Component({
   selector: 'app-create',
   templateUrl: './time-create.component.html',
@@ -23,12 +24,12 @@ export class TimeCreateComponent implements OnInit {
   createForm: FormGroup;
   orders: Order[] = null;
   user_id;
- let now = moment().format('LLLL');
+
 
   constructor(private userService: UserService, private timeService: TimeService, private fb: FormBuilder, private router: Router) {
 
     this.createForm = this.fb.group({
-      Date: [moment(), Validators.required],
+      dateOfWork: [new Date, Validators.required],
       //date: [new Date(), Validators.required],
       orderNumber: ['', Validators.required],
       description: ['', Validators.required],
@@ -37,8 +38,8 @@ export class TimeCreateComponent implements OnInit {
     }
 
 
-    addTime(date, orderNumber, description, time) {
-      this.timeService.addTime(date, orderNumber, description, time, localStorage.getItem('user_id')).subscribe((data: any) => {
+    addTime(date,orderNumber, description, time) {
+      this.timeService.addTime(date,orderNumber, description, time, localStorage.getItem('user_id')).subscribe((data: any) => {
         this.userService.addTimeToUser(localStorage.getItem('user_id'), data._id);
         this.router.navigate(['/times']);
       });

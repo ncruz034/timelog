@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 //import { Router,Routes, RouterModule} from '@angular/router';
 import {AppRoutingModule } from './app-routing.module';
 import { MatToolbarModule,MatTableModule,
@@ -41,6 +41,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
+import { MomentModule } from 'ngx-moment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +82,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     MatSlideToggleModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MomentModule
   ],
   providers: [TimeService,AuthService, AuthGuard, 
     {
