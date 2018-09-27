@@ -45,8 +45,8 @@ export class TimeCreateComponent implements OnInit {
                                this.createForm.value.orderNumber,
                                this.createForm.value.description, this.createForm.value.time,
                                localStorage.getItem('user_id')).subscribe((data: any) => {
-                               this.userService.addTimeToUser(localStorage.getItem('user_id'), data._id);
-                               this.router.navigate(['/times']);
+        this.userService.addTimeToUser(localStorage.getItem('user_id'), data._id);
+        this.router.navigate(['/times']);
       });
     }
 

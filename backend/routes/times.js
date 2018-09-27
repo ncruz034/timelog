@@ -6,15 +6,12 @@ const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 //const asyncMIddleware = require('../middleware/async');
 
-
 //Get all times
-router.get('/', auth,  async (req, res,) => {
+router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('date');
         res.send(times);
     });
-
- 
 
 //Get a time by id
 router.get('/:id', auth, async (req,res) =>{
@@ -24,7 +21,7 @@ router.get('/:id', auth, async (req,res) =>{
     res.send(time);
 });
 
-
+/*
 router.put('/:id',auth,async (req,res) =>{
      //validate the input
      const {error} = validate(req.body);
@@ -32,7 +29,6 @@ router.put('/:id',auth,async (req,res) =>{
      if(error) return res.status(400).send(error.details[0].message);
     const time = await Time.findByIdAndUpdate(req.params.id,{
                  symbol: req.body.symbol,
-
                 },{
         new: true
     });
@@ -40,7 +36,7 @@ router.put('/:id',auth,async (req,res) =>{
     if(!time) return res.status(404).send('The tiem does not exists'); 
     res.send(time);
 });
-
+*/
 router.post('/', auth, async (req,res) =>{
     
     const {error} = validate(req.body);
