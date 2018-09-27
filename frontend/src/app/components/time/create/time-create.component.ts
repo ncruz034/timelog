@@ -9,6 +9,7 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
+
 //import { MomentModule } from 'ngx-moment';
 
 @Component({
@@ -28,7 +29,8 @@ export class TimeCreateComponent implements OnInit {
   user_id;
 
 
-  constructor(private userService: UserService, private timeService: TimeService, private fb: FormBuilder, private router: Router) {
+  constructor(private orderService: OrderService, private userService: UserService,
+              private timeService: TimeService, private fb: FormBuilder, private router: Router) {
    /*
     this.createForm = this.fb.group({
       dateOfWork: [new Date, Validators.required],
@@ -38,16 +40,27 @@ export class TimeCreateComponent implements OnInit {
     });
 */
     }
-
+    //Gets the order _i by passing an orderNumber; then,
+    //Adds new time to the time collection passing the order _id, and user _id; then,
+    //Adds new time _id to the current user's document; then,
+    //Adds new time _id to the selected order.
     addTime() {
+      this.orderService.getOrderIdByOrderNumber(this.createForm.value.orderNumber).subscribe((order_id: any) => {
+        //console.log('This is the order _id ' + order);
+            this.timeService.addTime(this.createForm.value.date.toDateString(), order_id,
+                                     this.createForm.value.description, this.createForm.value.time,
+                                     localStorage.getItem('user_id')).subscribe((time_id: any) => {
+                                          console.log('this is the time _id' + time_id);
+                                          this.userService.addTimeToUser(localStorage.getItem('user_id'), time_id._id)
+                                               .subscribe((user:any)=>{
+                                            console.log('This is the user _id ' + user);
+                                          });
 
-      this.timeService.addTime(this.createForm.value.date.toDateString(),
-                               this.createForm.value.orderNumber,
-                               this.createForm.value.description, this.createForm.value.time,
-                               localStorage.getItem('user_id')).subscribe((data: any) => {
-        this.userService.addTimeToUser(localStorage.getItem('user_id'), data._id);
-        this.router.navigate(['/times']);
+                });
+                this.router.navigate(['/times']);
       });
+
+
     }
 
    /*

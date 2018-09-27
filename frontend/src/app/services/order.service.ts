@@ -18,6 +18,10 @@ export class OrderService {
     return this.http.get(`${this.uri}/orders/${id}`);
   }
 
+  getOrderIdByOrderNumber(order_number){
+    return this.http.get(`${this.uri}/orders/number/${order_number}`);
+  }
+  
   addOrder(date,client,project,description,isBilled,status){
     const newOrder = {
       date: date,
@@ -26,7 +30,7 @@ export class OrderService {
       description: description,
       isBilled:isBilled,
       status: status
-     
+
     };
     return this.http.post(`${this.uri}/orders`,newOrder);
   }

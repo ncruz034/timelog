@@ -3,7 +3,7 @@ const Joi = require('Joi');
 
 
 const Order = mongoose.model('Order',new mongoose.Schema({
-    orderNumber:Number,
+    orderNumber:String,
     date:{type: Date, default: Date.now},
     client: {type:String, required:true},
     project: {type:String, required:true},
@@ -16,7 +16,7 @@ const Order = mongoose.model('Order',new mongoose.Schema({
 
 function validateOrder(order){
     const schema = {
-        orderNumber: Joi.number().required(),
+        orderNumber: Joi.string().required(),
         date: Joi.string().required(),
         client: Joi.string().min(3).required(),
         project: Joi.string().required(),
