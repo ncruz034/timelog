@@ -58,7 +58,7 @@ router.post('/', auth, async (req,res) =>{
     });
     */
     time = await time.save();
-    res.send(time);
+    res.send(time._id);
 });
 
 router.delete('/delete/:id',[auth,admin], async (req,res) =>{

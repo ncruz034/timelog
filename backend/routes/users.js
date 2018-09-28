@@ -36,16 +36,19 @@ router.post('/', async (req,res) =>{
   
 });
 
+/*
+router.post('/update/time/:user_id', async (req,res) =>{
+    console.log('The user Id is: ' + req.params.user_id);
+    console.log('The time id is:' + req.body.time_id);
+    console.log('Inside user time update route');
+    const user = await User.findById(req.params.user_id);//.populate('time',['order','date','client','description', 'time']);
+        if(!user) return res.status(400).send('The user with the given id is not valid');
 
-    router.get('/time/:user_id', async (req,res) =>{
-        const user = await User.findById(req.params.user_id);//.populate('time',['order','date','client','description', 'time']);
-         if(!user) return res.status(400).send('The user with the given id is not valid');
-
-        res.send(user.time);
-    });
-
-router.post('/time', async (req,res) =>{  
-        const user = await User.findById(req.body.user_id);
+    await res.send(user._id);
+});
+*/
+router.post('/:user_id/time', async (req,res) =>{  
+        const user = await User.findById(req.params.user_id);
         if (!user) return res.status(400).send('No user found with provided id...');
 
         user.time.push(req.body.time_id);

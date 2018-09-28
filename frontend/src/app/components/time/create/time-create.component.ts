@@ -46,16 +46,17 @@ export class TimeCreateComponent implements OnInit {
     //Adds new time _id to the selected order.
     addTime() {
       this.orderService.getOrderIdByOrderNumber(this.createForm.value.orderNumber).subscribe((order_id: any) => {
-        //console.log('This is the order _id ' + order);
-            this.timeService.addTime(this.createForm.value.date.toDateString(), order_id,
-                                     this.createForm.value.description, this.createForm.value.time,
-                                     localStorage.getItem('user_id')).subscribe((time_id: any) => {
-                                          console.log('this is the time _id' + time_id);
-                                          this.userService.addTimeToUser(localStorage.getItem('user_id'), time_id._id)
-                                               .subscribe((user:any)=>{
-                                            console.log('This is the user _id ' + user);
-                                          });
 
+            this.timeService.addTime(
+                  this.createForm.value.date.toDateString(), order_id,
+                  this.createForm.value.description, this.createForm.value.time,
+                  localStorage.getItem('user_id')).subscribe((time_id: any) => {
+                  console.log('this is the time _id ' + time_id);
+
+            this.userService.addTimeToUser(localStorage.getItem('user_id'), time_id)
+                  .subscribe((user: any) => {
+                  console.log('This is the user _id ' + user._id);
+                                          });
                 });
                 this.router.navigate(['/times']);
       });

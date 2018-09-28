@@ -67,14 +67,11 @@ router.get('/:id', auth, async (req,res) =>{
 
 //Get an order by orderNumber and returns the _id.
 router.get('/number/:order_number', auth, async (req,res) =>{
-    console.log('Requested number ' + JSON.stringify(req.params.order_number));
-    
-   const on = JSON.stringify(req.params.order_number);
-    console.log('The type of on is ' + typeof(on));
+ 
     await Order.findOne({orderNumber: req.params.order_number }, function(err,data){
         //check if there is any error
         if(!data) return res.status(400).send('The order with the given orderNumber is not valid');
-        console.log('About to send ' + data._id);
+        console.log('About to send order _id ' + data._id);
         res.send(data._id);
     });
 });

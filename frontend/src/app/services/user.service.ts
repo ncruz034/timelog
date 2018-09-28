@@ -14,8 +14,7 @@ export class UserService {
     const updatedUserTime = {
       time_id: time_id,
     };
-    return this.http.post(`${this.uri}/users/update/times${user_id}`, updatedUserTime);
+
+    return this.http.post(`${this.uri}/users/${user_id}/time`, updatedUserTime);
   }
-
-
 }
