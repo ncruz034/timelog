@@ -11,6 +11,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatChipsModule} from '@angular/material/chips';
 
 //import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -85,9 +86,10 @@ import { MomentModule } from 'ngx-moment';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatExpansionModule,
+    MatChipsModule,
     MomentModule
   ],
-  providers: [TimeService,AuthService, AuthGuard, 
+  providers: [TimeService,AuthService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
      useClass: TokenInterceptorService,

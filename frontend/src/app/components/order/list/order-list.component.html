@@ -1,77 +1,148 @@
+
+
+<div>
+    <mat-card>
+      <button mat-raised-button color="primary" routerLink="/orders/create">+</button>
+      <br><br>
+      <mat-divider></mat-divider>
+    </mat-card>
+  </div>
+
+
 <div >
   <mat-accordion>
   <mat-expansion-panel *ngFor=" let order of orders">
 
     <mat-expansion-panel-header>
       <mat-panel-title>
-       <H2>{{order.orderNumber}}</H2> 
+        <mat-chip-list>
+          <mat-chip color="accent" selected>
+              {{order.orderNumber}}
+          </mat-chip>
+        </mat-chip-list>
+
       </mat-panel-title>
       <mat-panel-description>
         <h3>{{order.project}}</h3>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    
-      {{order.date}}
-    
-      {{order.description}}
-  
-  </mat-expansion-panel>
+    <div class="box">
+      <div class="child">
+         <P> Date: {{order.date}}</P>
+         <P>Description: {{order.description}}</P>
+         <h4>Status: {{order.status}}</h4>
+         <h4>Billed: {{order.isBilled}}</h4>
+      </div>
+      <div class="child">
+          <h4>Regular Time: </h4>
+          <h4>Overtime: </h4>
+          <h4>Total Time: </h4>
+          <h4>Progress: </h4>
+      </div>
+    </div>
 
+    <div>
+      <app-time-list></app-time-list>
+      <!--
+        <mat-card>
+          <table mat-table [dataSource] = "orders">
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element"> {{element.date}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="client">
+              <th mat-header-cell *matHeaderCellDef>Client</th>
+              <td mat-cell *matCellDef="let element"> {{element.client}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="project">
+              <th mat-header-cell *matHeaderCellDef>Project</th>
+              <td mat-cell *matCellDef="let element"> {{element.project}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isBilled">
+              <th mat-header-cell *matHeaderCellDef>Is Billed</th>
+              <td mat-cell *matCellDef="let element"> {{element.isBilled}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</th>
+              <td mat-cell *matCellDef="let element" class="mat-column-right">
+                <button mat-button color ="primary" (click) = "editOrder(element._id)">Edit</button>
+                <button mat-button color ="warn" (click) = "deleteOrder(element._id)">Delete</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card>
+      -->
+      </div>
+
+
+  </mat-expansion-panel>
 </mat-accordion>
 </div>
 
 
+<!-- This was the table for Orders
 <div>
-    <br>
-    <mat-card>
-      <button mat-raised-button color="primary" routerLink="/orders/create">+</button>
-      <br><br>
-      <mat-divider></mat-divider>
-      <br>
-  
-      <table mat-table [dataSource] = "orders">
-        
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
-          <td mat-cell *matCellDef="let element"> {{element.date}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="client">
-          <th mat-header-cell *matHeaderCellDef>Client</th>
-          <td mat-cell *matCellDef="let element"> {{element.client}}</td>
-        </ng-container>
-      
-        <ng-container matColumnDef="project">
-          <th mat-header-cell *matHeaderCellDef>Project</th>
-          <td mat-cell *matCellDef="let element"> {{element.project}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="description">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let element"> {{element.description}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="isBilled">
-          <th mat-header-cell *matHeaderCellDef>Is Billed</th>
-          <td mat-cell *matCellDef="let element"> {{element.isBilled}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let element"> {{element.status}}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</th>
-          <td mat-cell *matCellDef="let element" class="mat-column-right">
-            <button mat-button color ="primary" (click) = "editOrder(element._id)">Edit</button>
-            <button mat-button color ="warn" (click) = "deleteOrder(element._id)">Delete</button>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
-      </table>
-    </mat-card>
-  </div>
+        <mat-card>
+          <table mat-table [dataSource] = "orders">
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef>Date</th>
+              <td mat-cell *matCellDef="let element"> {{element.date}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="client">
+              <th mat-header-cell *matHeaderCellDef>Client</th>
+              <td mat-cell *matCellDef="let element"> {{element.client}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="project">
+              <th mat-header-cell *matHeaderCellDef>Project</th>
+              <td mat-cell *matCellDef="let element"> {{element.project}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element"> {{element.description}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isBilled">
+              <th mat-header-cell *matHeaderCellDef>Is Billed</th>
+              <td mat-cell *matCellDef="let element"> {{element.isBilled}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</th>
+              <td mat-cell *matCellDef="let element" class="mat-column-right">
+                <button mat-button color ="primary" (click) = "editOrder(element._id)">Edit</button>
+                <button mat-button color ="warn" (click) = "deleteOrder(element._id)">Delete</button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-card>
+      </div>
+-->

@@ -5,7 +5,7 @@ import { Time } from '../../../models/time.model';
 import { MomentModule } from 'ngx-moment';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-time-list',
   templateUrl: './time-list.component.html',
   styleUrls: ['./time-list.component.css']
 })

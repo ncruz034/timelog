@@ -4,3 +4,30 @@ table{
 .mat-column-right{
     text-align: center;
 }
+
+.box{
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  padding: 15px;
+  text-align: center;
+}
+.child{
+
+  display: inline-block;
+  padding: 15px;
+  text-align: left;
+}
+.example-chip-list {
+  width: 100%;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}

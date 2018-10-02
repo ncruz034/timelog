@@ -16,23 +16,23 @@ export class OrderListComponent implements OnInit {
   orders: Order[];
   displayedColumns = ['date','client','project','description','isBilled','status','actions'];
 
-  constructor(private orderService : OrderService, private router:Router) { }
+  constructor(private orderService: OrderService, private router: Router) { }
 
   ngOnInit() {
     this.fetchOrders();
   }
 
-  fetchOrders(){
+  fetchOrders() {
     this.orderService.getOrders().subscribe(
-      (data: Order[])=>{
-        this.orders = data
-        
+      (data: Order[]) => {
+        this.orders = data;
+
         //console.log('Data requested...');
         //console.log(this.orders);
       },
       err => {
-        if(err instanceof HttpErrorResponse){
-            if(err.status === 401){
+        if(err instanceof HttpErrorResponse) {
+            if(err.status === 401) {
               this.router.navigate(['/auth']);
             }
         }
@@ -40,12 +40,12 @@ export class OrderListComponent implements OnInit {
     );
   }
 
-  editOrder(id){
+  editOrder(id) {
     this.router.navigate([`orders/edit/${id}`]);
   }
 
-  deleteTime(id){
-    this.orderService.deleteOrder(id).subscribe(()=>{
+  deleteTime(id) {
+    this.orderService.deleteOrder(id).subscribe(() => {
       this.fetchOrders();
     });
   }
