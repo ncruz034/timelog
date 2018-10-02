@@ -11,6 +11,22 @@ const Order = mongoose.model('Order',new mongoose.Schema({
     isBilled:{type:Boolean, required:true},
     status: {type:String, required:true},
     time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
+    order_stats:{
+        budget:{type:Number},
+        totalFieldTime:{type:Number},
+        totalOfficeTime:{type:Number},
+        totalOvertime:{type:Number}
+    },
+    theTime:[
+        {
+            user:{type:String},
+            date:{type:Date},
+            description:{type:String},
+            time:{type:Number},
+            isOfficeTime:{type:Boolean},
+            isOvertime:{type:Boolean},
+        }
+    ]
     }));
 
 

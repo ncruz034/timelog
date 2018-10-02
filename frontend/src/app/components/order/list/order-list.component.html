@@ -1,3 +1,27 @@
+<div >
+  <mat-accordion>
+  <mat-expansion-panel *ngFor=" let order of orders">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       <H2>{{order.orderNumber}}</H2> 
+      </mat-panel-title>
+      <mat-panel-description>
+        <h3>{{order.project}}</h3>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    
+      {{order.date}}
+    
+      {{order.description}}
+  
+  </mat-expansion-panel>
+
+</mat-accordion>
+</div>
+
+
 <div>
     <br>
     <mat-card>

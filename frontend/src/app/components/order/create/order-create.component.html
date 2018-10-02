@@ -9,6 +9,9 @@
       <br>
       <form [formGroup]="createForm" class="create-form">
   
+          <mat-form-field class="field-full-with">
+              <input matInput placeholder = "Order No." formControlName="orderNumber" #orderNumber>
+            </mat-form-field>
         <mat-form-field class="field-full-with">
           <input matInput placeholder = "Date" formControlName="date" #date>
         </mat-form-field>
@@ -37,13 +40,7 @@
       </form>
         <br><br>
         <button mat-raised-button color = "accent" routerLink="/orders">Back</button>
-        <button type="submit" (click)="addOrder(
-                    date.value,
-                    client.value,
-                    project.value,
-                    description.value,
-                    isBilled.value,
-                    status.value)" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
+        <button type="submit" (click)="addOrder()" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
     
     </mat-card>
   </div>

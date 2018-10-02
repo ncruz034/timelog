@@ -1,8 +1,8 @@
 
-export interface Order {
+export class Order {
     orderNumber: {type:String},
     date: {type:Date},
-    cient: {type:String},
+    client: {type:String},
     project: {type:String},
     description: {type:String},
     isBilled: {type:Boolean},

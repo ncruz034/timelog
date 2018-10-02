@@ -22,8 +22,17 @@ export class OrderService {
     return this.http.get(`${this.uri}/orders/number/${order_number}`);
   }
   
-  addOrder(date,client,project,description,isBilled,status){
+  addTimeToOrder(order_id, time_id) {
+    const updatedOrderTime = {
+      time_id: time_id,
+    };
+
+    return this.http.post(`${this.uri}/orders/${order_id}/time`, updatedOrderTime);
+  }
+
+  addOrder(orderNumber,date,client,project,description,isBilled,status){
     const newOrder = {
+      orderNumber:orderNumber,
       date: date,
       client: client,
       project: project,
