@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class TimeService {
 
   uri = 'http://localhost:3000/api';
+
   constructor(private http: HttpClient) { }
 
   getTimes() {
@@ -16,6 +17,9 @@ export class TimeService {
     return this.http.get(`${this.uri}/times/${id}`);
   }
 
+  geTimesByOrderNumber(orderNumber) {
+    return this.http.get(`${this.uri}/times/orderNumber/${orderNumber}`);
+  }
   addTime(date, order_id, description, time, user_id) {
     const newTime = {
       date: date,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { Router } from '@angular/router';
 import { Time } from '../../../models/time.model';
@@ -17,9 +17,16 @@ export class TimeListComponent implements OnInit {
   constructor(private timeService: TimeService, private router: Router) { }
 
   ngOnInit() {
-    this.fetchTimes();
+     // this.fetchTimes();
   }
-  fetchTimes() {
+
+  getTimesByOrderNumber(orderNumber) {
+    this.timeService.geTimesByOrderNumber(orderNumber).subscribe((data: Time[]) => {
+      this.times = data;
+    });
+  }
+
+  getTimes() {
     this.timeService.getTimes().subscribe(
       (data: Time[]) => {
         this.times = data;
@@ -27,12 +34,13 @@ export class TimeListComponent implements OnInit {
         console.log(this.times);
       });
   }
+
   editTime(id) {
     this.router.navigate([`times/edit/${id}`]);
   }
   deleteTime(id) {
     this.timeService.deleteTime(id).subscribe(() => {
-      this.fetchTimes();
+      this.getTimes();
     });
   }
 }

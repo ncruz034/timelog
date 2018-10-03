@@ -89,7 +89,7 @@ import { MomentModule } from 'ngx-moment';
     MatChipsModule,
     MomentModule
   ],
-  providers: [TimeService,AuthService, AuthGuard,
+  providers: [TimeService, AuthService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
      useClass: TokenInterceptorService,

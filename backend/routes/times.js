@@ -21,6 +21,15 @@ router.get('/:id', auth, async (req,res) =>{
     res.send(time);
 });
 
+//Get an order by orderNumber and returns the _id.
+router.get('/orderNumber/:order_number', auth, async (req,res) =>{
+    console.log('In time service: ' + req.params.order_number);
+    await Time.find({orderNumber: req.params.order_number }, function(err,times){
+        //check if there is any error
+        if(!times) return res.status(400).send('The order with the given order number is not valid');
+        res.send(times);
+    });
+});
 /*
 router.put('/:id',auth,async (req,res) =>{
      //validate the input

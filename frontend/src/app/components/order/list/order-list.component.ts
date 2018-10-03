@@ -14,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class OrderListComponent implements OnInit {
   panelOpenState = false;
   orders: Order[];
-  displayedColumns = ['date','client','project','description','isBilled','status','actions'];
+  displayedColumns = ['date','user','description','time','actions'];
 
   constructor(private orderService: OrderService, private router: Router) { }
 
