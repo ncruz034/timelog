@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const {Order, validate} = require('../models/order');
+const { Global } = require('../models/global');
 const asyncMIddleware = require('../middleware/async');
 
 //Register a new Order; this route should be protected to only admin users.
@@ -38,6 +39,41 @@ router.get('/time/:order_id', async (req,res) =>{
     res.send(order.time);
 });
 
+router.get('/last', async (req,res) =>{
+    const currentOrderNumber = await Global.findOne();
+    if(!currentOrderNumber) return res.status(400).send('There are no orders in the database');
+
+    res.send(currentOrderNumber.currentOrderNumber);
+})
+
+
+router.put('/last/', async (req,res) =>{
+    await Global.findOne({}, function(err, data){
+        if(err){
+            console.log(err);
+            res.status(500).send();
+        } else {
+            if(!data){
+                res.status(400).send('No orders in the system.');
+            } else {
+                if(req.body.currentOrderNumber){
+                    data.currentOrderNumber = req.body.currentOrderNumber;
+                    data.save(function(err,updatedData){
+                        if(err){
+                            console.log(err);
+                            res.status(500).send();
+                        } else {
+                            res.send(data);
+                        }
+                    })
+                }
+
+
+            }
+        }
+
+    });
+});
 /*
 router.post('/time', async (req,res) =>{  
     const order = await Order.findById(req.body.order_id);
