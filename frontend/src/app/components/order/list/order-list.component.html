@@ -29,6 +29,7 @@
 
 
     <div class="box">
+<<<<<<< HEAD
 
         <mat-grid-list cols="6" rowHeight=300px>
             <mat-grid-tile [colspan]=3 [rowspan]=1>
@@ -55,6 +56,20 @@
 
 
 
+=======
+      <div class="child">
+         <P> Date: {{order.date | date}}</P>
+         <P>Description: {{order.description}}</P>
+         <h4>Status: {{order.status}}</h4>
+         <h4>Billed: {{order.isBilled}}</h4>
+      </div>
+      <div class="child">
+          <h4>Regular Time: </h4>
+          <h4>Overtime: </h4>
+          <h4>Total Time: </h4>
+          <h4>Progress: </h4>
+      </div>
+>>>>>>> f57351df06615a7f1cd05ba98f504cab69c98c5e
     </div>
 
     <div>
@@ -63,7 +78,7 @@
           <table mat-table [dataSource] = "orders">
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef>Date</th>
-              <td mat-cell *matCellDef="let element"> {{element.date}}</td>
+              <td mat-cell *matCellDef="let element"> {{element.date | date}}</td>
             </ng-container>
 
             <ng-container matColumnDef="user">
@@ -95,7 +110,7 @@
             <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
           </table>
         </mat-card>
-
+    
       </div>
 
 

@@ -16,7 +16,7 @@ const Order = mongoose.model('Order',new mongoose.Schema({
         totalFieldTime:{type:Number},
         totalOfficeTime:{type:Number},
         totalOvertime:{type:Number}
-    },
+    }/*,
     theTime:[
         {
             user:{type:String},
@@ -26,7 +26,7 @@ const Order = mongoose.model('Order',new mongoose.Schema({
             isOfficeTime:{type:Boolean},
             isOvertime:{type:Boolean},
         }
-    ]
+    ]*/
     }));
 
 
