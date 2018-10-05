@@ -9,25 +9,23 @@ table{
   width: auto;
   height: auto;
   margin: 0 auto;
-  padding: 15px;
+  padding: 5px;
   text-align: center;
+  border: 1px solid orchid
 }
 .child{
 
   display: inline-block;
-  padding: 15px;
+  padding: 25px;
   text-align: left;
 }
 .example-chip-list {
   width: 100%;
 }
 
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
+
 
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
-  align-items: center;
+ text-align: center;
 }

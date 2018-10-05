@@ -1,8 +1,7 @@
 
-
 <div>
     <mat-card>
-      <button mat-raised-button color="primary" routerLink="/orders/create">+</button>
+      <button mat-fab color="primary" routerLink="/orders/create">+</button>
       <br><br>
       <mat-divider></mat-divider>
     </mat-card>
@@ -12,32 +11,50 @@
   <mat-accordion class="example-headers-align">
   <mat-expansion-panel *ngFor=" let order of orders">
 
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header (click)="printId(order)">
       <mat-panel-title>
-        <mat-chip-list>
+
+        <mat-chip-list >
           <mat-chip color="accent" selected>
               {{order.orderNumber}}
           </mat-chip>
         </mat-chip-list>
+
       </mat-panel-title>
       <mat-panel-description>
         <h3>{{order.project}}</h3>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
+
+
     <div class="box">
-      <div class="child">
-         <P> Date: {{order.date}}</P>
-         <P>Description: {{order.description}}</P>
-         <h4>Status: {{order.status}}</h4>
-         <h4>Billed: {{order.isBilled}}</h4>
-      </div>
-      <div class="child">
-          <h4>Regular Time: </h4>
-          <h4>Overtime: </h4>
-          <h4>Total Time: </h4>
-          <h4>Progress: </h4>
-      </div>
+
+        <mat-grid-list cols="6" rowHeight=300px>
+            <mat-grid-tile [colspan]=3 [rowspan]=1>
+
+
+              <div class="child">
+                  <p> Date: {{order.date | date}}</p>
+                  <p>Description: {{order.description}}</p>
+                  <p>Status: {{order.status}}</p>
+                  <p>Billed: {{order.isBilled}}</p>
+               </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]=3 [rowspan]=1>
+                <div class="child">
+                    <p>Regular Time: </p>
+                    <p>Overtime: </p>
+                    <p>Total Time: </p>
+                    <p>Progress: </p>
+                </div>
+              </mat-grid-tile>
+          </mat-grid-list>
+
+
+
+
     </div>
 
     <div>

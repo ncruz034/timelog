@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 //import { MatTableDataSource } from '@angular/material';
 import { Order } from '../../../models/order.model';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-order-list',
@@ -21,7 +21,9 @@ export class OrderListComponent implements OnInit {
   ngOnInit() {
     this.fetchOrders();
   }
-
+  printId(order: Order) {
+    console.log(order.date);
+  }
   fetchOrders() {
     this.orderService.getOrders().subscribe(
       (data: Order[]) => {
