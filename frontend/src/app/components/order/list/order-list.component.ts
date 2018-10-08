@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
-//import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,21 +17,19 @@ export class OrderListComponent implements OnInit {
   orders: Order[];
   times: Time[];
   currentOrderId: String;
-  requestOrder = "order";
-                   
+  //requestOrder = "order";
 
-  displayedColumns = ['date','user','description','time','actions'];
+
+  displayedColumns = ['date','user','description','time'];
 
   constructor(private orderService: OrderService, private router: Router) { }
 
   ngOnInit() {
     this.fetchOrders();
   }
-  printId(time: Time) {
-    console.log(time.user_name);
-  }
+
   getOrderId(id){
-    console.log("this is the id" + id);
+    //console.log("this is the id" + id);
     this.currentOrderId = id;
   }
   fetchOrders() {
@@ -52,8 +50,8 @@ export class OrderListComponent implements OnInit {
     );
   }
 
-  editOrder(id) {
-    this.router.navigate([`orders/edit/${id}`]);
+  editTime(id) {
+    this.router.navigate([`times/edit/${id}`]);
   }
 
   deleteTime(id) {
