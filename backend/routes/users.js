@@ -62,6 +62,14 @@ router.post('/:user_id/time', async (req,res) =>{
        });
 });
 
+//Finds a user by _id, and returns all the times present in the user
+router.get('/time/:user_id', async (req,res) =>{
+    const user = await User.findById(req.params.user_id).populate('time',['date', 'user_name','description', 'time']);
+     if(!user) return res.status(400).send('The user with the given id is not valid');
+
+    res.send(user.time);
+});
+
 //Get all users
 router.get('/', async (req, res,) => {
     // throw new Error({error:'Error'});

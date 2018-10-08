@@ -33,7 +33,7 @@ router.post('/', auth, async (req,res) =>{
 
 //Finds an order by _id, and returns all the times present in the order
 router.get('/time/:order_id', async (req,res) =>{
-    const order = await Order.findById(req.params.order_id).populate('time',['date', 'description', 'time']);
+    const order = await Order.findById(req.params.order_id).populate('time',['date', 'user_name','description', 'time']);
      if(!order) return res.status(400).send('The order with the given id is not valid');
 
     res.send(order.time);
@@ -107,9 +107,9 @@ router.post('/:order_id/time', async (req,res) =>{
 });
 
 //Get all orders
-router.get('/', auth, async (req, res,) => {
+router.get('/', async (req, res,) => {
     // throw new Error({error:'Error'});
-     const orders = await Order.find().sort('date');
+     const orders = await Order.find().sort('date').populate('time');
      res.send(orders);
  });
 

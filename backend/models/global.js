@@ -5,9 +5,9 @@ const Joi = require('Joi');
 const Global = mongoose.model('Global',new mongoose.Schema({
     currentOrderNumber:String,
     currentOrderId: [{type: mongoose.Schema.ObjectId, ref:'Order'}],
-
     }));
 
+    
 function validateGlobal(global){
     const schema = {
         currentOrderNumber: Joi.string().required(),

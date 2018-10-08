@@ -3,6 +3,7 @@ import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
 //import { MatTableDataSource } from '@angular/material';
 import { Order } from '../../../models/order.model';
+import { Time } from '../../../models/time.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -14,6 +15,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 export class OrderListComponent implements OnInit {
   panelOpenState = false;
   orders: Order[];
+  times: Time[];
+  currentOrderId: String;
+  requestOrder = "order";
+                   
+
   displayedColumns = ['date','user','description','time','actions'];
 
   constructor(private orderService: OrderService, private router: Router) { }
@@ -21,8 +27,12 @@ export class OrderListComponent implements OnInit {
   ngOnInit() {
     this.fetchOrders();
   }
-  printId(order: Order) {
-    console.log(order.date);
+  printId(time: Time) {
+    console.log(time.user_name);
+  }
+  getOrderId(id){
+    console.log("this is the id" + id);
+    this.currentOrderId = id;
   }
   fetchOrders() {
     this.orderService.getOrders().subscribe(

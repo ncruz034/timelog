@@ -22,14 +22,16 @@ router.get('/:id', auth, async (req,res) =>{
 });
 
 //Get an order by orderNumber and returns the _id.
-router.get('/orderNumber/:order_number', auth, async (req,res) =>{
-    console.log('In time service: ' + req.params.order_number);
-    await Time.find({orderNumber: req.params.order_number }, function(err,times){
+router.get('/order/:order_id', async (req,res) =>{
+    console.log('In time service: ' + req.params.order_id);
+    await Time.find({order_id: req.params.order_id }, function(err,times){
         //check if there is any error
         if(!times) return res.status(400).send('The order with the given order number is not valid');
+
         res.send(times);
     });
 });
+
 /*
 router.put('/:id',auth,async (req,res) =>{
      //validate the input
@@ -46,12 +48,12 @@ router.put('/:id',auth,async (req,res) =>{
     res.send(time);
 });
 */
+
 router.post('/', auth, async (req,res) =>{
     
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-  
     let time = new Time({
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,
@@ -60,6 +62,7 @@ router.post('/', auth, async (req,res) =>{
         time:req.body.time,                //How much time was invested in this job
         user_id: req.body.user_id          //The _id of the user that work on the job
     });
+
     /*
     const order = await order.find({orderNumber: req.body.orderId},function(err,order){
         if(err) return console.log("Error saving time to order...");

@@ -8,7 +8,8 @@ const Time = mongoose.model('Time',new mongoose.Schema({
     orderNumber:{type: String, required:true},
     description:{type:String, required:true}, 
     time:{type:Number, required:true},
-    user_id:[{type: mongoose.Schema.Types.ObjectId, ref: 'User', required:true}],
+    user_name:{type:String,required:true},
+    user_id:{type:String,required:true}, //[{type: mongoose.Schema.Types.ObjectId, ref: 'User', required:true}],
     isField:{type:Boolean, required:true}
     }));
 
@@ -20,6 +21,7 @@ function validateTime(time){
         orderNumber: joi.string().Joi.required(),
         description: Joi.string().min(3).required(),
         time: Joi.number().required(),
+        user_name:Joi.string().required(),
         user_id: Joi.required(),
         isField: Joi.bool().required(),
     };

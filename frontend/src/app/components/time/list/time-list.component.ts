@@ -10,18 +10,23 @@ import { MomentModule } from 'ngx-moment';
   styleUrls: ['./time-list.component.css']
 })
 export class TimeListComponent implements OnInit {
-
+  @Input() currentOrderId: String;
+  @Input() isOrderRequest: Boolean;
   times: Time[];
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'actions'];
 
   constructor(private timeService: TimeService, private router: Router) { }
 
   ngOnInit() {
-     // this.fetchTimes();
+    if(this.currentOrderId) {
+      this.getTimesByOrderId();
+    } else {
+      this.getTimes();
+    }
   }
 
-  getTimesByOrderNumber(orderNumber) {
-    this.timeService.geTimesByOrderNumber(orderNumber).subscribe((data: Time[]) => {
+  getTimesByOrderId() {
+    this.timeService.geTimesByOrderId(this.currentOrderId).subscribe((data: Time[]) => {
       this.times = data;
     });
   }

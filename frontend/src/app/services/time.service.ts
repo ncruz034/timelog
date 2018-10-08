@@ -17,8 +17,8 @@ export class TimeService {
     return this.http.get(`${this.uri}/times/${id}`);
   }
 
-  geTimesByOrderNumber(orderNumber) {
-    return this.http.get(`${this.uri}/times/orderNumber/${orderNumber}`);
+  geTimesByOrderId(order_id) {
+    return this.http.get(`${this.uri}/times/order/${order_id}`);
   }
   addTime(date, order_id, description, time, user_id) {
     const newTime = {
