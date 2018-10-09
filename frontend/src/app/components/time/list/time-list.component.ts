@@ -43,6 +43,7 @@ export class TimeListComponent implements OnInit {
   editTime(id) {
     this.router.navigate([`times/edit/${id}`]);
   }
+  
   deleteTime(id) {
     this.timeService.deleteTime(id).subscribe(() => {
       this.getTimes();
