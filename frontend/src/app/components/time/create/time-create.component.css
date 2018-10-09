@@ -2,9 +2,11 @@
     display:flex;
     flex-direction:column;
     min-width: 150px;
-    width:50%;
+    width:auto;
+    
 }
 
 .field-full-width{
     width: 50%;
 }
+
