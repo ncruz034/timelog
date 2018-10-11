@@ -9,10 +9,18 @@ const admin = require('../middleware/admin');
 //Get all times
 router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
-        const times = await Time.find().sort('date');
+        const times = await Time.find().sort('date').populate('order',['orderNumber'],'Order');
         res.send(times);
-    });
+});
 
+//Get all times for a user
+router.get('/user/:user_id',auth,  async (req, res,) => {
+    // throw new Error({error:'Error'});
+     const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+
+     res.send(times);
+});
 //Get a time by id
 router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
@@ -27,7 +35,6 @@ router.get('/order/:order_id', async (req,res) =>{
     await Time.find({order_id: req.params.order_id }, function(err,times){
         //check if there is any error
         if(!times) return res.status(400).send('The order with the given order number is not valid');
-
         res.send(times);
     });
 });
@@ -57,10 +64,10 @@ router.post('/', async (req,res) =>{
     let time = new Time({
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,
-        order_id: req.body.order_id,       //The _id of the work order on which work was prformed
+        order: req.body.order_id,       //The _id of the work order on which work was prformed
         description: req.body.description, //What type of work was done on this job
         time:req.body.time,                //How much time was invested in this job
-        user_id: req.body.user_id          //The _id of the user that work on the job
+        user: req.body.user_id          //The _id of the user that work on the job
     });
 
     /*

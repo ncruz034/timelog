@@ -10,18 +10,18 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(){
+  getOrders() {
     return this.http.get(`${this.uri}/orders`);
   }
 
-  getOrderById(id){
+  getOrderById(id) {
     return this.http.get(`${this.uri}/orders/${id}`);
   }
 
-  getOrderIdByOrderNumber(order_number){
+  getOrderIdByOrderNumber(order_number) {
     return this.http.get(`${this.uri}/orders/number/${order_number}`);
   }
-  
+
   addTimeToOrder(order_id, time_id) {
     const updatedOrderTime = {
       time_id: time_id,
@@ -30,33 +30,34 @@ export class OrderService {
     return this.http.post(`${this.uri}/orders/${order_id}/time`, updatedOrderTime);
   }
 
-  addOrder(orderNumber,date,client,project,description,isBilled,status){
+  addOrder(orderNumber, date, client, project, description, isBilled, status) {
     const newOrder = {
-      orderNumber:orderNumber,
+      orderNumber: orderNumber,
       date: date,
       client: client,
       project: project,
       description: description,
-      isBilled:isBilled,
+      isBilled: isBilled,
       status: status
-
     };
-    return this.http.post(`${this.uri}/orders`,newOrder);
+    return this.http.post(`${this.uri}/orders`, newOrder);
   }
 
-  editOrder(id,date,client,project,description,isBilled,status){
+  editOrder(_id, orderNumber, date, client, project, description, isBilled, status) {
     const updatedOrder = {
+      orderNumber: orderNumber,
       date: date,
       client: client,
       project: project,
       description: description,
-      isBilled:isBilled,
+      isBilled: isBilled,
       status: status
     };
-    return this.http.post(`${this.uri}/orders/update${id}`,updatedOrder);
+    console.log('Sendeing order Number: ' + orderNumber);
+    return this.http.put(`${this.uri}/orders/${_id}`, updatedOrder);
   }
 
-  deleteOrder(id){
-    return this.http.delete(`${this.uri}/orders/delete/${id}`);
+  deleteOrder(_id) {
+    return this.http.delete(`${this.uri}/orders/delete/${_id}`);
   }
 }

@@ -1,6 +1,6 @@
-<mat-toolbar class="dark-primary-color" >
-  <span class="text-primary-color"  >Schwebke-Shiskin & Associates, inc.</span>
-  <span  class="text-primary-color" >{{authService.getUser()}}</span>
+<mat-toolbar class="dark-accent-color" >
+  <span class="text-accent-color"  >Schwebke-Shiskin & Associates, inc. </span>
+  <span  style="padding:25px;" class="text-accent-color" >{{authService.getUser()}}</span>
 <span class="example-fill-remaining-space"></span>
 <div *ngIf="authService.loggedIn()">
 <span>  <button class="text-primary-color" mat-button routerLink="/times">Time</button></span>

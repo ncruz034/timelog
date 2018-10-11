@@ -18,11 +18,11 @@ export class TimeListComponent implements OnInit {
   constructor(private timeService: TimeService, private router: Router) { }
 
   ngOnInit() {
-    if(this.currentOrderId) {
-      this.getTimesByOrderId();
-    } else {
-      this.getTimes();
-    }
+   // if (this.currentOrderId) {
+   //   this.getTimesByOrderId();
+    //} else {
+      this.getUsersTime(localStorage.getItem('user_id'));
+   // }
   }
 
   getTimesByOrderId() {
@@ -31,8 +31,8 @@ export class TimeListComponent implements OnInit {
     });
   }
 
-  getTimes() {
-    this.timeService.getTimes().subscribe(
+  getUsersTime(user_id) {
+    this.timeService.getUsersTime(user_id).subscribe(
       (data: Time[]) => {
         this.times = data;
         console.log('Data requested...');
@@ -43,10 +43,10 @@ export class TimeListComponent implements OnInit {
   editTime(id) {
     this.router.navigate([`times/edit/${id}`]);
   }
-  
+
   deleteTime(id) {
     this.timeService.deleteTime(id).subscribe(() => {
-      this.getTimes();
+      this.getUsersTime(id);
     });
   }
 }

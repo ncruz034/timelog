@@ -20,7 +20,7 @@ export class OrderListComponent implements OnInit {
   //requestOrder = "order";
 
 
-  displayedColumns = ['date','user','description','time'];
+  displayedColumns = ['date', 'user', 'description', 'time'];
 
   constructor(private orderService: OrderService, private router: Router) { }
 
@@ -28,21 +28,17 @@ export class OrderListComponent implements OnInit {
     this.fetchOrders();
   }
 
-  getOrderId(id){
-    //console.log("this is the id" + id);
+  getOrderId(id) {
     this.currentOrderId = id;
   }
   fetchOrders() {
     this.orderService.getOrders().subscribe(
       (data: Order[]) => {
         this.orders = data;
-
-        //console.log('Data requested...');
-        //console.log(this.orders);
       },
       err => {
-        if(err instanceof HttpErrorResponse) {
-            if(err.status === 401) {
+        if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
               this.router.navigate(['/auth']);
             }
         }
@@ -50,14 +46,14 @@ export class OrderListComponent implements OnInit {
     );
   }
 
-  editTime(id) {
-    this.router.navigate([`times/edit/${id}`]);
+  editOrder(id) {
+    console.log('Edditing order id: ' + id);
+    this.router.navigate([`orders/edit/${id}`]);
   }
 
-  deleteTime(id) {
+  deleteOrder(id) {
     this.orderService.deleteOrder(id).subscribe(() => {
       this.fetchOrders();
     });
   }
-
 }

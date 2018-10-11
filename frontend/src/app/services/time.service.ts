@@ -13,6 +13,9 @@ export class TimeService {
   getTimes() {
     return this.http.get(`${this.uri}/times`);
   }
+  getUsersTime(user_id) {
+    return this.http.get(`${this.uri}/times/user/${user_id}`);
+  }
   getTimeById(id) {
     return this.http.get(`${this.uri}/times/${id}`);
   }
@@ -20,7 +23,7 @@ export class TimeService {
   geTimesByOrderId(order_id) {
     return this.http.get(`${this.uri}/times/order/${order_id}`);
   }
-  
+
   addTime(date, order_id, description, time, user_id) {
     const newTime = {
       date: date,

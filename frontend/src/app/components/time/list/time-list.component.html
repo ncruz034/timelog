@@ -1,22 +1,24 @@
 
 <div>
   <br>
-  <mat-card>
+
+
+
     <button mat-raised-button color="primary" routerLink="/create">+</button>
     <br><br>
     <mat-divider></mat-divider>
     <br>
 
-    <table mat-table [dataSource] = "times">
+    <table mat-table [dataSource] = "times" class="mat-elevation-z8">
 
       <ng-container matColumnDef="orderNumber">
         <th mat-header-cell *matHeaderCellDef>Order No.</th>
-        <td mat-cell *matCellDef="let element"> {{element.orderNumber}}</td>
+        <td mat-cell *matCellDef="let element"> {{element.order.orderNumber}}</td>
       </ng-container>
 
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Date</th>
-        <td mat-cell *matCellDef="let element"> {{element.date | date:'mmss'}}</td>
+        <td mat-cell *matCellDef="let element"> {{element.date | date}}</td>
       </ng-container>
 
       <ng-container matColumnDef="description">
@@ -40,6 +42,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
     </table>
-  </mat-card>
+
+
+
 </div>
 

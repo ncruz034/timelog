@@ -13,7 +13,8 @@ import { Order } from '../../../models/order.model';
 export class OrderEditComponent implements OnInit {
 
   editForm: FormGroup;
-  id: String;
+  id: '';
+  orderNumber: '';
   order: any = {};
 
   constructor(private orderService: OrderService, private fb: FormBuilder,
@@ -31,19 +32,24 @@ export class OrderEditComponent implements OnInit {
       });
   }
 
-    editOrder(date, client, project, description, isBilled, status) {
-      this.orderService.editOrder(this.id, date, client, project, description,isBilled,status).subscribe(()=>{
+    editOrder(client, project, description, isBilled, status) {
+      console.log('The client: ' + client);
+      this.orderService.editOrder(this.id, this.order.orderNumber, this.order.date, client, project,
+                                   description, isBilled, status).subscribe(() => {
         this.snackBar.open('Order updated succesfully', 'OK', {
           duration: 3000
         });
-        this.router.navigate(['/times']);
+        this.router.navigate(['/orders']);
       });
     }
 
   ngOnInit() {
-    this.route.params.subscribe(params =>{
+    this.route.params.subscribe(params => {
+      console.log('The id: ' + params.id);
       this.id = params.id;
-      this.orderService.getOrderById(this.id).subscribe(res =>{
+
+
+      this.orderService.getOrderById(this.id).subscribe(res => {
         this.order = res;
         this.editForm.get('client').setValue(this.order.client);
         this.editForm.get('project').setValue(this.order.project);
