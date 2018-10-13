@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 export class LoginComponent {
-
+  hide = true;
   email = new FormControl(null, [Validators.required, Validators.email]);
   password: String = '';
 

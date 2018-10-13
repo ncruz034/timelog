@@ -4,6 +4,16 @@ import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
 import { Order } from '../../../models/order.model';
 
+export interface Billed {
+  value: string;
+  viewValue: string;
+}
+
+export interface Status {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-order-create',
   templateUrl: './order-create.component.html',
@@ -15,6 +25,18 @@ export class OrderCreateComponent implements OnInit {
   createForm: FormGroup;
   order: Order = new Order();
 
+  billed: Billed[] = [
+    {value: 'true', viewValue: 'Yes'},
+    {value: 'false', viewValue: 'No'},
+
+  ];
+
+  status: Status[] = [
+    {value: 'In Progress', viewValue: 'In Progress'},
+    {value: 'Finished', viewValue: 'Finished'},
+    {value: 'Hold', viewValue: 'Hold'},
+
+  ];
   constructor(private orderService: OrderService, private fb:FormBuilder, private router:Router) {}
 
   addOrder(){

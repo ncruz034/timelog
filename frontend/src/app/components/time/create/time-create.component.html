@@ -2,7 +2,7 @@
   <br>
   <mat-card>
     <section class = "mat-typography>">
-      <h3> Add Time</h3>
+      <h3> New Time</h3>
     </section>
 
     <mat-divider></mat-divider>
@@ -45,7 +45,7 @@
     </form>
       <br><br>
       <button mat-raised-button color = "accent" routerLink="/times">Back</button>
-      <button type="submit" (click)="addTime()"  mat-raised-button color="primary">Save</button>&nbsp;
+      <button type="submit" (click)="addTime()"  [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
     </div>
   </mat-card>
 </div>

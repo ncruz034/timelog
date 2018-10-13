@@ -16,7 +16,7 @@ export class RegisterComponent  {
   color = 'accent';
   checked = false;
   disabled = false;
-
+  hide = true;
   email = new FormControl(null, [Validators.required, Validators.email]);
   name: String = '';
   last: String = '';

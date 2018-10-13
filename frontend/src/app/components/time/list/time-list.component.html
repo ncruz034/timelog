@@ -1,14 +1,13 @@
 
 <div>
   <br>
-
-
-
-    <button mat-raised-button color="primary" routerLink="/create">+</button>
+    <button mat-fab color="primary" routerLink="/create">+</button>
     <br><br>
     <mat-divider></mat-divider>
     <br>
-
+</div>
+<div>
+  <mat-card>
     <table mat-table [dataSource] = "times" class="mat-elevation-z8">
 
       <ng-container matColumnDef="orderNumber">
@@ -27,7 +26,7 @@
       </ng-container>
 
       <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef>Time</th>
+        <th mat-header-cell *matHeaderCellDef >Time</th>
         <td mat-cell *matCellDef="let element"> {{element.time}}</td>
       </ng-container>
 
@@ -42,8 +41,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
     </table>
-
-
-
+</mat-card>
 </div>
 

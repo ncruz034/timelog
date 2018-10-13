@@ -2,7 +2,7 @@
     <br>
     <mat-card>
       <section class = "mat-typography>">
-        <h3> Add New Order</h3>
+        <h3> New Order</h3>
       </section>
   
       <mat-divider></mat-divider>  
@@ -12,9 +12,13 @@
           <mat-form-field class="field-full-with">
               <input matInput placeholder = "Order No." formControlName="orderNumber" #orderNumber>
             </mat-form-field>
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Date" formControlName="date" #date>
-        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="date"
+            formControlName="date" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+          <mat-datepicker #date></mat-datepicker>
+        </mat-form-field> 
   
         <mat-form-field class="field-full-with">
           <input matInput placeholder = "Client" formControlName="client" #client>
@@ -28,6 +32,14 @@
           <input matInput placeholder = "Desctiption" formControlName="description" #description>
         </mat-form-field>
   
+        <mat-form-field>
+            <mat-select placeholder="Is Billed">
+              <mat-option *ngFor="let option of billed" [value]="billed.value">
+                {{option.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
         <mat-form-field class="field-full-with">
           <input matInput placeholder = "Is Billed" formControlName="isBilled" #isBilled>
         </mat-form-field>
