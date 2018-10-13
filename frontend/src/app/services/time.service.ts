@@ -35,14 +35,15 @@ export class TimeService {
     return this.http.post(`${this.uri}/times`, newTime);
   }
 
-   editTime(id, date, orderNumber, description, time) {
+   editTime(id, orderNumber, date, userId, description, time) {
     const updatedTime = {
+      user: userId,
       date: date,
       order: orderNumber,
       description: description,
       time: time
     };
-    return this.http.post(`${this.uri}/times/update${id}`, updatedTime);
+    return this.http.put(`${this.uri}/times/update/${id}`, updatedTime);
   }
 
   deleteTime(id) {

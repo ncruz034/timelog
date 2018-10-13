@@ -31,7 +31,7 @@ export class OrderCreateComponent implements OnInit {
 
   ];
 
-  status: Status[] = [
+  statusOptions: Status[] = [
     {value: 'In Progress', viewValue: 'In Progress'},
     {value: 'Finished', viewValue: 'Finished'},
     {value: 'Hold', viewValue: 'Hold'},
@@ -39,17 +39,17 @@ export class OrderCreateComponent implements OnInit {
   ];
   constructor(private orderService: OrderService, private fb:FormBuilder, private router:Router) {}
 
-  addOrder(){
+  addOrder() {
     this.orderService.addOrder(
       this.createForm.value.orderNumber, this.createForm.value.date, this.createForm.value.description, this.createForm.value.client,
-      this.createForm.value.project,this.createForm.value.isBilled, this.createForm.value.status)
+      this.createForm.value.project, this.createForm.value.isBilled, this.createForm.value.status)
        .subscribe((order_id: any) => {
           console.log('this is the time _id ' + order_id);
       });
     }
 
   //  addTime(date,order,name,last,description,time){
- 
+
      // this.orderService.addOrder(date,order,name,last,description,time).subscribe(()=>{
       //  this.router.navigate(['/list']);
      // });

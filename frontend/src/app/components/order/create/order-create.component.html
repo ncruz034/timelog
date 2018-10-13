@@ -4,11 +4,11 @@
       <section class = "mat-typography>">
         <h3> New Order</h3>
       </section>
-  
-      <mat-divider></mat-divider>  
+
+      <mat-divider></mat-divider>
       <br>
       <form [formGroup]="createForm" class="create-form">
-  
+
           <mat-form-field class="field-full-with">
               <input matInput placeholder = "Order No." formControlName="orderNumber" #orderNumber>
             </mat-form-field>
@@ -18,41 +18,42 @@
             formControlName="date" placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
           <mat-datepicker #date></mat-datepicker>
-        </mat-form-field> 
-  
+        </mat-form-field>
+
         <mat-form-field class="field-full-with">
           <input matInput placeholder = "Client" formControlName="client" #client>
         </mat-form-field>
-  
+
         <mat-form-field class="field-full-with">
           <input matInput placeholder = "Project" formControlName="project" #project>
         </mat-form-field>
-  
+
         <mat-form-field class="field-full-with">
           <input matInput placeholder = "Desctiption" formControlName="description" #description>
         </mat-form-field>
-  
+
         <mat-form-field>
-            <mat-select placeholder="Is Billed">
-              <mat-option *ngFor="let option of billed" [value]="billed.value">
-                {{option.viewValue}}
+            <mat-select placeholder="Is Billed" formControlName="isBilled" #isBilled>
+              <mat-option *ngFor="let isBilled of billed" [value]="isBilled.value">
+                {{isBilled.viewValue}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Is Billed" formControlName="isBilled" #isBilled>
-        </mat-form-field>
-  
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Status" formControlName="status" #status>
-        </mat-form-field>
-  
+          <mat-form-field>
+              <mat-select placeholder="Status" formControlName="status" #status>
+                <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                  {{status.viewValue}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+
+
         <mat-divider></mat-divider>
       </form>
         <br><br>
         <button mat-raised-button color = "accent" routerLink="/orders">Back</button>
         <button type="submit" (click)="addOrder()" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
-    
+
     </mat-card>
   </div>

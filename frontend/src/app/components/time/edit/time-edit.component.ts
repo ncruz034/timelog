@@ -20,16 +20,16 @@ export class TimeEditComponent implements OnInit {
               private fb: FormBuilder, private router: Router) {
     this.editForm = this.fb.group({
       date: ['', Validators.required],
-      order: ['', Validators.required],
-      name: ['', Validators.required],
-      last: ['', Validators.required],
+     // order: ['', Validators.required],
+      //name: ['', Validators.required],
+      //last: ['', Validators.required],
       description: ['', Validators.required],
       time: 0
     });
     }
 
-    editTime(date, order, name, last, description, time) {
-      this.timeService.editTime(this.id, date, order, description, time).subscribe(() => {
+    editTime(date, description, time) {
+      this.timeService.editTime(this.id, this.time.order, date, this.time.user, description, time).subscribe(() => {
         this.snackBar.open('Time updated succesfully', 'OK', {
           duration: 3000
         });
@@ -43,9 +43,9 @@ export class TimeEditComponent implements OnInit {
         this.timeService.getTimeById(this.id).subscribe(res => {
           this.time = res;
           this.editForm.get('date').setValue(this.time.date);
-          this.editForm.get('order').setValue(this.time.order);
-          this.editForm.get('name').setValue(this.time.name);
-          this.editForm.get('last').setValue(this.time.last);
+          //this.editForm.get('order').setValue(this.time.order);
+          //this.editForm.get('name').setValue(this.time.name);
+          //this.editForm.get('last').setValue(this.time.last);
           this.editForm.get('description').setValue(this.time.description);
           this.editForm.get('time').setValue(this.time.time);
         });

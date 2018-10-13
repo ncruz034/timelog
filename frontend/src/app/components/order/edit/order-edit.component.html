@@ -23,13 +23,23 @@
           <input matInput placeholder = "Description" formControlName="description" #description>
         </mat-form-field>
 
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Is Billed" formControlName="isBilled" #isBilled>
-        </mat-form-field>
 
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Status" formControlName="status" #status>
-        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Is Billed" formControlName="isBilled" #isBilled>
+              <mat-option *ngFor="let isBilled of billed" [value]="isBilled.value">
+                {{isBilled.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field>
+              <mat-select placeholder="Status" formControlName="status" #status>
+                <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                  {{status.viewValue}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
 
         <mat-divider></mat-divider>
       </form>

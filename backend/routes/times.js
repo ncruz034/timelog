@@ -39,22 +39,31 @@ router.get('/order/:order_id', async (req,res) =>{
     });
 });
 
-/*
-router.put('/:id',auth,async (req,res) =>{
-     //validate the input
-     const {error} = validate(req.body);
-     //check if there is any error
-     if(error) return res.status(400).send(error.details[0].message);
-    const time = await Time.findByIdAndUpdate(req.params.id,{
-                 symbol: req.body.symbol,
-                },{
-        new: true
-    });
 
-    if(!time) return res.status(404).send('The tiem does not exists'); 
-    res.send(time);
+router.put('/update/:id',auth, async (req,res) =>{
+    //validate the input
+    const {error} = validate(req.body);
+    //check if there is any error
+    if(error) return res.status(400).send(error.details[0].message);
+    console.log("The time Id is: "+req.params.id);
+    console.log("The req order is: " + req.body.order);
+    console.log("The req date is: " + req.body.date);
+    console.log("The req time is: " + req.body.time);
+    console.log("The req user is: " + req.body.user);
+
+   Time.findByIdAndUpdate("5bbf3efd6060e61c245ec3a6",function(err,doc){
+       //if(err) return res.send(err);
+
+            console.log("Updating");
+            //doc.orderNumber = req.body.orderNumber,
+            doc.date = req.body.date,
+            doc.description = req.body.description,
+            doc.time = req.body.time,
+            //doc.user = req.body.user,
+            doc.save(callback);
+        res.send(doc);
 });
-*/
+});
 
 router.post('/', async (req,res) =>{
     

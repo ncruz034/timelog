@@ -15,18 +15,6 @@
             </mat-form-field>
 
             <mat-form-field class="field-full-with">
-              <input matInput placeholder = "Order" formControlName="order" #order>
-            </mat-form-field>
-
-            <mat-form-field class="field-full-with">
-              <input matInput placeholder = "Name" formControlName="order" #name>
-            </mat-form-field>
-
-            <mat-form-field class="field-full-with">
-              <input matInput placeholder = "Last" formControlName="order" #last>
-            </mat-form-field>
-
-            <mat-form-field class="field-full-with">
               <input matInput placeholder = "Description" formControlName="description" #description>
             </mat-form-field>
 
@@ -40,9 +28,6 @@
             <button mat-raised-button color = "accent" routerLink="/times">Back</button>
             <button type="submit" (click)="editTime(
                         date.value,
-                        order.balue,
-                        name.value,
-                        last.value,
                         description.value,
                         time.value)" [disabled]="editForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
 

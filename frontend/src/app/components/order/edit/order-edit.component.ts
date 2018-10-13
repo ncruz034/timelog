@@ -5,6 +5,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {MatSnackBar } from '@angular/material';
 import { Order } from '../../../models/order.model';
 
+export interface Billed {
+  value: string;
+  viewValue: string;
+}
+
+export interface Status {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-order-edit',
   templateUrl: './order-edit.component.html',
@@ -17,6 +27,18 @@ export class OrderEditComponent implements OnInit {
   orderNumber: '';
   order: any = {};
 
+  billed: Billed[] = [
+    {value: 'true', viewValue: 'Yes'},
+    {value: 'false', viewValue: 'No'},
+
+  ];
+
+  statusOptions: Status[] = [
+    {value: 'In Progress', viewValue: 'In Progress'},
+    {value: 'Finished', viewValue: 'Finished'},
+    {value: 'Hold', viewValue: 'Hold'},
+
+  ];
   constructor(private orderService: OrderService, private fb: FormBuilder,
               private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar) {
 
