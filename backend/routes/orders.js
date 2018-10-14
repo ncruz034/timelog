@@ -110,8 +110,41 @@ router.put('/update/:_id', async (req,res) =>{
     });
 });
 */
+router.put('/:id', async (req,res) =>{
+    console.log('The id is: ' + req.params.id);
+    await Order.findById(req.params.id, function(err, data){
+        if(err){
+            console.log(err);
+            res.status(500).send();
+        } else {
+            if(!data){
+                res.status(400).send('The requested order was not found.');
+            } else {
+                if(req.body.currentOrderNumber){
+                    data.orderNumber = req.body.orderNumber,
+                    data.client = req.body.client,
+                    data.project = req.body.project,
+                    data.description = req.body.description,
+                    data.isBilled = req.body.isBilled,
+                    data.status = req.body.status,
+                    data.save(function(err,updatedData){
+                        if(err){
+                            console.log(err);
+                            res.status(500).send();
+                        } else {
+                            res.send(updatedData);
+                        }
+                    })
+                }
 
-router.put('/:id',auth, async (req,res) =>{
+
+            }
+        }
+
+    });
+});
+/*
+router.put('/:id', async (req,res) =>{
     //validate the input
     console.log('The order number: ' + req.body.orderNumber);
     const {error} = validate(req.body);
@@ -130,7 +163,7 @@ router.put('/:id',auth, async (req,res) =>{
    res.send(doc);
 });
 });
-
+*/
 /*
 router.post('/time', async (req,res) =>{  
     const order = await Order.findById(req.body.order_id);
