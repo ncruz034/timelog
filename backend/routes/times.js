@@ -45,24 +45,9 @@ router.put('/update/:id',auth, async (req,res) =>{
     const {error} = validate(req.body);
     //check if there is any error
     if(error) return res.status(400).send(error.details[0].message);
-    console.log("The time Id is: "+req.params.id);
-    console.log("The req order is: " + req.body.order);
-    console.log("The req date is: " + req.body.date);
-    console.log("The req time is: " + req.body.time);
-    console.log("The req user is: " + req.body.user);
-
-   Time.findByIdAndUpdate("5bbf3efd6060e61c245ec3a6",function(err,doc){
-       //if(err) return res.send(err);
-
-            console.log("Updating");
-            //doc.orderNumber = req.body.orderNumber,
-            doc.date = req.body.date,
-            doc.description = req.body.description,
-            doc.time = req.body.time,
-            //doc.user = req.body.user,
-            doc.save(callback);
-        res.send(doc);
-});
+    const updatedTime = req.body;
+    const time = await Time.findByIdAndUpdate(req.params.id,updatedTime);
+    res.status(200).send(time);
 });
 
 router.post('/', async (req,res) =>{
@@ -89,10 +74,10 @@ router.post('/', async (req,res) =>{
     res.send(time._id);
 });
 
-router.delete('/delete/:id',[auth,admin], async (req,res) =>{
+router.delete('/delete/:id', async (req,res) =>{
     const time = await Time.findByIdAndRemove(req.params.id);
     if(!time) return res.status(404).send('The time was not found');
-    res.send(time);
+    res.send(req.params.di);
 });
 
 module.exports = router;

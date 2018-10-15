@@ -17,7 +17,6 @@ export class OrderListComponent implements OnInit {
   orders: Order[];
   times: Time[];
   currentOrderId: String;
-  //requestOrder = "order";
 
 
   displayedColumns = ['date', 'user', 'description', 'time'];

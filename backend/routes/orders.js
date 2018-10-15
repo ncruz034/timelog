@@ -33,13 +33,9 @@ router.post('/', auth, async (req,res) =>{
 
 //Finds an order by _id, and returns all the times present in the order
 router.get('/time/:order_id', async (req,res) =>{
-    //const order = await Order.findById(req.params.order_id).populate('time',['date', 'user_name','description', 'time']);
-    //const order = await Order.findById(req.params.order_id).populate({path:'time', model:'Time', select:['date','description','time']}).populate({path:'time', populate:{path:'user_id',model:"User"}});
     const order = await Order.findById(req.params.order_id).populate({path:'time', model:'Time', select:['date','description','time'],
                                                             populate:{path:'user',model:"User",select:['name','last']}});
-
     if(!order) return res.status(400).send('The order with the given id is not valid');
-
     res.send(order.time);
 });
 
@@ -78,108 +74,14 @@ router.put('/last/', async (req,res) =>{
 
     });
 });
-/*
-router.put('/update/:_id', async (req,res) =>{
-    console.log('Param id: ' + req.params._id);
-    await Global.findById(req.params.id, function(err, data){
 
-        if(err){
-            console.log(err);
-            res.status(500).send();
-        } else {
-            if(!data){
-                res.status(400).send('No orders with the given _id found in the system.');
-            } else {
-                    data.client= req.body.client;
-                    data.project = req.body.project;
-                    data.description = req.body.description;
-                    data.isBilled = req.body.isBilled;
-                    data.status = req.body.status;
-
-                    data.save(function(err,updatedData){
-                        if(err){
-                            console.log(err);
-                            res.status(500).send();
-                        } else {
-                            res.send(data);
-                        }
-                    })
-            }
-        }
-
-    });
-});
-*/
 router.put('/:id', async (req,res) =>{
-    console.log('The id is: ' + req.params.id);
-    await Order.findById(req.params.id, function(err, data){
-        if(err){
-            console.log(err);
-            res.status(500).send();
-        } else {
-            if(!data){
-                res.status(400).send('The requested order was not found.');
-            } else {
-                if(req.body.currentOrderNumber){
-                    data.orderNumber = req.body.orderNumber,
-                    data.client = req.body.client,
-                    data.project = req.body.project,
-                    data.description = req.body.description,
-                    data.isBilled = req.body.isBilled,
-                    data.status = req.body.status,
-                    data.save(function(err,updatedData){
-                        if(err){
-                            console.log(err);
-                            res.status(500).send();
-                        } else {
-                            res.send(updatedData);
-                        }
-                    })
-                }
-
-
-            }
-        }
-
-    });
-});
-/*
-router.put('/:id', async (req,res) =>{
-    //validate the input
-    console.log('The order number: ' + req.body.orderNumber);
     const {error} = validate(req.body);
-    //check if there is any error
     if(error) return res.status(400).send(error.details[0].message);
-
-   Order.findByIdAndUpdate(req.params.id,function(err,doc){
-       if(err) return res.send(err);
-            doc.orderNumber = req.body.orderNumber,
-            doc.client = req.body.client,
-            doc.project = req.body.project,
-            doc.description = req.body.description,
-            doc.isBilled = req.body.isBilled,
-            doc.status = req.body.status,
-            doc.save(callback);
-   res.send(doc);
+    const updatedOrder = req.body;
+    const order = await Order.findByIdAndUpdate(req.params.id,updatedOrder);
+    res.status(200).send(order);
 });
-});
-*/
-/*
-router.post('/time', async (req,res) =>{  
-    const order = await Order.findById(req.body.order_id);
-    if (!order) return res.status(400).send('No user found with provided id...');
-
-    order.time.push(req.body.order_id);
-
-   await order.save((error) =>{
-       if(error){
-           console.log(error);
-       }else{
-           res.send(order);
-       }
-   });
-});
-*/
 
 //Finds an order by _id and adds a new time to the order.
 router.post('/:order_id/time', async (req,res) =>{  
@@ -222,6 +124,7 @@ router.get('/:id', auth, async (req,res) =>{
  res.send(order);
 });
 
+
 //Get an order by orderNumber and returns the _id.
 router.get('/number/:order_number', auth, async (req,res) =>{
     console.log("The order number is: " + req.params.order_number);
@@ -232,5 +135,21 @@ router.get('/number/:order_number', auth, async (req,res) =>{
     });
 });
 
-
+//Get an order by orderNumber and returns the _id.
+router.delete('/:_id/time/:time_id', auth, async (req,res) =>{
+    console.log(req.params._id);
+    const order = await Order.findById(req.params._id);
+        //check if there is any error
+        if(!order) return res.status(400).send('The order with the given order number is not valid');
+    
+        order.time.pop(req.body.time_id);
+        order.save(function (error){
+            if(error){
+                console.log(error);
+            }else{
+                res.send(order.time);
+            }
+        });
+}
+);
 module.exports = router;

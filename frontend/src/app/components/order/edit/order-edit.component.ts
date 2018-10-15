@@ -55,9 +55,18 @@ export class OrderEditComponent implements OnInit {
   }
 
     editOrder(client, project, description, isBilled, status) {
+        const order = {
+          orderNumber: this.order.orderNumber,
+          date: this.order.date,
+          client: client,
+          project: project,
+          description: description,
+          isBilled: isBilled,
+          status: status,
+        };
+
       console.log('The client: ' + client);
-      this.orderService.editOrder(this.id, this.order.orderNumber, this.order.date, client, project,
-                                   description, isBilled, status).subscribe(() => {
+      this.orderService.editOrder(this.id, order).subscribe(() => {
         this.snackBar.open('Order updated succesfully', 'OK', {
           duration: 3000
         });

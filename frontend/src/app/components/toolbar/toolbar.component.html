@@ -5,7 +5,7 @@
 <div *ngIf="authService.loggedIn()">
 <span>  <button class="text-primary-color" mat-button routerLink="/times">Time</button></span>
 <span>  <button class="text-primary-color" mat-button routerLink="/orders">Orders</button></span>
-<span>  <button class="text-primary-color" mat-button routerLink="">Clients</button></span>
+<span>  <button class="text-primary-color" mat-button routerLink="/clients">Clients</button></span>
 <span>  <button class="text-primary-color" mat-button routerLink="">Users</button></span>
 <span>  <button class="text-primary-color" mat-button (click)="authService.logout()">Logout</button></span>
 </div>

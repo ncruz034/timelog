@@ -43,17 +43,11 @@ export class OrderService {
     return this.http.post(`${this.uri}/orders`, newOrder);
   }
 
-  editOrder(_id, orderNumber, date, client, project, description, isBilled, status) {
-    const updatedOrder = {
-      orderNumber: orderNumber,
-      date: date,
-      client: client,
-      project: project,
-      description: description,
-      isBilled: isBilled,
-      status: status
-    };
-    console.log('Sendeing order Number: ' + orderNumber);
+  deleteTime(_id, time_id) {
+    return this.http.delete(`${this.uri}/orders/${_id}/time/${time_id}`);
+  }
+
+  editOrder(_id, updatedOrder) {
     return this.http.put(`${this.uri}/orders/${_id}`, updatedOrder);
   }
 

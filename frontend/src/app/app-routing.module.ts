@@ -24,6 +24,7 @@ const routes: Routes =[
   {path: 'orders/create', component: OrderCreateComponent},
   {path: 'orders/edit/:id', component: OrderEditComponent},
   {path: 'clients/create', component: ClientCreateComponent},
+  {path: 'clients', component: ClientListComponent},
   {path: 'clients/edit', component: ClientEditComponent},
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},
