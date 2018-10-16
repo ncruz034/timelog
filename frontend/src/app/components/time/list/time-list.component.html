@@ -7,8 +7,8 @@
     <br>
 </div>
 <div>
-  <mat-card>
-    <table mat-table [dataSource] = "times" class="mat-elevation-z8">
+
+    <table mat-table [dataSource] = "times" class="mat-elevation-z8" style="background-color: #2E333A;">
 
       <ng-container matColumnDef="orderNumber">
         <th mat-header-cell *matHeaderCellDef>Order No.</th>
@@ -41,6 +41,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
     </table>
-</mat-card>
+
 </div>
 

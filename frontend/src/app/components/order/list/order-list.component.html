@@ -1,15 +1,15 @@
-<section class="mat-typography">
-<div>
-    <mat-card>
+<section class="mat-typography" >
+<div > 
+    <mat-card style="background-color: #2E333A;">
       <button mat-fab color="primary" routerLink="/orders/create">+</button>
       <br><br>
       <mat-divider></mat-divider>
     </mat-card>
   </div>
 
-<div >
-  <mat-accordion class="example-headers-align">
-  <mat-expansion-panel *ngFor=" let order of orders">
+<div>
+  <mat-accordion class="example-headers-align" >
+  <mat-expansion-panel *ngFor=" let order of orders" style="background-color: #2E333A;">
 
     <mat-expansion-panel-header >
       <mat-panel-title>
@@ -22,8 +22,7 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <div class="box">
-
+    <div class="box" >
         <mat-grid-list cols="6" rowHeight=300px>
             <mat-grid-tile [colspan]=3 [rowspan]=1>
 
@@ -56,8 +55,8 @@
     <div >
       <!-- <app-time-list [currentOrderId] = "currentOrderId" [isOrderRequest] ="requestOrder"></app-time-list> -->
 
-        <mat-card>
-          <table mat-table [dataSource] = "order.time">
+        <mat-card style="background-color: #2E333A;">
+          <table mat-table [dataSource] = "order.time" style="background-color: #2E333A;">
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef>Date</th>
               <td mat-cell *matCellDef="let element"> {{element.date | date}}</td>
@@ -83,7 +82,6 @@
             <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
           </table>
         </mat-card>
-
       </div>
 
   </mat-expansion-panel>
