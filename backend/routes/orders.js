@@ -10,7 +10,6 @@ const asyncMIddleware = require('../middleware/async');
 
 //Register a new Order; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{
-
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
    
@@ -46,7 +45,6 @@ router.get('/last', async (req,res) =>{
     res.send(currentOrderNumber.currentOrderNumber);
 })
 
-
 router.put('/last/', async (req,res) =>{
     await Global.findOne({}, function(err, data){
         if(err){
@@ -67,11 +65,8 @@ router.put('/last/', async (req,res) =>{
                         }
                     })
                 }
-
-
             }
         }
-
     });
 });
 
@@ -106,16 +101,34 @@ router.get('/', async (req, res,) => {
      res.send(orders);
  });
 */
+/*
  router.get('/', async (req,res) =>{
     const orders = await Order.find().populate({path:'time', model:'Time', select:['date','description','time'],
-                                                            populate:{path:'user',model:"User",select:['name','last']}});
+                                                           populate:{path:'user',model:"User",select:['name','last']}});
 
     if(!orders) return res.status(400).send('The order with the given id is not valid');
 
     res.send(orders);
 });
+*/
+router.get('/', async (req,res) =>{
+    const orders = await Order.aggregate([
+          // { $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
+           {$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
+       ]);//populate({path:'time', model:'Time', select:['date','description','time'],
+                                                          // populate:{path:'user',model:"User",select:['name','last']}});
 
-
+    if(!orders) return res.status(400).send('The order with the given id is not valid');
+    let counter=0;
+       for(let order of orders) {
+           for(let time of order.time){
+            counter = counter + time.time;
+           }   
+       }
+       
+       console.log('The time is: ' + counter);
+    res.send(orders);
+});
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
  const order = await Order.findById(req.params.id);

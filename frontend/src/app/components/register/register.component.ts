@@ -47,7 +47,6 @@ export class RegisterComponent  {
         this.router.navigate(['/auth']);
       },
     error => {console.log('There was an error...'); }
-
     );
   }
 

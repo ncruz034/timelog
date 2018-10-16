@@ -1,3 +1,41 @@
-<p>
-  edit works!
-</p>
+<div>
+    <br>
+    <mat-card>
+      <section class = "mat-typography>">
+        <h3> New Client</h3>
+      </section>
+
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="editForm" class="create-form">
+
+          <mat-form-field class="field-full-with">
+              <input matInput placeholder = "Name" formControlName="clientName" #clientName>
+          </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="date"
+            formControlName="date" placeholder="Date" >
+          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+          <mat-datepicker #date></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Address" formControlName="address" #address>
+        </mat-form-field>
+
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Phone No." formControlName="phone" #phone>
+        </mat-form-field>
+
+        <mat-form-field class="field-full-with">
+          <input matInput placeholder = "Contact" formControlName="contact" #contact>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+      </form>
+        <br><br>
+        <button mat-raised-button color = "accent" routerLink="/clients">Back</button>
+        <button type="submit" (click)="editClient()" [disabled]="editForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
+    </mat-card>
+  </div>

@@ -13,6 +13,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 //import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -45,6 +46,9 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
 import { MomentModule } from 'ngx-moment';
+import { UserCreateComponent } from './components/users/create/user-create.component';
+import { UserListComponent } from './components/users/list/user-list.component';
+import { UserEditComponent } from './components/users/edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,9 @@ import { MomentModule } from 'ngx-moment';
     ClientListComponent,
     ClientEditComponent,
     ClientCreateComponent,
+    UserCreateComponent,
+    UserListComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +96,7 @@ import { MomentModule } from 'ngx-moment';
     MatExpansionModule,
     MatChipsModule,
     MatGridListModule,
+    MatTooltipModule,
     MomentModule
   ],
   providers: [TimeService, AuthService, AuthGuard,
