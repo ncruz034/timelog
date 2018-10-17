@@ -14,6 +14,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 //import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -49,6 +51,12 @@ import { MomentModule } from 'ngx-moment';
 import { UserCreateComponent } from './components/users/create/user-create.component';
 import { UserListComponent } from './components/users/list/user-list.component';
 import { UserEditComponent } from './components/users/edit/user-edit.component';
+import { DashboardComponent } from './components/dashobard/dashboard/dashboard.component';
+import { AdminDashboardComponent } from './components/dashobard/admin-dashboard/admin-dashboard.component';
+import { AssociatesDashboardComponent } from './components/dashobard/associates-dashboard/associates-dashboard.component';
+import { ClientsDashboardComponent } from './components/dashobard/clients-dashboard/clients-dashboard.component';
+import { ServiceCreateComponent } from './components/service-request/create/service-create.component';
+import { AccessComponent } from './components/access/access.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +77,12 @@ import { UserEditComponent } from './components/users/edit/user-edit.component';
     UserCreateComponent,
     UserListComponent,
     UserEditComponent,
+    DashboardComponent,
+    AdminDashboardComponent,
+    AssociatesDashboardComponent,
+    ClientsDashboardComponent,
+    ServiceCreateComponent,
+    AccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +111,8 @@ import { UserEditComponent } from './components/users/edit/user-edit.component';
     MatChipsModule,
     MatGridListModule,
     MatTooltipModule,
+    MatStepperModule,
+    MatCheckboxModule,
     MomentModule
   ],
   providers: [TimeService, AuthService, AuthGuard,

@@ -1,8 +1,9 @@
-<mat-toolbar class="light-accent-color" >
+<mat-toolbar class="default-primary-color" >
   <span class="text-accent-color"  >Schwebke-Shiskin & Associates, inc. </span>
   <span  style="padding:25px;" class="text-accent-color" >{{authService.getUser()}}</span>
 <span class="example-fill-remaining-space"></span>
 <div *ngIf="authService.loggedIn()">
+<span>  <button class="text-accent-color" mat-button routerLink="/dashboard">Dashboard</button></span>
 <span>  <button class="text-accent-color" mat-button routerLink="/times">Time</button></span>
 <span>  <button class="text-accent-color" mat-button routerLink="/orders">Orders</button></span>
 <span>  <button class="text-accent-color" mat-button routerLink="/clients">Clients</button></span>

@@ -10,8 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 
-
-
 export class LoginComponent {
   hide = true;
   email = new FormControl(null, [Validators.required, Validators.email]);
@@ -31,16 +29,16 @@ export class LoginComponent {
 
     onLogin(user) {
       this.authService.login(user.email, user.password).subscribe(
-        data=> {
+        data => {
           if (data) {
             this.data = data;
            this.authService.storeUserData(this.data.token, this.data.name, user.email, this.data.user_id);
-           this.router.navigate(['/times']);
+           this.router.navigate(['/dashboard']);
           } else {
             console.log('Error: Login in...');
           }
         },
-        err => {console.log(err);}
+        err => {console.log(err); }
       );
     }
 

@@ -16,8 +16,12 @@ import { ClientListComponent } from './components/clients/list/client-list.compo
 import { ClientCreateComponent } from './components/clients/create/client-create.component';
 import { ClientEditComponent } from './components/clients/edit/client-edit.component';
 import { AuthGuard } from './auth.guard';
-
-const routes: Routes =[
+import { DashboardComponent } from './components/dashobard/dashboard/dashboard.component';
+import { ClientsDashboardComponent } from './components/dashobard/clients-dashboard/clients-dashboard.component';
+import { AssociatesDashboardComponent } from './components/dashobard/associates-dashboard/associates-dashboard.component';
+import { AdminDashboardComponent } from './components/dashobard/admin-dashboard/admin-dashboard.component';
+import { AccessComponent } from './components/access/access.component';
+const routes: Routes = [
   {path: 'create', component: TimeCreateComponent},
   {path: 'users/register', component: RegisterComponent},
   {path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
@@ -29,6 +33,11 @@ const routes: Routes =[
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},
   {path: 'auth', component: LoginComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'clients-dashboard', component: ClientsDashboardComponent},
+  {path: 'associates-dashboard', component: AssociatesDashboardComponent},
+  {path: 'admin-dashboard', component: AdminDashboardComponent},
+  {path: 'access-code', component: AccessComponent },
   {path: 'home', component: HomeComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}];
 

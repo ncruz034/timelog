@@ -1,0 +1,188 @@
+<mat-card>
+  <!--
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>-->
+  <mat-vertical-stepper style="background-color:" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>PROJECT & CONTACT INFORMATION</ng-template>
+            <mat-form-field >
+              <input matInput placeholder="Project Name:">
+            </mat-form-field>
+            <table  cellspacing="5">
+              <tr>
+                <td><mat-form-field >
+                  <input matInput placeholder="Project Manager Name">
+                </mat-form-field></td>
+                <td><mat-form-field>
+                  <input matInput placeholder="Last">
+                </mat-form-field></td>
+              </tr>
+            </table>
+
+            <table cellspacing="5"><tr>
+              <td><mat-form-field >
+                <input matInput placeholder="Phone No.">
+              </mat-form-field></td>
+              <td><mat-form-field>
+                <input matInput placeholder="Fax No.">
+              </mat-form-field></td>
+              <td><mat-form-field>
+                <input matInput  placeholder="E-mail">
+              </mat-form-field></td>
+            </tr></table>
+
+            <mat-form-field >
+                <input matInput placeholder="Accounting/Billing Contact">
+            </mat-form-field>
+            <mat-form-field >
+                <input matInput placeholder="Accounting Check Run Dates">
+            </mat-form-field>
+
+              <table cellspacing="5"><tr>
+                <td><mat-form-field >
+                  <input matInput placeholder="Phone No.">
+                </mat-form-field></td>
+                <td><mat-form-field>
+                  <input matInput placeholder="Fax No.">
+                </mat-form-field></td>
+                <td><mat-form-field>
+                  <input matInput  placeholder="E-mail">
+                </mat-form-field></td>
+              </tr></table>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>BILLING INFORMATION</ng-template>
+            <mat-form-field >
+              <input matInput placeholder="Property Owner">
+            </mat-form-field>
+            <mat-form-field >
+              <input matInput placeholder="Party Responsible for Payment">
+            </mat-form-field>
+            <p class="primary-text-color">Original invoice should be addressed as follows:</p>
+            <mat-form-field >
+              <input matInput placeholder="Client/Company Name">
+            </mat-form-field>
+            <mat-form-field >
+                <input matInput placeholder="Attention">
+            </mat-form-field>
+            <table cellspacing="5"><tr>
+                <td><mat-form-field >
+                  <input matInput placeholder="Phone No.">
+                </mat-form-field></td>
+                <td><mat-form-field>
+                  <input matInput placeholder="Fax No.">
+                </mat-form-field></td>
+                <td><mat-form-field>
+                  <input matInput  placeholder="E-mail">
+                </mat-form-field></td>
+              </tr></table>
+
+            <p>
+              <mat-form-field>
+                <textarea matInput placeholder="Billing Address 1"></textarea>
+              </mat-form-field>
+              <mat-form-field>
+                <textarea matInput placeholder="Billing Address 2"></textarea>
+              </mat-form-field>
+            </p>
+
+            <table  cellspacing="5"><tr>
+              <td><mat-form-field >
+                <input matInput placeholder="City">
+              </mat-form-field></td>
+              <td><mat-form-field >
+                <input matInput placeholder="State">
+              </mat-form-field></td>
+              <td><mat-form-field >
+                <input matInput #postalCode maxlength="5" placeholder="Postal Code">
+                <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+              </mat-form-field></td>
+            </tr></table>
+            <p class="primary-text-color">Copies should be forwarded to:</p>
+            <mat-form-field >
+                <input matInput placeholder="Client/Company Name">
+              </mat-form-field>
+              <mat-form-field >
+                  <input matInput placeholder="Attention">
+              </mat-form-field>
+
+              <table cellspacing="5"><tr>
+                  <td><mat-form-field >
+                    <input matInput placeholder="Phone No.">
+                  </mat-form-field></td>
+                  <td><mat-form-field>
+                    <input matInput placeholder="Fax No.">
+                  </mat-form-field></td>
+                  <td><mat-form-field>
+                    <input matInput  placeholder="E-mail">
+                  </mat-form-field></td>
+                </tr></table>
+              <p>
+                <mat-form-field>
+                  <textarea matInput placeholder="Billing Address 1"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                  <textarea matInput placeholder="Billing Address 2"></textarea>
+                </mat-form-field>
+              </p>
+
+              <table  cellspacing="5"><tr>
+                <td><mat-form-field >
+                  <input matInput placeholder="City">
+                </mat-form-field></td>
+                <td><mat-form-field >
+                  <input matInput placeholder="State">
+                </mat-form-field></td>
+                <td><mat-form-field >
+                  <input matInput #postalCode maxlength="5" placeholder="Postal Code">
+                  <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                </mat-form-field></td>
+              </tr></table>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>INVOICE SUPPORTING DOCUMENTS/FORMATTING</ng-template>
+      <p class="primary-text-color">Please note that additional fees may be added for any of the following services:</p>
+
+        <table  cellspacing="5">
+          <tr>
+            <td>
+                <mat-checkbox>Insurance Certificate Required</mat-checkbox>
+            </td>
+            <td><mat-form-field >
+              <input matInput>
+            </mat-form-field></td>
+            </tr>
+            <tr>
+            <td>
+                <mat-checkbox>Project/P.O./Contract Number Reference</mat-checkbox>
+            </td>
+            <td><mat-form-field >
+                <input matInput>
+              </mat-form-field></td>
+          </tr>
+          <tr>
+              <td>
+                  <mat-checkbox>Insurance Certificate Required</mat-checkbox>
+              </td>
+              <td><mat-form-field >
+                  <input matInput>
+                </mat-form-field></td>
+            </tr>
+        </table>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button >Submit</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</mat-card>

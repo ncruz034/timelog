@@ -1,10 +1,8 @@
-
-
-.background {
+.example-card {
   max-width: flex;
   align-content: center;
   justify-content: center;
-  align-items: auto;
+  align-items: center;
 }
 
 .example-container {
@@ -12,3 +10,10 @@
   height: flex;
 }
 
+
+button{
+  border-radius: 50%;
+}
+img{
+  border-radius: 50%;
+}

@@ -23,15 +23,16 @@ export class AuthService {
     return !!localStorage.getItem('x-auth-token');
   }
 
-  register(name, last, salary, position, email, password, isAdmin) {
+  // register(name, last, salary, position, email, password, isAdmin) {
+  register(name, last, email, password) {
     const auth = {
       name: name,
       last: last,
-      salary: salary,
-      position: position,
+      // salary: salary,
+      // position: position,
       email: email,
       password: password,
-      isAdmin: isAdmin
+      // isAdmin: isAdmin
     };
     return this.http.post(`${this.uri}/users`, auth);
   }
