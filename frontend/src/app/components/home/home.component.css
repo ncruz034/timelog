@@ -11,7 +11,9 @@
 }
 
 
-
+button{
+  border-radius: 50%;
+}
 img{
   border-radius: 50%;
 }
