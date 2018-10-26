@@ -21,6 +21,15 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
 
      res.send(times);
 });
+//Get all times for a user
+router.get('/user/:user_id/week/:week_No',auth,  async (req, res,) => {
+    // throw new Error({error:'Error'});
+     const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+
+     res.send(times);
+});
+
 //Get a time by id
 router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);

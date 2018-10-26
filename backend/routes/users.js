@@ -72,6 +72,46 @@ router.get('/time/:user_id', async (req,res) =>{
     res.send(user.time);
 });
 
+/*Finds a user by _id, and returns all the times for a specific week
+router.get('/time/:user_id/week/:week_No', async (req,res) =>{
+    const user = await User.findById(req.params.user_id).populate('time',['date', 'user_name','description', 'time']);
+     if(!user) return res.status(400).send('The user with the given id is not valid');
+
+    res.send(user.time);
+});
+*/
+
+router.get('/time/:user_id/week/:week_No', async (req,res) =>{
+    
+   let id = req.params.user_id;
+    console.log(id);
+    const users = await User.aggregate([
+        { $match: {
+            name: 'Nelson'}
+        },
+        { $lookup: {
+            from: 'times',localField:'time',foreignField: '_id', as: 'time'}
+        }, 
+        { $match: {
+            $week: 0}
+        }
+        ]);
+/*
+    if(!orders) return res.status(400).send('The order with the given id is not valid');
+    let counter=0;
+       for(let order of orders) {
+           for(let time of order.time){
+            counter = counter + time.time;
+           }   
+       }
+       
+       console.log('The time is: ' + counter);
+       */
+    res.send(users);
+});
+
+
+
 //Get all users
 router.get('/', async (req, res,) => {
     // throw new Error({error:'Error'});
