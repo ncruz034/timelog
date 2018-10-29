@@ -6,7 +6,7 @@ import {MatSnackBar } from '@angular/material';
 import { Order } from '../../../models/order.model';
 
 export interface Billed {
-  value: string;
+  value: boolean;
   viewValue: string;
 }
 
@@ -28,8 +28,8 @@ export class OrderEditComponent implements OnInit {
   order: any = {};
 
   billed: Billed[] = [
-    {value: 'true', viewValue: 'Yes'},
-    {value: 'false', viewValue: 'No'},
+    {value: true, viewValue: 'yes'},
+    {value: false, viewValue: 'No'},
 
   ];
 
@@ -49,12 +49,13 @@ export class OrderEditComponent implements OnInit {
         client: ['', Validators.required],
         project: ['', Validators.required],
         description: ['', Validators.required],
-        isBilled: ['', Validators.required],
+        isBilled: [Boolean, Validators.required],  
         status: ['', Validators.required],
       });
   }
 
     editOrder(client, project, description, isBilled, status) {
+      console.log('The order is: ' + isBilled + '' + status);
         const order = {
           orderNumber: this.order.orderNumber,
           date: this.order.date,
