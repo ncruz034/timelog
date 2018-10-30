@@ -32,11 +32,10 @@
             </mat-select>
           </mat-form-field>
 
-
           <mat-form-field>
-              <mat-select placeholder="Status" formControlName="status" #status>
+              <mat-select placeholder="Status" formControlName="status" #status [(ngModel)]='selectedStatus'>
                 <mat-option *ngFor="let status of statusOptions" [value]="status.value">
-                  {{status.viewValue}}
+                  {{status.viewVAlue}}
                 </mat-option>
               </mat-select>
           </mat-form-field>

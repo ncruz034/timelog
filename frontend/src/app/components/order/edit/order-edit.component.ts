@@ -26,6 +26,8 @@ export class OrderEditComponent implements OnInit {
   id: '';
   orderNumber: '';
   order: any = {};
+  selectedStatus: String;
+  selectedBilled: Boolean;
 
   billed: Billed[] = [
     {value: true, viewValue: 'yes'},
@@ -56,6 +58,7 @@ export class OrderEditComponent implements OnInit {
 
     editOrder(client, project, description, isBilled, status) {
       console.log('The order is: ' + isBilled + '' + status);
+      console.log('The order is new: ' + this.selectedBilled + '' + this.selectedStatus);
         const order = {
           orderNumber: this.order.orderNumber,
           date: this.order.date,
@@ -88,9 +91,11 @@ export class OrderEditComponent implements OnInit {
         this.editForm.get('description').setValue(this.order.description);
         this.editForm.get('isBilled').setValue(this.order.isBilled);
         this.editForm.get('status').setValue(this.order.status);
+        this.selectedBilled = this.order.isBilled;
+        this.selectedStatus = this. order.status;
       });
     });
   }
 
-
+ 
 }
