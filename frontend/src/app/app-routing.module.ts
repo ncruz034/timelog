@@ -21,6 +21,8 @@ import { ClientsDashboardComponent } from './components/dashobard/clients-dashbo
 import { AssociatesDashboardComponent } from './components/dashobard/associates-dashboard/associates-dashboard.component';
 import { AdminDashboardComponent } from './components/dashobard/admin-dashboard/admin-dashboard.component';
 import { AccessComponent } from './components/access/access.component';
+import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
+
 const routes: Routes = [
   {path: 'create', component: TimeCreateComponent},
   {path: 'users/register', component: RegisterComponent},
@@ -39,6 +41,7 @@ const routes: Routes = [
   {path: 'admin-dashboard', component: AdminDashboardComponent},
   {path: 'access-code', component: AccessComponent },
   {path: 'home', component: HomeComponent},
+  {path: 'tree-file-creator' , component: TreeFileCreatorComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}];
 
 @NgModule({

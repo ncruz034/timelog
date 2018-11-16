@@ -57,6 +57,8 @@ import { AssociatesDashboardComponent } from './components/dashobard/associates-
 import { ClientsDashboardComponent } from './components/dashobard/clients-dashboard/clients-dashboard.component';
 import { ServiceCreateComponent } from './components/service-request/create/service-create.component';
 import { AccessComponent } from './components/access/access.component';
+import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
+import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { AccessComponent } from './components/access/access.component';
     ClientsDashboardComponent,
     ServiceCreateComponent,
     AccessComponent,
+    TreeFileCreatorComponent,
+    DragAndDropDirective,
   ],
   imports: [
     BrowserModule,
