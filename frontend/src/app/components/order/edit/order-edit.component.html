@@ -23,7 +23,22 @@
           <input matInput placeholder = "Description" formControlName="description" #description>
         </mat-form-field>
 
+        <mat-form-field>
+          <mat-select placeholder="Is Billed" formControlName="isBilled" [(value)]="selectedBilled">
+            <mat-option *ngFor="let isBilled of billed" [value]='isBilled.value'>
+              {{isBilled.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
+        <mat-form-field>
+            <mat-select placeholder="Status" formControlName="status" [(value)]="selectedStatus">
+              <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                {{status.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+<!--
         <mat-form-field>
             <mat-select placeholder="Is Billed" formControlName="isBilled" #isBilled>
               <mat-option *ngFor="let isBilled of billed" [value]="isBilled.value">
@@ -35,10 +50,11 @@
           <mat-form-field>
               <mat-select placeholder="Status" formControlName="status" #status [(ngModel)]='selectedStatus'>
                 <mat-option *ngFor="let status of statusOptions" [value]="status.value">
-                  {{status.viewVAlue}}
+                  {{status.viewValue}}
                 </mat-option>
               </mat-select>
           </mat-form-field>
+        -->
 
         <mat-divider></mat-divider>
       </form>
@@ -47,9 +63,7 @@
         <button type="submit" (click)="editOrder(
                     client.value,
                     project.value,
-                    description.value,
-                    isBilled.value,
-                    status.value)" [disabled]="editForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
+                    description.value)" [disabled]="editForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
 
     </mat-card>
   </div>

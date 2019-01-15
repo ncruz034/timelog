@@ -51,13 +51,13 @@ export class OrderEditComponent implements OnInit {
         client: ['', Validators.required],
         project: ['', Validators.required],
         description: ['', Validators.required],
-        isBilled: [Boolean, Validators.required],  
+        isBilled: [Boolean, Validators.required],
         status: ['', Validators.required],
       });
   }
 
-    editOrder(client, project, description, isBilled, status) {
-      console.log('The order is: ' + isBilled + '' + status);
+    editOrder(client, project, description) {
+     // console.log('The order is: ' + isBilled + '' + status);
       console.log('The order is new: ' + this.selectedBilled + '' + this.selectedStatus);
         const order = {
           orderNumber: this.order.orderNumber,
@@ -65,11 +65,10 @@ export class OrderEditComponent implements OnInit {
           client: client,
           project: project,
           description: description,
-          isBilled: isBilled,
-          status: status,
+          isBilled: this.selectedBilled,
+          status: this.selectedStatus,
         };
 
-      console.log('The client: ' + client);
       this.orderService.editOrder(this.id, order).subscribe(() => {
         this.snackBar.open('Order updated succesfully', 'OK', {
           duration: 3000
@@ -82,7 +81,6 @@ export class OrderEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       console.log('The id: ' + params.id);
       this.id = params.id;
-
 
       this.orderService.getOrderById(this.id).subscribe(res => {
         this.order = res;
@@ -97,5 +95,4 @@ export class OrderEditComponent implements OnInit {
     });
   }
 
- 
 }
