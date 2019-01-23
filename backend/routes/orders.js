@@ -1,4 +1,5 @@
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const bcrypt = require('bcrypt');
 const _= require('lodash');
 const express = require('express');
@@ -70,7 +71,7 @@ router.put('/last/', async (req,res) =>{
     });
 });
 
-router.put('/:id', async (req,res) =>{
+router.put('/:id', auth, admin, async (req,res) =>{
     console.log(req.body);
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
