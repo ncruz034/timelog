@@ -59,6 +59,7 @@ import { ServiceCreateComponent } from './components/service-request/create/serv
 import { AccessComponent } from './components/access/access.component';
 import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
+import {OrderDetailComponent } from './components/order/detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { DragAndDropDirective } from './directives/drag-and-drop.directive';
     AccessComponent,
     TreeFileCreatorComponent,
     DragAndDropDirective,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,

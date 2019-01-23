@@ -49,7 +49,10 @@ export class OrderListComponent implements OnInit {
     console.log('Edditing order id: ' + id);
     this.router.navigate([`orders/edit/${id}`]);
   }
-
+  detailOrder(id) {
+    console.log('View order id: ' + id);
+    this.router.navigate([`orders/detail/${id}`]);
+  }
   deleteOrder(id) {
     this.orderService.deleteOrder(id).subscribe(() => {
       this.fetchOrders();
