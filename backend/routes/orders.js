@@ -134,7 +134,15 @@ router.get('/', async (req,res) =>{
 });
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
- const order = await Order.findById(req.params.id);
+    let id = mongoose.Types.ObjectId(req.params.id);
+    console.log('the id:' + id);
+
+    const order = await Order.aggregate([
+        // { $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
+         {"$match": {_id: id}} , {$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
+     ]);
+console.log(order);
+ //const order = await Order.findById(req.params.id);
   //check if there is any error
   if(!order) return res.status(400).send('The order with the given id is not valid');
  res.send(order);
