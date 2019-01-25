@@ -2,7 +2,7 @@
 html, body{
   height: 100%;
   margin: 0; font-family: 'Roboto', sans-serif;
-  background-color:#2E333A;
+  background-color:rgb(220, 230, 243);
   font-family:'Roboto',sans-serif;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@ html, body{
 .dark-primary-color    { background: rgb(210, 25, 185); }
 .default-primary-color { background: #2196F3; }
 .light-primary-color   { background: #BBDEFB; }
-.text-primary-color    { color: #FFFFFF; }
+.text-primary-color    { color: rgb(128, 56, 56); }
 .accent-color          { background: #FF5252; }
 .primary-text-color    { color: #2196F3; }
 .secondary-text-color  { color: #757575; }

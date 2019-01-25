@@ -10,9 +10,10 @@ table{
     padding: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
-    background-color: rgb(66, 139, 207);
+    background-color: #428bcf;
+    border: 2px solid #2E333A
   }
-  
+
 .box{
     width: auto;
     height: auto;
