@@ -1,46 +1,93 @@
 
-<div>
-  <br>
-    <button mat-fab color="primary" routerLink="/create">+</button>
-    <br><br>
-    <mat-divider></mat-divider>
-    <br>
-</div>
-<div>
+<h1><i class="fas fa-plus-circle pointerCursor" routerLink="/create"></i></h1>
 
-    <table mat-table [dataSource] = "times" class="mat-elevation-z8" style="background-color: #2E333A;">
 
-      <ng-container matColumnDef="orderNumber">
-        <th mat-header-cell *matHeaderCellDef>Order No.</th>
-        <td mat-cell *matCellDef="let element"> {{element.order.orderNumber}}</td>
-      </ng-container>
+<div *ngFor="let key of userTimes" >
+    <zippy title="{{key._id.date | date}}">
+        <table class="table table-hover">
+            <tr>    
+              <th>Order</th>    
+              <th>Description</th>   
+              <th>Time</th>   
+              <th>Actions</th>
+            </tr>   
+            <tr *ngFor="let data of key.entry" >   
+              <td>{{data.order}}</td>   
+              <td>{{data.description}}</td>    
+              <td>{{data.time}}</td>   
+              <td> 
+                  <button (click) = "editTime(element._id)" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+             
+                  <button (click) = "deleteTime(element.order._id,element._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              </td>
+            </tr>   
+          </table>   
+    </zippy>   
+    </div>
 
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
-        <td mat-cell *matCellDef="let element"> {{element.date | date}}</td>
-      </ng-container>
+<!-- <div class="accordion"  *ngFor = "let key of times">   
+    <div  (click)="panelExpanded = !panelExpanded" class="pointerCourser">
+        <h5 class="mb-0" >
+          <button class="btn btn-link" type="button"   aria-expanded="true" >
+            {{key._id.date | date}} {{key.count}}
+          </button>
+        </h5>
+    </div>
 
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let element"> {{element.description}}</td>
-      </ng-container>
+    <div *ngIf="panelExpanded">
+  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"> 
+            <table class="table table-striped">
+                <tr>
+                  <th scope="col">Order</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Time</th>  
+                </tr>
+                <tr *ngFor="let data of key.entry">
+                  <td>{{data.order}}</td>
+                  <td>{{data.description}}</td>
+                  <td>{{data.time}}</td>
+                </tr>
+              </table>
+        </div>
 
-      <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef >Time</th>
-        <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-      </ng-container>
+      <div *ngIf="panelExpanded">
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</th>
-        <td mat-cell *matCellDef="let element" class="mat-column-right">
-          <button mat-button color ="primary" (click) = "editTime(element._id)">Edit</button>
-          <button mat-button color ="warn" (click) = "deleteTime(element.order._id,element._id)">Delete</button>
-        </td>
-      </ng-container>
+            <table class="table table-striped">
+                <tr>
+                  <th scope="col">Order</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Time</th>  
+                </tr>
+                <tr *ngFor="let data of key.entry">
+                  <td>{{data.order}}</td>
+                  <td>{{data.description}}</td>
+                  <td>{{data.time}}</td>
+                </tr>
+              </table>
+        </div>      
+    </div>
+</div> -->
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
-    </table>
-
-</div>
-
+ <!--  
+<table class="table table-striped" >
+  <thead>
+  <tr>
+    <th scope="col" >Order No.</th>
+    <th scope="col" >Date</th>
+    <th scope="col" >Description</th>
+    <th scope="col" >Time</th>
+    <th scope="col" >Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let element of times">
+    <th scope="row">{{ element.order.orderNumber }}</th>
+    <td>{{element.date | date}}</td>
+    <td>{{element.description}}</td>
+    <td>{{element.time}}</td>
+    <td> 
+      <button (click) = "editTime(element._id)">Edit</button>
+      <button (click) = "deleteTime(element.order._id,element._id)">Delete</button></td>
+  </tr>
+  </tbody>
+</table> -->

@@ -1,13 +1,29 @@
-<div>
-        <br>
-        <mat-card>
-          <section class = "mat-typography>">
+
             <h3> Edit Time</h3>
-          </section>
+     
+            <form  [formGroup]="editForm">
+                <div class="form-group">
+                  <label for="date">Date</label>
+                  <input type="text" class="form-control" id="date" formControlName="date" #date id="date" placeholder="date">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" formControlName="description" #description id="description" placeholder="description">
+                </div>
+                <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="text" class="form-control" formControlName="time" #time id="time" placeholder="time">
+                </div>
+            </form>
+ 
+          <button routerLink="/times">Back</button>
+          <button type="submit" (click)="editTime(
+                      date.value,
+                      description.value,
+                      time.value)" [disabled]="editForm.pristine">Save</button>
 
-          <mat-divider></mat-divider>
 
-          <br>
+<!--
           <form [formGroup]="editForm" class="create-form">
 
             <mat-form-field class="field-full-with">
@@ -31,5 +47,4 @@
                         description.value,
                         time.value)" [disabled]="editForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
 
-        </mat-card>
-      </div>
+        -->

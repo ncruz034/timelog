@@ -6,7 +6,7 @@ const Joi = require('Joi');
 //const {User, validate} = require('./models/user');
 
 const userSchema = new mongoose.Schema({
-      _id:{type: mongoose.Schema.ObjectId},
+     // _id:{type: mongoose.Schema.ObjectId},
       name:{type:String, required:true,minlength:2,maxlength:50},
       last:{type:String, required:true,minlength:2,maxlength:50},
      // salary: {type:Number, required:true},

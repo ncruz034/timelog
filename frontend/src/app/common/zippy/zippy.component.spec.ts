@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimeListComponent } from './time-list.component';
+import { ZippyComponent } from './zippy.component';
 
-describe('ListComponent', () => {
-  let component: TimeListComponent;
-  let fixture: ComponentFixture<TimeListComponent>;
-  let panelExpanded = false;
+describe('ZippyComponent', () => {
+  let component: ZippyComponent;
+  let fixture: ComponentFixture<ZippyComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeListComponent ]
+      declarations: [ ZippyComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimeListComponent);
+    fixture = TestBed.createComponent(ZippyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

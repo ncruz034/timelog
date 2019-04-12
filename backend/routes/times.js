@@ -13,14 +13,30 @@ router.get('/',auth,  async (req, res,) => {
         res.send(times);
 });
 
-//Get all times for a user
-router.get('/user/:user_id',auth,  async (req, res,) => {
+ /* router.get('/user/:user_id',auth,  async (req, res,) => {
     // throw new Error({error:'Error'});
      const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
+     res.send(times);
+}); */ 
 
+router.get('/user/:user_id',auth,  async (req, res,) => {
+    // throw new Error({error:'Error'});
+    const times = await Time.aggregate([
+        {"$match":{"user": req.params.user_id}},
+        {"$group":{_id:{date:"$date"},count:{$sum: 1},
+            entry: {
+                $push:{time:"$time", description:"$description",order:"$order"}
+            }
+    }}
+    ])
+    console.log(times);
+     //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
      res.send(times);
 });
+
+
 //Get all times for a user
 router.get('/user/:user_id/week/:week_No',auth,  async (req, res,) => {
     // throw new Error({error:'Error'});
@@ -60,7 +76,6 @@ router.put('/update/:id',auth, async (req,res) =>{
 });
 
 router.post('/', async (req,res) =>{
-    
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../../../services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MatSnackBar } from '@angular/material';
+//import {MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-edit',
@@ -13,8 +13,7 @@ export class ClientEditComponent implements OnInit {
   editForm: FormGroup;
   id: '';
   client: any = {};
-  constructor(private route: ActivatedRoute,
-    private snackBar: MatSnackBar, private clientService: ClientService,
+  constructor(private route: ActivatedRoute, private clientService: ClientService,
     private fb: FormBuilder, private router: Router) {
 
       this.editForm = this.fb.group({
@@ -36,9 +35,9 @@ export class ClientEditComponent implements OnInit {
       };
 
      this.clientService.editClient(this.id, updatedClient).subscribe(() => {
-       this.snackBar.open('Time updated succesfully', 'OK', {
-         duration: 3000
-       });
+      // this.snackBar.open('Time updated succesfully', 'OK', {
+      //   duration: 3000
+      // });
        this.router.navigate(['/times']);
      });
    }

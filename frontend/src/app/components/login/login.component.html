@@ -1,12 +1,27 @@
 
+<div class="jumbotron">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [formControl]="email" required formControlName = "email">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName = "password">
+        </div>
+        <button type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!loginForm.valid">Submit</button>
+      </form>
+  </div>
 
-<mat-card>
+<!-- 
   <form  [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-  <div class="example-container">
-    <mat-form-field class="field-full-width">
+  <div >
+    <fieldset>
+      <div class="form-group row">
       <input matInput placeholder="Enter your email" [formControl]="email" required formControlName = "email">
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
+    </fieldset>
 
     <mat-form-field>
       <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required formControlName = "password">
@@ -17,7 +32,9 @@
         <button mat-fab color="primary" type="submit" value="Submit Form" [disabled]="!loginForm.valid">Login</button>
         <button mat-fab color="accent" routerLink="/home">Cancel</button>
     </div>
+    </div>
+    </fieldset>
   </div>
 </form>
-</mat-card>
+ -->
 

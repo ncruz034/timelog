@@ -1,4 +1,37 @@
+<div class="jumbotron">
 
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input  class="form-control"  placeholder="Enter Name" required formControlName="name">
+        </div>
+
+        <div class="form-group">
+            <label for="last">Last</label>
+            <input  class="form-control" id="last" placeholder="Enter Last Name"  required formControlName = "last">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [formControl]="email" required formControlName = "email">
+        </div>
+
+        <div class="form-group">
+          <label for="password1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName = "password">
+        </div>
+
+        <div class="form-group">
+            <label for="password2">Password</label>
+            <input type="password" class="form-control" id="Password2" placeholder="Password2" formControlName = "password2">
+        </div>
+
+        <button type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!registerForm.valid">Submit</button>
+      </form>
+  </div>
+
+<!-- 
     <mat-card >
       <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
       <div class="example-container">
@@ -9,15 +42,7 @@
         <mat-form-field >
             <input matInput placeholder="Last" required formControlName = "last">
         </mat-form-field>
-        <!--
-        <mat-form-field>
-            <input matInput placeholder="Salary" required formControlName = "salary">
-        </mat-form-field>
-
-        <mat-form-field>
-            <input matInput placeholder="Position" required formControlName = "position">
-        </mat-form-field>
-      -->
+   
         <mat-form-field>
           <input matInput placeholder="Enter your email" [formControl]="email" required formControlName = "email">
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -31,12 +56,7 @@
             <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required formControlName = "password2">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
-        <!--
-        <section class="admin-section">
-            <mat-slide-toggle [(ngModel)] = "isAdmin" [ngModelOptions]="{standalone: true}" [color]="color" [checked]="checked" [disabled]="disabled">
-                Is Admin</mat-slide-toggle>
-        </section>
-      -->
+ 
         <div class="button-row">
             <button mat-fab color="primary" type="submit" value="Submit Form" [disabled]="!registerForm.valid">Register</button>
             <button mat-fab color="accent" routerLink="/home">Cancel</button>
@@ -44,5 +64,5 @@
         <div style="text-align: center;">{{successMessage}}</div>
       </div>
     </form>
-    </mat-card>
+    </mat-card> -->
 

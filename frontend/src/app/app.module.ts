@@ -1,21 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 //import { Router,Routes, RouterModule} from '@angular/router';
 import {AppRoutingModule } from './app-routing.module';
-import { MatToolbarModule,MatTableModule,
-         MatFormFieldModule,MatInputModule,MatOptionModule,
-         MatSelectModule,MatIconModule,MatButtonModule,
-         MatCardModule,MatDividerModule, MatSnackBarModule, MatNativeDateModule} from '@angular/material';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 
 //import {ErrorStateMatcher} from '@angular/material/core';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -60,6 +47,8 @@ import { AccessComponent } from './components/access/access.component';
 import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import {OrderDetailComponent } from './components/order/detail/order-detail.component';
+import { ZippyComponent } from './common/zippy/zippy.component';
+
 
 @NgModule({
   declarations: [
@@ -89,36 +78,16 @@ import {OrderDetailComponent } from './components/order/detail/order-detail.comp
     TreeFileCreatorComponent,
     DragAndDropDirective,
     OrderDetailComponent,
+    ZippyComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatDividerModule,
-    MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatAutocompleteModule,
-    MatExpansionModule,
-    MatChipsModule,
-    MatGridListModule,
-    MatTooltipModule,
-    MatStepperModule,
-    MatCheckboxModule,
     MomentModule
   ],
   providers: [TimeService, AuthService, AuthGuard,

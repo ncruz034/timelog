@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from '../../../services/order.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {MatSnackBar } from '@angular/material';
+//import {MatSnackBar } from '@angular/material';
 import { Order } from '../../../models/order.model';
 
 export interface Billed {
@@ -42,7 +42,7 @@ export class OrderEditComponent implements OnInit {
 
   ];
   constructor(private orderService: OrderService, private fb: FormBuilder,
-              private router: Router, private route: ActivatedRoute, private snackBar: MatSnackBar) {
+              private router: Router, private route: ActivatedRoute) {
 
     this.createForm();
     }
@@ -70,9 +70,9 @@ export class OrderEditComponent implements OnInit {
         };
 
       this.orderService.editOrder(this.id, order).subscribe(() => {
-        this.snackBar.open('Order updated succesfully', 'OK', {
+        /* this.snackBar.open('Order updated succesfully', 'OK', {
           duration: 3000
-        });
+        }); */
         this.router.navigate(['/orders']);
       });
     }

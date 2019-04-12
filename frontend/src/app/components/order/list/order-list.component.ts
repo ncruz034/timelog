@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @Component({
   selector: 'app-order-list',
@@ -34,6 +33,7 @@ export class OrderListComponent implements OnInit {
     this.orderService.getOrders().subscribe(
       (data: Order[]) => {
         this.orders = data;
+        console.log(this.orders);
       },
       err => {
         if (err instanceof HttpErrorResponse) {

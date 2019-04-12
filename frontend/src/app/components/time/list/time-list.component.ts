@@ -15,6 +15,8 @@ export class TimeListComponent implements OnInit {
   @Input() currentOrderId: String;
   @Input() isOrderRequest: Boolean;
   times: Time[];
+  userTimes: any[];
+
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'actions'];
 
   constructor(private orderService: OrderService, private timeService: TimeService, private router: Router) { }
@@ -32,9 +34,9 @@ export class TimeListComponent implements OnInit {
   getUsersTime(user_id) {
     this.timeService.getUsersTime(user_id).subscribe(
       (data: Time[]) => {
-        this.times = data;
+        this.userTimes = data;
         console.log('Data requested...');
-        console.log(this.times);
+        console.log(this.userTimes);
       });
   }
 
