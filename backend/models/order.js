@@ -11,6 +11,33 @@ const Order = mongoose.model('Order',new mongoose.Schema({
     isBilled:{type:Boolean, required:true},
     status: {type:String, required:true},
     time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
+    legalDescription:{type:String,required:false},
+
+    orderPlacedBy:{type:String, required:true},
+    orderReceivedBy:{type:String, required:true},
+    referToFile:[{type:String, required:false}],
+    referToFieldBook:[{type:String, required:false}],
+    referToOrder:[{type: mongoose.Schema.ObjectId, ref:'Order'}],
+    fieldWork:{
+            fieldBook:{type:String, required: false},
+            page:[{type:Number, required:false}],
+            partyChief:[{type: mongoose.Schema.ObjectId, ref:'User'}],
+            dateCompleted:{type: Date, required:false}
+        },
+    instructions:{
+        numberOfPrintsToMail:{type:Number, required:false},
+        mailPrintsTo:{type:String, required:false},
+        numberOfPrintsToDeliver:{type:Number, requirded: false},
+        deliverPrintsTo:{type:String, required:false},
+        numberOfPrintsToPickup:{type:Number, required:false},
+        pickupPrintsAtTime:{type:String, required:false}
+    },
+    invoice:{
+        date:{type:Date, required:false},
+        amountSetBy:{type:String, required:false},
+        invoicedTypedBy:{type:String, required:false},
+        price:{type:Number, required:false}
+    },
     order_stats:{
         budget:{type:Number},
         totalFieldTime:{type:Number},
