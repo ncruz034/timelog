@@ -14,17 +14,14 @@ router.post('/', auth, async (req,res) =>{
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
    
-    console.log('Saving order');
     let project = new Project({
                            projectName:req.body.projectName,
-                           //orderId:req.body.orderId,
                            date:req.body.date,
                            description:req.body.description,
                            status:req.body.status
                         });
     
     project = await project.save();
-    console.log('After saving project');
     res.send(project);
 });
 
