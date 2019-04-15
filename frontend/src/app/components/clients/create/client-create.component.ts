@@ -1,21 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../../../services/client.service';
 import { Router } from '@angular/router';
 import { Client } from '../../../models/client.model';
+import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create',
   templateUrl: './client-create.component.html',
-  styleUrls: ['./client-create.component.css']
+  styleUrls: ['./client-create.component.css'],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
-export class ClientCreateComponent implements OnInit {
-createForm: FormGroup;
+export class ClientCreateComponent {
+
+  /* form = new FormGroup({
+    clientName: new FormControl('',[Validators.required]),
+    date: new FormControl('',[Validators.required]),
+    address: new FormControl('',[Validators.required]),
+    phone: new FormControl('',[Validators.required]),
+    contact: new FormControl('',[Validators.required])
+  }) */
+
+  get clientName(){ return this.form.get('clientName');}
+
+form: FormGroup;
 client: Client = new Client();
   constructor(private clientService: ClientService, private fb: FormBuilder, private router: Router) { }
 
-  ngOnInit() {
-    this.createForm = this.fb.group({
+   ngOnInit() {
+    this.form = this.fb.group({
       clientName: [this.client.clientName, Validators.required],
       date: [this.client.date, Validators.required],
       address: [this.client.address, Validators.required],
@@ -25,12 +38,13 @@ client: Client = new Client();
   }
   
   addClient() {
+    console.log(this.form.value.date);
       this.clientService.addClient(
-        this.createForm.value.clientName, this.createForm.value.date, this.createForm.value.address,
-        this.createForm.value.phone, this.createForm.value.contact)
+        this.form.value.clientName, this.form.value.date, this.form.value.address,
+        this.form.value.phone, this.form.value.contact)
          .subscribe((order_id: any) => {
-            console.log('this is the time _id ' + order_id);
+            console.log('this is the order_id ' + order_id);
         });
-      }
+      } 
   }
 

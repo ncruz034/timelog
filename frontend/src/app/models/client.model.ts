@@ -5,4 +5,5 @@ export class Client {
   address: { type: String };
   phone: {type: String};
   contact: {type: String };
+  projects:[{}];
 }

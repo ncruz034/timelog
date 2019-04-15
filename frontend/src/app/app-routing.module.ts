@@ -15,6 +15,11 @@ import { OrderDetailComponent } from './components/order/detail/order-detail.com
 import { ClientListComponent } from './components/clients/list/client-list.component';
 import { ClientCreateComponent } from './components/clients/create/client-create.component';
 import { ClientEditComponent } from './components/clients/edit/client-edit.component';
+
+import { ProjectCreateComponent } from './components/project/create/project-create.component';
+import { ProjectListComponent } from './components/project/list/project-list.component';
+import { ProjectEditComponent } from './components/project/edit/project-edit.component';
+
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './components/dashobard/dashboard/dashboard.component';
 import { ClientsDashboardComponent } from './components/dashobard/clients-dashboard/clients-dashboard.component';
@@ -33,6 +38,11 @@ const routes: Routes = [
   {path: 'clients/create', component: ClientCreateComponent},
   {path: 'clients', component: ClientListComponent},
   {path: 'clients/edit/:id', component: ClientEditComponent},
+
+  {path: 'projects', component: ProjectListComponent, canActivate: [AuthGuard]},
+  {path: 'projects/edit/:id', component: ProjectEditComponent},
+  {path: 'projects/create', component: ProjectCreateComponent},
+
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},
   {path: 'auth', component: LoginComponent},

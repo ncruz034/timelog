@@ -46,8 +46,11 @@ import { ServiceCreateComponent } from './components/service-request/create/serv
 import { AccessComponent } from './components/access/access.component';
 import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
-import {OrderDetailComponent } from './components/order/detail/order-detail.component';
+import { OrderDetailComponent } from './components/order/detail/order-detail.component';
 import { ZippyComponent } from './common/zippy/zippy.component';
+import { ProjectCreateComponent } from './components/project/create/project-create.component';
+import { ProjectListComponent } from './components/project/list/project-list.component';
+import { ProjectEditComponent } from './components/project/edit/project-edit.component';
 
 
 @NgModule({
@@ -79,6 +82,10 @@ import { ZippyComponent } from './common/zippy/zippy.component';
     DragAndDropDirective,
     OrderDetailComponent,
     ZippyComponent,
+    ProjectCreateComponent,
+    ProjectListComponent,
+    ProjectEditComponent,
+  
   ],
   imports: [
     NgbModule,

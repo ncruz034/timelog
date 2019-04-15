@@ -3,16 +3,17 @@ const Joi = require('Joi');
 
 
 const Client = mongoose.model('Client',new mongoose.Schema({
-    date:{type: Date, default: Date.now},
+    date:{type: Date, required: true},
     clientName: {type:String, required:true},
     address: {type:String, required:true},
     phone:{type:String, required:true}, 
     contact:{type:String, require:true},
+    projects:[{type: mongoose.Schema.ObjectId, ref:'Order'}]
     }));
 
 function validateClient(client){
     const schema = {
-        date: Joi.string().required(),
+        date: Joi.date().required(),
         clientName: Joi.string().min(3).required(),
         address: Joi.string().required(),
         phone: Joi.string().required(),

@@ -105,3 +105,32 @@ router.delete('/delete/:id', async (req,res) =>{
 });
 
 module.exports = router;
+
+
+
+
+/* 
+db.users.aggregate([
+    {$unwind:"$time"}, 
+    {
+        $lookup: {from:"times",
+        localField:"time",
+        foreignField:"_id",
+        as:"time"
+        } 
+    }, 
+    {$project:{name: 1, order:1, description:1, date:1, time:1}} 
+    ]).pretty()
+
+    db.times.aggregate([
+        {$match: {user:"5b90741f721b5bf5f8a699a4"}}, 
+        {
+            $lookup: {from:"orders",
+            localField:"order",
+            foreignField:"_id",
+            as:"order"
+            },
+        }, 
+        {$unwind: "$order"},
+        {$project:{description:1, date:1, time:1, order:{orderNumber:1}}} ,
+        ]).pretty() */

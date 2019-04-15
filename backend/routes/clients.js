@@ -10,7 +10,7 @@ const asyncMIddleware = require('../middleware/async');
 
 //Register a new Client; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{
-
+   
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
    
@@ -19,6 +19,8 @@ router.post('/', auth, async (req,res) =>{
                            clientName:req.body.clientName,
                            address:req.body.address,
                            phone:req.body.phone,
+                           contact:req.body.contact,
+                           projects:req.body.projects
                         });
     
     client = await client.save();

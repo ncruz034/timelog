@@ -1,3 +1,56 @@
+
+<div class="card">
+  <div class="card-body">
+      <form [formGroup]='form'>
+          <legend>New Client</legend>
+          <div class="form-group">
+            <label class="col-form-label" for="clientName">Client Name</label>
+            <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name" id="clientName">
+            <div *ngIf="clientName.touched && clientName.invalid" class="alert alert-danger">Client name is required</div>
+          </div>
+        
+        <!--   <div class="form-group">
+              <label class="col-form-label" for="address">Date</label>
+              <input formControlName="date" type="text" class="form-control" placeholder="date" id="date">
+              <div *ngIf="form.get('date').touched && form.get('date').invalid" class="alert alert-danger">Date is required</div>
+          </div> -->
+          <div class="form-group">
+              <label class="col-form-label" for="date">Date</label>
+              <div class="input-group">
+              <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #d="ngbDatepicker">         
+              <div class="input-group-append">
+                  
+                <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+              </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-form-label" for="address">Address</label>
+              <input formControlName="address" type="text" class="form-control" placeholder="Address" id="address">
+              <div *ngIf="form.get('address').touched && form.get('address').invalid" class="alert alert-danger">Address is required</div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-form-label" for="contact">Contact</label>
+              <input formControlName="contact" type="text" class="form-control" placeholder="Contact" id="contact">
+              <div *ngIf="form.get('contact').touched && form.get('contact').invalid" class="alert alert-danger">Contact is required</div>
+            </div>
+
+          <div class="form-group">
+            <label class="col-form-label" for="phoneNumber">Phone Number</label>
+            <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" id="phoneNumber">
+            <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="alert alert-danger">Phone number is required</div>
+          </div>
+
+          <button routerLink="/clients" class="btn btn-primary">Back</button>
+          <button type="submit" class="btn btn-success" [disabled]="form.pristine" (click)="addClient()">Submit</button>
+        </form>    
+  </div>
+</div>
+
+
+
 <!--
 <div>
     <br>
