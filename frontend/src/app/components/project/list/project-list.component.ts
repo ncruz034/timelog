@@ -1,33 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { ProjectService } from '../../../services/project.service';
 import { Router } from '@angular/router';
 import { Order } from '../../../models/order.model';
 import { Project } from '../../../models/project.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
+
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+
+let projects: Project[];
+
+
+
+
+function search(text: string, pipe: PipeTransform): Project[] {
+  return projects.filter(project => {
+    const term = text.toLowerCase();
+    return project.projectName.toString().includes(term)
+        || project.description.toString().includes(term)
+        || project.status.toString().includes(term);
+
+  });
+}
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
-  styleUrls: ['./project-list.component.css']
+  styleUrls: ['./project-list.component.css'],
+  providers: [DecimalPipe]
 })
 
 export class ProjectListComponent implements OnInit {
-  panelOpenState = false;
-  projects: Project[];
-  orders: Order[];
-  currentOrderId: String;
+  filter = new FormControl('');
+  projects$: Observable<Project[]>;
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private pipe: DecimalPipe, private projectService: ProjectService, private router: Router) {
+
+    this.projects$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => search(text, this.pipe))
+    );
+  }
 
   ngOnInit() {
     this.fetchProjects();
   }
 
+
   fetchProjects() {
     this.projectService.getProjects().subscribe(
       (data: Project[]) => {
-        this.projects = data;
-        console.log(this.projects);
+        projects = data;
       },
       err => {
         if (err instanceof HttpErrorResponse) {
@@ -38,6 +64,7 @@ export class ProjectListComponent implements OnInit {
       }
     );
   }
+
   editProject(id) {
     console.log('Edditing client id: ' + id);
     this.router.navigate([`clients/edit/${id}`]);

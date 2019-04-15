@@ -109,13 +109,11 @@ router.get('/', async (req, res,) => {
 });
 */
 router.get('/', async (req,res) =>{
-    const projects = await Order.aggregate([
-          // { $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
-           {$lookup: {from: 'orders',localField:'_id',foreignField: 'project', as: 'order'}}
-       ]);//populate({path:'time', model:'Time', select:['date','description','time'],
-                                                          // populate:{path:'user',model:"User",select:['name','last']}});
+    console.log("Getting the projects");
+    const projects = await Project.find().sort('projectName');//.populate('order',['orderNumber'],'Order');
 
     if(!projects) return res.status(400).send('The order with the given id is not valid');
+    console.log("The projects are: " + projects);
    /*  let counter=0;
        for(let project of projects) {
            for(let order of project.order){
@@ -124,7 +122,7 @@ router.get('/', async (req,res) =>{
        }
        
        console.log('The time is: ' + counter); */
-    res.send(orders);
+    res.send(projects);
 });
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
