@@ -47,8 +47,8 @@ export class ProjectService {
     return this.http.put(`${this.uri}/projects/${_id}`, updatedProject);
   }
 
-  /* deleteProject(_id) {
+  deleteProject(_id) {
     return this.http.delete(`${this.uri}/projects/delete/${_id}`);
-  } */
+  }
 
 }

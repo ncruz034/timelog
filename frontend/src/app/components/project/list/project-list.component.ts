@@ -38,6 +38,15 @@ export class ProjectListComponent implements OnInit {
       }
     );
   }
+  editProject(id) {
+    console.log('Edditing client id: ' + id);
+    this.router.navigate([`clients/edit/${id}`]);
+  }
 
-  
+  deleteProject(id) {
+    this.projectService.deleteProject(id).subscribe(() => {
+      this.fetchProjects();
+    });
+  }
+
 }

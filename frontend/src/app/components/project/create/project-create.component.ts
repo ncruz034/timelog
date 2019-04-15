@@ -17,7 +17,7 @@ export class ProjectCreateComponent implements OnInit {
   form: FormGroup;
   project: Project = new Project();
     constructor(private projectService: ProjectService, private fb: FormBuilder, private router: Router) { }
-  
+
      ngOnInit() {
       this.form = this.fb.group({
         projectName: [this.project.projectName, Validators.required],
@@ -26,7 +26,7 @@ export class ProjectCreateComponent implements OnInit {
         status: [this.project.status, Validators.required]
       });
     }
-    
+
     addProject() {
         this.projectService.addProject(
           this.form.value.date, this.form.value.projectName,
@@ -34,6 +34,5 @@ export class ProjectCreateComponent implements OnInit {
            .subscribe((project_id: any) => {
               console.log('this is the project_id ' + project_id);
           });
-        } 
-        
+        }
 }

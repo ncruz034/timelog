@@ -13,8 +13,8 @@ const Project = mongoose.model('Project',new mongoose.Schema({
 
 function validateProject(project){
     const schema = {
-        projectName: Joi.string().require(),
-        date: Joi.string().required(),
+        projectName: Joi.string().required(),
+        date: Joi.date().required(),
         description: Joi.string().required(),
         status: Joi.string().required()
     };
