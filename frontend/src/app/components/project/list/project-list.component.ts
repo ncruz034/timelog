@@ -15,7 +15,6 @@ let projects: Project[];
 
 
 
-
 function search(text: string, pipe: PipeTransform): Project[] {
   return projects.filter(project => {
     const term = text.toLowerCase();
