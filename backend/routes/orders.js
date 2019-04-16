@@ -16,11 +16,10 @@ router.post('/', auth, async (req,res) =>{
    
     console.log('Saving order');
     let order = new Order({
-                           orderNumber:req.body.orderNumber,
-                           //orderId:req.body.orderId,
+                           orderNumber:req.body.orderNumber,       
+                           clientName:req.body.clientName,
+                           projectName:req.body.projectName,
                            date:req.body.date,
-                           client:req.body.client,
-                           project:req.body.project,
                            description:req.body.description,
                            isBilled:req.body.isBilled,
                            status:req.body.status

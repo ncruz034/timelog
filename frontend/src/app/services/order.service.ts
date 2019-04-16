@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
+import { NG_PROJECT_AS_ATTR_NAME } from '@angular/core/src/render3/interfaces/projection';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +31,12 @@ export class OrderService {
     return this.http.post(`${this.uri}/orders/${order_id}/time`, updatedOrderTime);
   }
 
-  addOrder(orderNumber, date, client, project, description, isBilled, status) {
+  addOrder(orderNumber, clientName, projectName, date, description, isBilled, status) {
     const newOrder = {
       orderNumber: orderNumber,
+      clientName: clientName,
+      projectName: projectName,
       date: date,
-      client: client,
-      project: project,
       description: description,
       isBilled: isBilled,
       status: status

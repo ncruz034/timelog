@@ -1,4 +1,5 @@
 <div class="card">
+
   <div class="card-body">
       <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/projects/create"></i></h1>
 
@@ -7,18 +8,21 @@
             Project search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
         </div>
       </form>
+      <!-- <div *ngIf="addOrder">
+          <app-order-create></app-order-create>
+      </div> -->
       <div *ngFor="let project of this.projects$ | async; index as i" >
           <zippy title="{{project.projectName}}">
               <table class="table table-hover">
                   <tr>
-      
+
                     <th>Project</th>
                     <th>Description</th>
                     <th>status</th>
                     <th>Actions</th>
                   </tr>
                   <tr>
-      
+
                     <td>
                       <ngb-highlight [result]="project.projectName" [term]="filter.value"></ngb-highlight>
                      <!--  {{project.projectName}} -->
@@ -34,7 +38,12 @@
                     <td>
                         <button (click) = "editProject(project._id)" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                         <button (click) = "deleteProject(project._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        <button (click) = "addOrderToggle()" class="btn btn-warning"><i class="fas fa-newspaper"></i></button>
                     </td>
+
+                  </tr>
+                  <tr *ngIf="addOrder">
+                      <app-order-create [PROJECTNAME]="projectname"></app-order-create>
                   </tr>
                 </table>
                 <h3>Orders</h3>
@@ -63,6 +72,6 @@
               </div>-->
           </zippy>
           </div>
-      
+
   </div>
 </div>

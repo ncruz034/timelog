@@ -35,6 +35,8 @@ function search(text: string, pipe: PipeTransform): Project[] {
 export class ProjectListComponent implements OnInit {
   filter = new FormControl('');
   projects$: Observable<Project[]>;
+  addOrder = false;
+  public projectname = 'The Project';
 
   constructor(private pipe: DecimalPipe, private projectService: ProjectService, private router: Router) {
 
@@ -47,7 +49,9 @@ export class ProjectListComponent implements OnInit {
   ngOnInit() {
     this.fetchProjects();
   }
-
+  addOrderToggle(){
+    this.addOrder = !this.addOrder;
+  }
 
   fetchProjects() {
     this.projectService.getProjects().subscribe(

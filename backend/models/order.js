@@ -4,14 +4,15 @@ const Joi = require('Joi');
 
 const Order = mongoose.model('Order',new mongoose.Schema({
     orderNumber:String,
+    clientName: {type:String, required:true},
+    projectName: {type:String, required:true},
     date:{type: Date, default: Date.now},
-    client: {type:String, required:true},
-    project: {type:String, required:true},
     description:{type:String, required:true}, 
     isBilled:{type:Boolean, required:true},
     status: {type:String, required:true},
     time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
-    legalDescription:{type:String,required:false},
+
+    /* legalDescription:{type:String,required:false},
 
     orderPlacedBy:{type:String, required:true},
     orderReceivedBy:{type:String, required:true},
@@ -43,7 +44,8 @@ const Order = mongoose.model('Order',new mongoose.Schema({
         totalFieldTime:{type:Number},
         totalOfficeTime:{type:Number},
         totalOvertime:{type:Number}
-    }/*,
+    } */
+    /*,
     theTime:[
         {
             user:{type:String},
@@ -60,9 +62,9 @@ const Order = mongoose.model('Order',new mongoose.Schema({
 function validateOrder(order){
     const schema = {
         orderNumber: Joi.string().required(),
+        clientName: Joi.string().required(),
+        projectName: Joi.string().required(),
         date: Joi.string().required(),
-        client: Joi.string().min(3).required(),
-        project: Joi.string().required(),
         description: Joi.string().required(),
         isBilled: Joi.bool().required(),
         status: Joi.string().required()

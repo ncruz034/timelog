@@ -36,7 +36,7 @@ client: Client = new Client();
       contact: [this.client.contact, Validators.required]
     });
   }
-  
+
   addClient() {
     console.log(this.form.value.date);
       this.clientService.addClient(
@@ -45,6 +45,6 @@ client: Client = new Client();
          .subscribe((order_id: any) => {
             console.log('this is the order_id ' + order_id);
         });
-      } 
+      }
   }
 
