@@ -34,7 +34,7 @@ router.get('/', async (req,res) =>{
 
     res.send(clients);
 });
-//Get an order by id
+//Get an client by id
 router.get('/:id', auth, async (req,res) =>{
     const client = await Client.findById(req.params.id);
      //check if there is any error

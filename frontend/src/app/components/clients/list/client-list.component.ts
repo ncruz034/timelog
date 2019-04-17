@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ClientListComponent implements OnInit {
   panelOpenState = false;
 
-  clients: Client[]; 
+  clients: Client[];
   filteredClients: Client[];
   private _searchTerm: string;
 
@@ -33,13 +33,13 @@ export class ClientListComponent implements OnInit {
   }
 
   filtereClients(searchString: string){
-    return this.clients.filter(client => 
+    return this.clients.filter(client =>
       client.clientName.toString().toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
   getOrderId(id) {
     //this.currentClientId = id;
   }
-  
+
 
   fetchClients() {
     this.clientService.getClients().subscribe(
@@ -62,7 +62,7 @@ export class ClientListComponent implements OnInit {
     this.router.navigate([`clients/edit/${id}`]);
   }
 
-  deleteOrder(id) {
+  deleteClient(id) {
     this.clientService.deleteClient(id).subscribe(() => {
       this.fetchClients();
     });

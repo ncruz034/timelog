@@ -10,13 +10,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./client-edit.component.css']
 })
 export class ClientEditComponent implements OnInit {
-  editForm: FormGroup;
+  form: FormGroup;
   id: '';
   client: any = {};
   constructor(private route: ActivatedRoute, private clientService: ClientService,
     private fb: FormBuilder, private router: Router) {
 
-      this.editForm = this.fb.group({
+      this.form = this.fb.group({
         clientName: ['', Validators.required],
         date: ['', Validators.required],
         address: ['', Validators.required],
@@ -27,18 +27,18 @@ export class ClientEditComponent implements OnInit {
 
      editClient(date, address, phone, contact) {
       const updatedClient = {
-        clientName: this.editForm.value.clientName,
-        date: this.editForm.value.date,
-        address: this.editForm.value.address,
-        phone: this.editForm.value.phone,
-        contact: this.editForm.value.contact,
+        clientName: this.form.value.clientName,
+        date: this.form.value.date,
+        address: this.form.value.address,
+        phone: this.form.value.phone,
+        contact: this.form.value.contact,
       };
 
      this.clientService.editClient(this.id, updatedClient).subscribe(() => {
       // this.snackBar.open('Time updated succesfully', 'OK', {
       //   duration: 3000
       // });
-       this.router.navigate(['/times']);
+       this.router.navigate(['/clients']);
      });
    }
 
@@ -47,11 +47,11 @@ export class ClientEditComponent implements OnInit {
       this.id = params.id;
       this.clientService.getClientById(this.id).subscribe(res => {
         this.client = res;
-        this.editForm.get('clientName').setValue(this.client.clientName);
-        this.editForm.get('date').setValue(this.client.date);
-        this.editForm.get('address').setValue(this.client.address);
-        this.editForm.get('phone').setValue(this.client.phone);
-        this.editForm.get('contact').setValue(this.client.contact);
+        this.form.get('clientName').setValue(this.client.clientName);
+        this.form.get('date').setValue(this.client.date);
+        this.form.get('address').setValue(this.client.address);
+        this.form.get('phone').setValue(this.client.phone);
+        this.form.get('contact').setValue(this.client.contact);
       });
     });
   }

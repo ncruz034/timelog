@@ -11,47 +11,47 @@
       <div *ngFor="let order of filteredOrders" >
           <zippy title="{{order.orderNumber}}">
               <table class="table table-hover">
-                  <tr>    
-                    <th>Project</th>    
-                    <th>Description</th>   
-                    <th>status</th>   
+                  <tr>
+                    <th>Project</th>
+                    <th>Description</th>
+                    <th>status</th>
                     <th>Actions</th>
-                  </tr>   
-                  <tr>   
-                    <td>{{order.project}}</td>   
-                    <td>{{order.description}}</td>    
-                    <td>{{order.status}}</td>   
-                    <td> 
+                  </tr>
+                  <tr>
+                    <td>{{order.projectName}}</td>
+                    <td>{{order.description}}</td>
+                    <td>{{order.status}}</td>
+                    <td>
                         <button (click) = "editOrder(order._id)" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                         <button (click) = "deleteOrder(order._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </td>
-                  </tr>   
-                </table>   
+                  </tr>
+                </table>
                 <h3>Time</h3>
                 <div class="card">
                   <div class="card-body">
                   <table class="table table-striped table-dark table-bordered table-sm" >
-                    <tr>    
-                      <th>Date</th>    
-                      <th>User</th>   
-                      <th>Description</th>   
+                    <tr>
+                      <th>Date</th>
+                      <th>User</th>
+                      <th>Description</th>
                       <th>Time</th>
                       <th>Actions</th>
-                    </tr>   
-                    <tr *ngFor="let time of order.time">   
-                      <td>{{time.date | date}}</td>   
-                      <td>{{time.user}}</td>    
-                      <td>{{time.description}}</td>   
+                    </tr>
+                    <tr *ngFor="let time of order.time">
+                      <td>{{time.date | date}}</td>
+                      <td>{{time.user}}</td>
+                      <td>{{time.description}}</td>
                       <td>{{time.time}}</td>
-                      <td> 
+                      <td>
                           <button (click) = "editOrder(order._id)" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                           <button (click) = "deleteOrder(order._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                       </td>
-                    </tr>   
-                  </table>  
-                </div> 
+                    </tr>
+                  </table>
+                </div>
               </div>
-          </zippy>   
+          </zippy>
           </div>
   </div>
 </div>

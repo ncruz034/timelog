@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class ProjectListComponent implements OnInit {
-  
+
   addOrder = false;
   public projectname = 'The Project';
   projects: Project[];
@@ -33,7 +33,7 @@ export class ProjectListComponent implements OnInit {
     this.filteredProjects = this.filtereProjects(value);
   }
   filtereProjects(searchString: string){
-    return this.projects.filter(project => 
+    return this.projects.filter(project =>
       project.projectName.toString().toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
 
@@ -61,8 +61,8 @@ export class ProjectListComponent implements OnInit {
   }
 
   editProject(id) {
-    console.log('Edditing client id: ' + id);
-    this.router.navigate([`clients/edit/${id}`]);
+    console.log('Edditing project id: ' + id);
+    this.router.navigate([`projects/edit/${id}`]);
   }
 
   deleteProject(id) {

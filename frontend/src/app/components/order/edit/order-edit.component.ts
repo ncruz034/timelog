@@ -48,22 +48,22 @@ export class OrderEditComponent implements OnInit {
     }
     createForm() {
       this.editForm = this.fb.group({
-        client: ['', Validators.required],
-        project: ['', Validators.required],
+        clientName: ['', Validators.required],
+        projectName: ['', Validators.required],
         description: ['', Validators.required],
         isBilled: [Boolean, Validators.required],
         status: ['', Validators.required],
       });
   }
 
-    editOrder(client, project, description) {
+    editOrder(clientName, projectName, description) {
      // console.log('The order is: ' + isBilled + '' + status);
       console.log('The order is new: ' + this.selectedBilled + '' + this.selectedStatus);
         const order = {
           orderNumber: this.order.orderNumber,
           date: this.order.date,
-          client: client,
-          project: project,
+          clientName: clientName,
+          projectName: projectName,
           description: description,
           isBilled: this.selectedBilled,
           status: this.selectedStatus,

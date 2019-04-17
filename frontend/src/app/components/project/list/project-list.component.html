@@ -1,5 +1,5 @@
 
-<div class="container">
+
     <div class="row">
       <div class="col-sm">
           <div class="card">
@@ -14,14 +14,14 @@
                       <zippy title="{{project.projectName}}">
                           <table class="table table-hover">
                               <tr>
-            
+
                                 <th>Project</th>
                                 <th>Description</th>
                                 <th>status</th>
                                 <th>Actions</th>
                               </tr>
                               <tr>
-            
+
                                 <td>
                                   <!-- <ngb-highlight [result]="project.projectName" ></ngb-highlight> -->
                                   {{project.projectName}}
@@ -35,14 +35,16 @@
                                   {{project.status}}
                                 </td>
                                 <td>
-                                    <h4><i class="fas fa-edit pointerCursor" (click) = "editProject(project._id)"></i></h4>
-                                    <h4><i class="fas fa-newspaper pointerCursor" (click) = "addOrderToggle()"></i></h4>
-                                    <h4><i class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)"></i></h4>
+                                  <div class="form-group form-inline" >
+                                    <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editProject(project._id)"></i></a></h5>
+                                    <h4><a style="padding-right: 10px"><i  class="fas fa-newspaper pointerCursor" (click) = "addOrderToggle()"></i></a></h4>
+                                    <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)"></i></a></h4>
+                                  </div>
                                     <!-- <button (click) = "editProject(project._id)" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                                     <button (click) = "deleteProject(project._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                     <button (click) = "addOrderToggle()" class="btn btn-warning"><i class="fas fa-newspaper"></i></button> -->
                                 </td>
-            
+
                               </tr>
                               <!-- <tr *ngIf="addOrder">
                                   <app-order-create [PROJECTNAME]="projectname"></app-order-create>
@@ -74,17 +76,17 @@
                           </div>-->
                       </zippy>
                       </div>
-            
+
               </div>
             </div>
-            
+
       </div>
       <div class="col-sm" *ngIf="addOrder">
           <app-order-create [PROJECTNAME]="projectname"></app-order-create>
       </div>
-      
+
     </div>
-  </div>
+
 
 
 

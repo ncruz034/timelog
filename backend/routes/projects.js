@@ -65,7 +65,7 @@ router.put('/last/', async (req,res) =>{
     });
 });
 
-router.put('/:id', auth, admin, async (req,res) =>{
+router.put('/:id', async (req,res) =>{
     console.log(req.body);
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
@@ -74,6 +74,15 @@ router.put('/:id', auth, admin, async (req,res) =>{
     const order = await Order.findByIdAndUpdate(req.params.id,updatedOrder);
     res.status(200).send(order);
 });
+
+/* router.put('/:id', auth, admin, async (req,res) =>{
+    const {error} = validate(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+    const updatedClient = req.body;
+    const client = await Client.findByIdAndUpdate(req.params.id,updatedClient);
+    res.status(200).send(client);
+}); */
+
 
 //Finds an order by _id and adds a new time to the order.
 router.post('/:order_id/time', async (req,res) =>{  
@@ -126,6 +135,13 @@ router.get('/', async (req,res) =>{
 });
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
+    const project = await Project.findById(req.params.id);
+     //check if there is any error
+     if(!project) return res.status(400).send('The project with the given id is not valid');
+    res.send(project);
+   });
+/* //Get an order by id
+router.get('/:id', auth, async (req,res) =>{
     let id = mongoose.Types.ObjectId(req.params.id);
     console.log('the id:' + id);
 
@@ -138,7 +154,7 @@ console.log(order);
   //check if there is any error
   if(!order) return res.status(400).send('The order with the given id is not valid');
  res.send(order);
-});
+}); */
 
 
 //Get an order by orderNumber and returns the _id.
