@@ -1,57 +1,41 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ClientService } from '../../../services/client.service';
 import { Router } from '@angular/router';
-import { Order } from '../../../models/order.model';
 import { Client } from '../../../models/client.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { FilterPipe } from '../../../filter.pipe';
 
-/* let clients: Client[]; 
-
-
-function search(text: string, pipe: PipeTransform): Client[] {
-  return clients.filter(client => {
-    const term = text.toLowerCase();
-    return client.clientName.toString().includes(term)
-        || client.contact.toString().includes(term)
-  });
-} */ 
 
 @Component({
   selector: 'app-list',
   templateUrl: './client-list.component.html',
   styleUrls: ['./client-list.component.css'],
-  providers: [DecimalPipe, FilterPipe]
 })
 export class ClientListComponent implements OnInit {
+  panelOpenState = false;
 
-  // filter = new FormControl('');
-  //clients$: Observable<Client[]>;
   clients: Client[]; 
+  filteredClients: Client[];
+  private _searchTerm: string;
 
-
-  constructor(private pipe: DecimalPipe, private clientService: ClientService, private router: Router) {
-   /*  this.clients$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, this.pipe))
-    ); */
-   }
+  constructor(private clientService: ClientService, private router: Router) {}
 
   ngOnInit() {
     this.fetchClients();
-    //this.filterClients();
   }
 
- /*  filterClients(){
-    this.clients$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, this.pipe))
-    );
-  } */
+  get searchTerm(): string{
+    return this._searchTerm;
+  }
+
+  set searchTerm(value: string){
+    this._searchTerm = value;
+    this.filteredClients = this.filtereClients(value);
+  }
+
+  filtereClients(searchString: string){
+    return this.clients.filter(client => 
+      client.clientName.toString().toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
   getOrderId(id) {
     //this.currentClientId = id;
   }
@@ -61,6 +45,7 @@ export class ClientListComponent implements OnInit {
     this.clientService.getClients().subscribe(
       (data: Client[]) => {
         this.clients = data;
+        this.filteredClients = data;
       },
       err => {
         if (err instanceof HttpErrorResponse) {

@@ -1,53 +1,44 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { Component, OnInit} from '@angular/core';
 import { ProjectService } from '../../../services/project.service';
 import { Router } from '@angular/router';
-import { Order } from '../../../models/order.model';
 import { Project } from '../../../models/project.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
-
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-
-
-let projects: Project[];
-
-
-
-function search(text: string, pipe: PipeTransform): Project[] {
-  return projects.filter(project => {
-    const term = text.toLowerCase();
-    return project.projectName.toString().includes(term)
-        || project.description.toString().includes(term)
-        || project.status.toString().includes(term);
-
-  });
-}
 
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.css'],
-  providers: [DecimalPipe]
 })
 
 export class ProjectListComponent implements OnInit {
-  filter = new FormControl('');
-  projects$: Observable<Project[]>;
+  
   addOrder = false;
   public projectname = 'The Project';
+  projects: Project[];
+  filteredProjects: Project[];
+  private _searchTerm: string;
 
-  constructor(private pipe: DecimalPipe, private projectService: ProjectService, private router: Router) {
-
-    this.projects$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, this.pipe))
-    );
-  }
+  constructor(private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
     this.fetchProjects();
+  }
+
+  get searchTerm(): string{
+    return this._searchTerm;
+  }
+
+  set searchTerm(value: string){
+    this._searchTerm = value;
+    this.filteredProjects = this.filtereProjects(value);
+  }
+  filtereProjects(searchString: string){
+    return this.projects.filter(project => 
+      project.projectName.toString().toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
+  filterProjects(){
+
   }
   addOrderToggle(){
     this.addOrder = !this.addOrder;
@@ -56,7 +47,8 @@ export class ProjectListComponent implements OnInit {
   fetchProjects() {
     this.projectService.getProjects().subscribe(
       (data: Project[]) => {
-        projects = data;
+        this.projects = data;
+        this.filteredProjects = data;
       },
       err => {
         if (err instanceof HttpErrorResponse) {
