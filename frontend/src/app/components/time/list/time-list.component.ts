@@ -35,7 +35,7 @@ export class TimeListComponent implements OnInit {
     this.timeService.getUsersTime(user_id).subscribe(
       (data: Time[]) => {
         this.userTimes = data;
-        console.log('Data requested...');
+        console.log('Data requested.....................................');
         console.log(this.userTimes);
       });
   }
@@ -45,13 +45,11 @@ export class TimeListComponent implements OnInit {
   }
 
   deleteTime(order_id, id) {
-
     this.timeService.deleteTime(id).subscribe(() => {
      this.getUsersTime(id);
     });
     this.orderService.deleteTime(order_id, id).subscribe((time) => {
      console.log('Order Updated' + time);
     });
-
   }
 }

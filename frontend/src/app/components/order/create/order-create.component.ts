@@ -46,7 +46,7 @@ export class OrderCreateComponent implements OnInit {
       this.form.value.projectName, this.form.value.date,
       this.form.value.description, false, 'In Progress')
        .subscribe((order_id: any) => {
-          console.log('this is the time _id ' + order_id);
+          console.log('this is the order _id ' + order_id);
       });
     }
 

@@ -26,7 +26,7 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
         {"$match":{"user": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
             entry: {
-                $push:{time:"$time", description:"$description",order:"$order"}
+                $push:{_id:"$_id", time:"$time", description:"$description",order:"$order"}
             }
     }}
     ])

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { TimeService } from '../../../services/time.service';
 import { OrderService } from '../../../services/order.service';
 import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { Time } from '../../../models/time.model';
 
 
 @Component({
-  selector: 'app-create',
+  selector: 'app-time-create',
   templateUrl: './time-create.component.html',
   styleUrls: ['./time-create.component.css']
 })
@@ -24,37 +24,45 @@ export class TimeCreateComponent implements OnInit {
   //orderNumber: string[]=[];
  // filteredClients: Observable<string[]>;
  time: Time = new Time();
-  createForm: FormGroup;
+  form: FormGroup;
   orders: Order[] = null;
   user_id;
 
-  constructor(private orderService: OrderService, private userService: UserService,
+  constructor(private route: ActivatedRoute, private orderService: OrderService, private userService: UserService,
               private timeService: TimeService, private fb: FormBuilder, private router: Router) {
- 
+
+                this.form = this.fb.group({
+                  'date': [this.time.date, Validators.required],
+                  'projectName': [this.time.projectName, Validators.required],
+                  'clientName': [this.time.clientName, Validators.required],
+                  'orderNumber': [this.time.orderNumber, Validators.required],
+                  'description': [this.time.description, Validators.required],
+                  'time': [this.time.time, Validators.required],
+                });
+
     }
-    //Gets the order _id by passing an orderNumber; then,
-    //Adds new time to the time collection passing the order _id, and user _id; then,
-    //Adds new time _id to the current user's document; then,
-    //Adds new time _id to the selected order.
+    // Gets the order _id by passing an orderNumber; then,
+    // Adds new time to the time collection passing the order _id, and user _id; then,
+    // Adds new time _id to the current user's document; then,
+    // Adds new time _id to the selected order.
     addTime() {
-      this.orderService.getOrderIdByOrderNumber(this.createForm.value.orderNumber).subscribe((order_id: any) => {
-            //Add new time to time collection, return the new time _id.
+      this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
+            // Add new time to time collection, return the new time _id.
             this.timeService.addTime(
-                  this.createForm.value.date.toDateString(), order_id,
-                  this.createForm.value.description, this.createForm.value.time,
+                  this.form.value.date.toDateString(), order_id,
+                  this.form.value.description, this.form.value.time,
                   localStorage.getItem('user_id')).subscribe((time_id: any) => {
                   console.log('this is the time _id ' + time_id);
-              
-                //Add time to user, return a user _id.
+                // Add time to user, return a user _id.
                 this.userService.addTimeToUser(localStorage.getItem('user_id'), time_id)
                       .subscribe((user: any) => {
                       console.log('This is the user _id ' + user._id);
                                             });
-                    //Add time to order, return a order _id.
+                    // Add time to order, return a order _id.
                     this.orderService.addTimeToOrder(order_id, time_id)
                           .subscribe((order: any) => {
                           console.log('This is the order _id ' + order._id);
-                                            });      
+                                            });
                 });
                 this.router.navigate(['/times']);
       });
@@ -91,14 +99,26 @@ export class TimeCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.user_id = localStorage.getItem('user_id');
 
-    this.createForm = this.fb.group({
+    this.route.params.subscribe(params => {
+
+        console.log("The params area: " + params.projectName );
+        this.form.get('projectName').setValue(params.projectName);
+        this.form.get('clientName').setValue(params.clientName);
+        this.form.get('orderNumber').setValue(params.orderNumber);
+    });
+
+
+    //this.user_id = localStorage.getItem('user_id');
+
+    /* this.form = this.fb.group({
       'date': [this.time.date, Validators.required],
+      'projectName': [this.time.projectName, Validators.required],
+      'clientName': [this.time.clientName, Validators.required],
       'orderNumber': [this.time.orderNumber, Validators.required],
       'description': [this.time.description, Validators.required],
       'time': [this.time.time, Validators.required],
-    });
+    }); */
 
     /*
     this.fetchProjects().then(()=>{

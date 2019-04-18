@@ -2,35 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TimeService } from '../../../services/time.service';
 import { Router, ActivatedRoute } from '@angular/router';
-//import {MatSnackBar } from '@angular/material';
+import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './time-edit.component.html',
-  styleUrls: ['./time-edit.component.css']
+  styleUrls: ['./time-edit.component.css'],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class TimeEditComponent implements OnInit {
 
-  editForm: FormGroup;
+  form: FormGroup;
   id: '';
   time: any = {};
 
   constructor(private route: ActivatedRoute, private timeService: TimeService,
               private fb: FormBuilder, private router: Router) {
-    this.editForm = this.fb.group({
+
+    this.form = this.fb.group({
       date: ['', Validators.required],
       description: ['', Validators.required],
       time: 0
     });
     }
 
-    editTime(date, description, time) {
+    editTime() {
        const updatedTime = {
          order: this.time.order,
-         date: date,
+         date: this.form.value.date,
          user: this.time.user,
-         description: description,
-         time: time,
+         description: this.form.value.description,
+         time: this.form.value.time,
        };
 
       this.timeService.editTime(this.id, updatedTime).subscribe(() => {
@@ -43,12 +45,14 @@ export class TimeEditComponent implements OnInit {
 
     ngOnInit() {
       this.route.params.subscribe(params => {
+        console.log(params);
         this.id = params.id;
         this.timeService.getTimeById(this.id).subscribe(res => {
           this.time = res;
-          this.editForm.get('date').setValue(this.time.date);
-          this.editForm.get('description').setValue(this.time.description);
-          this.editForm.get('time').setValue(this.time.time);
+          console.log(this.time.date );
+          this.form.get('date').setValue(new Date(this.time.date));
+          this.form.get('description').setValue(this.time.description);
+          this.form.get('time').setValue(this.time.time);
         });
       });
     }

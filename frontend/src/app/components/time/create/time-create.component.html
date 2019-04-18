@@ -1,3 +1,54 @@
+
+<div class="card bg-light">
+    <div class="card-body">
+        <form [formGroup]='form'>
+            <h5>Add New Time</h5>
+
+            <div class="form-group">
+                <label class="col-form-label" for="orderNumber">Order Number</label>
+                <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number" id="orderNumber">
+                <div *ngIf="form.get('orderNumber').touched && form.get('orderNumber').invalid" class="alert alert-danger">Order Number is required</div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="projectName">Project Name</label>
+                <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name" id="projectName">
+                <div *ngIf="form.get('projectName').touched && form.get('projectName').invalid" class="alert alert-danger">Project Name is required</div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="clientName">Client Name</label>
+                <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name" id="clientName">
+                <div *ngIf="form.get('clientName').touched && form.get('clientName').invalid" class="alert alert-danger">Client Name is required</div>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="date">Date</label>
+                <div class="input-group">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+                </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="description">Description</label>
+                <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
+                <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="time">Time</label>
+                <input formControlName="time" type="text" class="form-control" placeholder="Time" id="time">
+                <div *ngIf="form.get('time').touched && form.get('time').invalid" class="alert alert-danger">The time is required</div>
+            </div>
+            <button  class="btn btn-primary" color = "accent" routerLink="/orders">Back</button>
+            <button class="btn btn-success" type="submit" (click)="addTime()" [disabled]="form.pristine" >Save</button>
+          </form>
+    </div>
+  </div>
+
+
+
+
 <!-- <div>
   <br>
   <mat-card>
@@ -11,7 +62,7 @@
     <div >
     <form [formGroup]="createForm" class="create-form">
 
-  
+
       <mat-form-field>
           <input matInput [matDatepicker]="date"
             formControlName="date" placeholder="Choose a date">

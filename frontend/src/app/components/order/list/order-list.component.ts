@@ -14,8 +14,9 @@ export class OrderListComponent implements OnInit {
   panelOpenState = false;
   orders: Order[];
   filteredOrders: Order[];
-  
+  toggleAddTime: boolean;
   private _searchTerm: string;
+  currentOrderId: String;
 
   get searchTerm(): string{
     return this._searchTerm;
@@ -27,17 +28,21 @@ export class OrderListComponent implements OnInit {
   }
 
   filtereOrders(searchString: string){
-    return this.orders.filter(order => 
+    return this.orders.filter(order =>
       order.orderNumber.toString().toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
-  currentOrderId: String;
-  
+
+
 
   constructor(private orderService: OrderService, private router: Router) { }
 
+  toggle(){
+    this.toggleAddTime = !this.toggleAddTime;
+  }
+
   ngOnInit() {
     this.fetchOrders();
-    
+
   }
 
   getOrderId(id) {
@@ -74,4 +79,12 @@ export class OrderListComponent implements OnInit {
       this.fetchOrders();
     });
   }
+
+  addTime(orderId, projectName, clientName, orderNumber){
+    console.log('Edditing order id: ' + orderId);
+    this.toggle();
+    this.router.navigate([`times/create/${orderId}/ ${projectName}/ ${clientName}/ ${orderNumber}`]);
+
+  }
+
 }

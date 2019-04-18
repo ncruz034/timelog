@@ -23,10 +23,14 @@
                     <td>{{order.status}}</td>
                     <td>
                         <button (click) = "editOrder(order._id)" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                        <button (click) = "addTime(order._id, order.projectName, order.clientName, order.orderNumber)" class="btn btn-info"><i class="fas fa-hourglass-start"></i></button>
                         <button (click) = "deleteOrder(order._id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </td>
                   </tr>
                 </table>
+                <div *ngIf="toggleAddTime">
+                    <app-time-create></app-time-create>
+                </div >
                 <h3>Time</h3>
                 <div class="card">
                   <div class="card-body">
@@ -38,6 +42,7 @@
                       <th>Time</th>
                       <th>Actions</th>
                     </tr>
+
                     <tr *ngFor="let time of order.time">
                       <td>{{time.date | date}}</td>
                       <td>{{time.user}}</td>
@@ -49,6 +54,7 @@
                       </td>
                     </tr>
                   </table>
+
                 </div>
               </div>
           </zippy>
