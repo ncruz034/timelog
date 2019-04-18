@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './client-edit.component.html',
   styleUrls: ['./client-edit.component.css']
 })
+
 export class ClientEditComponent implements OnInit {
   form: FormGroup;
   id: '';

@@ -70,9 +70,9 @@ router.put('/:id', async (req,res) =>{
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
    
-    const updatedOrder = req.body;
-    const order = await Order.findByIdAndUpdate(req.params.id,updatedOrder);
-    res.status(200).send(order);
+    const updatedProject = req.body;
+    const project = await Project.findByIdAndUpdate(req.params.id,updatedProject);
+    res.status(200).send(project);
 });
 
 /* router.put('/:id', auth, admin, async (req,res) =>{
@@ -118,11 +118,9 @@ router.get('/', async (req, res,) => {
 });
 */
 router.get('/', async (req,res) =>{
-    console.log("Getting the projects");
     const projects = await Project.find().sort('projectName');//.populate('order',['orderNumber'],'Order');
-
     if(!projects) return res.status(400).send('The order with the given id is not valid');
-    console.log("The projects are: " + projects);
+  
    /*  let counter=0;
        for(let project of projects) {
            for(let order of project.order){
@@ -133,7 +131,7 @@ router.get('/', async (req,res) =>{
        console.log('The time is: ' + counter); */
     res.send(projects);
 });
-//Get an order by id
+//Get an project by id
 router.get('/:id', auth, async (req,res) =>{
     const project = await Project.findById(req.params.id);
      //check if there is any error

@@ -70,8 +70,8 @@ router.put('/last/', async (req,res) =>{
     });
 });
 
-router.put('/:id', auth, admin, async (req,res) =>{
-    console.log(req.body);
+/* router.put('/:id', auth, admin, async (req,res) =>{ */
+    router.put('/:id', async (req,res) =>{
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
    
@@ -131,7 +131,15 @@ router.get('/', async (req,res) =>{
        console.log('The time is: ' + counter);
     res.send(orders);
 });
+
 //Get an order by id
+router.get('/:id', auth, async (req,res) =>{
+    const order = await Order.findById(req.params.id);
+     //check if there is any error
+     if(!order) return res.status(400).send('The order with the given id is not valid');
+    res.send(order);
+   });
+/* //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
     let id = mongoose.Types.ObjectId(req.params.id);
     console.log('the id:' + id);
@@ -141,11 +149,11 @@ router.get('/:id', auth, async (req,res) =>{
          {"$match": {_id: id}} , {$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
      ]);
 console.log(order);
- //const order = await Order.findById(req.params.id);
+
   //check if there is any error
   if(!order) return res.status(400).send('The order with the given id is not valid');
  res.send(order);
-});
+}); */
 
 
 //Get an order by orderNumber and returns the _id.

@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService } from '../../../services/project.service';
 import { Router, ActivatedRoute } from '@angular/router';
 //import {MatSnackBar } from '@angular/material';
-import { Order } from '../../../models/order.model';
 
 @Component({
   selector: 'app-project-edit',
@@ -16,33 +15,38 @@ export class ProjectEditComponent implements OnInit {
   id: '';
   projectNumber: '';
   project: any = {};
-
+  date: Date;
 
   constructor(private projectService: ProjectService, private fb: FormBuilder,
     private router: Router, private route: ActivatedRoute) {
-      this.createForm();
+      this.form = this.fb.group({
+        projectName: ['', Validators.required],
+        //date: ['', Validators.required],
+        description: ['', Validators.required],
+        status: ['', Validators.required],
+      });
+      //this.createForm();
      }
-     createForm() {
+
+    /*  createForm() {
       this.form = this.fb.group({
         projectName: ['', Validators.required],
         date: ['', Validators.required],
         description: ['', Validators.required],
         status: ['', Validators.required],
       });
-  }
+  } */
 
-  editProject(projectName, description, date, status) {
-       const project = {
-         projectName: projectName,
-         date: date,
-         description: description,
-         status: status,
+  editProject() {
+       const updatedProject = {
+         projectName: this.form.value.projectName,
+         date: this.project.date,
+         description: this.form.value.description,
+         status: this.project.status,
        };
-       console.log("The project to be edited: " + project.projectName +
-       project.date +
-       project.description);
+       console.log("The project to be edited: " + updatedProject.projectName);
        
-     this.projectService.editProject(this.id, project).subscribe(() => {
+     this.projectService.editProject(this.id, updatedProject).subscribe(() => {
        /* this.snackBar.open('Order updated succesfully', 'OK', {
          duration: 3000
        }); */
@@ -57,6 +61,7 @@ export class ProjectEditComponent implements OnInit {
         this.form.get('projectName').setValue(this.project.projectName);
         this.form.get('description').setValue(this.project.description);
         this.form.get('status').setValue(this.project.status);
+        
       });
     });
   }

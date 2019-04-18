@@ -22,7 +22,7 @@ export interface Status {
 })
 export class OrderEditComponent implements OnInit {
 
-  editForm: FormGroup;
+  form: FormGroup;
   id: '';
   orderNumber: '';
   order: any = {};
@@ -42,30 +42,37 @@ export class OrderEditComponent implements OnInit {
 
   ];
   constructor(private orderService: OrderService, private fb: FormBuilder,
-              private router: Router, private route: ActivatedRoute) {
 
-    this.createForm();
+              private router: Router, private route: ActivatedRoute) {
+                this.form = this.fb.group({
+                  clientName: ['', Validators.required],
+                  projectName: ['', Validators.required],
+                  description: ['', Validators.required],
+                  isBilled: ['', Validators.required],
+                 // isBilled: [Boolean, Validators.required],
+                  status: ['', Validators.required],
+                });
+    //this.createForm();
     }
-    createForm() {
-      this.editForm = this.fb.group({
+   /*  createForm() {
+      this.form = this.fb.group({
         clientName: ['', Validators.required],
         projectName: ['', Validators.required],
         description: ['', Validators.required],
         isBilled: [Boolean, Validators.required],
+       // isBilled: [Boolean, Validators.required],
         status: ['', Validators.required],
       });
-  }
+  } */
 
-    editOrder(clientName, projectName, description) {
-     // console.log('The order is: ' + isBilled + '' + status);
-      console.log('The order is new: ' + this.selectedBilled + '' + this.selectedStatus);
+    editOrder() {
         const order = {
           orderNumber: this.order.orderNumber,
           date: this.order.date,
-          clientName: clientName,
-          projectName: projectName,
-          description: description,
-          isBilled: this.selectedBilled,
+          clientName: this.form.value.clientName,
+          projectName: this.form.value.projectName,
+          description: this.form.value.description,
+          isBilled: this.selectedBilled,  //TODO
           status: this.selectedStatus,
         };
 
@@ -79,16 +86,16 @@ export class OrderEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log('The id: ' + params.id);
       this.id = params.id;
 
       this.orderService.getOrderById(this.id).subscribe(res => {
         this.order = res;
-        this.editForm.get('client').setValue(this.order.client);
-        this.editForm.get('project').setValue(this.order.project);
-        this.editForm.get('description').setValue(this.order.description);
-        this.editForm.get('isBilled').setValue(this.order.isBilled);
-        this.editForm.get('status').setValue(this.order.status);
+        console.log("The order number is: " + this.order.projectName);
+        this.form.get('clientName').setValue(this.order.clientName);
+        this.form.get('projectName').setValue(this.order.projectName);
+        this.form.get('description').setValue(this.order.description);
+        this.form.get('isBilled').setValue(this.order.isBilled);
+        this.form.get('status').setValue(this.order.status);
         this.selectedBilled = this.order.isBilled;
         this.selectedStatus = this. order.status;
       });
