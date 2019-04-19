@@ -5,13 +5,13 @@ const Joi = require('Joi');
 const Time = mongoose.model('Time',new mongoose.Schema({
     date:{type: Date, default: Date.now},
     order_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Order', required:true},
-    orderNumber:{type: string, required:true},
+    orderNumber:{type: String, required:true},
     projectName:{type: String, required: true},
     clientName: {type: String, required: true},
     description:{type:String, required:true}, 
     time:{type:Number, required:true},
-    user_id:{type:String,required:true}, //[{type: mongoose.Schema.Types.ObjectId, ref: 'User', required:true}],
-   // isField:{type:Boolean, required:true}
+    userName:{type:String, required:true},
+    user_id:[{type: mongoose.Schema.Types.ObjectId, ref: 'User', required:true}],
     }));
 
 
@@ -24,6 +24,7 @@ function validateTime(time){
         clientName: Joi.required(),
         description: Joi.string().min(3).required(),
         time: Joi.number().required(),
+        userName: Joi.number().required(),
         user_id: Joi.required(),
         //isField: Joi.bool(),
     };

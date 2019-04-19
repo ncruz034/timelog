@@ -18,7 +18,7 @@ import { Time } from '../../../models/time.model';
   templateUrl: './time-create.component.html',
   styleUrls: ['./time-create.component.css']
 })
-export class TimeCreateComponent implements OnInit {
+export class TimeCreateComponent implements OnInit{
   //myControl = new FormControl();
  // clients: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
   //orderNumber: string[]=[];
@@ -39,7 +39,17 @@ export class TimeCreateComponent implements OnInit {
                   'description': [this.time.description, Validators.required],
                   'time': [this.time.time, Validators.required],
                 });
+    }
 
+    ngOnInit() {
+
+      this.route.params.subscribe( params => {
+
+          //console.log("The params area: " + params.projectName );
+          this.form.get('projectName').setValue(params.projectName);
+          this.form.get('clientName').setValue(params.clientName);
+          this.form.get('orderNumber').setValue(params.orderNumber);
+      });
     }
 
     addTime() {
@@ -51,13 +61,11 @@ export class TimeCreateComponent implements OnInit {
                   this.form.value.projectName, this.form.value.clientName,
                   this.form.value.description, this.form.value.time,
                   localStorage.getItem('userName'),
-                  localStorage.getItem('user_id')).subscribe((time_id: any) => {
-                  console.log('this is the time _id ' + time_id);
-                this.router.navigate(['/times']);
-      });}
-
-
-
+                  localStorage.getItem('user_id'))
+                  .subscribe((time_id: any) => {this.router.navigate(['/times'])});
+      });
+    }
+  }
     // Gets the order _id by passing an orderNumber; then,
     // Adds new time to the time collection passing the order _id, and user _id; then,
     // Adds new time _id to the current user's document; then,
@@ -116,16 +124,16 @@ export class TimeCreateComponent implements OnInit {
 
 
 
-  ngOnInit() {
+/*   ngOnInit() {
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe( params => {
 
-        console.log("The params area: " + params.projectName );
+        //console.log("The params area: " + params.projectName );
         this.form.get('projectName').setValue(params.projectName);
         this.form.get('clientName').setValue(params.clientName);
         this.form.get('orderNumber').setValue(params.orderNumber);
     });
-
+  } */
 
     //this.user_id = localStorage.getItem('user_id');
 
@@ -147,5 +155,5 @@ export class TimeCreateComponent implements OnInit {
       );
     });
     */
-  }
-}
+
+
