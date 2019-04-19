@@ -83,6 +83,8 @@ router.post('/', async (req,res) =>{
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,
         order: req.body.order_id,       //The _id of the work order on which work was prformed
+        projectName: req.body.projectName,
+        clientName: req.body.clientName,
         description: req.body.description, //What type of work was done on this job
         time:req.body.time,                //How much time was invested in this job
         user: req.body.user_id          //The _id of the user that work on the job

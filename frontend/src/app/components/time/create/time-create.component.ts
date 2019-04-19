@@ -41,11 +41,29 @@ export class TimeCreateComponent implements OnInit {
                 });
 
     }
+
+    addTime() {
+      this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
+            // Add new time to time collection, return the new time _id.
+            this.timeService.addTime(
+                  this.form.value.date.toDateString(), this.form.value.orderNumber,
+                  this.form.value.order_id,
+                  this.form.value.projectName, this.form.value.clientName,
+                  this.form.value.description, this.form.value.time,
+                  localStorage.getItem('userName'),
+                  localStorage.getItem('user_id')).subscribe((time_id: any) => {
+                  console.log('this is the time _id ' + time_id);
+                this.router.navigate(['/times']);
+      });}
+
+
+
     // Gets the order _id by passing an orderNumber; then,
     // Adds new time to the time collection passing the order _id, and user _id; then,
     // Adds new time _id to the current user's document; then,
     // Adds new time _id to the selected order.
-    addTime() {
+
+    /* addTime() {
       this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
             // Add new time to time collection, return the new time _id.
             this.timeService.addTime(
@@ -68,7 +86,7 @@ export class TimeCreateComponent implements OnInit {
       });
 
 
-    }
+    } */
 
    /*
     private _filter(value: string): string[] {
