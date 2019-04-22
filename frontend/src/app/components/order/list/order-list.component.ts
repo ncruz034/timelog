@@ -80,10 +80,10 @@ export class OrderListComponent implements OnInit {
     });
   }
 
-  addTime(orderId, projectName, clientName, orderNumber){
-    console.log('Edditing order id: ' + orderId);
+  addTime(order_id, projectName, clientName, orderNumber){
+    console.log('Edditing order id: ' + order_id);
     this.toggle();
-    this.router.navigate([`times/create/${orderId}/ ${projectName}/ ${clientName}/ ${orderNumber}`]);
+    this.router.navigate([`times/create/${order_id}/ ${projectName}/ ${clientName}/ ${orderNumber}`]);
 
   }
 

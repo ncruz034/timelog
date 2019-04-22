@@ -9,14 +9,15 @@ import {map, startWith} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
-
+import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 //import { MomentModule } from 'ngx-moment';
 
 
 @Component({
   selector: 'app-time-create',
   templateUrl: './time-create.component.html',
-  styleUrls: ['./time-create.component.css']
+  styleUrls: ['./time-create.component.css'],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class TimeCreateComponent implements OnInit{
   //myControl = new FormControl();
@@ -27,6 +28,7 @@ export class TimeCreateComponent implements OnInit{
   form: FormGroup;
   orders: Order[] = null;
   user_id;
+  order_id;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private userService: UserService,
               private timeService: TimeService, private fb: FormBuilder, private router: Router) {
@@ -44,26 +46,29 @@ export class TimeCreateComponent implements OnInit{
     ngOnInit() {
 
       this.route.params.subscribe( params => {
-
+          console.log("Order Id: " + params.order_id);
           //console.log("The params area: " + params.projectName );
           this.form.get('projectName').setValue(params.projectName);
           this.form.get('clientName').setValue(params.clientName);
           this.form.get('orderNumber').setValue(params.orderNumber);
+          this.order_id = params.orderId;
       });
     }
 
     addTime() {
-      this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
+     // this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
             // Add new time to time collection, return the new time _id.
+            console.log("The date is:......................" + this.form.value.date);
+            console.log("The order number is: ............" + this.form.value.orderNumber);
             this.timeService.addTime(
-                  this.form.value.date.toDateString(), this.form.value.orderNumber,
-                  this.form.value.order_id,
-                  this.form.value.projectName, this.form.value.clientName,
-                  this.form.value.description, this.form.value.time,
-                  localStorage.getItem('userName'),
-                  localStorage.getItem('user_id'))
-                  .subscribe((time_id: any) => {this.router.navigate(['/times'])});
-      });
+                  this.form.value.date, this.form.value.orderNumber,
+                  this.form.value.order_id,this.form.value.projectName, 
+                  this.form.value.clientName,this.form.value.description, 
+                  this.form.value.time,
+                  localStorage.getItem('user'),
+                  localStorage.getItem('user_id')).subscribe((time_id: any) => {
+                    this.router.navigate(['/times'])});
+     // });
     }
   }
     // Gets the order _id by passing an orderNumber; then,

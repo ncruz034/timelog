@@ -76,9 +76,11 @@ router.put('/update/:id',auth, async (req,res) =>{
 });
 
 router.post('/', async (req,res) =>{
+    console.log("Adding Time: ................");
+    console.log(req.body.orderNumber);
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-
+    
     let time = new Time({
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,
@@ -87,9 +89,10 @@ router.post('/', async (req,res) =>{
         clientName: req.body.clientName,
         description: req.body.description, //What type of work was done on this job
         time:req.body.time,                //How much time was invested in this job
-        user: req.body.user_id          //The _id of the user that work on the job
+        userName: req.body.userName,
+        user_id: req.body.user_id          //The _id of the user that work on the job
     });
-
+    console.log("Adding new time ......................");
     /*
     const order = await order.find({orderNumber: req.body.orderId},function(err,order){
         if(err) return console.log("Error saving time to order...");
