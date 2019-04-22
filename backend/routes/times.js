@@ -10,6 +10,7 @@ const admin = require('../middleware/admin');
 router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('date').populate('order',['orderNumber'],'Order');
+     
         res.send(times);
 });
 
@@ -22,13 +23,15 @@ router.get('/',auth,  async (req, res,) => {
 
 router.get('/user/:user_id',auth,  async (req, res,) => {
     // throw new Error({error:'Error'});
-    const times = await Time.aggregate([
-        {"$match":{"user": req.params.user_id}},
+    console.log("Sending the times....................." + req.params.user_id);
+    const times =  await Time.aggregate([
+        {"$match":{"user_id": req.params.user_id}}
+     /*    {"$match":{"user_id": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
             entry: {
-                $push:{_id:"$_id", time:"$time", description:"$description",order:"$order"}
+                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
             }
-    }}
+    }} */
     ])
     console.log(times);
      //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
@@ -36,6 +39,23 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
      res.send(times);
 });
 
+router.get('/user/:userName',auth,  async (req, res,) => {
+
+    console.log("Sending the times....................." + req.params.user_id);
+    const times =  await Time.aggregate([
+        {"$match":{"userName" : req.params.userName}}
+     /*    {"$match":{"user_id": req.params.user_id}},
+        {"$group":{_id:{date:"$date"},count:{$sum: 1},
+            entry: {
+                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
+            }
+    }} */
+    ])
+    console.log(times);
+     //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+     res.send(times);
+});
 
 //Get all times for a user
 router.get('/user/:user_id/week/:week_No',auth,  async (req, res,) => {
@@ -84,7 +104,8 @@ router.post('/', async (req,res) =>{
     let time = new Time({
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,
-        order: req.body.order_id,       //The _id of the work order on which work was prformed
+        order_id: req.body.order_id,       //The _id of the work order on which work was prformed
+        orderNumber: req.body.orderNumber,
         projectName: req.body.projectName,
         clientName: req.body.clientName,
         description: req.body.description, //What type of work was done on this job

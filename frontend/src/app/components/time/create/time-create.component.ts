@@ -28,12 +28,13 @@ export class TimeCreateComponent implements OnInit{
   form: FormGroup;
   orders: Order[] = null;
   user_id;
-  order_id;
+  order_id: String;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private userService: UserService,
               private timeService: TimeService, private fb: FormBuilder, private router: Router) {
 
                 this.form = this.fb.group({
+                  'order_id': [this.time.order_id, Validators.required],
                   'date': [this.time.date, Validators.required],
                   'projectName': [this.time.projectName, Validators.required],
                   'clientName': [this.time.clientName, Validators.required],
@@ -46,24 +47,22 @@ export class TimeCreateComponent implements OnInit{
     ngOnInit() {
 
       this.route.params.subscribe( params => {
-          console.log("Order Id: " + params.order_id);
-          //console.log("The params area: " + params.projectName );
+
+          this.form.get('order_id').setValue(params.order_id);
           this.form.get('projectName').setValue(params.projectName);
           this.form.get('clientName').setValue(params.clientName);
           this.form.get('orderNumber').setValue(params.orderNumber);
-          this.order_id = params.orderId;
       });
     }
 
     addTime() {
      // this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
             // Add new time to time collection, return the new time _id.
-            console.log("The date is:......................" + this.form.value.date);
-            console.log("The order number is: ............" + this.form.value.orderNumber);
+
             this.timeService.addTime(
                   this.form.value.date, this.form.value.orderNumber,
-                  this.form.value.order_id,this.form.value.projectName, 
-                  this.form.value.clientName,this.form.value.description, 
+                  this.form.value.order_id, this.form.value.projectName,
+                  this.form.value.clientName, this.form.value.description,
                   this.form.value.time,
                   localStorage.getItem('user'),
                   localStorage.getItem('user_id')).subscribe((time_id: any) => {

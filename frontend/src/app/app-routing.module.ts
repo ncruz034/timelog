@@ -45,7 +45,7 @@ const routes: Routes = [
 
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},
-  {path: 'times/create/:id/:projectName/:clientName/:orderNumber', component: TimeCreateComponent},
+  {path: 'times/create/:order_id/:projectName/:clientName/:orderNumber', component: TimeCreateComponent},
   {path: 'auth', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'clients-dashboard', component: ClientsDashboardComponent},

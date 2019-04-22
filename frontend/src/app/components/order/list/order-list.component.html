@@ -8,7 +8,7 @@
           </div>
       </form>
 
-      <div *ngFor="let order of filteredOrders" >
+      <div *ngFor="let order of filteredOrders; let i = index;" >
           <zippy title="{{order.orderNumber}}">
               <table class="table table-hover">
                   <tr>
