@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,13 +30,17 @@ export class ProjectService {
     return this.http.post(`${this.uri}/projects/${project_id}/time`, updatedProjectOrder);
   }
 
-  addProject(date, projectName, description, status) {
+
+  addProject(date, projectName, client_id, clientName, description, status) {
     const newProject = {
-      projectName: projectName,
       date: date,
+      projectName: projectName,
+      client_id: client_id,
+      clientName: clientName,
       description: description,
       status: status
     };
+
     return this.http.post(`${this.uri}/projects`, newProject);
   }
 

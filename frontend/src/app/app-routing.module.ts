@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'create', component: TimeCreateComponent},
   {path: 'users/register', component: RegisterComponent},
   {path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
-  {path: 'orders/create', component: OrderCreateComponent},
+  {path: 'orders/create/:order_id/:projectName/:clientName', component: OrderCreateComponent},
   {path: 'orders/edit/:id', component: OrderEditComponent},
   {path: 'orders/detail/:id', component: OrderDetailComponent},
   {path: 'clients/create', component: ClientCreateComponent},
@@ -41,7 +41,7 @@ const routes: Routes = [
 
   {path: 'projects', component: ProjectListComponent, canActivate: [AuthGuard]},
   {path: 'projects/edit/:id', component: ProjectEditComponent},
-  {path: 'projects/create', component: ProjectCreateComponent},
+  {path: 'projects/create/:client_id/:clientName', component: ProjectCreateComponent},
 
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},

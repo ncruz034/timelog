@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from '../../../services/order.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Order } from '../../../models/order.model';
 import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 /* export interface Billed {
@@ -25,7 +25,9 @@ export interface Status {
 export class OrderCreateComponent implements OnInit {
   form: FormGroup;
   order: Order = new Order();
-  @Input() public PROJECTNAME;
+  project_id: String;
+
+  //@Input() public PROJECTNAME;
 
   /* billed: Billed[] = [
     {value: 'true', viewValue: 'Yes'},
@@ -38,7 +40,17 @@ export class OrderCreateComponent implements OnInit {
     {value: 'Finished', viewValue: 'Finished'},
     {value: 'Hold', viewValue: 'Hold'},
   ];
-  constructor(private orderService: OrderService, private fb: FormBuilder, private router: Router) {}
+  constructor(private route: ActivatedRoute, private orderService: OrderService, private fb: FormBuilder, private router: Router) {
+    this.form = this.fb.group({
+      'orderNumber': [this.order.orderNumber, Validators.required],
+      'clientName': [this.order.clientName, Validators.required],
+      'projectName': [this.order.projectName, Validators.required],
+      'date': [this.order.date, Validators.required],
+      'description': [this.order.description, Validators.required],
+    /*   'isBilled': [this.order.isBilled, Validators.required],
+      'status': [ this.order.status, Validators.required] */
+    });
+  }
 
   addOrder() {
       this.orderService.addOrder(
@@ -50,22 +62,11 @@ export class OrderCreateComponent implements OnInit {
       });
     }
 
-  //  addTime(date,order,name,last,description,time){
-
-     // this.orderService.addOrder(date,order,name,last,description,time).subscribe(()=>{
-      //  this.router.navigate(['/list']);
-     // });
-   // }
-
   ngOnInit() {
-    this.form = this.fb.group({
-      orderNumber: [this.order.orderNumber, Validators.required],
-      clientName: [this.order.clientName, Validators.required],
-      projectName: this.PROJECTNAME,
-      date: [this.order.date, Validators.required],
-      description: [this.order.description, Validators.required],
-      isBilled: [this.order.isBilled, Validators.required],
-      status: [ this.order.status, Validators.required]
-    });
+    this.route.params.subscribe( params => {
+      this.project_id = params.project_id;
+      this.form.get('projectName').setValue(params.projectName);
+      this.form.get('clientName').setValue(params.clientName);
+  });
   }
 }

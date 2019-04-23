@@ -20,10 +20,6 @@ import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class TimeCreateComponent implements OnInit{
-  //myControl = new FormControl();
- // clients: string[]=[];// = this.fetchProjects();//['One', 'Two', 'Three'];
-  //orderNumber: string[]=[];
- // filteredClients: Observable<string[]>;
  time: Time = new Time();
   form: FormGroup;
   orders: Order[] = null;
@@ -47,7 +43,6 @@ export class TimeCreateComponent implements OnInit{
     ngOnInit() {
 
       this.route.params.subscribe( params => {
-
           this.form.get('order_id').setValue(params.order_id);
           this.form.get('projectName').setValue(params.projectName);
           this.form.get('clientName').setValue(params.clientName);

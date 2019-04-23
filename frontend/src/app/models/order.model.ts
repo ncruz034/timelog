@@ -9,5 +9,5 @@ export class Order {
     description: {type: String};
     isBilled: {type: Boolean};
     status: { type: String};
-    time: {};
+   /*  time: {}; */
 }

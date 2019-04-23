@@ -16,6 +16,8 @@ router.post('/', auth, async (req,res) =>{
    
     let project = new Project({
                            projectName:req.body.projectName,
+                           client_id:req.body.client_id,
+                           clientName:req.body.clientName,
                            date:req.body.date,
                            description:req.body.description,
                            status:req.body.status
