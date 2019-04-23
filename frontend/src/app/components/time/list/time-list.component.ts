@@ -35,21 +35,20 @@ export class TimeListComponent implements OnInit {
     this.timeService.getUsersTime(user_id).subscribe(
       (data: Time[]) => {
         this.userTimes = data;
-        console.log('Data requested.....................................');
-        console.log(this.userTimes);
       });
   }
 
-  editTime(id) {
-    this.router.navigate([`times/edit/${id}`]);
+  editTime(_id) {
+    this.router.navigate([`times/edit/${_id}`]);
   }
 
-  deleteTime(order_id, id) {
-    this.timeService.deleteTime(id).subscribe(() => {
-     this.getUsersTime(id);
+  deleteTime(_id) {
+    console.log("The id is: " +` ${_id}`)
+    this.timeService.deleteTime(`${_id}`).subscribe(() => {
+     this.getUsersTime(localStorage.getItem('user_id'));
     });
-    this.orderService.deleteTime(order_id, id).subscribe((time) => {
+   /*  this.orderService.deleteTime(order_id, id).subscribe((time) => {
      console.log('Order Updated' + time);
-    });
+    }); */
   }
 }

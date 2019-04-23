@@ -21,27 +21,29 @@ router.get('/',auth,  async (req, res,) => {
      res.send(times);
 }); */ 
 
+
+// Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
     // throw new Error({error:'Error'});
-    console.log("Sending the times....................." + req.params.user_id);
+    console.log("Sending the times for user Id: ..." + req.params.user_id);
     const times =  await Time.aggregate([
-        {"$match":{"user_id": req.params.user_id}}
-     /*    {"$match":{"user_id": req.params.user_id}},
+        {"$match":{"user_id": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
-            entry: {
+            times: {
                 $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
             }
-    }} */
+    }}
     ])
     console.log(times);
-     //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
      res.send(times);
 });
 
+
+
 router.get('/user/:userName',auth,  async (req, res,) => {
 
-    console.log("Sending the times....................." + req.params.user_id);
+    console.log("Sending the times for: ....." + req.params.userName);
     const times =  await Time.aggregate([
         {"$match":{"userName" : req.params.userName}}
      /*    {"$match":{"user_id": req.params.user_id}},
@@ -76,7 +78,6 @@ router.get('/:id', auth, async (req,res) =>{
 
 //Get an order by orderNumber and returns the _id.
 router.get('/order/:order_id', async (req,res) =>{
-    console.log('In time service: ' + req.params.order_id);
     await Time.find({order_id: req.params.order_id }, function(err,times){
         //check if there is any error
         if(!times) return res.status(400).send('The order with the given order number is not valid');
@@ -91,13 +92,11 @@ router.put('/update/:id',auth, async (req,res) =>{
     //check if there is any error
     if(error) return res.status(400).send(error.details[0].message);
     const updatedTime = req.body;
-    const time = await Time.findByIdAndUpdate(req.params.id,updatedTime);
+    const time = await Time.findByIdAndUpdate(req.params.id, updatedTime);
     res.status(200).send(time);
 });
 
 router.post('/', async (req,res) =>{
-    console.log("Adding Time: ................");
-    console.log(req.body.orderNumber);
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
@@ -113,7 +112,6 @@ router.post('/', async (req,res) =>{
         userName: req.body.userName,
         user_id: req.body.user_id          //The _id of the user that work on the job
     });
-    console.log("Adding new time ......................");
     /*
     const order = await order.find({orderNumber: req.body.orderId},function(err,order){
         if(err) return console.log("Error saving time to order...");
@@ -125,6 +123,7 @@ router.post('/', async (req,res) =>{
 });
 
 router.delete('/delete/:id', async (req,res) =>{
+    console.log("Deletting Order id" + req.params.id);
     const time = await Time.findByIdAndRemove(req.params.id);
     if(!time) return res.status(404).send('The time was not found');
     res.send(req.params.di);

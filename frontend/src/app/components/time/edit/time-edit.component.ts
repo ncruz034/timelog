@@ -28,13 +28,17 @@ export class TimeEditComponent implements OnInit {
 
     editTime() {
        const updatedTime = {
-         order: this.time.order,
-         date: this.form.value.date,
-         user: this.time.user,
-         description: this.form.value.description,
-         time: this.form.value.time,
-       };
-
+        date : this.form.value.date,
+        description : this.form.value.description,
+        time : this.form.value.time,
+        orderNumber: this.time.orderNumber,
+        order_id: this.time.order_id,
+        projectName: this.time.projectName,
+        clientName: this.time.clientName,
+        userName: this.time.userName,
+         user_id: this.time.user_id,
+       }
+       
       this.timeService.editTime(this.id, updatedTime).subscribe(() => {
        /*  this.snackBar.open('Time updated succesfully', 'OK', {
           duration: 3000
@@ -45,11 +49,9 @@ export class TimeEditComponent implements OnInit {
 
     ngOnInit() {
       this.route.params.subscribe(params => {
-        console.log(params);
         this.id = params.id;
         this.timeService.getTimeById(this.id).subscribe(res => {
           this.time = res;
-          console.log(this.time.date );
           this.form.get('date').setValue(new Date(this.time.date));
           this.form.get('description').setValue(this.time.description);
           this.form.get('time').setValue(this.time.time);
