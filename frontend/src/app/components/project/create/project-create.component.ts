@@ -41,7 +41,7 @@ export class ProjectCreateComponent implements OnInit {
           this.client_id, this.form.value.clientName,
           this.form.value.description, this.form.value.status)
            .subscribe((project_id: any) => {
-              console.log('this is the project_id ' + project_id);
         });
+        this.router.navigate([`projects/`]);
     }
 }

@@ -47,4 +47,10 @@ router.put('/:id', async (req,res) =>{
     res.status(200).send(client);
 });
 
+// Delete a project by id
+router.delete('/delete/:_id', async (req,res) =>{
+    const client = await Client.findByIdAndRemove(req.params._id);
+    if(!client) return res.status(404).send('The client was not found'); 
+    res.send(client);
+});
 module.exports = router;

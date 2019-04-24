@@ -10,62 +10,7 @@ const admin = require('../middleware/admin');
 router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('date').populate('order',['orderNumber'],'Order');
-     
         res.send(times);
-});
-
- /* router.get('/user/:user_id',auth,  async (req, res,) => {
-    // throw new Error({error:'Error'});
-     const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
-     if(!times) return res.status(400).send('The user with the given user _id is not valid');
-     res.send(times);
-}); */ 
-
-
-// Get all times for a user
-router.get('/user/:user_id',auth,  async (req, res,) => {
-    // throw new Error({error:'Error'});
-    console.log("Sending the times for user Id: ..." + req.params.user_id);
-    const times =  await Time.aggregate([
-        {"$match":{"user_id": req.params.user_id}},
-        {"$group":{_id:{date:"$date"},count:{$sum: 1},
-            times: {
-                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
-            }
-    }}
-    ])
-    console.log(times);
-     if(!times) return res.status(400).send('The user with the given user _id is not valid');
-     res.send(times);
-});
-
-
-
-router.get('/user/:userName',auth,  async (req, res,) => {
-
-    console.log("Sending the times for: ....." + req.params.userName);
-    const times =  await Time.aggregate([
-        {"$match":{"userName" : req.params.userName}}
-     /*    {"$match":{"user_id": req.params.user_id}},
-        {"$group":{_id:{date:"$date"},count:{$sum: 1},
-            entry: {
-                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
-            }
-    }} */
-    ])
-    console.log(times);
-     //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
-     if(!times) return res.status(400).send('The user with the given user _id is not valid');
-     res.send(times);
-});
-
-//Get all times for a user
-router.get('/user/:user_id/week/:week_No',auth,  async (req, res,) => {
-    // throw new Error({error:'Error'});
-     const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
-     if(!times) return res.status(400).send('The user with the given user _id is not valid');
-
-     res.send(times);
 });
 
 //Get a time by id
@@ -76,16 +21,22 @@ router.get('/:id', auth, async (req,res) =>{
     res.send(time);
 });
 
-//Get an order by orderNumber and returns the _id.
-router.get('/order/:order_id', async (req,res) =>{
-    await Time.find({order_id: req.params.order_id }, function(err,times){
-        //check if there is any error
-        if(!times) return res.status(400).send('The order with the given order number is not valid');
-        res.send(times);
-    });
+// Get all times for a user
+router.get('/user/:user_id',auth,  async (req, res,) => {
+    // throw new Error({error:'Error'});
+    const times =  await Time.aggregate([
+        {"$match":{"user_id": req.params.user_id}},
+        {"$group":{_id:{date:"$date"},count:{$sum: 1},
+            times: {
+                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
+            }
+    }}
+    ])
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+     res.send(times);
 });
 
-
+// Update time 
 router.put('/update/:id',auth, async (req,res) =>{
     //validate the input
     const {error} = validate(req.body);
@@ -96,6 +47,7 @@ router.put('/update/:id',auth, async (req,res) =>{
     res.status(200).send(time);
 });
 
+// Add a new time
 router.post('/', async (req,res) =>{
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -122,6 +74,7 @@ router.post('/', async (req,res) =>{
     res.send(time._id);
 });
 
+// Delete a time
 router.delete('/delete/:id', async (req,res) =>{
     console.log("Deletting Order id" + req.params.id);
     const time = await Time.findByIdAndRemove(req.params.id);
@@ -133,6 +86,48 @@ module.exports = router;
 
 
 
+
+ /* router.get('/user/:user_id',auth,  async (req, res,) => {
+    // throw new Error({error:'Error'});
+     const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+     res.send(times);
+}); */ 
+
+/* router.get('/user/:userName',auth,  async (req, res,) => {
+    console.log("Sending the times for: ....." + req.params.userName);
+    const times =  await Time.aggregate([
+        {"$match":{"userName" : req.params.userName}}
+         {"$match":{"user_id": req.params.user_id}},
+        {"$group":{_id:{date:"$date"},count:{$sum: 1},
+            entry: {
+                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
+            }
+    }} 
+    ])
+    console.log(times);
+     //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+     res.send(times);
+}); */
+
+//Get all times for a user
+/* router.get('/user/:user_id/week/:week_No',auth,  async (req, res,) => {
+    // throw new Error({error:'Error'});
+     const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+
+     res.send(times);
+}); */
+
+//Get an order by orderNumber and returns the _id.
+/* router.get('/order/:order_id', async (req,res) =>{
+    await Time.find({order_id: req.params.order_id }, function(err,times){
+        //check if there is any error
+        if(!times) return res.status(400).send('The order with the given order number is not valid');
+        res.send(times);
+    });
+}); */
 
 /* 
 db.users.aggregate([

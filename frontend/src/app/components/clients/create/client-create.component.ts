@@ -43,8 +43,9 @@ client: Client = new Client();
         this.form.value.clientName, this.form.value.date, this.form.value.address,
         this.form.value.phone, this.form.value.contact)
          .subscribe((order_id: any) => {
-            console.log('this is the order_id ' + order_id);
+           
         });
+        this.router.navigate([`clients/`]);
       }
   }
 

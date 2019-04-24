@@ -73,6 +73,7 @@ export class ProjectListComponent implements OnInit {
   deleteProject(id) {
     this.projectService.deleteProject(id).subscribe(() => {
       this.fetchProjects();
+      this.router.navigate([`projects/`]);
     });
   }
 

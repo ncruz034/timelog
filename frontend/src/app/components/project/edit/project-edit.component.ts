@@ -40,6 +40,8 @@ export class ProjectEditComponent implements OnInit {
   editProject() {
        const updatedProject = {
          projectName: this.form.value.projectName,
+         client_id: this.project.client_id,
+         clientName: this.project.clientName,
          date: this.project.date,
          description: this.form.value.description,
          status: this.project.status,

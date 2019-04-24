@@ -9,7 +9,7 @@ const {Project, validate} = require('../models/project');
 const { Global } = require('../models/global');
 const asyncMIddleware = require('../middleware/async');
 
-//Register a new Project; this route should be protected to only admin users.
+//Create a new Project; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -27,8 +27,42 @@ router.post('/', auth, async (req,res) =>{
     res.send(project);
 });
 
+// Update a project information
+router.put('/:id', async (req,res) =>{
+    console.log(req.body);
+    const {error} = validate(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+   
+    const updatedProject = req.body;
+    const project = await Project.findByIdAndUpdate(req.params.id,updatedProject);
+    res.status(200).send(project);
+});
+
+// Get a project by id
+router.get('/:id', auth, async (req,res) =>{
+    const project = await Project.findById(req.params.id);
+     //check if there is any error
+     if(!project) return res.status(400).send('The project with the given id is not valid');
+    res.send(project);
+   });
+
+// Get all projects sorted by project name
+router.get('/', async (req,res) =>{
+    const projects = await Project.find().sort('projectName');//.populate('order',['orderNumber'],'Order');
+    if(!projects) return res.status(400).send('The order with the given id is not valid');
+    res.send(projects);
+});
+
+// Delete a project by id
+   router.delete('/delete/:_id', async (req,res) =>{
+    const project = await Project.findByIdAndRemove(req.params._id);
+    if(!project) return res.status(404).send('The project was not found'); 
+    res.send(project);
+});
+
+
 //Finds an project by _id, and returns all the orders present in the project
-router.get('/order/:project_id', async (req,res) =>{
+/* router.get('/order/:project_id', async (req,res) =>{
     const project = await Project.findById(req.params.project_id).populate({path:'order', model:'Order', select:['orderNumber','date','description','status'],
                                                             populate:{path:'user',model:"User",select:['name','last']}});
     if(!project) return res.status(400).send('The project with the given id is not valid');
@@ -40,9 +74,9 @@ router.get('/last', async (req,res) =>{
     if(!currentOrderNumber) return res.status(400).send('There are no orders in the database');
 
     res.send(currentOrderNumber.currentOrderNumber);
-})
+}) */
 
-router.put('/last/', async (req,res) =>{
+/* router.put('/last/', async (req,res) =>{
     await Global.findOne({}, function(err, data){
         if(err){
             console.log(err);
@@ -65,17 +99,9 @@ router.put('/last/', async (req,res) =>{
             }
         }
     });
-});
+}); */
 
-router.put('/:id', async (req,res) =>{
-    console.log(req.body);
-    const {error} = validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
-   
-    const updatedProject = req.body;
-    const project = await Project.findByIdAndUpdate(req.params.id,updatedProject);
-    res.status(200).send(project);
-});
+
 
 /* router.put('/:id', auth, admin, async (req,res) =>{
     const {error} = validate(req.body);
@@ -87,7 +113,7 @@ router.put('/:id', async (req,res) =>{
 
 
 //Finds an order by _id and adds a new time to the order.
-router.post('/:order_id/time', async (req,res) =>{  
+/* router.post('/:order_id/time', async (req,res) =>{  
     const order = await Order.findById(req.params.order_id);
     if (!order) return res.status(400).send('No Order found with provided id...');
 
@@ -99,7 +125,7 @@ router.post('/:order_id/time', async (req,res) =>{
            res.send(order);
        }
    });
-});
+}); */
 
 //Get all orders
 /*
@@ -119,27 +145,22 @@ router.get('/', async (req, res,) => {
     res.send(orders);
 });
 */
-router.get('/', async (req,res) =>{
+
+// Get all projects sorted by project name
+/* router.get('/', async (req,res) =>{
     const projects = await Project.find().sort('projectName');//.populate('order',['orderNumber'],'Order');
     if(!projects) return res.status(400).send('The order with the given id is not valid');
-  
-   /*  let counter=0;
+    res.send(projects);
+     let counter=0;
        for(let project of projects) {
            for(let order of project.order){
             counter = counter + order.order;
            }   
-       }
-       
-       console.log('The time is: ' + counter); */
-    res.send(projects);
-});
-//Get an project by id
-router.get('/:id', auth, async (req,res) =>{
-    const project = await Project.findById(req.params.id);
-     //check if there is any error
-     if(!project) return res.status(400).send('The project with the given id is not valid');
-    res.send(project);
-   });
+       }    
+       console.log('The time is: ' + counter); 
+}); */
+
+
 /* //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
     let id = mongoose.Types.ObjectId(req.params.id);
@@ -158,16 +179,17 @@ console.log(order);
 
 
 //Get an order by orderNumber and returns the _id.
-router.get('/number/:order_number', auth, async (req,res) =>{
+/* router.get('/number/:order_number', auth, async (req,res) =>{
     console.log("The order number is: " + req.params.order_number);
     await Order.findOne({orderNumber: req.params.order_number }, function(err,order){
         //check if there is any error
         if(!order) return res.status(400).send('The order with the given order number is not valid');
         res.send(order._id);
     });
-});
+}); */
 
-//Get an order by orderNumber and returns the _id.
+
+/* //Get an order by orderNumber and returns the _id.
 router.delete('/:_id/time/:time_id', auth, async (req,res) =>{
     console.log(req.params._id);
     const order = await Order.findById(req.params._id);
@@ -182,6 +204,6 @@ router.delete('/:_id/time/:time_id', auth, async (req,res) =>{
                 res.send(order.time);
             }
         });
-}
-);
+}); */
+
 module.exports = router;

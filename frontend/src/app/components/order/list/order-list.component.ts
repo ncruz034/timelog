@@ -67,11 +67,9 @@ export class OrderListComponent implements OnInit {
   }
 
   editOrder(id) {
-    console.log('Edditing order id: ' + id);
     this.router.navigate([`orders/edit/${id}`]);
   }
   detailOrder(id) {
-    console.log('View order id: ' + id);
     this.router.navigate([`orders/detail/${id}`]);
   }
   deleteOrder(id) {
@@ -81,7 +79,6 @@ export class OrderListComponent implements OnInit {
   }
 
   addTime(order_id, projectName, clientName, orderNumber){
-    console.log('Edditing order id: ' + order_id);
     this.toggle();
     this.router.navigate([`times/create/${order_id}/ ${projectName}/ ${clientName}/ ${orderNumber}`]);
 
