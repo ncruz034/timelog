@@ -33,9 +33,14 @@ export class TimeListComponent implements OnInit {
 
   getUsersTime(user_id) {
     this.timeService.getUsersTime(user_id).subscribe(
-      (data: Time[]) => {
-        this.userTimes = data;
+      (data: any) => {
+        this.userTimes = data.times;
+        console.log(data.orders);
       });
+      /* (data: Time[]) => {
+        this.userTimes = data;
+        console.log(this.userTimes);
+      }); */
   }
 
   editTime(_id) {

@@ -23,6 +23,40 @@ router.get('/:id', auth, async (req,res) =>{
 
 // Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
+    const data = {
+        times:[],orders:[]
+    }
+    // throw new Error({error:'Error'});
+    const times =  await Time.aggregate([
+        {"$match":{"user_id": req.params.user_id}},
+        {"$group":{_id:{date:"$date"},count:{$sum: 1},
+            times: {
+                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
+            }
+    }}
+    ]);
+    const byOrders =  await Time.aggregate([
+        {"$match":{"user_id": req.params.user_id}},
+        {"$group":
+            {_id:{order:"$orderNumber"},count:{$sum: 1},
+                dates: {
+                    $push:{_id:"$_id", time:"$time",date:"$date"}
+                }
+            }
+        },
+      /*   {"$group": {_id:{date:"$date"}}} */
+
+    ]);
+    
+     if(!times) return res.status(400).send('The user with the given user _id is not valid');
+     data.times = times;
+     data.orders = byOrders;
+     res.send(data);
+});
+
+// Get all times for a week for a user from a starting date
+router.get('/user/:user_id/:date',auth,  async (req, res,) => {
+    
     // throw new Error({error:'Error'});
     const times =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
@@ -33,6 +67,9 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
     }}
     ])
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
+
+    
+
      res.send(times);
 });
 
