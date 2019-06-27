@@ -43,13 +43,52 @@ router.post('/', auth, async (req,res) =>{
    
     console.log('Saving order');
     let order = new Order({
-                           orderNumber:req.body.orderNumber,       
+                           /*orderNumber:req.body.orderNumber,       
                            clientName:req.body.clientName,
                            projectName:req.body.projectName,
                            date:req.body.date,
                            description:req.body.description,
                            isBilled:req.body.isBilled,
-                           status:req.body.status
+                           status:req.body.status*/
+
+
+
+      date: date,
+      clientName:req.body.clientName,
+      address:req.body.address,
+      phoneNumber:req.body.phoneNumber,
+      fieldWorkPromissed:req.body.fieldWorkPromissed,
+      printsPromissed:req.body.printsPromissed,
+      projectName:req.body.projectName,
+      lecalDescription:req.body.legalDescription,
+      orderPlacedBy:req.body.orderPlacedBy,
+      orderReceivedBy:req.body.orderReceivedBy,
+      referToFileNo:req.body.referToFileNumber,
+      referToFieldBookNo:req.body.referToFieldBookNumber,
+      referToOrderNumber:req.body.referToOrderNumber,
+      fieldBook:req.body.fieldBook,
+      page:req.body.page,
+      section:req.body.section,
+      township:req.body.township,
+      range:req.body.range,
+      partyChief:req.body.partyChief,
+      dateCompleted:req.body.dateCompleted,
+      mail:req.body.mail,
+      deliver:req.body.deliver,
+      pickup:req.body.pickup,
+      mailPrintsTo:req.body.mailPrintsTo,
+      deliverPrintsTo:req.body.deliverPrintsTo,
+      printsAtTime:req.body.printsAtTime,
+      dateInvoice:req.body.dateInvoice,
+      amountSetBy:req.body.amountSetBy,
+      invoiceTypedBy:req.body.invoiceTypedBy,
+      courierFees:req.body.courierFees,
+      applPermitFees:req.body.applPermitFees,
+      cod:req.body.cod,
+      noCod:req.body.noCod,
+      orderNumber:req.body.orderNumber,
+      fileNumber:req.body.fileNumber,
+      price:req.body.price
                         });
     
     order = await order.save();

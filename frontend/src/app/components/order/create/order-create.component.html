@@ -22,7 +22,7 @@
                 <div *ngIf="form.get('clientName').touched && form.get('clientName').invalid" class="alert alert-danger">Client Name is required</div>
             </div>
             <div class="form-group">
-                <label class="col-form-label" for="clientName">ADDRESS</label>
+                <label class="col-form-label" for="address">ADDRESS</label>
                 <input formControlName="address" type="text" class="form-control" placeholder="Address" id="address">
                 <div *ngIf="form.get('address').touched && form.get('address').invalid" class="alert alert-danger">Address is required</div>
             </div>
@@ -63,33 +63,30 @@
          <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-                <label class="col-form-label" for="description">ORDER PLACED BY</label>
-                <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-                <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+                <label class="col-form-label" for="orderPlacedBy">ORDER PLACED BY</label>
+                <input formControlName="orderPlacedBy" type="text" class="form-control" placeholder="Order Placed By" id="orderPlacedBy">
+                <div *ngIf="form.get('orderPlacedBy').touched && form.get('orderPlacedBy').invalid" class="alert alert-danger">Order Placed By is required</div>
             </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
-                <label class="col-form-label" for="description">REC'D:</label>
-                <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-                <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+                <label class="col-form-label" for="orderReceivedBy">REC'D:</label>
+                <input formControlName="orderReceivedBy" type="text" class="form-control" placeholder="Order received by" id="orderReceivedBy">
+                <div *ngIf="form.get('orderReceivedBy').touched && form.get('orderReceivedBy').invalid" class="alert alert-danger">Order received by is required</div>
             </div>
          </div>
        </div>
        <div class="form-group">
-          <label class="col-form-label" for="description">REFER TO FILE No.</label>
-          <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-          <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+          <label class="col-form-label" for="referToFileNumber">REFER TO FILE No.</label>
+          <input formControlName="referToFileNumber" type="text" class="form-control" placeholder="Refer to file No." id="referToFileNumber">
       </div>
       <div class="form-group">
-          <label class="col-form-label" for="description">REFER TO FB No.</label>
-          <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-          <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+          <label class="col-form-label" for="referToFieldBookNumber">REFER TO FB No.</label>
+          <input formControlName="referToFieldBookNumber" type="text" class="form-control" placeholder="Refer to FB No." id="referToFieldBookNumber">
       </div>
       <div class="form-group">
-          <label class="col-form-label" for="description">REFER ORDER No.</label>
-          <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-          <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+          <label class="col-form-label" for="referToOrderNumber">REFER ORDER No.</label>
+          <input formControlName="referToOrderNumber" type="text" class="form-control" placeholder="Refer to order No." id="referToOrderNumber">
       </div>
       </div>
        <div class="col-md-6">
@@ -192,15 +189,15 @@
              <div class="row">
                <div class="col-md-6">
                   <div class="form-group">
-                      <label class="col-form-label" for="description">COURIER FEES</label>
-                      <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
+                      <label class="col-form-label" for="courierFees">COURIER FEES</label>
+                      <input formControlName="courierFees" type="text" class="form-control" placeholder="Courrier Fees" id="courierFees">
 
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="form-group">
-                      <label class="col-form-label" for="description">APPL/PERMIT FEES</label>
-                      <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
+                      <label class="col-form-label" for="applPermitFees">APPL/PERMIT FEES</label>
+                      <input formControlName="applPermitFees" type="text" class="form-control" placeholder="Application Permit Fee" id="applPermitFees">
                   </div>
                </div>
              </div>
@@ -208,12 +205,12 @@
           <div class="col-md-6">
 
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">COD</label>
+                    <input class="form-check-input" type="checkbox" id="COD" value="option1">
+                    <label class="form-check-label" for="cod">COD</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">NO COD</label>
+                    <input class="form-check-input" type="checkbox" id="noCOD" value="option2">
+                    <label class="form-check-label" for="noCOD">NO COD</label>
                   </div>
           </div>
         </div>
