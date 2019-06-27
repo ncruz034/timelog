@@ -47,6 +47,7 @@ export class OrderCreateComponent implements OnInit {
       'projectName': [this.order.projectName, Validators.required],
       'date': [this.order.date, Validators.required],
       'description': [this.order.description, Validators.required],
+      
     /*   'isBilled': [this.order.isBilled, Validators.required],
       'status': [ this.order.status, Validators.required] */
     });
