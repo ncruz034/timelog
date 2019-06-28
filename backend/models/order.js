@@ -3,15 +3,14 @@ const Joi = require('Joi');
 
 
 const Order = mongoose.model('Order',new mongoose.Schema({
-
-date:{type: Date, default: Date.now},
+date:{type: Date, default: Date.now, required:true},
 clientName: { type: String, required:true},
 address: { type: String },
 phoneNumber: { type: String,  required:true },
 fieldWorkPromissed: { type: String },
 printsPromissed: { type: String },
 projectName: { type: String,  required:true },
-legalDescription: { type: String, required:true },
+legalDescription: { type: String},
 orderPlacedBy: {type: String, required: true },
 orderReceivedBy: {type: String, required: true },
 referToFileNumber: {type: String },
@@ -100,13 +99,17 @@ price: { type: Number},
 
 function validateOrder(order){
     const schema = {
+        address: Joi.string().required(),
         orderNumber: Joi.string().required(),
         clientName: Joi.string().required(),
         projectName: Joi.string().required(),
         date: Joi.string().required(),
-        description: Joi.string().required(),
-        isBilled: Joi.bool().required(),
-        status: Joi.string().required()
+        phoneNumber: Joi.string().required(),
+        orderPlacedBy: Joi.string().required(),
+        orderReceivedBy: Joi.string().required()
+        //legalDescription: Joi.string().required(),
+       /* isBilled: Joi.bool().required(),
+        status: Joi.string().required()*/
     };
 
     return Joi.validate(order, schema);

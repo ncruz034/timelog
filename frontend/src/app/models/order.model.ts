@@ -1,6 +1,6 @@
 
 export class Order {
-date: { type: String };
+date: { type: Date };
 clientName: { type: String };
 address: { type: String };
 phoneNumber: { type: String };
