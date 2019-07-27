@@ -63,11 +63,12 @@ export class OrderService {
         invoiceTypedBy,
         courierFees,
         applPermitFees,
-        cod,
-        noCod,
+        COD,
+        noCOD,
         orderNumber,
         fileNumber,
-        price) {
+        price
+       ) {
     const newOrder = {
       date: date,
       clientName: clientName,
@@ -76,11 +77,11 @@ export class OrderService {
       fieldWorkPromissed: fieldWorkPromissed,
       printsPromissed: printsPromissed,
       projectName: projectName,
-      lecalDescription: legalDescription,
+      legalDescription: legalDescription,
       orderPlacedBy: orderPlacedBy,
       orderReceivedBy: orderReceivedBy,
-      referToFileNo: referToFileNumber,
-      referToFieldBookNo: referToFieldBookNumber,
+      referToFileNumber: referToFileNumber,
+      referToFieldBookNumber: referToFieldBookNumber,
       referToOrderNumber: referToOrderNumber,
       fieldBook: fieldBook,
       page: page,
@@ -100,19 +101,11 @@ export class OrderService {
       invoiceTypedBy: invoiceTypedBy,
       courierFees: courierFees,
       applPermitFees: applPermitFees,
-      cod: cod,
-      noCod: noCod,
+      COD: COD,
+      noCOD: noCOD,
       orderNumber: orderNumber,
       fileNumber: fileNumber,
       price: price
-/*
-      orderNumber: orderNumber,
-      clientName: clientName,
-      projectName: projectName,
-      date: date,
-      description: description,
-      isBilled: isBilled,
-      status: status*/
     };
     return this.http.post(`${this.uri}/orders`, newOrder);
   }

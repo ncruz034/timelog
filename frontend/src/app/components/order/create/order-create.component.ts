@@ -21,11 +21,11 @@ export interface Status {
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 
-
 export class OrderCreateComponent implements OnInit {
   form: FormGroup;
   order: Order = new Order();
   project_id: String;
+  codRadios = 'noCOD';
 
   //@Input() public PROJECTNAME;
 
@@ -73,12 +73,11 @@ export class OrderCreateComponent implements OnInit {
       'invoiceTypedBy': [this.order.invoiceTypedBy],
       'courierFees': [this.order.courierFees],
       'applPermitFees': [this.order.applPermitFees],
-      'cod': [this.order.cod],
-      'noCod': [this.order.noCod],
+      'COD': [this.order.COD],
+      'noCOD': [this.order.noCOD],
       'orderNumber': [this.order.orderNumber, Validators.required],
       'fileNumber': [this.order.fileNumber, Validators.required],
       'price': [this.order.price],
-
     /*   'isBilled': [this.order.isBilled, Validators.required],
       'status': [ this.order.status, Validators.required] */
     });
@@ -117,21 +116,11 @@ export class OrderCreateComponent implements OnInit {
         this.form.value.invoiceTypedBy,
         this.form.value.courierFees,
         this.form.value.applPermitFees,
-        this.form.value.cod,
-        this.form.value.noCod,
+        this.form.value.COD,
+        this.form.value.noCOD,
         this.form.value.orderNumber,
         this.form.value.fileNumber,
-        this.form.value.price,
-
-/*
-      this.form.value.orderNumber,
-      this.form.value.clientName,
-      this.form.value.projectName,
-      this.form.value.date,
-      this.form.value.description,
-      false, 'In Progress'
-      */
-
+        this.form.value.price
       )
        .subscribe((order_id: any) => {
           console.log('this is the order _id ' + order_id);

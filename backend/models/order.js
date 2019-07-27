@@ -6,15 +6,15 @@ const Order = mongoose.model('Order',new mongoose.Schema({
 
 date:{type: Date, default: Date.now},
 clientName: { type: String, required:true},
-address: { type: String },
+address: { type: String, required: true },
 phoneNumber: { type: String,  required:true },
-fieldWorkPromissed: { type: String },
+fieldWorkPromissed: { type: String},
 printsPromissed: { type: String },
-projectName: { type: String,  required:true },
-legalDescription: { type: String, required:true },
+projectName: { type: String, required: true},
+legalDescription: { type: String, required: true },
 orderPlacedBy: {type: String, required: true },
 orderReceivedBy: {type: String, required: true },
-referToFileNumber: {type: String },
+referToFileNumber: {type: String},
 referToFieldBookNumber: {type: String },
 referToOrderNumber: {type: String },
 fieldBook: { type: String },
@@ -31,83 +31,62 @@ mailPrintsTo: { type: String },
 deliverPrintsTo: { type: String },
 printsAtTime: { type: String },
 dateInvoice: { type: String },
- amountSetBy: { type: String },
+amountSetBy: { type: String },
 invoiceTypedBy: { type: String },
 courierFees: { type: String },
 applPermitFees: { type: String },
-cod: { type: String },
-noCod: { type: String },
+COD: { type: String },
+noCOD: { type: String },
 orderNumber: { type: String,  required: true },
 fileNumber: { type: String, required: true },
 price: { type: Number},
 
-
-    //orderNumber:String,
-    //clientName: {type:String, required:true},
-    //projectName: {type:String, required:true},
-    //date:{type: Date, default: Date.now},
-    //description:{type:String, required:true}, 
-    //isBilled:{type:Boolean, required:true},
-   // status: {type:String, required:true},
-    time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
-
-    /* legalDescription:{type:String,required:false},
-
-    orderPlacedBy:{type:String, required:true},
-    orderReceivedBy:{type:String, required:true},
-    referToFile:[{type:String, required:false}],
-    referToFieldBook:[{type:String, required:false}],
-    referToOrder:[{type: mongoose.Schema.ObjectId, ref:'Order'}],
-    fieldWork:{
-            fieldBook:{type:String, required: false},
-            page:[{type:Number, required:false}],
-            partyChief:[{type: mongoose.Schema.ObjectId, ref:'User'}],
-            dateCompleted:{type: Date, required:false}
-        },
-    instructions:{
-        numberOfPrintsToMail:{type:Number, required:false},
-        mailPrintsTo:{type:String, required:false},
-        numberOfPrintsToDeliver:{type:Number, requirded: false},
-        deliverPrintsTo:{type:String, required:false},
-        numberOfPrintsToPickup:{type:Number, required:false},
-        pickupPrintsAtTime:{type:String, required:false}
-    },
-    invoice:{
-        date:{type:Date, required:false},
-        amountSetBy:{type:String, required:false},
-        invoicedTypedBy:{type:String, required:false},
-        price:{type:Number, required:false}
-    },
-    order_stats:{
-        budget:{type:Number},
-        totalFieldTime:{type:Number},
-        totalOfficeTime:{type:Number},
-        totalOvertime:{type:Number}
-    } */
-    /*,
-    theTime:[
-        {
-            user:{type:String},
-            date:{type:Date},
-            description:{type:String},
-            time:{type:Number},
-            isOfficeTime:{type:Boolean},
-            isOvertime:{type:Boolean},
-        }
-    ]*/
-    }));
+//time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
+}));
 
 
 function validateOrder(order){
-    const schema = {
-        orderNumber: Joi.string().required(),
-        clientName: Joi.string().required(),
-        projectName: Joi.string().required(),
-        date: Joi.string().required(),
-        description: Joi.string().required(),
-        isBilled: Joi.bool().required(),
-        status: Joi.string().required()
-    };
+    console.log('Validating order');
+        const notRequired = Joi.string().allow('');
+
+    const schema = Joi.object().keys({
+        date: Joi.date(),
+        clientName: Joi.string(),
+        address: Joi.string(),
+        phoneNumber: Joi.string(),
+        fieldWorkPromissed: Joi.allow(''),
+        printsPromissed: Joi.allow(''),
+        projectName: Joi.string(),
+        legalDescription: Joi.string(),
+        orderPlacedBy: Joi.string(),
+        orderReceivedBy: Joi.string(),
+        referToFileNumber: Joi.allow(''),
+        referToFieldBookNumber: Joi.allow(''),
+        referToOrderNumber: Joi.allow(''),
+        fieldBook: Joi.allow(''),
+        page: Joi.allow(''),
+        section: Joi.allow(''),
+        township: Joi.allow(''),
+        range: Joi.allow(''),
+        partyChief: Joi.allow(''),
+        dateCompleted: Joi.allow(''),
+        mail: Joi.allow(''),
+        deliver: Joi.allow(''),
+        pickup: Joi.allow(''),
+        mailPrintsTo: Joi.allow(''),
+        deliverPrintsTo: Joi.allow(''),
+        printsAtTime: Joi.allow(''),
+        dateInvoice: Joi.allow(''),
+        amountSetBy: Joi.allow(''),
+        invoiceTypedBy: Joi.allow(''),
+        courierFees: Joi.allow(''),
+        applPermitFees: Joi.allow(''),
+        COD: Joi.allow(''),
+        noCOD: Joi.allow(''),
+        orderNumber: Joi.string(),
+        fileNumber: Joi.string(),
+        price: Joi.number(),
+    });
 
     return Joi.validate(order, schema);
     //check if there is any error

@@ -39,28 +39,20 @@ router.get('/:id', auth, async (req,res) =>{
 //Register a new Order; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{
     const {error} = validate(req.body);
+
     if (error) return res.status(400).send(error.details[0].message);
    
     console.log('Saving order');
+
     let order = new Order({
-                           /*orderNumber:req.body.orderNumber,       
-                           clientName:req.body.clientName,
-                           projectName:req.body.projectName,
-                           date:req.body.date,
-                           description:req.body.description,
-                           isBilled:req.body.isBilled,
-                           status:req.body.status*/
-
-
-
-      date: date,
+      date: req.body.date,
       clientName:req.body.clientName,
       address:req.body.address,
       phoneNumber:req.body.phoneNumber,
       fieldWorkPromissed:req.body.fieldWorkPromissed,
       printsPromissed:req.body.printsPromissed,
       projectName:req.body.projectName,
-      lecalDescription:req.body.legalDescription,
+      legalDescription:req.body.legalDescription,
       orderPlacedBy:req.body.orderPlacedBy,
       orderReceivedBy:req.body.orderReceivedBy,
       referToFileNo:req.body.referToFileNumber,
@@ -84,12 +76,12 @@ router.post('/', auth, async (req,res) =>{
       invoiceTypedBy:req.body.invoiceTypedBy,
       courierFees:req.body.courierFees,
       applPermitFees:req.body.applPermitFees,
-      cod:req.body.cod,
-      noCod:req.body.noCod,
+      COD:req.body.COD,
+      noCOD:req.body.noCOD,
       orderNumber:req.body.orderNumber,
       fileNumber:req.body.fileNumber,
       price:req.body.price
-                        });
+    });
     
     order = await order.save();
     console.log('After saving order');
