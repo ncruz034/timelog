@@ -49,7 +49,7 @@ export class OrderCreateComponent implements OnInit {
       'fieldWorkPromissed': [this.order.fieldWorkPromissed],
       'printsPromissed': [this.order.printsPromissed],
       'projectName': [this.order.projectName, Validators.required],
-      'legalDescription': [this.order.legalDescription, Validators.required],
+      'legalDescription': [this.order.legalDescription],
       'orderPlacedBy': [this.order.orderPlacedBy, Validators.required],
       'orderReceivedBy': [this.order.orderReceivedBy, Validators.required],
       'referToFileNumber':[this.order.referToFileNumber],

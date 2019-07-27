@@ -3,8 +3,7 @@ const Joi = require('Joi');
 
 
 const Order = mongoose.model('Order',new mongoose.Schema({
-
-date:{type: Date, default: Date.now},
+date:{type: Date, default: Date.now, required:true},
 clientName: { type: String, required:true},
 address: { type: String, required: true },
 phoneNumber: { type: String,  required:true },
@@ -46,6 +45,7 @@ price: { type: Number},
 
 
 function validateOrder(order){
+<<<<<<< HEAD
     console.log('Validating order');
         const notRequired = Joi.string().allow('');
 
@@ -87,6 +87,21 @@ function validateOrder(order){
         fileNumber: Joi.string(),
         price: Joi.number(),
     });
+=======
+    const schema = {
+        address: Joi.string().required(),
+        orderNumber: Joi.string().required(),
+        clientName: Joi.string().required(),
+        projectName: Joi.string().required(),
+        date: Joi.string().required(),
+        phoneNumber: Joi.string().required(),
+        orderPlacedBy: Joi.string().required(),
+        orderReceivedBy: Joi.string().required()
+        //legalDescription: Joi.string().required(),
+       /* isBilled: Joi.bool().required(),
+        status: Joi.string().required()*/
+    };
+>>>>>>> 94a2b0704fc11d88e18280224253631869d01051
 
     return Joi.validate(order, schema);
     //check if there is any error
