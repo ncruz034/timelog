@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from '../../../services/order.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import {DatePipe } from '@angular/common';
 //import {MatSnackBar } from '@angular/material';
 import { Order } from '../../../models/order.model';
 
@@ -18,7 +20,8 @@ export interface Status {
 @Component({
   selector: 'app-order-edit',
   templateUrl: './order-edit.component.html',
-  styleUrls: ['./order-edit.component.css']
+  styleUrls: ['./order-edit.component.css'],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}, DatePipe]
 })
 export class OrderEditComponent implements OnInit {
 
@@ -28,7 +31,7 @@ export class OrderEditComponent implements OnInit {
   order: any = {};
   selectedStatus: String;
   selectedBilled: Boolean;
-  isCOD = 'COD';
+TheDate: Date;
 
   billed: Billed[] = [
     {value: true, viewValue: 'yes'},
@@ -42,11 +45,11 @@ export class OrderEditComponent implements OnInit {
     {value: 'Hold', viewValue: 'Hold'},
 
   ];
-  constructor(private orderService: OrderService, private fb: FormBuilder,
+  constructor(private datePipe: DatePipe, private orderService: OrderService, private fb: FormBuilder,
 
               private router: Router, private route: ActivatedRoute) {
                 this.form = this.fb.group({
-                  'date': [this.order.date, Validators.required],
+                  date: [new Date(this.order.date), Validators.required],
                   'clientName': [this.order.clientName, Validators.required],
                   'address': [this.order.address, Validators.required],
                   'phoneNumber': [this.order.phoneNumber, Validators.required],
@@ -77,8 +80,7 @@ export class OrderEditComponent implements OnInit {
                   'invoiceTypedBy': [this.order.invoiceTypedBy],
                   'courierFees': [this.order.courierFees],
                   'applPermitFees': [this.order.applPermitFees],
-                  'COD': [this.order.COD],
-                  'noCOD': [this.order.noCOD],
+                  'isCOD': [this.order.isCOD],
                   'orderNumber': [this.order.orderNumber, Validators.required],
                   'fileNumber': [this.order.fileNumber, Validators.required],
                   'price': [this.order.price],
@@ -88,16 +90,6 @@ export class OrderEditComponent implements OnInit {
 
     editOrder() {
         const order = {
-          /*
-          orderNumber: this.order.orderNumber,
-          date: this.order.date,
-          clientName: this.form.value.clientName,
-          projectName: this.form.value.projectName,
-          legalDescription: this.form.value.legalDescription,
-          isBilled: this.selectedBilled,
-          status: this.selectedStatus,
-          */
-
       date: this.order.date,
       clientName: this.order.clientName,
       address: this.order.address,
@@ -129,8 +121,7 @@ export class OrderEditComponent implements OnInit {
       invoiceTypedBy: this.order.invoiceTypedBy,
       courierFees: this.order.courierFees,
       applPermitFees: this.order.applPermitFees,
-      COD: this.order.value.COD,
-      noCOD: this.order.value.noCOD,
+      isCOD: this.order.value.isCOD,
       orderNumber: this.order.orderNumber,
       fileNumber: this.order.fileNumber,
       price: this.order.price
@@ -143,22 +134,13 @@ export class OrderEditComponent implements OnInit {
       });
     }
 
+
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.id = params.id;
-
       this.orderService.getOrderById(this.id).subscribe(res => {
-        this.order = res;
-        /*
-        this.form.get('clientName').setValue(this.order.clientName);
-        this.form.get('projectName').setValue(this.order.projectName);
-        this.form.get('description').setValue(this.order.description);
-        this.form.get('isBilled').setValue(this.order.isBilled);
-        this.form.get('status').setValue(this.order.status);
-        this.selectedBilled = this.order.isBilled;
-        this.selectedStatus = this. order.status;
-        */
-
+      this.order = res;
       this.form.get('date').setValue(this.order.date);
       this.form.get('clientName').setValue(this.order.clientName);
       this.form.get('address').setValue(this.order.address);
@@ -190,8 +172,7 @@ export class OrderEditComponent implements OnInit {
       this.form.get('invoiceTypedBy').setValue(this.order.invoiceTypedBy);
       this.form.get('courierFees').setValue(this.order.courierFees);
       this.form.get('applPermitFees').setValue(this.order.applPermitFees);
-      this.form.get('COD').setValue(this.order.COD);
-      this.form.get('noCOD').setValue(this.order.noCOD);
+      this.form.get('isCOD').setValue(this.order.isCOD);
       this.form.get('orderNumber').setValue(this.order.orderNumber);
       this.form.get('fileNumber').setValue(this.order.fileNumber);
       this.form.get('price').setValue(this.order.price);

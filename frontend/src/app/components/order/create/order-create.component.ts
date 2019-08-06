@@ -25,7 +25,7 @@ export class OrderCreateComponent implements OnInit {
   form: FormGroup;
   order: Order = new Order();
   project_id: String;
-  codRadios = 'noCOD';
+
 
   //@Input() public PROJECTNAME;
 
@@ -35,11 +35,14 @@ export class OrderCreateComponent implements OnInit {
 
   ]; */
 
+
+/*
   statusOptions: Status[] = [
     {value: 'In Progress', viewValue: 'In Progress'},
     {value: 'Finished', viewValue: 'Finished'},
     {value: 'Hold', viewValue: 'Hold'},
   ];
+*/
   constructor(private route: ActivatedRoute, private orderService: OrderService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       'date': [this.order.date, Validators.required],
@@ -73,8 +76,7 @@ export class OrderCreateComponent implements OnInit {
       'invoiceTypedBy': [this.order.invoiceTypedBy],
       'courierFees': [this.order.courierFees],
       'applPermitFees': [this.order.applPermitFees],
-      'COD': [this.order.COD],
-      'noCOD': [this.order.noCOD],
+      'isCOD': [this.order.isCOD],
       'orderNumber': [this.order.orderNumber, Validators.required],
       'fileNumber': [this.order.fileNumber, Validators.required],
       'price': [this.order.price],
@@ -116,8 +118,7 @@ export class OrderCreateComponent implements OnInit {
         this.form.value.invoiceTypedBy,
         this.form.value.courierFees,
         this.form.value.applPermitFees,
-        this.form.value.COD,
-        this.form.value.noCOD,
+        this.form.value.isCOD,
         this.form.value.orderNumber,
         this.form.value.fileNumber,
         this.form.value.price

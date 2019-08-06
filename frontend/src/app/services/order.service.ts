@@ -63,8 +63,7 @@ export class OrderService {
         invoiceTypedBy,
         courierFees,
         applPermitFees,
-        COD,
-        noCOD,
+        isCOD,
         orderNumber,
         fileNumber,
         price
@@ -101,8 +100,7 @@ export class OrderService {
       invoiceTypedBy: invoiceTypedBy,
       courierFees: courierFees,
       applPermitFees: applPermitFees,
-      COD: COD,
-      noCOD: noCOD,
+      isCOD: isCOD,
       orderNumber: orderNumber,
       fileNumber: fileNumber,
       price: price

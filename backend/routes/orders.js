@@ -76,8 +76,7 @@ router.post('/', auth, async (req,res) =>{
       invoiceTypedBy:req.body.invoiceTypedBy,
       courierFees:req.body.courierFees,
       applPermitFees:req.body.applPermitFees,
-      COD:req.body.COD,
-      noCOD:req.body.noCOD,
+      isCOD:req.body.isCOD,
       orderNumber:req.body.orderNumber,
       fileNumber:req.body.fileNumber,
       price:req.body.price

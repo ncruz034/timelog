@@ -10,9 +10,9 @@
             <div class="form-group">
                 <label class="col-form-label" for="date">DATE</label>
                 <div class="input-group">
-                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #d="ngbDatepicker">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #date="ngbDatepicker">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="date.toggle()" type="button"></button>
                 </div>
                 </div>
             </div>
@@ -37,14 +37,26 @@
             </div>
 
             <div class="form-group">
-                <label class="col-form-label" for="fieldWorkPromissed">FIELD WORK PROMISSED</label>
-                <input formControlName="fieldWorkPromissed" type="text" class="form-control" placeholder="Field work promissed" id="fieldWorkPromissed">
+              <label class="col-form-label" for="fieldWorkPromissed">FIELD WORK PROMISSED</label>
+              <div class="input-group">
+              <input formControlName="fieldWorkPromissed" type="text" class="form-control" placeholder="yyyy-mm-dd" name="fieldWorkPromissed"  ngbDatepicker #dFieldWork="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="dFieldWork.toggle()" type="button"></button>
+              </div>
+              </div>
             </div>
 
             <div class="form-group">
-                <label class="col-form-label" for="printsPromissed">PRINTS PROMISSED</label>
-                <input formControlName="printsPromissed" type="text" class="form-control" placeholder="Prints Promissed" id="printsPromissed">
+              <label class="col-form-label" for="printsPromissed">PRINTS PROMISSED</label>
+              <div class="input-group">
+              <input formControlName="printsPromissed" type="text" class="form-control" placeholder="yyyy-mm-dd" name="printsPromissed"  ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+              </div>
+              </div>
             </div>
+
+
         </div>
       </div>
 
@@ -132,10 +144,17 @@
                   <label class="col-form-label" for="partyChief">PARTY CHIEF</label>
                   <input formControlName="partyChief" type="text" class="form-control" placeholder="Party Chief" id="partyChief">
               </div>
+
               <div class="form-group">
-                  <label class="col-form-label" for="dateCompleted">DATE COMPLETED</label>
-                  <input formControlName="dateCompleted" type="text" class="form-control" placeholder="Date Completed" id="dateCompleted">
+                <label class="col-form-label" for="dateCompleted">DATE COMPLETED</label>
+                <div class="input-group">
+                <input formControlName="dateCompleted" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dateCompleted"  ngbDatepicker #dCompleted="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="dCompleted.toggle()" type="button"></button>
+                </div>
+                </div>
               </div>
+
        </div>
       </div>
       <hr>
@@ -173,10 +192,17 @@
            </div>
           </div>
           <div class="col-md-6">
-             <div class="form-group">
-                 <label class="col-form-label" for="dateInvoice">DATE INVOICE:</label>
-                 <input formControlName="dateInvoice" type="text" class="form-control" placeholder="Date invoice" id="dateInvoice">
-             </div>
+
+              <div class="form-group">
+                  <label class="col-form-label" for="dateInvoice">DATE INVOICE</label>
+                  <div class="input-group">
+                  <input formControlName="dateInvoice" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dateInvoice"  ngbDatepicker #dInvoice="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="dInvoice.toggle()" type="button"></button>
+                  </div>
+                  </div>
+                </div>
+
              <div class="form-group">
                  <label class="col-form-label" for="amountSetBy">AMOUNT SET BY:</label>
                  <input formControlName="amountSetBy" type="text" class="form-control" placeholder="Amount set by" id="amountSetBy">
@@ -205,17 +231,15 @@
                </div>
              </div>
           </div>
-          <div class="col-md-6">
+
+              <div class="col-md-6">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" [(ngModel)]="codRadios" name="codRadios" type="radio" id="COD" value="COD">
-                    <label class="form-check-label" for="COD">COD</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" [(ngModel)]="codRadios" name="codRadios" type="radio" id="noCOD" value="noCOD">
-                    <label class="form-check-label" for="noCOD">NO COD</label>
-                  </div>
+                  <input formControlName="isCOD" class="form-check-input" type="checkbox" id="isCOD" value = "">
+                  <label class="form-check-label" for="COD">COD</label>
                 </div>
-        </div>
+              </div>
+          </div>
+
         <div class="row">
           <div class="col-md-4">
               <div class="form-group">

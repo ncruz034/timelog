@@ -7,8 +7,8 @@ date:{type: Date, default: Date.now, required:true},
 clientName: { type: String, required:true},
 address: { type: String, required: true },
 phoneNumber: { type: String,  required:true },
-fieldWorkPromissed: { type: String},
-printsPromissed: { type: String },
+fieldWorkPromissed: { type: Date},
+printsPromissed: { type: Date },
 projectName: { type: String, required: true},
 legalDescription: { type: String, required: true },
 orderPlacedBy: {type: String, required: true },
@@ -22,20 +22,19 @@ section: { type: String },
 township: { type: String },
 range: { type: String },
 partyChief: { type: String },
-dateCompleted: { type: String },
+dateCompleted: { type: Date },
 mail: { type: String },
 deliver: { type: String },
 pickup: { type: String },
 mailPrintsTo: { type: String },
 deliverPrintsTo: { type: String },
 printsAtTime: { type: String },
-dateInvoice: { type: String },
+dateInvoice: { type: Date },
 amountSetBy: { type: String },
 invoiceTypedBy: { type: String },
 courierFees: { type: String },
 applPermitFees: { type: String },
-COD: { type: String },
-noCOD: { type: String },
+isCOD: { type: String },
 orderNumber: { type: String,  required: true },
 fileNumber: { type: String, required: true },
 price: { type: Number},
@@ -45,10 +44,8 @@ price: { type: Number},
 
 
 function validateOrder(order){
-<<<<<<< HEAD
     console.log('Validating order');
-        const notRequired = Joi.string().allow('');
-
+    const notRequired = Joi.string().allow('');
     const schema = Joi.object().keys({
         date: Joi.date(),
         clientName: Joi.string(),
@@ -81,27 +78,11 @@ function validateOrder(order){
         invoiceTypedBy: Joi.allow(''),
         courierFees: Joi.allow(''),
         applPermitFees: Joi.allow(''),
-        COD: Joi.allow(''),
-        noCOD: Joi.allow(''),
+        isCOD: Joi.allow(''),
         orderNumber: Joi.string(),
         fileNumber: Joi.string(),
         price: Joi.number(),
     });
-=======
-    const schema = {
-        address: Joi.string().required(),
-        orderNumber: Joi.string().required(),
-        clientName: Joi.string().required(),
-        projectName: Joi.string().required(),
-        date: Joi.string().required(),
-        phoneNumber: Joi.string().required(),
-        orderPlacedBy: Joi.string().required(),
-        orderReceivedBy: Joi.string().required()
-        //legalDescription: Joi.string().required(),
-       /* isBilled: Joi.bool().required(),
-        status: Joi.string().required()*/
-    };
->>>>>>> 94a2b0704fc11d88e18280224253631869d01051
 
     return Joi.validate(order, schema);
     //check if there is any error
