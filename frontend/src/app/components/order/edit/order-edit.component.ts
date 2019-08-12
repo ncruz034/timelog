@@ -31,7 +31,6 @@ export class OrderEditComponent implements OnInit {
   order: any = {};
   selectedStatus: String;
   selectedBilled: Boolean;
-TheDate: Date;
 
   billed: Billed[] = [
     {value: true, viewValue: 'yes'},
@@ -48,8 +47,9 @@ TheDate: Date;
   constructor(private datePipe: DatePipe, private orderService: OrderService, private fb: FormBuilder,
 
               private router: Router, private route: ActivatedRoute) {
+
                 this.form = this.fb.group({
-                  date: [new Date(this.order.date), Validators.required],
+                  'date': [this.order.date, Validators.required],
                   'clientName': [this.order.clientName, Validators.required],
                   'address': [this.order.address, Validators.required],
                   'phoneNumber': [this.order.phoneNumber, Validators.required],
@@ -89,44 +89,46 @@ TheDate: Date;
     }
 
     editOrder() {
-        const order = {
-      date: this.order.date,
-      clientName: this.order.clientName,
-      address: this.order.address,
-      phoneNumber: this.order.phoneNumber,
-      fieldWorkPromissed: this.order.fieldWorkPromissed,
-      printsPromissed: this.order.printsPromissed,
-      projectName: this.order.projectName,
-      legalDescription: this.order.legalDescription,
-      orderPlacedBy: this.order.orderPlacedBy,
-      orderReceivedBy: this.order.orderReceivedBy,
-      referToFileNumber: this.order.referToFieldBookNumber,
-      referToFieldBookNumber: this.order.referToFieldBookNumber,
-      referToOrderNumber: this.order.referToOrderNumber,
-      fieldBook: this.order.fieldBook,
-      page: this.order.page,
-      section: this.order.section,
-      township: this.order.township,
-      range: this.order.range,
-      partyChief: this.order.partyChief,
-      dateCompleted: this.order.dateCompleted,
-      mail: this.order.mail,
-      deliver: this.order.deliver,
-      pickup: this.order.pickup,
-      mailPrintsTo: this.order.mailPrintsTo,
-      deliverPrintsTo: this.order.deliverPrintsTo,
-      printsAtTime: this.order.printsAtTime,
-      dateInvoice: this.order.dateInvoice,
-      amountSetBy: this.order.amountSetBy,
-      invoiceTypedBy: this.order.invoiceTypedBy,
-      courierFees: this.order.courierFees,
-      applPermitFees: this.order.applPermitFees,
-      isCOD: this.order.value.isCOD,
-      orderNumber: this.order.orderNumber,
-      fileNumber: this.order.fileNumber,
-      price: this.order.price
+      const order = {
+      date: this.form.value.date,
+      clientName: this.form.value.clientName,
+      address: this.form.value.address,
+      phoneNumber: this.form.value.phoneNumber,
+      fieldWorkPromissed: this.form.value.fieldWorkPromissed,
+      printsPromissed: this.form.value.printsPromissed,
+      projectName: this.form.value.projectName,
+      legalDescription: this.form.value.legalDescription,
+      orderPlacedBy: this.form.value.orderPlacedBy,
+      orderReceivedBy: this.form.value.orderReceivedBy,
+      referToFileNumber: this.form.value.referToFieldBookNumber,
+      referToFieldBookNumber: this.form.value.referToFieldBookNumber,
+      referToOrderNumber: this.form.value.referToOrderNumber,
+      fieldBook: this.form.value.fieldBook,
+      page: this.form.value.page,
+      section: this.form.value.section,
+      township: this.form.value.township,
+      range: this.form.value.range,
+      partyChief: this.form.value.partyChief,
+      dateCompleted: this.form.value.dateCompleted,
+      mail: this.form.value.mail,
+      deliver: this.form.value.deliver,
+      pickup: this.form.value.pickup,
+      mailPrintsTo: this.form.value.mailPrintsTo,
+      deliverPrintsTo: this.form.value.deliverPrintsTo,
+      printsAtTime: this.form.value.printsAtTime,
+      dateInvoice: this.form.value.dateInvoice,
+      amountSetBy: this.form.value.amountSetBy,
+      invoiceTypedBy: this.form.value.invoiceTypedBy,
+      courierFees: this.form.value.courierFees,
+      applPermitFees: this.form.value.applPermitFees,
+      isCOD: this.form.value.isCOD,
+      orderNumber: this.form.value.orderNumber,
+      fileNumber: this.form.value.fileNumber,
+      price: this.form.value.price
         };
       this.orderService.editOrder(this.id, order).subscribe(() => {
+        console.log(this.order.isCOD);
+        console.log(this.order.projectName);
         /* this.snackBar.open('Order updated succesfully', 'OK', {
           duration: 3000
         }); */
@@ -140,13 +142,14 @@ TheDate: Date;
     this.route.params.subscribe(params => {
       this.id = params.id;
       this.orderService.getOrderById(this.id).subscribe(res => {
+
       this.order = res;
-      this.form.get('date').setValue(this.order.date);
+      this.form.get('date').setValue(new Date(this.order.date));
       this.form.get('clientName').setValue(this.order.clientName);
       this.form.get('address').setValue(this.order.address);
       this.form.get('phoneNumber').setValue(this.order.phoneNumber);
-      this.form.get('fieldWorkPromissed').setValue(this.order.fieldWorkPromissed);
-      this.form.get('printsPromissed').setValue(this.order.printsPromissed);
+      this.form.get('fieldWorkPromissed').setValue(new Date(this.order.fieldWorkPromissed));
+      this.form.get('printsPromissed').setValue(new Date(this.order.printsPromissed));
       this.form.get('projectName').setValue(this.order.projectName);
       this.form.get('legalDescription').setValue(this.order.legalDescription);
       this.form.get('orderPlacedBy').setValue(this.order.orderPlacedBy);
@@ -160,14 +163,14 @@ TheDate: Date;
       this.form.get('township').setValue(this.order.township);
       this.form.get('range').setValue(this.order.range);
       this.form.get('partyChief').setValue(this.order.partyChief);
-      this.form.get('dateCompleted').setValue(this.order.dateCompleted);
+      this.form.get('dateCompleted').setValue(new Date(this.order.dateCompleted));
       this.form.get('mail').setValue(this.order.mail);
       this.form.get('deliver').setValue(this.order.deliver);
       this.form.get('pickup').setValue(this.order.pickup);
       this.form.get('mailPrintsTo').setValue(this.order.mailPrintsTo);
       this.form.get('deliverPrintsTo').setValue(this.order.deliverPrintsTo);
       this.form.get('printsAtTime').setValue(this.order.printsAtTime);
-      this.form.get('dateInvoice').setValue(this.order.dateInvoice);
+      this.form.get('dateInvoice').setValue(new Date(this.order.dateInvoice));
       this.form.get('amountSetBy').setValue(this.order.amountSetBy);
       this.form.get('invoiceTypedBy').setValue(this.order.invoiceTypedBy);
       this.form.get('courierFees').setValue(this.order.courierFees);

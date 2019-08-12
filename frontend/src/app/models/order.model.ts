@@ -20,33 +20,19 @@ township: { type: String };
 range: { type: String };
 partyChief: { type: String };
 dateCompleted: { type: Date };
-mail: { type: String };
-deliver: { type: String };
-pickup: { type: String };
+mail: { type: Number };
+deliver: { type: Number };
+pickup: { type: Number };
 mailPrintsTo: { type: String };
 deliverPrintsTo: { type: String };
 printsAtTime: { type: String };
 dateInvoice: { type: Date };
 amountSetBy: { type: String };
 invoiceTypedBy: { type: String };
-courierFees: { type: String };
-applPermitFees: { type: String };
-isCOD: { type: String };
+courierFees: { type: Number };
+applPermitFees: { type: Number };
+isCOD: { type: Boolean };
 orderNumber: { type: String };
 fileNumber: { type: String };
 price: { type: Number};
 }
-/*
-export class Order {
-    _id: {};
-    orderNumber: { type: String };
-    clientName: {type: String };
-    projectName: {type: String };
-    date: { type: Date };
-    client: { type: String };
-    description: {type: String};
-    isBilled: {type: Boolean};
-    status: { type: String};
-   time: {};
-}
-*/

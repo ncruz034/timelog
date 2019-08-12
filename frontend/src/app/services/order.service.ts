@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
 import { NG_PROJECT_AS_ATTR_NAME } from '@angular/core/src/render3/interfaces/projection';
-
+import { Order } from '../models/order.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,80 +31,7 @@ export class OrderService {
     return this.http.post(`${this.uri}/orders/${order_id}/time`, updatedOrderTime);
   }
 
-        addOrder(
-        date,
-        clientName,
-        address,
-        phoneNumber,
-        fieldWorkPromissed,
-        printsPromissed,
-        projectName,
-        legalDescription,
-        orderPlacedBy,
-        orderReceivedBy,
-        referToFileNumber,
-        referToFieldBookNumber,
-        referToOrderNumber,
-        fieldBook,
-        page,
-        section,
-        township,
-        range,
-        partyChief,
-        dateCompleted,
-        mail,
-        deliver,
-        pickup,
-        mailPrintsTo,
-        deliverPrintsTo,
-        printsAtTime,
-        dateInvoice,
-        amountSetBy,
-        invoiceTypedBy,
-        courierFees,
-        applPermitFees,
-        isCOD,
-        orderNumber,
-        fileNumber,
-        price
-       ) {
-    const newOrder = {
-      date: date,
-      clientName: clientName,
-      address: address,
-      phoneNumber: phoneNumber,
-      fieldWorkPromissed: fieldWorkPromissed,
-      printsPromissed: printsPromissed,
-      projectName: projectName,
-      legalDescription: legalDescription,
-      orderPlacedBy: orderPlacedBy,
-      orderReceivedBy: orderReceivedBy,
-      referToFileNumber: referToFileNumber,
-      referToFieldBookNumber: referToFieldBookNumber,
-      referToOrderNumber: referToOrderNumber,
-      fieldBook: fieldBook,
-      page: page,
-      section: section,
-      township: township,
-      range: range,
-      partyChief: partyChief,
-      dateCompleted: dateCompleted,
-      mail: mail,
-      deliver: deliver,
-      pickup: pickup,
-      mailPrintsTo: mailPrintsTo,
-      deliverPrintsTo: deliverPrintsTo,
-      printsAtTime: printsAtTime,
-      dateInvoice: dateInvoice,
-      amountSetBy: amountSetBy,
-      invoiceTypedBy: invoiceTypedBy,
-      courierFees: courierFees,
-      applPermitFees: applPermitFees,
-      isCOD: isCOD,
-      orderNumber: orderNumber,
-      fileNumber: fileNumber,
-      price: price
-    };
+  addOrder( newOrder: Order){
     return this.http.post(`${this.uri}/orders`, newOrder);
   }
 
