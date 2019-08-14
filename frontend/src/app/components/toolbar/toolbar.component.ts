@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,8 +8,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-
-  constructor(private authService: AuthService) { }
+  backgroundColor = environment.navBarBackgroundColor;
+  constructor(public authService: AuthService) { }
   currentUser = '';
   ngOnInit() {
     this.currentUser = this.authService.getUser();

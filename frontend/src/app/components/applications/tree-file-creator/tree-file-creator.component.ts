@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tree-file-creator.component.css']
 })
 export class TreeFileCreatorComponent implements OnInit {
-  private fileList: any = [];
-  private invalidFiles: any = [];
+  public fileList: any = [];
+  public invalidFiles: any = [];
   constructor() { }
   onFilesInvalidEmiter(invalidFiles: Array<File>) {
     this.invalidFiles = invalidFiles;
