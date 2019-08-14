@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class ToolbarComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
-  currentUser='';
+  currentUser = '';
   ngOnInit() {
     this.currentUser = this.authService.getUser();
   }
