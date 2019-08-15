@@ -12,28 +12,31 @@ const asyncMIddleware = require('../middleware/async');
 
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
+    console.log("In routes: " + req.params.id);
     const order = await Order.findById(req.params.id);
      //check if there is any error
      if(!order) return res.status(400).send('The order with the given id is not valid');
     res.send(order);
    });
 
-   router.get('/', async (req,res) =>{
-    const orders = await Order.aggregate([
-          // { $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
-           {$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
-       ]);//populate({path:'time', model:'Time', select:['date','description','time'],
-                                                          // populate:{path:'user',model:"User",select:['name','last']}});
+router.get('/', async (req,res) =>{
+const orders = await Order.aggregate([
+        // { $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
+        {$lookup: {from: 'times',localField:'orderNumber',foreignField: 'orderNumber', as: 'time'}}
+       // {$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
+    ]);//populate({path:'time', model:'Time', select:['date','description','time']});
+                                                        // populate:{path:'user',model:"User",select:['name','last']}});
 
-    if(!orders) return res.status(400).send('The order with the given id is not valid');
-    let counter=0;
-       for(let order of orders) {
-           for(let time of order.time){
-            counter = counter + time.time;
-           }   
-       }    
-       console.log('The time is: ' + counter);
-    res.send(orders);
+if(!orders) return res.status(400).send('The order with the given id is not valid');
+let counter=0;
+    for(let order of orders) {
+        for(let time of order.time){
+            console.log(time.time);
+        counter = counter + time.time;
+        }   
+    }    
+    console.log('The time is: ' + counter);
+res.send(orders);
 });
 
 //Register a new Order; this route should be protected to only admin users.

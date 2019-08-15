@@ -25,7 +25,6 @@ export class TimeService {
   }
 
   addTime(date, orderNumber, order_id, projectName, clientName, description, time, userName, user_id) {
-    console.log("OrderNubmer: " + orderNumber);
     const newTime = {
       date: date,
       orderNumber: orderNumber,

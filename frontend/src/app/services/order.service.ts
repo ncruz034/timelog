@@ -27,7 +27,6 @@ export class OrderService {
     const updatedOrderTime = {
       time_id: time_id,
     };
-
     return this.http.post(`${this.uri}/orders/${order_id}/time`, updatedOrderTime);
   }
 

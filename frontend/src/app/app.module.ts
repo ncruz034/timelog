@@ -53,6 +53,7 @@ import { ProjectCreateComponent } from './components/project/create/project-crea
 import { ProjectListComponent } from './components/project/list/project-list.component';
 import { ProjectEditComponent } from './components/project/edit/project-edit.component';
 import { FilterPipe } from './filter.pipe';
+import { AddressComponent } from './common/address/address.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { FilterPipe } from './filter.pipe';
     ProjectListComponent,
     ProjectEditComponent,
     FilterPipe,
+    AddressComponent,
 
   ],
   imports: [

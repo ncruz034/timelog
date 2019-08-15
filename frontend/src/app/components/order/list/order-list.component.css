@@ -47,3 +47,9 @@ table{
 {
 padding-left: 10px;
 }
+.card .card
+{
+  border-left-color: rgb(19, 68, 230);
+  border-left-width: 5px;
+  margin-bottom: 5px;
+}

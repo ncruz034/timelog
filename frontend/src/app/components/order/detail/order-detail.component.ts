@@ -17,7 +17,7 @@ export class OrderDetailComponent implements OnInit {
   displayedColumns = ['date', 'user', 'description', 'time'];
 
   constructor(private route: ActivatedRoute,
-              private orderService : OrderService,
+              private orderService: OrderService,
               http: HttpClient, router: Router) { }
 
     ngOnInit() {
@@ -25,9 +25,10 @@ export class OrderDetailComponent implements OnInit {
         this.id = params.id;
         this.orderService.getOrderById(this.id)
         .subscribe(
-        (order: Order[]) =>{
-          this.order = order[0];
-        });
+          (order: Order) => {
+            this.order = order;
+          });
+
         });
     }
   }

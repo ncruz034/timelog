@@ -56,7 +56,6 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
 
 // Get all times for a week for a user from a starting date
 router.get('/user/:user_id/:date',auth,  async (req, res,) => {
-    
     // throw new Error({error:'Error'});
     const times =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
@@ -67,9 +66,6 @@ router.get('/user/:user_id/:date',auth,  async (req, res,) => {
     }}
     ])
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
-
-    
-
      res.send(times);
 });
 

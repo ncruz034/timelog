@@ -18,7 +18,7 @@ export class OrderListComponent implements OnInit {
   private _searchTerm: string;
   currentOrderId: String;
 
-  get searchTerm(): string{
+  get searchTerm(): string {
     return this._searchTerm;
   }
 
@@ -31,7 +31,6 @@ export class OrderListComponent implements OnInit {
     return this.orders.filter(order =>
       order.orderNumber.toString().toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
   }
-
 
 
   constructor(private orderService: OrderService, private router: Router) { }
