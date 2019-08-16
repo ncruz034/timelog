@@ -1,4 +1,67 @@
+<div *ngIf="order">
+  <div>
+  <div class='row'>
 
+    <div class="col-3 left">
+      <p>BROWARD: 954-435-7010</p>
+      <p>Dade: 305-652-7010</p>
+    </div>
+    <div class="col-6 center">
+      <h3>Schwebke-Shiskin & Associates, Inc.</h3>
+    </div>
+    <div class="col-3 right">
+      <p>3240 CORPORATE WAY</p>
+      <p>MIRAMAR, FL 33025</p>
+    </div>
+  </div>
+
+  <div class='row'>
+        <div class="col-4 left">
+          <h4>LAND SURVEYORS</h4>
+        </div>
+        <div class="col-4 center">
+        <h4>ENGINEERS</h4>
+        </div>
+        <div class="col-4 right">
+          <h4>LAND PLANNERS</h4>
+        </div>
+  </div>
+  </div>
+<!--End of heading-->
+
+<!--Beginning Client Info-->
+  <div class="row top-padding">
+    <div class="col-6 left">
+      <h4>DATE</h4>
+    </div>
+    <div class="col-6 right">
+      <h4>PHONE</h4> {{order.phoneNumber}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col left">
+      <h4>NAME OF CLIENT</h4> {{order.clientName}}
+      <h4>ADDRESS</h4> {{order.address}}
+    </div>
+  </div>
+  <div class="row top-padding">
+    <div class="col-6 left">
+      <h5>LEGAL DESCRIPTION AND SPECIAL INSTRUCTIONS</h5>
+    </div>
+    <div class="col-3 right">
+      <h5>FIELD WORK PROMISSED  </h5>
+      <H5>PRINTS PROMISSED</H5>
+    </div>
+    <div class="col-3">
+        {{order.fieldWorkPromissed}}
+        {{order.printsPromissed}}
+    </div>
+  </div>
+  <div class="row left top-padding">
+    <p>{{order.legalDescription}}</p>
+  </div>
+
+</div>
    <div *ngIf="order">
       {{order.orderNumber}}
    </div>
