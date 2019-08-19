@@ -15,7 +15,7 @@ export class OrderDetailComponent implements OnInit {
   id: '';
   times: Time[];
   displayedColumns = ['date', 'user', 'description', 'time'];
-
+  currentJustify = 'fill';
   constructor(private route: ActivatedRoute,
               private orderService: OrderService,
               http: HttpClient, router: Router) { }
@@ -26,7 +26,8 @@ export class OrderDetailComponent implements OnInit {
         this.orderService.getOrderById(this.id)
         .subscribe(
           (order: Order) => {
-            this.order = order;
+            this.order = order[0];
+           console.log(this.order);
           });
 
         });

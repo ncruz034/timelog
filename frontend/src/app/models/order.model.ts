@@ -35,4 +35,5 @@ isCOD: { type: Boolean };
 orderNumber: { type: String };
 fileNumber: { type: String };
 price: { type: Number};
+time: [];
 }
