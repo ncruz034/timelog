@@ -144,6 +144,7 @@ export class OrderEditComponent implements OnInit {
       this.orderService.getOrderById(this.id).subscribe(res => {
 
       this.order = res;
+      console.log(this.order);
       this.form.get('date').setValue(new Date(this.order.date));
       this.form.get('clientName').setValue(this.order.clientName);
       this.form.get('address').setValue(this.order.address);

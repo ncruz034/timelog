@@ -10,6 +10,7 @@ const { Global } = require('../models/global');
 const asyncMIddleware = require('../middleware/async');
 const ObjectId = mongoose.Types.ObjectId;
 
+
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
     console.log("In routes: " + req.params.id);
@@ -19,7 +20,7 @@ router.get('/:id', auth, async (req,res) =>{
         {$lookup: {from: 'times',localField:'orderNumber',foreignField: 'orderNumber', as: 'time'}}]);
      //check if there is any error
      if(!order) return res.status(400).send('The order with the given id is not valid');
-    res.send(order);
+    res.send(order[0]);
    });
 
 router.get('/', async (req,res) =>{

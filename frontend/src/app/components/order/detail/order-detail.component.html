@@ -67,13 +67,56 @@
     <div class="row left top-padding">
       <p>{{order.legalDescription}}</p>
     </div>
+    <div class="row top-padding">
+      <div class="col-6 left">
+          <h4>ORDER PLACED BY</h4>{{order.orderPlacedBy}}
+          <h4>REFER TO FILE No.</h4>{{order.referToFileNumber}}
+          <h4>REFER TO FB No.</h4>{{order.referToFieldBookNumber}}
+          <h4>REFER ORDER No.</h4>{{order.referToOrderNumber}}
+      </div>
+
+      <div class="col-6 left">
+        <h4>FB</h4> {{order.fieldBook}}
+        <h4>PG</h4> {{order.page}}
+        <h4>SEC</h4> {{order.section}}
+        <h4>TWP</h4> {{order.township}}
+        <h4>RGE</h4> {{order.range}}
+        <h4>PARTY CHIEF</h4> {{order.partyChief}}
+        <h4>DATE COMPLEDED</h4> {{order.dateCompleted}}
+      </div>
+    </div>
+
+    <div class="row left top-padding">
+      <div class="col-4 ">
+        <h4>MAIL</h4> {{order.mail}}
+        <h4>DELIVER</h4> {{order.deliver}}
+        <h4>PICK UP</h4> {{order.pickup}}
+        <h4>COURIER FEES</h4> {{order.courierFees}}
+      </div>
+      <div class="col-4 ">
+        <h4>PRINTS TO</h4> {{order.mailPrintsTo}}
+        <h4>PRINTS TO</h4> {{order.deliverPrintsTo}}
+        <h4>PRINTS AT (TIME)</h4> {{order.printsAtTime}}
+        <h4>APPL/PERMIT FEES</h4> {{order.applPermitFees}}
+      </div>
+      <div class="col-4">
+        <h4>DATE INVOICE</h4> {{order.dateInvoice}}
+        <h4>AMOUNT SET BY</h4> {{order.amountSetBy}}
+        <h4>INVOICE TYPED BY</h4> {{order.invoiceTypedBy}}
+        <h4>COD</h4> {{order.isCOD}}
+      </div>
+    </div>
 
   </div>
+
      <div *ngIf="order">
         {{order.orderNumber}}
      </div>
       </ng-template>
+
     </ngb-tab>
+
+    <!--Field Information-->
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
       <ng-template ngbTabContent >
