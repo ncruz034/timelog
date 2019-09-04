@@ -1,140 +1,167 @@
 
 
 <ngb-tabset [justify]="currentJustify">
-    <ngb-tab>
-        <ng-template ngbTabTitle><b>ORDER</b></ng-template>
-      <ng-template ngbTabContent>
+  <ngb-tab>
+    <ng-template ngbTabTitle><b>ORDER</b></ng-template>
+    <ng-template ngbTabContent>
+      <div class="container">
+        <div *ngIf="order">
+          <div>
+            <div class='row'>
+            <div class="col-3 left">
+                <p>BROWARD: 954-435-7010</p>
+                <p>Dade: 305-652-7010</p>
+              </div>
+              <div class="col-6 center">
+                <h3>Schwebke-Shiskin & Associates, Inc.</h3>
+              </div>
+              <div class="col-3 right">
+                <p>3240 CORPORATE WAY</p>
+                <p>MIRAMAR, FL 33025</p>
+              </div>
+            </div>
 
-<div *ngIf="order">
-    <div>
-    <div class='row'>
+            <div class='row'>
+              <div class="col-4 left">
+                <h4>LAND SURVEYORS</h4>
+              </div>
+              <div class="col-4 center">
+              <h4>ENGINEERS</h4>
+              </div>
+              <div class="col-4 right">
+                <h4>LAND PLANNERS</h4>
+              </div>
+            </div>
+            </div>
+          <!--End of heading-->
 
-      <div class="col-3 left">
-        <p>BROWARD: 954-435-7010</p>
-        <p>Dade: 305-652-7010</p>
-      </div>
-      <div class="col-6 center">
-        <h3>Schwebke-Shiskin & Associates, Inc.</h3>
-      </div>
-      <div class="col-3 right">
-        <p>3240 CORPORATE WAY</p>
-        <p>MIRAMAR, FL 33025</p>
-      </div>
-    </div>
+          <!--Beginning Client Info-->
+            <div class="row top-padding">
+              <div class="col-6 left">
+                <h4>DATE</h4>
+              </div>
+              <div class="col-6 right">
+                <h4>PHONE</h4> {{order.phoneNumber}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col left">
+                <h4>NAME OF CLIENT</h4> {{order.clientName}}
+                <h4>ADDRESS</h4> {{order.address}}
+              </div>
+            </div>
+            <div class="row top-padding">
+              <div class="col-6 left">
+                <h5>LEGAL DESCRIPTION AND SPECIAL INSTRUCTIONS</h5>
+              </div>
+              <div class="col-3 right">
+                <h5>FIELD WORK PROMISSED  </h5>
+                <H5>PRINTS PROMISSED</H5>
+              </div>
+              <div class="col-3">
+                  {{order.fieldWorkPromissed}}
+                  {{order.printsPromissed}}
+              </div>
+            </div>
+            <div class="row left top-padding">
+              <p>{{order.legalDescription}}</p>
+            </div>
+            <div class="row top-padding">
+              <div class="col-6 left">
+                  <h4>ORDER PLACED BY</h4>{{order.orderPlacedBy}}
+                  <h4>REFER TO FILE No.</h4>{{order.referToFileNumber}}
+                  <h4>REFER TO FB No.</h4>{{order.referToFieldBookNumber}}
+                  <h4>REFER ORDER No.</h4>{{order.referToOrderNumber}}
+              </div>
 
-    <div class='row'>
-          <div class="col-4 left">
-            <h4>LAND SURVEYORS</h4>
+              <div class="col-6 left">
+                <h4>FB</h4> {{order.fieldBook}}
+                <h4>PG</h4> {{order.page}}
+                <h4>SEC</h4> {{order.section}}
+                <h4>TWP</h4> {{order.township}}
+                <h4>RGE</h4> {{order.range}}
+                <h4>PARTY CHIEF</h4> {{order.partyChief}}
+                <h4>DATE COMPLEDED</h4> {{order.dateCompleted}}
+              </div>
+            </div>
+
+            <div class="row left top-padding">
+              <div class="col-4 ">
+                <h4>MAIL</h4> {{order.mail}}
+                <h4>DELIVER</h4> {{order.deliver}}
+                <h4>PICK UP</h4> {{order.pickup}}
+                <h4>COURIER FEES</h4> {{order.courierFees}}
+              </div>
+              <div class="col-4 ">
+                <h4>PRINTS TO</h4> {{order.mailPrintsTo}}
+                <h4>PRINTS TO</h4> {{order.deliverPrintsTo}}
+                <h4>PRINTS AT (TIME)</h4> {{order.printsAtTime}}
+                <h4>APPL/PERMIT FEES</h4> {{order.applPermitFees}}
+              </div>
+              <div class="col-4">
+                <h4>DATE INVOICE</h4> {{order.dateInvoice}}
+                <h4>AMOUNT SET BY</h4> {{order.amountSetBy}}
+                <h4>INVOICE TYPED BY</h4> {{order.invoiceTypedBy}}
+                <h4>COD</h4> {{order.isCOD}}
+              </div>
+            </div>
           </div>
-          <div class="col-4 center">
-          <h4>ENGINEERS</h4>
+
+          <div *ngIf="order">
+              {{order.orderNumber}}
           </div>
-          <div class="col-4 right">
-            <h4>LAND PLANNERS</h4>
           </div>
-    </div>
-    </div>
-  <!--End of heading-->
-
-  <!--Beginning Client Info-->
-    <div class="row top-padding">
-      <div class="col-6 left">
-        <h4>DATE</h4>
-      </div>
-      <div class="col-6 right">
-        <h4>PHONE</h4> {{order.phoneNumber}}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col left">
-        <h4>NAME OF CLIENT</h4> {{order.clientName}}
-        <h4>ADDRESS</h4> {{order.address}}
-      </div>
-    </div>
-    <div class="row top-padding">
-      <div class="col-6 left">
-        <h5>LEGAL DESCRIPTION AND SPECIAL INSTRUCTIONS</h5>
-      </div>
-      <div class="col-3 right">
-        <h5>FIELD WORK PROMISSED  </h5>
-        <H5>PRINTS PROMISSED</H5>
-      </div>
-      <div class="col-3">
-          {{order.fieldWorkPromissed}}
-          {{order.printsPromissed}}
-      </div>
-    </div>
-    <div class="row left top-padding">
-      <p>{{order.legalDescription}}</p>
-    </div>
-    <div class="row top-padding">
-      <div class="col-6 left">
-          <h4>ORDER PLACED BY</h4>{{order.orderPlacedBy}}
-          <h4>REFER TO FILE No.</h4>{{order.referToFileNumber}}
-          <h4>REFER TO FB No.</h4>{{order.referToFieldBookNumber}}
-          <h4>REFER ORDER No.</h4>{{order.referToOrderNumber}}
-      </div>
-
-      <div class="col-6 left">
-        <h4>FB</h4> {{order.fieldBook}}
-        <h4>PG</h4> {{order.page}}
-        <h4>SEC</h4> {{order.section}}
-        <h4>TWP</h4> {{order.township}}
-        <h4>RGE</h4> {{order.range}}
-        <h4>PARTY CHIEF</h4> {{order.partyChief}}
-        <h4>DATE COMPLEDED</h4> {{order.dateCompleted}}
-      </div>
-    </div>
-
-    <div class="row left top-padding">
-      <div class="col-4 ">
-        <h4>MAIL</h4> {{order.mail}}
-        <h4>DELIVER</h4> {{order.deliver}}
-        <h4>PICK UP</h4> {{order.pickup}}
-        <h4>COURIER FEES</h4> {{order.courierFees}}
-      </div>
-      <div class="col-4 ">
-        <h4>PRINTS TO</h4> {{order.mailPrintsTo}}
-        <h4>PRINTS TO</h4> {{order.deliverPrintsTo}}
-        <h4>PRINTS AT (TIME)</h4> {{order.printsAtTime}}
-        <h4>APPL/PERMIT FEES</h4> {{order.applPermitFees}}
-      </div>
-      <div class="col-4">
-        <h4>DATE INVOICE</h4> {{order.dateInvoice}}
-        <h4>AMOUNT SET BY</h4> {{order.amountSetBy}}
-        <h4>INVOICE TYPED BY</h4> {{order.invoiceTypedBy}}
-        <h4>COD</h4> {{order.isCOD}}
-      </div>
-    </div>
-
-  </div>
-
-     <div *ngIf="order">
-        {{order.orderNumber}}
-     </div>
-      </ng-template>
-
-    </ngb-tab>
+    </ng-template>
+  </ngb-tab>
 
     <!--Field Information-->
+
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
       <ng-template ngbTabContent >
-
-        <ul *ngFor="let time of order.time;">
-          <li>{{time.date | date}} {{time.projectName}} {{time.description}} {{time.clientName}} {{time.userName}} {{time.time}}</li>
-        </ul>
+        <div class="container top-padding">
+          <div class="row left">
+                <div class="col-3">
+                    <h4>DATE</h4>
+                </div>
+                <div class="col-3">
+                    <h4>EMPLOYEE</h4>
+                </div>
+                <div class="col-3">
+                    <h4>DESCRIPTION</h4>
+                </div>
+                <div class="col-3">
+                    <h4>TIME</h4>
+                </div>
+          </div>
+          <div *ngFor="let time of order.time;">
+          <div class="row left">
+            <div class="col-3">
+              <h5>{{time.date | date}}</h5>
+            </div>
+            <div class="col-3">
+                <h5>{{time.userName}}</h5>
+              </div>
+            <div class="col-3">
+              <h5>{{time.description}}</h5>
+            </div>
+              <div class="col-3">
+                <h5>{{time.time}}</h5>
+            </div>
+          </div>
+        </div>
+        </div>
       </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
-      <ng-template ngbTabContent>
-        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sap</p>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
+        <ng-template ngbTabContent>
+        <div class="container">
+          <p>Sed commodo, leo at suscipit dictum, quam est porttitor sap</p>
+        </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-
-
 
 <!-- <mat-card class="order-card">
 =======
