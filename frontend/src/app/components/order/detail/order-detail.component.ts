@@ -13,6 +13,7 @@ import { Time } from '../../../models/time.model';
 export class OrderDetailComponent implements OnInit {
   order: Order;
   id: '';
+  time: Time;
   times: Time[];
   displayedColumns = ['date', 'user', 'description', 'time'];
   currentJustify = 'fill';
@@ -28,7 +29,13 @@ export class OrderDetailComponent implements OnInit {
           (order: Order) => {
             this.order = order;
            console.log(this.order);
-          });
+            let counter: any;
+        for(this.time of this.order.time) {
+          counter += this.time.time;
+          console.log( "the type of :" + typeof(this.time.time));
+        }
+        console.log("Here is the time: " + counter);
+        });
 
         });
     }
