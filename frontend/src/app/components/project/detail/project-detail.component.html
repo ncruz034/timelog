@@ -1,0 +1,48 @@
+<ngb-tabset [justify]="currentJustify">
+    <ngb-tab>
+      <ng-template ngbTabTitle><b>PROJECT</b></ng-template>
+      <ng-template ngbTabContent>
+        <div class="container">
+          <div *ngIf="project">
+
+            <!--Beginning Client Info-->
+              <div class="row top-padding">
+                <div class="col-6 left">
+                  <h5>DATE</h5> {{project.date | date}}
+                </div>
+                <div class="col-6 right">
+                  <h5>PROJECT NAME</h5> {{project.projectName}}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col left">
+                  <h5>CLIENT NAME</h5> {{project.clientName}}
+                  <h5>DESCRIPTION</h5> {{project.description}}
+                </div>
+              </div>
+
+            </div>
+            </div>
+      </ng-template>
+    </ngb-tab>
+
+
+
+      <ngb-tab>
+        <ng-template ngbTabTitle><b>OVERVIEW</b></ng-template>
+        <ng-template ngbTabContent >
+          <div class="container top-padding">
+            <p>Statistics about this project will be displayed in this area.</p>
+          </div>
+        </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle><b>NOTES</b></ng-template>
+          <ng-template ngbTabContent>
+          <div class="container">
+            <p>Notes about this project will be logged in this area</p>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>

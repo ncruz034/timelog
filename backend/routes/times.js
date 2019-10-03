@@ -94,6 +94,7 @@ router.post('/', async (req,res) =>{
         clientName: req.body.clientName,
         description: req.body.description, //What type of work was done on this job
         time:req.body.time,                //How much time was invested in this job
+        overTime:req.body.overTime,
         userName: req.body.userName,
         user_id: req.body.user_id          //The _id of the user that work on the job
     });

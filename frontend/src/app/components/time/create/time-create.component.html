@@ -9,11 +9,13 @@
                 <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number" id="orderNumber">
                 <div *ngIf="form.get('orderNumber').touched && form.get('orderNumber').invalid" class="alert alert-danger">Order Number is required</div>
             </div>
+            <!--
             <div class="form-group">
                 <label class="col-form-label" for="order_id">Order Id</label>
                 <input formControlName="order_id" type="text" class="form-control" placeholder="Order Id" id="order_id">
                 <div *ngIf="form.get('order_id').touched && form.get('order_id').invalid" class="alert alert-danger">Order Id is required</div>
             </div>
+          -->
             <div class="form-group">
                 <label class="col-form-label" for="projectName">Project Name</label>
                 <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name" id="projectName">
@@ -41,10 +43,17 @@
             </div>
 
             <div class="form-group">
-                <label class="col-form-label" for="time">Time</label>
+                <label class="col-form-label" for="time">Regular Time</label>
                 <input formControlName="time" type="text" class="form-control" placeholder="Time" id="time">
                 <div *ngIf="form.get('time').touched && form.get('time').invalid" class="alert alert-danger">The time is required</div>
             </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="overTime">Over Time</label>
+                <input formControlName="overTime" type="text" class="form-control" placeholder="Over Time" id="overTime">
+                <!--<div *ngIf="form.get('time').touched && form.get('time').invalid" class="alert alert-danger">The time is required</div>-->
+            </div>
+
             <button  class="btn btn-primary" color = "accent" routerLink="/orders">Back</button>
             <button class="btn btn-success" type="submit" (click)="addTime()" [disabled]="form.pristine" >Save</button>
           </form>

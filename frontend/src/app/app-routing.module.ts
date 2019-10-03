@@ -19,6 +19,7 @@ import { ClientEditComponent } from './components/clients/edit/client-edit.compo
 import { ProjectCreateComponent } from './components/project/create/project-create.component';
 import { ProjectListComponent } from './components/project/list/project-list.component';
 import { ProjectEditComponent } from './components/project/edit/project-edit.component';
+import { ProjectDetailComponent } from './components/project/detail/project-detail.component';
 
 import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './components/dashobard/dashboard/dashboard.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'projects', component: ProjectListComponent, canActivate: [AuthGuard]},
   {path: 'projects/edit/:id', component: ProjectEditComponent},
   {path: 'projects/create/:client_id/:clientName', component: ProjectCreateComponent},
+  {path: 'projects/detail/:id', component: ProjectDetailComponent},
 
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},

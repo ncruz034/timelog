@@ -6,6 +6,7 @@ export class Time {
     clientName: {type: string};
     description: { type: string};
     time: {type: number};
+    overTime: {type: number};
     userName: {type: string};
     user_id: {type: string};
 }

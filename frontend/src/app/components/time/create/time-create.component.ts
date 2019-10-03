@@ -37,6 +37,7 @@ export class TimeCreateComponent implements OnInit{
                   'orderNumber': [this.time.orderNumber, Validators.required],
                   'description': [this.time.description, Validators.required],
                   'time': [this.time.time, Validators.required],
+                  'overTime': [this.time.overTime],
                 });
     }
 
@@ -59,6 +60,7 @@ export class TimeCreateComponent implements OnInit{
                   this.form.value.order_id, this.form.value.projectName,
                   this.form.value.clientName, this.form.value.description,
                   this.form.value.time,
+                  this.form.value.overTime,
                   localStorage.getItem('user'),
                   localStorage.getItem('user_id')).subscribe((time_id: any) => {
                     this.router.navigate(['/times'])});

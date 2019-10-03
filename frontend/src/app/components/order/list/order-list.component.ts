@@ -65,6 +65,7 @@ export class OrderListComponent implements OnInit {
     );
   }
 
+  
   editOrder(id) {
     this.router.navigate([`orders/edit/${id}`]);
   }

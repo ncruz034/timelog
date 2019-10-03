@@ -21,15 +21,16 @@
               </div>
             </div>
 
+
             <div class='row'>
               <div class="col-4 left">
-                <h4>LAND SURVEYORS</h4>
+                <h5>LAND SURVEYORS</h5>
               </div>
               <div class="col-4 center">
-              <h4>ENGINEERS</h4>
+              <h5>ENGINEERS</h5>
               </div>
               <div class="col-4 right">
-                <h4>LAND PLANNERS</h4>
+                <h5>LAND PLANNERS</h5>
               </div>
             </div>
             </div>
@@ -38,16 +39,16 @@
           <!--Beginning Client Info-->
             <div class="row top-padding">
               <div class="col-6 left">
-                <h4>DATE</h4>
+                <h5>DATE</h5>
               </div>
               <div class="col-6 right">
-                <h4>PHONE</h4> {{order.phoneNumber}}
+                <h5>PHONE</h5> {{order.phoneNumber}}
               </div>
             </div>
             <div class="row">
               <div class="col left">
-                <h4>NAME OF CLIENT</h4> {{order.clientName}}
-                <h4>ADDRESS</h4> {{order.address}}
+                <h5>NAME OF CLIENT</h5> {{order.clientName}}
+                <h5>ADDRESS</h5> {{order.address}}
               </div>
             </div>
             <div class="row top-padding">
@@ -68,47 +69,47 @@
             </div>
             <div class="row top-padding">
               <div class="col-6 left">
-                  <h4>ORDER PLACED BY</h4>{{order.orderPlacedBy}}
-                  <h4>REFER TO FILE No.</h4>{{order.referToFileNumber}}
-                  <h4>REFER TO FB No.</h4>{{order.referToFieldBookNumber}}
-                  <h4>REFER ORDER No.</h4>{{order.referToOrderNumber}}
+                  <h5>ORDER PLACED BY</h5>{{order.orderPlacedBy}}
+                  <h5>REFER TO FILE No.</h5>{{order.referToFileNumber}}
+                  <h5>REFER TO FB No.</h5>{{order.referToFieldBookNumber}}
+                  <h5>REFER ORDER No.</h5>{{order.referToOrderNumber}}
               </div>
 
               <div class="col-6 left">
-                <h4>FB</h4> {{order.fieldBook}}
-                <h4>PG</h4> {{order.page}}
-                <h4>SEC</h4> {{order.section}}
-                <h4>TWP</h4> {{order.township}}
-                <h4>RGE</h4> {{order.range}}
-                <h4>PARTY CHIEF</h4> {{order.partyChief}}
-                <h4>DATE COMPLEDED</h4> {{order.dateCompleted}}
+                <h5>FB</h5> {{order.fieldBook}}
+                <h5>PG</h5> {{order.page}}
+                <h5>SEC</h5> {{order.section}}
+                <h5>TWP</h5> {{order.township}}
+                <h5>RGE</h5> {{order.range}}
+                <h5>PARTY CHIEF</h5> {{order.partyChief}}
+                <h5>DATE COMPLEDED</h5> {{order.dateCompleted}}
               </div>
             </div>
 
             <div class="row left top-padding">
               <div class="col-4 ">
-                <h4>MAIL</h4> {{order.mail}}
-                <h4>DELIVER</h4> {{order.deliver}}
-                <h4>PICK UP</h4> {{order.pickup}}
-                <h4>COURIER FEES</h4> {{order.courierFees}}
+                <h5>MAIL</h5> {{order.mail}}
+                <h5>DELIVER</h5> {{order.deliver}}
+                <h5>PICK UP</h5> {{order.pickup}}
+                <h5>COURIER FEES</h5> {{order.courierFees}}
               </div>
               <div class="col-4 ">
-                <h4>PRINTS TO</h4> {{order.mailPrintsTo}}
-                <h4>PRINTS TO</h4> {{order.deliverPrintsTo}}
-                <h4>PRINTS AT (TIME)</h4> {{order.printsAtTime}}
-                <h4>APPL/PERMIT FEES</h4> {{order.applPermitFees}}
+                <h5>PRINTS TO</h5> {{order.mailPrintsTo}}
+                <h5>PRINTS TO</h5> {{order.deliverPrintsTo}}
+                <h5>PRINTS AT (TIME)</h5> {{order.printsAtTime}}
+                <h5>APPL/PERMIT FEES</h5> {{order.applPermitFees}}
               </div>
               <div class="col-4">
-                <h4>DATE INVOICE</h4> {{order.dateInvoice}}
-                <h4>AMOUNT SET BY</h4> {{order.amountSetBy}}
-                <h4>INVOICE TYPED BY</h4> {{order.invoiceTypedBy}}
-                <h4>COD</h4> {{order.isCOD}}
+                <h5>DATE INVOICE</h5> {{order.dateInvoice}}
+                <h5>AMOUNT SET BY</h5> {{order.amountSetBy}}
+                <h5>INVOICE TYPED BY</h5> {{order.invoiceTypedBy}}
+                <h5>COD</h5> {{order.isCOD}}
               </div>
             </div>
           </div>
 
           <div *ngIf="order">
-              {{order.orderNumber}}
+              <h3>No.{{order.orderNumber}}</h3>
           </div>
           </div>
     </ng-template>

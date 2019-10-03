@@ -24,7 +24,7 @@ export class TimeService {
     return this.http.get(`${this.uri}/times/order/${order_id}`);
   }
 
-  addTime(date, orderNumber, order_id, projectName, clientName, description, time, userName, user_id) {
+  addTime(date, orderNumber, order_id, projectName, clientName, description, time, overTime, userName, user_id) {
     const newTime = {
       date: date,
       orderNumber: orderNumber,
@@ -33,6 +33,7 @@ export class TimeService {
       clientName: clientName,
       description: description,
       time: time,
+      overTime: overTime,
       userName: userName,
       user_id: user_id
     };

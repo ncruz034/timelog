@@ -52,8 +52,12 @@ import { ZippyComponent } from './common/zippy/zippy.component';
 import { ProjectCreateComponent } from './components/project/create/project-create.component';
 import { ProjectListComponent } from './components/project/list/project-list.component';
 import { ProjectEditComponent } from './components/project/edit/project-edit.component';
+import { ProjectDetailComponent } from './components/project/detail/project-detail.component';
+
+
 import { FilterPipe } from './filter.pipe';
 import { AddressComponent } from './common/address/address.component';
+
 
 
 @NgModule({
@@ -90,7 +94,7 @@ import { AddressComponent } from './common/address/address.component';
     ProjectEditComponent,
     FilterPipe,
     AddressComponent,
-
+    ProjectDetailComponent,
   ],
   imports: [
     NgbModule,
