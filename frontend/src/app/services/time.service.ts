@@ -13,16 +13,20 @@ export class TimeService {
   getTimes() {
     return this.http.get(`${this.uri}/times`);
   }
+  
   getUsersTime(user_id) {
     return this.http.get(`${this.uri}/times/user/${user_id}`);
   }
+
   getTimeById(id) {
     return this.http.get(`${this.uri}/times/${id}`);
   }
 
+
   geTimesByOrderId(order_id) {
     return this.http.get(`${this.uri}/times/order/${order_id}`);
   }
+
 
   addTime(date, orderNumber, order_id, projectName, clientName, description, time, overTime, userName, user_id) {
     const newTime = {

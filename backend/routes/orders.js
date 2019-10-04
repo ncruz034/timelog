@@ -11,6 +11,7 @@ const asyncMIddleware = require('../middleware/async');
 const ObjectId = mongoose.Types.ObjectId;
 
 
+
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
     console.log("In routes: " + req.params.id);
@@ -24,14 +25,31 @@ router.get('/:id', auth, async (req,res) =>{
    });
 
 router.get('/', async (req,res) =>{
+    console.log("getting orders with time");
 const orders = await Order.aggregate([
-        // { $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
-        {$lookup: {from: 'times',localField:'orderNumber',foreignField: 'orderNumber', as: 'time'}}
-       // {$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
-    ]);//populate({path:'time', model:'Time', select:['date','description','time']});
+        //{ $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
+        {
+            $lookup: {
+                from: 'times', 
+                localField:'orderNumber', 
+                foreignField:'orderNumber', 
+                as: 'time'
+            }
+        }
+       //{$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
+    ]).exec((err, result)=>{
+        if (err) {
+            console.log("error" ,err)
+        }
+        if (result) {
+            console.log(result);
+            res.send(result);
+        }
+  });//populate({path:'time', model:'Time', select:['date','description','time']});
                                                         // populate:{path:'user',model:"User",select:['name','last']}});
-
+/*
 if(!orders) return res.status(400).send('The order with the given id is not valid');
+
 let counter=0;
     for(let order of orders) {
         for(let time of order.time){
@@ -41,6 +59,7 @@ let counter=0;
     }    
     console.log('The time is: ' + counter);
 res.send(orders);
+*/
 });
 
 //Register a new Order; this route should be protected to only admin users.

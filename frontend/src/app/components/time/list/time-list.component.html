@@ -8,13 +8,15 @@
                   <tr>
                     <th>Order</th>
                     <th>Description</th>
-                    <th>Time</th>
+                    <th>RG Time</th>
+                    <th>OV Time</th>
                     <th>Actions</th>
                   </tr>
                   <tr *ngFor="let data of key.times" >
                     <td>{{data.orderNumber}}</td>
                     <td>{{data.description}}</td>
                     <td>{{data.time}}</td>
+                    <td>{{data.overTime}}</td>
                     <td>
                         <div class="form-group form-inline" >
                             <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>

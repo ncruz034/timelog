@@ -5,8 +5,8 @@ export class Time {
     projectName: {type: string};
     clientName: {type: string};
     description: { type: string};
-    time: {type: number};
-    overTime: {type: number};
+    time: {type: Number};
+    overTime: {type: Number};
     userName: {type: string};
     user_id: {type: string};
 }

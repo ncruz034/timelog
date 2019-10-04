@@ -48,6 +48,7 @@ export class OrderListComponent implements OnInit {
     this.currentOrderId = id;
   }
 
+  
   fetchOrders() {
     this.orderService.getOrders().subscribe(
       (data: Order[]) => {
@@ -65,7 +66,7 @@ export class OrderListComponent implements OnInit {
     );
   }
 
-  
+
   editOrder(id) {
     this.router.navigate([`orders/edit/${id}`]);
   }

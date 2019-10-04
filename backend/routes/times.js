@@ -10,6 +10,7 @@ const admin = require('../middleware/admin');
 router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('date').populate('order',['orderNumber'],'Order');
+        console.log("the time is here: " + time);
         res.send(times);
 });
 
@@ -18,23 +19,29 @@ router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
      //check if there is any error
      if(!time) return res.status(400).send('The time with the given symbol is not valid');
-    res.send(time);
+    console.log("the time is here: " + time);
+     res.send(time);
 });
+
+
 
 // Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
     const data = {
-        times:[],orders:[]
+         times:[],
+        orders:[]
     }
+
     // throw new Error({error:'Error'});
     const times =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
             times: {
-                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
+                $push:{_id:"$_id", time:"$time", overTime:"$overTime", description:"$description",orderNumber:"$orderNumber"}
             }
     }}
     ]);
+
     const byOrders =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
         {"$group":

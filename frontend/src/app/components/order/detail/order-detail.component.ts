@@ -14,12 +14,14 @@ export class OrderDetailComponent implements OnInit {
   order: Order;
   id: '';
   time: Time;
+  ovrTime: Time;
   times: Time[];
   displayedColumns = ['date', 'user', 'description', 'time'];
   currentJustify = 'fill';
   constructor(private route: ActivatedRoute,
               private orderService: OrderService,
               http: HttpClient, router: Router) { }
+
 
     ngOnInit() {
       this.route.params.subscribe(params => {
@@ -28,13 +30,22 @@ export class OrderDetailComponent implements OnInit {
         .subscribe(
           (order: Order) => {
             this.order = order;
-           console.log(this.order);
-            let counter: any;
+           //console.log(this.order);
+           let regTimeCounter = 0;
+            let ovrTimeCounter: 0;
+
+
         for(this.time of this.order.time) {
-          counter += this.time.time;
-          console.log( "the type of :" + typeof(this.time.time));
+          regTimeCounter += Number(this.time.time);
+          //console.log( "the type of :" + typeof(Number(this.time.time)));
         }
-        console.log("Here is the time: " + counter);
+        console.log("Here is the regular time: " + regTimeCounter);
+
+        for(this.ovrTime of this.order.time) {
+          ovrTimeCounter += Number(this.ovrTime.overTime);
+        }
+        console.log("Here is the over time: " + ovrTimeCounter);
+
         });
 
         });

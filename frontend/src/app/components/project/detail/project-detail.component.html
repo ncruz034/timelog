@@ -3,30 +3,21 @@
       <ng-template ngbTabTitle><b>PROJECT</b></ng-template>
       <ng-template ngbTabContent>
         <div class="container">
-          <div *ngIf="project">
-
-            <!--Beginning Client Info-->
-              <div class="row top-padding">
-                <div class="col-6 left">
-                  <h5>DATE</h5> {{project.date | date}}
+           <div *ngIf="project">
+                <div class="card">
+                  <div class="card-body">
+                    <!--Beginning Client Info-->
+                    <h5><div class="card-title"> PROJECT INFORMATION</div></h5>
+                    <h5>Project Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.projectName}}</h6>
+                    <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.date | date}}</h6>
+                    <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.clientName}}</h6>
+                    <h5>Description:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
+                  </div>
                 </div>
-                <div class="col-6 right">
-                  <h5>PROJECT NAME</h5> {{project.projectName}}
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col left">
-                  <h5>CLIENT NAME</h5> {{project.clientName}}
-                  <h5>DESCRIPTION</h5> {{project.description}}
-                </div>
-              </div>
-
-            </div>
-            </div>
+           </div>
+        </div>
       </ng-template>
     </ngb-tab>
-
 
 
       <ngb-tab>

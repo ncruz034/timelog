@@ -38,7 +38,6 @@ isCOD: { type: Boolean },
 orderNumber: { type: String,  required: true },
 fileNumber: { type: String, required: true },
 price: { type: Number},
-
 //time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
 }));
 

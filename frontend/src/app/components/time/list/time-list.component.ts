@@ -17,11 +17,12 @@ export class TimeListComponent implements OnInit {
   times: Time[];
   userTimes: any[];
 
-  displayedColumns = ['orderNumber', 'date', 'description', 'time', 'actions'];
+  displayedColumns = ['orderNumber', 'date', 'description', 'time', 'overTime', 'actions'];
 
   constructor(private orderService: OrderService, private timeService: TimeService, private router: Router) { }
 
   ngOnInit() {
+    console.log("Initiating Time");
       this.getUsersTime(localStorage.getItem('user_id'));
   }
 
@@ -35,7 +36,7 @@ export class TimeListComponent implements OnInit {
     this.timeService.getUsersTime(user_id).subscribe(
       (data: any) => {
         this.userTimes = data.times;
-        console.log(data.orders);
+        console.log(this.userTimes);
       });
       /* (data: Time[]) => {
         this.userTimes = data;
