@@ -7,6 +7,7 @@ export class Time {
     description: { type: string};
     time: {type: Number};
     overTime: {type: Number};
+    isField: {type: Boolean};
     userName: {type: string};
     user_id: {type: string};
 }

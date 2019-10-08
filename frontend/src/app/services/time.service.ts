@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { isFulfilled } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TimeService {
   getTimes() {
     return this.http.get(`${this.uri}/times`);
   }
-  
+
   getUsersTime(user_id) {
     return this.http.get(`${this.uri}/times/user/${user_id}`);
   }
@@ -28,7 +29,7 @@ export class TimeService {
   }
 
 
-  addTime(date, orderNumber, order_id, projectName, clientName, description, time, overTime, userName, user_id) {
+  addTime(date, orderNumber, order_id, projectName, clientName, description, time, overTime, isField, userName, user_id) {
     const newTime = {
       date: date,
       orderNumber: orderNumber,
@@ -38,6 +39,7 @@ export class TimeService {
       description: description,
       time: time,
       overTime: overTime,
+      isField: isField,
       userName: userName,
       user_id: user_id
     };

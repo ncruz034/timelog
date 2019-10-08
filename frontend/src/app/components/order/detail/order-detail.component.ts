@@ -16,6 +16,13 @@ export class OrderDetailComponent implements OnInit {
   time: Time;
   ovrTime: Time;
   times: Time[];
+  officeRegTimeCounter = 0;
+  fieldRegTimeCounter = 0;
+  officeOvrTimeCounter = 0;
+  fieldOvrTimeCounter = 0;
+  officeTotalHours = 0;
+  fieldTotalHours = 0;
+
   displayedColumns = ['date', 'user', 'description', 'time'];
   currentJustify = 'fill';
   constructor(private route: ActivatedRoute,
@@ -30,24 +37,28 @@ export class OrderDetailComponent implements OnInit {
         .subscribe(
           (order: Order) => {
             this.order = order;
-           //console.log(this.order);
-           let regTimeCounter = 0;
-            let ovrTimeCounter: 0;
 
 
-        for(this.time of this.order.time) {
-          regTimeCounter += Number(this.time.time);
-          //console.log( "the type of :" + typeof(Number(this.time.time)));
-        }
-        console.log("Here is the regular time: " + regTimeCounter);
+            for (this.time of this.order.time) {
+              if (!this.time.isField) {
+                this.officeRegTimeCounter += Number(this.time.time);
+              } else {
+                this.fieldRegTimeCounter += Number(this.time.time);
+              }
 
-        for(this.ovrTime of this.order.time) {
-          ovrTimeCounter += Number(this.ovrTime.overTime);
-        }
-        console.log("Here is the over time: " + ovrTimeCounter);
+            }
 
+            for (this.ovrTime of this.order.time) {
+              if (!this.ovrTime.isField) {
+                this.officeOvrTimeCounter += Number(this.ovrTime.overTime);
+              } else {
+                this.fieldOvrTimeCounter += Number(this.time.time);
+              }
+
+            }
+            this.officeTotalHours = this.officeRegTimeCounter + this.officeOvrTimeCounter;
+            this.fieldTotalHours = this.fieldRegTimeCounter + this.fieldOvrTimeCounter;
         });
-
         });
     }
   }

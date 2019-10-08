@@ -38,6 +38,7 @@ export class TimeCreateComponent implements OnInit{
                   'description': [this.time.description, Validators.required],
                   'time': [this.time.time, Validators.required],
                   'overTime': [this.time.overTime],
+                  'isField' : [this.time.isField],
                 });
     }
 
@@ -61,6 +62,7 @@ export class TimeCreateComponent implements OnInit{
                   this.form.value.clientName, this.form.value.description,
                   this.form.value.time,
                   this.form.value.overTime,
+                  this.form.value.isField,
                   localStorage.getItem('user'),
                   localStorage.getItem('user_id')).subscribe((time_id: any) => {
                     this.router.navigate(['/times'])});

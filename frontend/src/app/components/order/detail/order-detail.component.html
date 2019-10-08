@@ -356,7 +356,23 @@
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
       <ng-template ngbTabContent >
+
         <div class="container top-padding">
+
+          <div class = "row left">
+            <div class="col-2">
+              <h5>Total OT:</h5>
+              <h5>Total RT</h5>
+              <h5>Total Hours</h5>
+            </div>
+
+            <div class="col-2">
+                <h5>{{officeOvrTimeCounter}}</h5>
+                <h5>{{officeRegTimeCounter}}</h5>
+                <h5>{{officeTotalHours}}</h5>
+              </div>
+          </div>
+          <hr>
           <div class="row left">
                 <div class="col-2">
                     <h4>Date</h4>
@@ -368,10 +384,10 @@
                     <h4>Description</h4>
                 </div>
                 <div class="col-2">
-                    <h4>Reg. Time</h4>
+                    <h4>RT</h4>
                 </div>
                 <div class="col-2">
-                    <h4>Ovr. Time</h4>
+                    <h4>OT</h4>
                 </div>
           </div>
           <div *ngFor="let time of order.time;">
@@ -399,9 +415,64 @@
       <ngb-tab>
         <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
         <ng-template ngbTabContent>
-        <div class="container">
-          <p>Sed commodo, leo at suscipit dictum, quam est porttitor sap</p>
-        </div>
+
+            <div class="container top-padding">
+
+                <div class = "row left">
+                  <div class="col-2">
+                    <h5>Total OT:</h5>
+                    <h5>Total RT</h5>
+                    <h5>Total Hours</h5>
+                  </div>
+
+                  <div class="col-2">
+                      <h5>{{fieldOvrTimeCounter}}</h5>
+                      <h5>{{fieldRegTimeCounter}}</h5>
+                      <h5>{{fieldTotalHours}}</h5>
+                    </div>
+                </div>
+                <hr>
+                <div class="row left">
+                      <div class="col-2">
+                          <h4>Date</h4>
+                      </div>
+                      <div class="col-3">
+                          <h4>Employee</h4>
+                      </div>
+                      <div class="col-3">
+                          <h4>Description</h4>
+                      </div>
+                      <div class="col-2">
+                          <h4>RT</h4>
+                      </div>
+                      <div class="col-2">
+                          <h4>OT</h4>
+                      </div>
+                </div>
+                <div *ngFor="let time of order.time;">
+
+                <div *ngIf="time.isField" class="row left">
+                  <div class="col-2">
+                    <h5>{{time.date | date}}</h5>
+                  </div>
+                  <div class="col-3">
+                      <h5>{{time.userName}}</h5>
+                    </div>
+                  <div class="col-3">
+                    <h5>{{time.description}}</h5>
+                  </div>
+                    <div class="col-2">
+                      <h5>{{time.time}}</h5>
+                  </div>
+                  <div class="col-2">
+                      <h5>{{time.overTime}}</h5>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+
+
       </ng-template>
     </ngb-tab>
   </ngb-tabset>

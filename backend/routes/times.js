@@ -37,7 +37,7 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
         {"$match":{"user_id": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
             times: {
-                $push:{_id:"$_id", time:"$time", overTime:"$overTime", description:"$description",orderNumber:"$orderNumber"}
+                $push:{_id:"$_id", time:"$time", overTime:"$overTime", description:"$description",orderNumber:"$orderNumber", isField:"$isField"}
             }
     }}
     ]);
@@ -102,6 +102,7 @@ router.post('/', async (req,res) =>{
         description: req.body.description, //What type of work was done on this job
         time:req.body.time,                //How much time was invested in this job
         overTime:req.body.overTime,
+        isField: req.body.isField,
         userName: req.body.userName,
         user_id: req.body.user_id          //The _id of the user that work on the job
     });
