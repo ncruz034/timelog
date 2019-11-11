@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { Time } from '../../../models/time.model';
 import { Order } from '../../../models/order.model';
 import { MomentModule } from 'ngx-moment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-time-list',
