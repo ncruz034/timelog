@@ -18,6 +18,10 @@ export class TimeService {
   getUsersTime(user_id) {
     return this.http.get(`${this.uri}/times/user/${user_id}`);
   }
+  
+  getUsersTimeRange(user_id, from, to) {
+    return this.http.get(`${this.uri}/times/user/${user_id}`);
+  }
 
   getTimeById(id) {
     return this.http.get(`${this.uri}/times/${id}`);
