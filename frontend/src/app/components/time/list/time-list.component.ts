@@ -20,7 +20,7 @@ export class TimeListComponent implements OnInit {
   @Input() isOrderRequest: Boolean;
   times: Time[];
   userTimes: any[];
-  //filteredUserTimes: any[] =[];
+  filteredDates: any[] = [];
 
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'overTime', 'actions'];
   hoveredDate: NgbDate;
@@ -86,9 +86,9 @@ export class TimeListComponent implements OnInit {
         console.log('dateObject: ' + dateObToJs);
         console.log('jsDAte: ' + jsDate);
 */
-          
+
       });
-      
+
 
       /* (data: Time[]) => {
         this.userTimes = data;
@@ -96,8 +96,18 @@ export class TimeListComponent implements OnInit {
       }); */
   }
 
-  filterDAteRAnge(){
-    let dateFrom = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+  filterDateRange() {
+   // console.log(fromDate + ' , ' + toDate);
+    this.filteredDates = this.userTimes.filter((date) => {
+      console.log("this is date: " + date.time);
+    const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+    const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+    console.log(dateFrom);
+    return (dateFrom <= date && dateTo >= date);
+    });
+    console.log(this.filteredDates);
+
+   /*let dateFrom = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
     let dateTo = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
     let filteredUserTimes = [];
 
@@ -109,11 +119,20 @@ export class TimeListComponent implements OnInit {
       console.log(theDate);
     }
     console.log("the times" + JSON.parse(filteredUserTimes[0].times));
-  });
+  });*/
   }
-  filteredDates(userTime){
-    this.userTimes.filter()
+
+  filterDates() {
+    console.log("In filter Dates");
+
+    //const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+    //const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+    return true;//(dateFrom <= date && dateTo >= date);
   }
+
+
+
+
 /*
   getUsersTimeRange(user_id) {
     this.timeService.getUsersTimeRange(user_id,from,to).subscribe(
