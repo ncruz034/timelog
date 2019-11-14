@@ -18,6 +18,10 @@
       <hr>
       <pre>From: {{ fromDate | json}} </pre>
       <pre>To: {{ toDate | json }} </pre>
+      <div class="form-group form-inline" >
+        <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "filterDAteRAnge()"></i></a></h5>
+       
+    </div>
     </div>
       <div *ngFor="let key of userTimes" >
           <zippy title="{{key._id.date | date}}">

@@ -20,6 +20,7 @@ export class TimeListComponent implements OnInit {
   @Input() isOrderRequest: Boolean;
   times: Time[];
   userTimes: any[];
+  //filteredUserTimes: any[] =[];
 
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'overTime', 'actions'];
   hoveredDate: NgbDate;
@@ -85,20 +86,9 @@ export class TimeListComponent implements OnInit {
         console.log('dateObject: ' + dateObToJs);
         console.log('jsDAte: ' + jsDate);
 */
-          let dateFrom = new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day);
-          let dateTo = new Date(this.toDate.year, this.toDate.month, this.toDate.day);
-
-        this.userTimes.forEach(function(time) {
-          let theDate = new Date(time._id.date);
-
-          if(theDate >= dateFrom && theDate <= dateTo){
-            console.log(theDate);
-          }
-
-        });
+          
       });
-
-
+      
 
       /* (data: Time[]) => {
         this.userTimes = data;
@@ -106,6 +96,24 @@ export class TimeListComponent implements OnInit {
       }); */
   }
 
+  filterDAteRAnge(){
+    let dateFrom = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+    let dateTo = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
+    let filteredUserTimes = [];
+
+  this.userTimes.forEach(function(time) {
+    let theDate = new Date(time._id.date);
+   console.log("This is the Date: " + theDate);
+    if(dateFrom <= theDate && dateTo >= theDate){
+      filteredUserTimes.push(time);
+      console.log(theDate);
+    }
+    console.log("the times" + JSON.parse(filteredUserTimes[0].times));
+  });
+  }
+  filteredDates(userTime){
+    this.userTimes.filter()
+  }
 /*
   getUsersTimeRange(user_id) {
     this.timeService.getUsersTimeRange(user_id,from,to).subscribe(
