@@ -27,7 +27,7 @@ export class TimeListComponent implements OnInit {
 
   fromDate: NgbDate;
   toDate: NgbDate;
-
+  filteredDates: any[] = [];
 
   constructor(private orderService: OrderService, private timeService: TimeService, private router: Router, calendar: NgbCalendar) {
     this.fromDate = calendar.getToday();
@@ -59,7 +59,7 @@ export class TimeListComponent implements OnInit {
 
 
   ngOnInit() {
-      this.getUsersTime(localStorage.getItem('user_id'));
+     this.getUsersTime(localStorage.getItem('user_id'));
   }
 
   getTimesByOrderId() {
@@ -72,6 +72,7 @@ export class TimeListComponent implements OnInit {
     this.timeService.getUsersTime(user_id).subscribe(
       (data: any) => {
         this.userTimes = data.times;
+        this.filteredDates = data.times;
         console.log(this.userTimes);
        /*
         let newDate = '10/05/2019';
@@ -96,24 +97,49 @@ export class TimeListComponent implements OnInit {
       }); */
   }
 
-  filterDAteRAnge(){
-    let dateFrom = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
-    let dateTo = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
-    let filteredUserTimes = [];
+  filterDate() {
+    // console.log(fromDate + ' , ' + toDate);
+    const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+     const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
 
-  this.userTimes.forEach(function(time) {
-    let theDate = new Date(time._id.date);
-   console.log("This is the Date: " + theDate);
-    if(dateFrom <= theDate && dateTo >= theDate){
-      filteredUserTimes.push(time);
-      console.log(theDate);
-    }
-    console.log("the times" + JSON.parse(filteredUserTimes[0].times));
-  });
-  }
-  filteredDates(userTime){
-    this.userTimes.filter()
-  }
+     this.filteredDates = this.userTimes.filter((date) => {
+      let theDate = new Date(date._id.date);
+       console.log(theDate);
+       console.log("Date From: " + dateFrom);
+       if(dateFrom <= theDate){
+         console.log("True");
+       }else{console.log("False")}
+
+     return (dateFrom <= theDate && dateTo >= theDate);
+     });
+   console.log(this.filteredDates.length);
+    this.filteredDates.forEach(date => {
+
+      console.log("The date:" + date._id.date);
+    });
+    /*let dateFrom = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
+     let dateTo = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
+     let filteredUserTimes = [];
+   this.userTimes.forEach(function(time) {
+     let theDate = new Date(time._id.date);
+    console.log("This is the Date: " + theDate);
+     if(dateFrom <= theDate && dateTo >= theDate){
+       filteredUserTimes.push(time);
+       console.log(theDate);
+     }
+     console.log("the times" + JSON.parse(filteredUserTimes[0].times));
+   });*/
+   }
+ 
+   filterDates() {
+     console.log("In filter Dates");
+ 
+     //const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
+     //const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+     return true;//(dateFrom <= date && dateTo >= date);
+   }
+ 
+
 /*
   getUsersTimeRange(user_id) {
     this.timeService.getUsersTimeRange(user_id,from,to).subscribe(
