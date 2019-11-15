@@ -12,15 +12,16 @@
               [class.faded]="isHovered(date) || isInside(date)"
               (mouseenter)="hoveredDate = date"
               (mouseleave)="hoveredDate = null">
-          {{ date.day }}
+           {{ date.day }}
         </span>
       </ng-template>
       <hr>
-      <pre>From: {{ fromDate | json}} </pre>
+      <!--<pre>From: {{ fromDate | json}} </pre>
       <pre>To: {{ toDate | json }} </pre>
+      -->
       <div class="form-group form-inline" >
         <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "filterDate()"></i></a></h5>
-       
+
     </div>
     </div>
       <div *ngFor="let key of filteredDates" >

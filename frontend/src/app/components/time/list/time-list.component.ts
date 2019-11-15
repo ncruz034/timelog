@@ -7,6 +7,7 @@ import { Order } from '../../../models/order.model';
 import { MomentModule } from 'ngx-moment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbDate, NgbCalendar, NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class TimeListComponent implements OnInit {
   @Input() isOrderRequest: Boolean;
   times: Time[];
   userTimes: any[];
-  
+  defaultDate: NgbDate;
 
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'overTime', 'actions'];
   hoveredDate: NgbDate;
@@ -30,8 +31,9 @@ export class TimeListComponent implements OnInit {
   filteredDates: any[] = [];
 
   constructor(private orderService: OrderService, private timeService: TimeService, private router: Router, calendar: NgbCalendar) {
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    this.fromDate = calendar.getNext(calendar.getToday(), 'd', - 7);
+    this.toDate = calendar.getToday();
+    this.defaultDate = calendar.getToday();
   }
 
   onDateSelection(date: NgbDate) {
@@ -39,10 +41,13 @@ export class TimeListComponent implements OnInit {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
+      this.filterDate();
+
     } else {
       this.toDate = null;
       this.fromDate = date;
     }
+
   }
 
   isHovered(date: NgbDate) {
@@ -74,22 +79,8 @@ export class TimeListComponent implements OnInit {
         this.userTimes = data.times;
         this.filteredDates = data.times;
         console.log(this.userTimes);
-       /*
-        let newDate = '10/05/2019';
-        let jsDate = new Date(newDate);
-        let dateObject = {
-          "year": 2019,
-          "month": 11,
-          "day": 13
-        }
-
-        var dateObToJs = new Date(dateObject.year, dateObject.month, dateObject.day);
-        console.log('dateObject: ' + dateObToJs);
-        console.log('jsDAte: ' + jsDate);
-*/
 
       });
-
 
       /* (data: Time[]) => {
         this.userTimes = data;
@@ -98,63 +89,22 @@ export class TimeListComponent implements OnInit {
   }
 
   filterDate() {
-    // console.log(fromDate + ' , ' + toDate);
+    console.log("Filter date called:");
+    if ( this.toDate == null ) { this.toDate = this.defaultDate; }
     const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
-     const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
+    const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
 
-     this.filteredDates = this.userTimes.filter((date) => {
-      let theDate = new Date(date._id.date);
-       console.log(theDate);
-       console.log("Date From: " + dateFrom);
-       if(dateFrom <= theDate){
-         console.log("True");
-       }else{console.log("False")}
-
-     return (dateFrom <= theDate && dateTo >= theDate);
+    this.filteredDates = this.userTimes.filter((date) => {
+      const theDate = new Date(date._id.date);
+      return (dateFrom <= theDate && dateTo >= theDate);
      });
-   console.log(this.filteredDates.length);
-    this.filteredDates.forEach(date => {
-
-      console.log("The date:" + date._id.date);
-    });
-    /*let dateFrom = new Date(this.fromDate.year, this.fromDate.month-1, this.fromDate.day);
-     let dateTo = new Date(this.toDate.year, this.toDate.month-1, this.toDate.day);
-     let filteredUserTimes = [];
-   this.userTimes.forEach(function(time) {
-     let theDate = new Date(time._id.date);
-    console.log("This is the Date: " + theDate);
-     if(dateFrom <= theDate && dateTo >= theDate){
-       filteredUserTimes.push(time);
-       console.log(theDate);
-     }
-     console.log("the times" + JSON.parse(filteredUserTimes[0].times));
-   });*/
    }
- 
-   filterDates() {
-     console.log("In filter Dates");
- 
-     //const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
-     //const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
-     return true;//(dateFrom <= date && dateTo >= date);
-   }
- 
 
-/*
-  getUsersTimeRange(user_id) {
-    this.timeService.getUsersTimeRange(user_id,from,to).subscribe(
-      (data: any) => {
-        this.userTimes = data.times;
-        console.log(this.userTimes);
-      });
-  }
-*/
   editTime(_id) {
     this.router.navigate([`times/edit/${_id}`]);
   }
 
   deleteTime(_id) {
-    console.log("The id is: " +` ${_id}`)
     this.timeService.deleteTime(`${_id}`).subscribe(() => {
      this.getUsersTime(localStorage.getItem('user_id'));
     });

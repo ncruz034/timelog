@@ -57,6 +57,7 @@ import { ProjectDetailComponent } from './components/project/detail/project-deta
 
 import { FilterPipe } from './filter.pipe';
 import { AddressComponent } from './common/address/address.component';
+import { ClientDetailComponent } from './components/clients/detail/client-detail.component';
 
 
 
@@ -95,6 +96,7 @@ import { AddressComponent } from './common/address/address.component';
     FilterPipe,
     AddressComponent,
     ProjectDetailComponent,
+    ClientDetailComponent,
   ],
   imports: [
     NgbModule,

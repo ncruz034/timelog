@@ -63,7 +63,9 @@ export class ClientListComponent implements OnInit {
     console.log('Edditing client id: ' + id);
     this.router.navigate([`clients/edit/${id}`]);
   }
-
+  detailClient(id){
+    this.router.navigate([`clients/detail/${id}`]);
+  }
   deleteClient(id) {
     this.clientService.deleteClient(id).subscribe(() => {
       this.fetchClients();
