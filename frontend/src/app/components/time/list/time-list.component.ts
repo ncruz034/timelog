@@ -20,7 +20,7 @@ export class TimeListComponent implements OnInit {
   @Input() isOrderRequest: Boolean;
   times: Time[];
   userTimes: any[];
-  //filteredUserTimes: any[] =[];
+  
 
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'overTime', 'actions'];
   hoveredDate: NgbDate;
@@ -87,9 +87,9 @@ export class TimeListComponent implements OnInit {
         console.log('dateObject: ' + dateObToJs);
         console.log('jsDAte: ' + jsDate);
 */
-          
+
       });
-      
+
 
       /* (data: Time[]) => {
         this.userTimes = data;
