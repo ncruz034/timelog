@@ -20,6 +20,7 @@ export interface Status {
 export class OrderCreateComponent implements OnInit {
   form: FormGroup;
   order: Order = new Order();
+  latestOrder: Order;
   project_id: String;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private fb: FormBuilder, private router: Router) {
@@ -106,10 +107,15 @@ export class OrderCreateComponent implements OnInit {
     }
 
   ngOnInit() {
+ 
+    console.log("in new Order");
     this.route.params.subscribe( params => {
       this.project_id = params.project_id;
       this.form.get('projectName').setValue(params.projectName);
       this.form.get('clientName').setValue(params.clientName);
+  });
+  this.orderService.getLatestOrder().subscribe((order:Order)=>{
+    console.log('Latest order number: ' + order.orderNumber);
   });
   }
 }

@@ -24,6 +24,15 @@ router.get('/:id', auth, async (req,res) =>{
     res.send(order[0]);
    });
 
+
+router.get('/latest', async (req,res)=>{
+    console.log("getting latest service");
+    const order = await Order.find().sort({_id:-1}).limit(1);
+    if(!order) return res.status(400).send('No latest order available');
+    res.send(order);
+});
+
+
 router.get('/', async (req,res) =>{
     console.log("getting orders with time");
 const orders = await Order.aggregate([
@@ -224,7 +233,6 @@ console.log(order);
   if(!order) return res.status(400).send('The order with the given id is not valid');
  res.send(order);
 }); */
-
 //Get an order by orderNumber and returns the _id.
 /* router.get('/number/:order_number', auth, async (req,res) =>{
     console.log("The order number is: " + req.params.order_number);
