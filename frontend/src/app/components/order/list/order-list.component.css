@@ -47,6 +47,10 @@ table{
 {
 padding-left: 10px;
 }
+.card{
+  padding-left: 100px;
+  padding-right: 100px;
+}
 .card .card
 {
   border-left-color: rgb(19, 68, 230);

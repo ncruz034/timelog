@@ -40,13 +40,12 @@ export class ProjectListComponent implements OnInit {
   filterProjects(){
 
   }
-  addProjectToggle(){
+  addProjectToggle() {
     this.addProject = !this.addProject;
   }
 
-  addNewProject(project_id, projectName, clientName){
-    //this.router.navigate([`projects/new/${id}`]);
-    //this.router.navigate([`projects/create/${project_id}/ ${projectName}/ ${clientName}`]);
+  addNewOrder(project_id, projectName, clientName){
+    this.router.navigate([`orders/create/${project_id}/ ${projectName}/ ${clientName}`]);
   }
 
   fetchProjects() {

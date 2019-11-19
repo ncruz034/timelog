@@ -25,16 +25,17 @@ router.get('/:id', auth, async (req,res) =>{
    });
 
 
-router.get('/latest', async (req,res)=>{
-    console.log("getting latest service");
-    const order = await Order.find().sort({_id:-1}).limit(1);
+router.get('/latest/:last', async (req,res)=>{
+    // console.log("getting latest service");
+    const order = await Order.find().sort({_id:parseInt(req.params.last)}).limit(1);
     if(!order) return res.status(400).send('No latest order available');
     res.send(order);
 });
 
 
 router.get('/', async (req,res) =>{
-    console.log("getting orders with time");
+    // console.log("getting orders with time");
+
 const orders = await Order.aggregate([
         //{ $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
         {

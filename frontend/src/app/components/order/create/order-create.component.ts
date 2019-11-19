@@ -22,6 +22,7 @@ export class OrderCreateComponent implements OnInit {
   order: Order = new Order();
   latestOrder: Order;
   project_id: String;
+  orderNumber: String;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
@@ -102,20 +103,25 @@ export class OrderCreateComponent implements OnInit {
 
     // Save new Order
     this.orderService.addOrder(this.order) .subscribe((order_id: any) => {
-      console.log('this is the order _id ' + order_id);
+      // console.log('this is the order _id ' + order_id);
     });
     }
 
   ngOnInit() {
- 
-    console.log("in new Order");
+
     this.route.params.subscribe( params => {
       this.project_id = params.project_id;
       this.form.get('projectName').setValue(params.projectName);
       this.form.get('clientName').setValue(params.clientName);
   });
-  this.orderService.getLatestOrder().subscribe((order:Order)=>{
-    console.log('Latest order number: ' + order.orderNumber);
+
+
+  this.orderService.getLatestOrder().subscribe((order: Order) => {
+    // console.log('Latest order number: ' + order[0].orderNumber);
+    this.orderNumber = (parseInt(order[0].orderNumber, 0) + 1).toString();
+
+    this.form.get('orderNumber').setValue(this.orderNumber);
+
   });
   }
 }

@@ -89,9 +89,10 @@ router.put('/update/:id',auth, async (req,res) =>{
 
 // Add a new time
 router.post('/', async (req,res) =>{
+    console.log("VAlidating Time");
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-    
+    console.log("After validating time");
     let time = new Time({
         _id: mongoose.Types.ObjectId(),
         date: req.body.date,

@@ -18,9 +18,12 @@ export class OrderService {
   getOrderById(id) {
     return this.http.get(`${this.uri}/orders/${id}`);
   }
-  getLatestOrder(){
-    return this.http.get(`${this.uri}/orders/latest`);
+
+  getLatestOrder() {
+    // console.log('In order services Latest');
+    return this.http.get(`${this.uri}/orders/latest/-1`);
   }
+
   getOrderIdByOrderNumber(order_number) {
     return this.http.get(`${this.uri}/orders/number/${order_number}`);
   }

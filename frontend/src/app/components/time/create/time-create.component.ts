@@ -25,6 +25,7 @@ export class TimeCreateComponent implements OnInit{
   orders: Order[] = null;
   user_id;
   order_id: String;
+ isField: Boolean;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private userService: UserService,
               private timeService: TimeService, private fb: FormBuilder, private router: Router) {
@@ -37,7 +38,7 @@ export class TimeCreateComponent implements OnInit{
                   'orderNumber': [this.time.orderNumber, Validators.required],
                   'description': [this.time.description, Validators.required],
                   'time': [this.time.time, Validators.required],
-                  'overTime': [this.time.overTime],
+                  'overTime': [this.time.overTime, Validators.required],
                   'isField' : [this.time.isField],
                 });
     }
@@ -55,14 +56,16 @@ export class TimeCreateComponent implements OnInit{
     addTime() {
      // this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
             // Add new time to time collection, return the new time _id.
-
+            if(!this.form.value.isField){
+              this.isField = true;
+            }
             this.timeService.addTime(
                   this.form.value.date, this.form.value.orderNumber,
                   this.form.value.order_id, this.form.value.projectName,
                   this.form.value.clientName, this.form.value.description,
                   this.form.value.time,
                   this.form.value.overTime,
-                  this.form.value.isField,
+                  this.isField,
                   localStorage.getItem('user'),
                   localStorage.getItem('user_id')).subscribe((time_id: any) => {
                     this.router.navigate(['/times'])});
