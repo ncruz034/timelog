@@ -1,9 +1,9 @@
 export class Project {
     _id: {};
-    projectName: {type: String };
-    client_id: {type: String };
-    clientName: {type: String };
+    projectName: {type: string };
+    client_id: {type: string };
+    clientName: {type: string };
     date: { type: Date };
-    description: {type: String};
-    status: { type: String};
+    description: {type: string};
+    status: { type: string};
 }

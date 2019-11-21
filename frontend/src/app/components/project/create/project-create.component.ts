@@ -16,7 +16,7 @@ export class ProjectCreateComponent implements OnInit {
 
   form: FormGroup;
   project: Project = new Project();
-  client_id: String;
+  client_id: any;
 
     constructor(private route: ActivatedRoute, private projectService: ProjectService, private fb: FormBuilder, private router: Router) {
       this.form = this.fb.group({
@@ -36,7 +36,21 @@ export class ProjectCreateComponent implements OnInit {
     }
 
     addProject() {
-        this.projectService.addProject(
+      this.project.date = this.form.value.date;
+      this.project.projectName = this.form.value.projectName;
+      this.project.client_id = this.client_id;
+      this.project.clientName = this.form.value.clientName;
+      this.project.description = this.form.value.description;
+      this.project.status = this.form.value.status;
+
+      this.projectService.addProject(this.project)
+         .subscribe((project_id: any) => {
+      });
+      this.router.navigate([`projects/`]);
+  }
+  /*
+    addProject2() {
+        this.projectService.addProject2(
           this.form.value.date, this.form.value.projectName,
           this.client_id, this.form.value.clientName,
           this.form.value.description, this.form.value.status)
@@ -44,4 +58,5 @@ export class ProjectCreateComponent implements OnInit {
         });
         this.router.navigate([`projects/`]);
     }
+    */
 }

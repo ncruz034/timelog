@@ -13,7 +13,7 @@ const asyncMIddleware = require('../middleware/async');
 router.post('/', auth, async (req,res) =>{
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-   
+   console.log("Client --- ID: " + req.body.client_id);
     let project = new Project({
                            projectName:req.body.projectName,
                            client_id:req.body.client_id,

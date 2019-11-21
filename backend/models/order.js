@@ -35,8 +35,8 @@ invoiceTypedBy: { type: String },
 courierFees: { type: Number },
 applPermitFees: { type: Number },
 isCOD: { type: Boolean },
-orderNumber: { type: String,  required: true },
-fileNumber: { type: String, required: true },
+orderNumber: { type: String},
+fileNumber: { type: String},
 price: { type: Number},
 //time: [{type: mongoose.Schema.ObjectId, ref:'Time'}],
 }));
@@ -49,7 +49,7 @@ function validateOrder(order){
         date: Joi.date(),
         clientName: Joi.string(),
         address: Joi.string(),
-        phoneNumber: Joi.string(),
+        phoneNumber: Joi.string().allow(),
         fieldWorkPromissed: Joi.allow(''),
         printsPromissed: Joi.allow(''),
         projectName: Joi.string(),
@@ -79,8 +79,8 @@ function validateOrder(order){
         applPermitFees: Joi.allow(''),
         isCOD: Joi.allow(''),
         orderNumber: Joi.string(),
-        fileNumber: Joi.string(),
-        price: Joi.number(),
+        fileNumber: Joi.allow(''),
+        price: Joi.allow(''),
     });
 
     return Joi.validate(order, schema);

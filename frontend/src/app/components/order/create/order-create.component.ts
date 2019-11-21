@@ -33,7 +33,7 @@ export class OrderCreateComponent implements OnInit {
       'fieldWorkPromissed': [this.order.fieldWorkPromissed],
       'printsPromissed': [this.order.printsPromissed],
       'projectName': [this.order.projectName, Validators.required],
-      'legalDescription': [this.order.legalDescription],
+      'legalDescription': [this.order.legalDescription, Validators.required],
       'orderPlacedBy': [this.order.orderPlacedBy, Validators.required],
       'orderReceivedBy': [this.order.orderReceivedBy, Validators.required],
       'referToFileNumber': [this.order.referToFileNumber],
@@ -59,12 +59,13 @@ export class OrderCreateComponent implements OnInit {
       'applPermitFees': [this.order.applPermitFees],
       'isCOD': [this.order.isCOD],
       'orderNumber': [this.order.orderNumber, Validators.required],
-      'fileNumber': [this.order.fileNumber, Validators.required],
+      'fileNumber': [this.order.fileNumber],
       'price': [this.order.price],
     });
   }
 
   addOrder() {
+    /*
     this.order.date = this.form.value.date;
     this.order.clientName = this.form.value.clientName;
     this.order.address = this.form.value.address;
@@ -100,11 +101,19 @@ export class OrderCreateComponent implements OnInit {
     this.order.orderNumber = this.form.value.orderNumber;
     this.order.fileNumber = this.form.value.fileNumber;
     this.order.price = this.form.value.price;
+*/
 
-    // Save new Order
-    this.orderService.addOrder(this.order) .subscribe((order_id: any) => {
+    if (!this.form.valid) {
+      this.form.setErrors({invalidLogin: true });
+    } else {
+      // Save new Order
+      this.order = this.form.value;
+      this.orderService.addOrder(this.order).subscribe((order_id: any) => {
       // console.log('this is the order _id ' + order_id);
-    });
+      });
+      this.router.navigate([`orders/`]);
+    }
+
     }
 
   ngOnInit() {

@@ -2,7 +2,10 @@
 
 <div class="card create-form">
     <div class="card-body">
-        <form [formGroup]='form'>
+        <form [formGroup]='form' (ngSubmit)="addOrder()">
+          <div *ngIf="form.errors" class="alert alert-danger">
+              ERROR! Some fields appear to be invalid
+          </div>
             <legend>New Order No. <h2>{{orderNumber}}</h2></legend>
     <hr>
       <div class="row">
@@ -10,7 +13,7 @@
             <div class="form-group">
                 <label class="col-form-label" for="date">DATE</label>
                 <div class="input-group">
-                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #date="ngbDatepicker">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd *" name="date"  ngbDatepicker #date="ngbDatepicker">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="date.toggle()" type="button"></button>
                 </div>
@@ -18,13 +21,13 @@
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="clientName">NAME OF CLIENT</label>
-                <input formControlName="clientName" type="text" class="form-control" placeholder="Name of client" id="clientName">
+                <input formControlName="clientName" type="text" class="form-control" placeholder="Name of client *" id="clientName">
                 <div *ngIf="form.get('clientName').touched && form.get('clientName').invalid" class="alert alert-danger">Client Name is required</div>
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="address">ADDRESS</label>
-                <input formControlName="address" type="text" class="form-control" placeholder="Address" id="address">
+                <input formControlName="address" type="text" class="form-control" placeholder="Address *" id="address">
                 <div *ngIf="form.get('address').touched && form.get('address').invalid" class="alert alert-danger">Address is required</div>
             </div>
 
@@ -32,7 +35,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label class="col-form-label" for="phoneNumber">PHONE</label>
-                <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number" id="phoneNumber">
+                <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number *" id="phoneNumber">
                 <div *ngIf="form.get('phoneNumber').touched && form.get('phoneNumber').invalid" class="alert alert-danger">Phone No. is required</div>
             </div>
 
@@ -62,14 +65,14 @@
 
       <div class="form-group">
           <label class="col-form-label" for="projectName">PROJECT NAME</label>
-          <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name" id="projectName">
+          <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name *" id="projectName">
           <div *ngIf="form.get('projectName').touched && form.get('projectName').invalid" class="alert alert-danger">Project Name is required</div>
       </div>
 
       <hr>
       <div class="form-group">
           <label class="col-form-label" for="legalDescription">LEGAL DESCRIPTION</label>
-          <textarea formControlName="legalDescription" type="text" class="form-control" placeholder="Legal Description" id="legalDescription"></textarea>
+          <textarea formControlName="legalDescription" type="text" class="form-control" placeholder="Legal Description *" id="legalDescription"></textarea>
           <div *ngIf="form.get('legalDescription').touched && form.get('legalDescription').invalid" class="alert alert-danger">Legal Description is required</div>
       </div>
       <hr>
@@ -79,14 +82,14 @@
          <div class="col-md-6">
             <div class="form-group">
                 <label class="col-form-label" for="orderPlacedBy">ORDER PLACED BY</label>
-                <input formControlName="orderPlacedBy" type="text" class="form-control" placeholder="Order Placed By" id="orderPlacedBy">
+                <input formControlName="orderPlacedBy" type="text" class="form-control" placeholder="Order Placed By *" id="orderPlacedBy">
                 <div *ngIf="form.get('orderPlacedBy').touched && form.get('orderPlacedBy').invalid" class="alert alert-danger">Order Placed By is required</div>
             </div>
          </div>
          <div class="col-md-6">
             <div class="form-group">
                 <label class="col-form-label" for="orderReceivedBy">RECEIVED BY</label>
-                <input formControlName="orderReceivedBy" type="text" class="form-control" placeholder="Order received by" id="orderReceivedBy">
+                <input formControlName="orderReceivedBy" type="text" class="form-control" placeholder="Order received by *" id="orderReceivedBy">
                 <div *ngIf="form.get('orderReceivedBy').touched && form.get('orderReceivedBy').invalid" class="alert alert-danger">Order received by is required</div>
             </div>
          </div>
@@ -244,7 +247,7 @@
           <div class="col-md-4">
               <div class="form-group">
                   <label class="col-form-label" for="orderNumber">ORDER No.</label>
-                  <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number" id="orderNumber">
+                  <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number *" id="orderNumber">
                   <div *ngIf="form.get('orderNumber').touched && form.get('orderNumber').invalid" class="alert alert-danger">Order Number is required</div>
               </div>
           </div>
@@ -252,18 +255,19 @@
               <div class="form-group">
                   <label class="col-form-label" for="fileNumber">FILE NO.</label>
                   <input formControlName="fileNumber" type="text" class="form-control" placeholder="File Number" id="fileNumber">
-                  <div *ngIf="form.get('fileNumber').touched && form.get('fileNumber').invalid" class="alert alert-danger">File Number is required</div>
+                  <!--<div *ngIf="form.get('fileNumber').touched && form.get('fileNumber').invalid" class="alert alert-danger">File Number is required</div>-->
               </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="col-form-label" for="price">PRICE $</label>
                     <input formControlName="price" type="text" class="form-control" placeholder="price" id="price">
+                    <div *ngIf="form.get('price').touched && form.get('price').invalid" class="alert alert-danger">The price value is required</div>
                 </div>
             </div>
 
         </div>
-            
+
           </form>
           <div>
             <button  class="btn btn-primary" color = "accent" routerLink="/orders">< Back to Orders</button>

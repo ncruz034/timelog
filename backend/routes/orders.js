@@ -7,26 +7,27 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const {Order, validate} = require('../models/order');
 const { Global } = require('../models/global');
-const asyncMIddleware = require('../middleware/async');
+//const asyncMiddleware = require('../middleware/async');
 const ObjectId = mongoose.Types.ObjectId;
 
 
 
-//Get an order by id
+// Get an order by id
+// router.get('/:id', asyncMiddleware(async (req,res) =>{
 router.get('/:id', auth, async (req,res) =>{
    // console.log("In routes: " + req.params.id);
     //const order = await Order.findById(req.params.id);
-    try {
+   
     const order = await Order.aggregate([
         { $match: {_id: ObjectId(req.params.id)}},
         {$lookup: {from: 'times',localField:'orderNumber',foreignField: 'orderNumber', as: 'time'}}]);
+
      //check if there is any error
-     if(!order) return res.status(400).send('The order with the given id is not valid');
+     if(!order) {
+         return res.status(400).send('The order with the given id is not valid');
+        }
     res.send(order[0]);
-    }
-    catch (ex) {
-        next(ex);
-    }
+
    });
 
 
@@ -41,10 +42,11 @@ router.get('/latest/:last', async (req,res)=>{
 router.get('/', async (req,res) =>{
     // console.log("getting orders with time");
 
+try {
 const orders = await Order.aggregate([
         //{ $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
         {
-            $lookup: {
+           $lookup: {
                 from: 'times', 
                 localField:'orderNumber', 
                 foreignField:'orderNumber', 
@@ -52,15 +54,26 @@ const orders = await Order.aggregate([
             }
         }
        //{$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
-    ]).exec((err, result)=>{
+    ]);
+    res.send(orders);
+}
+catch (ex) {
+    res.status(500).send('Error! Something failed on our end, try again later.');
+}
+    /*.exec((err, result)=>{
         if (err) {
             console.log("error" ,err)
         }
         if (result) {
-            console.log(result);
+            //console.log(result);
             res.send(result);
         }
-  });//populate({path:'time', model:'Time', select:['date','description','time']});
+        
+  });*/
+  
+});
+  
+  //populate({path:'time', model:'Time', select:['date','description','time']});
                                                         // populate:{path:'user',model:"User",select:['name','last']}});
 /*
 if(!orders) return res.status(400).send('The order with the given id is not valid');
@@ -74,8 +87,11 @@ let counter=0;
     }    
     console.log('The time is: ' + counter);
 res.send(orders);
-*/
+
 });
+*/
+
+
 
 //Register a new Order; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{

@@ -29,7 +29,6 @@ export class OrderDetailComponent implements OnInit {
               private orderService: OrderService,
               http: HttpClient, router: Router) { }
 
-
     ngOnInit() {
       this.route.params.subscribe(params => {
         this.id = params.id;
@@ -37,8 +36,7 @@ export class OrderDetailComponent implements OnInit {
         .subscribe(
           (order: Order) => {
             this.order = order;
-
-
+            if (this.order) {
             for (this.time of this.order.time) {
               if (!this.time.isField) {
                 this.officeRegTimeCounter += Number(this.time.time);
@@ -58,7 +56,11 @@ export class OrderDetailComponent implements OnInit {
             }
             this.officeTotalHours = this.officeRegTimeCounter + this.officeOvrTimeCounter;
             this.fieldTotalHours = this.fieldRegTimeCounter + this.fieldOvrTimeCounter;
+          } else {
+            console.log('No order available!');
+          }
         });
+
         });
     }
   }
