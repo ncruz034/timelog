@@ -42,10 +42,11 @@
             <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" id="phoneNumber">
             <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="alert alert-danger">Phone number is required</div>
           </div>
-
+        </form>    
+        <div>
           <button routerLink="/clients" class="btn btn-primary">Back</button>
           <button type="submit" class="btn btn-success" [disabled]="form.pristine" (click)="addClient()">Submit</button>
-        </form>    
+        </div>
   </div>
 </div>
 

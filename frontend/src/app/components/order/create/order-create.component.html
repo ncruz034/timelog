@@ -263,8 +263,11 @@
             </div>
 
         </div>
-            <button  class="btn btn-primary" color = "accent" routerLink="/orders">Back</button>
-            <button class="btn btn-success" type="submit" (click)="addOrder()" [disabled]="form.pristine"  >Save</button>
+            
           </form>
+          <div>
+            <button  class="btn btn-primary" color = "accent" routerLink="/orders">< Back to Orders</button>
+            <button class="btn btn-success" type="submit" (click)="addOrder()" [disabled]="form.pristine"  >Save</button>
+          </div>
     </div>
 </div>

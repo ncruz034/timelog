@@ -35,9 +35,10 @@
                 <input formControlName="status" type="text" class="form-control" placeholder="Status" id="status">
                 <div *ngIf="form.get('status').touched && form.get('status').invalid" class="alert alert-danger">Status is required</div>
               </div>
-
-            <button routerLink="/projects" class="btn btn-primary">Back</button>
-            <button type="submit" class="btn btn-success" [disabled]="form.pristine" (click)="addProject()">Submit</button>
           </form>
+          <div>
+              <button routerLink="/clients" class="btn btn-primary">Back</button>
+              <button type="submit" class="btn btn-success" [disabled]="form.pristine" (click)="addProject()">Submit</button>
+          </div>
     </div>
   </div>

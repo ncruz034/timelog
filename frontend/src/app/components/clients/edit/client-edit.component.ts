@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ClientService } from '../../../services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import {DatePipe } from '@angular/common';
 //import {MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-edit',
   templateUrl: './client-edit.component.html',
-  styleUrls: ['./client-edit.component.css']
+  styleUrls: ['./client-edit.component.css'],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}, DatePipe]
 })
 
 export class ClientEditComponent implements OnInit {
@@ -49,12 +53,11 @@ export class ClientEditComponent implements OnInit {
       this.clientService.getClientById(this.id).subscribe(res => {
         this.client = res;
         this.form.get('clientName').setValue(this.client.clientName);
-        this.form.get('date').setValue(this.client.date);
+        this.form.get('date').setValue(new Date(this.client.date));
         this.form.get('address').setValue(this.client.address);
         this.form.get('phone').setValue(this.client.phone);
         this.form.get('contact').setValue(this.client.contact);
       });
     });
   }
-
 }

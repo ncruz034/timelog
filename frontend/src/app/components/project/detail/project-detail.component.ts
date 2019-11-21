@@ -21,12 +21,12 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params.id;
-      console.log(this.id);
+     // console.log(this.id);
       this.projectService.getProjectById(this.id)
       .subscribe(
         (project: Project) => {
           this.project = project;
-         console.log(this.project);
+       //  console.log(this.project);
       });
 
       });

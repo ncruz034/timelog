@@ -11,13 +11,14 @@
             <div class="form-group">
                 <label class="col-form-label" for="date">Date</label>
                 <div class="input-group">
-                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #d="ngbDatepicker">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  id="date" ngbDatepicker #d="ngbDatepicker">
                 <div class="input-group-append">
 
                   <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
                 </div>
                 </div>
             </div>
+
 
             <div class="form-group">
                 <label class="col-form-label" for="address">Address</label>
@@ -32,14 +33,17 @@
               </div>
 
             <div class="form-group">
-              <label class="col-form-label" for="phoneNumber">Phone Number</label>
-              <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" id="phoneNumber">
+              <label class="col-form-label" for="phone">Phone Number</label>
+              <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" id="phone">
               <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="alert alert-danger">Phone number is required</div>
             </div>
 
-            <button routerLink="/clients" class="btn btn-primary">Back</button>
-            <button type="submit"  class="btn btn-success" (click)="editClient()">Submit</button>
+            
           </form>
+          <div>
+              <button routerLink="/clients" class="btn btn-primary">Back</button>
+              <button type="submit"  class="btn btn-success" (click)="editClient()">Submit</button>
+          </div>
     </div>
   </div>
 

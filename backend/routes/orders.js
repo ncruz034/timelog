@@ -14,14 +14,19 @@ const ObjectId = mongoose.Types.ObjectId;
 
 //Get an order by id
 router.get('/:id', auth, async (req,res) =>{
-    console.log("In routes: " + req.params.id);
+   // console.log("In routes: " + req.params.id);
     //const order = await Order.findById(req.params.id);
+    try {
     const order = await Order.aggregate([
         { $match: {_id: ObjectId(req.params.id)}},
         {$lookup: {from: 'times',localField:'orderNumber',foreignField: 'orderNumber', as: 'time'}}]);
      //check if there is any error
      if(!order) return res.status(400).send('The order with the given id is not valid');
     res.send(order[0]);
+    }
+    catch (ex) {
+        next(ex);
+    }
    });
 
 

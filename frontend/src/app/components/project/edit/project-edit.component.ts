@@ -44,9 +44,9 @@ export class ProjectEditComponent implements OnInit {
          clientName: this.project.clientName,
          date: this.project.date,
          description: this.form.value.description,
-         status: this.project.status,
+         status: this.form.value.status,
        };
-       console.log("The project to be edited: " + updatedProject.projectName);
+        console.log("The project to be edited: " + updatedProject.projectName + updatedProject.status + updatedProject.description);
        
      this.projectService.editProject(this.id, updatedProject).subscribe(() => {
        /* this.snackBar.open('Order updated succesfully', 'OK', {
@@ -55,6 +55,7 @@ export class ProjectEditComponent implements OnInit {
        this.router.navigate(['/projects']);
      });
    }
+   
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params.id;
