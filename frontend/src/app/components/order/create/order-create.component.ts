@@ -65,56 +65,17 @@ export class OrderCreateComponent implements OnInit {
   }
 
   addOrder() {
-    /*
-    this.order.date = this.form.value.date;
-    this.order.clientName = this.form.value.clientName;
-    this.order.address = this.form.value.address;
-    this.order.phoneNumber = this.form.value.phoneNumber;
-    this.order.fieldWorkPromissed = this.form.value.fieldWorkPromissed;
-    this.order.printsPromissed = this.form.value.printsPromissed;
-    this.order.projectName = this.form.value.projectName;
-    this.order.legalDescription = this.form.value.legalDescription;
-    this.order.orderPlacedBy = this.form.value.orderPlacedBy;
-    this.order.orderReceivedBy = this.form.value.orderReceivedBy;
-    this.order.referToFileNumber = this.form.value.referToFileNumber;
-    this.order.referToFieldBookNumber = this.form.value.referToFieldBookNumber;
-    this.order.referToOrderNumber = this.form.value.referToOrderNumber;
-    this.order.fieldBook = this.form.value.fieldBook;
-    this.order.page = this.form.value.page;
-    this.order.section = this.form.value.section;
-    this.order.township = this.form.value.township;
-    this.order.range = this.form.value.range;
-    this.order.partyChief = this.form.value.partyChief;
-    this.order.dateCompleted = this.form.value.dateCompleted;
-    this.order.mail = this.form.value.mail;
-    this.order.deliver = this.form.value.deliver;
-    this.order.pickup = this.form.value.pickup;
-    this.order.mailPrintsTo = this.form.value.mailPrintsTo;
-    this.order.deliverPrintsTo = this.form.value.deliverPrintsTo;
-    this.order.printsAtTime = this.form.value.printsAtTime;
-    this.order.dateInvoice = this.form.value.dateInvoice;
-    this.order.amountSetBy = this.form.value.amountSetBy;
-    this.order.invoiceTypedBy = this.form.value.invoiceTypedBy;
-    this.order.courierFees = this.form.value.courierFees;
-    this.order.applPermitFees = this.form.value.applPermitFees;
-    this.order.isCOD = this.form.value.isCOD;
-    this.order.orderNumber = this.form.value.orderNumber;
-    this.order.fileNumber = this.form.value.fileNumber;
-    this.order.price = this.form.value.price;
-*/
-
+    
     if (!this.form.valid) {
-      this.form.setErrors({invalidLogin: true });
+      this.form.setErrors({invalidAddOrder: true });
     } else {
-      // Save new Order
-      this.order = this.form.value;
-      this.orderService.addOrder(this.order).subscribe((order_id: any) => {
-      // console.log('this is the order _id ' + order_id);
-      });
-      this.router.navigate([`orders/`]);
+        // Save new Order
+        this.order = this.form.value;
+        this.orderService.addOrder(this.order).subscribe((order_id: any) => {});
+        this.router.navigate([`orders/`]);
+      }
     }
 
-    }
 
   ngOnInit() {
 

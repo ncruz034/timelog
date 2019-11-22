@@ -32,22 +32,7 @@ export class TimeService {
     return this.http.get(`${this.uri}/times/order/${order_id}`);
   }
 
-
-  addTime(date, orderNumber, order_id, projectName, clientName, description, time, overTime, isField, userName, user_id) {
-    const newTime = {
-      date: date,
-      orderNumber: orderNumber,
-      order_id: order_id,
-      projectName: projectName,
-      clientName: clientName,
-      description: description,
-      time: time,
-      overTime: overTime,
-      isField: isField,
-      userName: userName,
-      user_id: user_id
-    };
-    console.log(newTime);
+  addTime(newTime) {
     return this.http.post(`${this.uri}/times`, newTime);
   }
 

@@ -19,26 +19,25 @@ export class ProjectEditComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private fb: FormBuilder,
     private router: Router, private route: ActivatedRoute) {
-      this.form = this.fb.group({
+     /* this.form = this.fb.group({
         projectName: ['', Validators.required],
-        //date: ['', Validators.required],
         description: ['', Validators.required],
         status: ['', Validators.required],
       });
-      //this.createForm();
-     }
+     }*/
 
-    /*  createForm() {
+    
       this.form = this.fb.group({
-        projectName: ['', Validators.required],
-        date: ['', Validators.required],
-        description: ['', Validators.required],
-        status: ['', Validators.required],
+        'projectName': [this.project.projectName, Validators.required],
+        //'date': [this.project.date, Validators.required],
+        'description': [this.project.description, Validators.required],
+        'status': [this.project.status, Validators.required],
       });
-  } */
+    }
 
   editProject() {
        const updatedProject = {
+
          projectName: this.form.value.projectName,
          client_id: this.project.client_id,
          clientName: this.project.clientName,
@@ -46,7 +45,7 @@ export class ProjectEditComponent implements OnInit {
          description: this.form.value.description,
          status: this.form.value.status,
        };
-        console.log("The project to be edited: " + updatedProject.projectName + updatedProject.status + updatedProject.description);
+       
        
      this.projectService.editProject(this.id, updatedProject).subscribe(() => {
        /* this.snackBar.open('Order updated succesfully', 'OK', {

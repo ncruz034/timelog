@@ -1,59 +1,60 @@
 
 <div class="card bg-light">
     <div class="card-body">
-        <form [formGroup]='form'>
+        <form [formGroup]='form' (ngSubmit)="addTime()">
+            <div *ngIf="form.errors" class="alert alert-danger">
+                ERROR! Some fields appear to be invalid
+            </div>
             <h5>Add New Time</h5>
 
             <div class="form-group">
                 <label class="col-form-label" for="orderNumber">Order Number</label>
-                <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number" id="orderNumber">
-                <div *ngIf="form.get('orderNumber').touched && form.get('orderNumber').invalid" class="alert alert-danger">Order Number is required</div>
+                <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number *" id="orderNumber">
+                <div *ngIf="(form.get('orderNumber').touched && form.get('orderNumber').invalid) || (form.get('orderNumber').invalid && form.errors)" class="alert alert-danger">Order Number is required</div>
             </div>
-            <!--
-            <div class="form-group">
-                <label class="col-form-label" for="order_id">Order Id</label>
-                <input formControlName="order_id" type="text" class="form-control" placeholder="Order Id" id="order_id">
-                <div *ngIf="form.get('order_id').touched && form.get('order_id').invalid" class="alert alert-danger">Order Id is required</div>
-            </div>
-          -->
+
             <div class="form-group">
                 <label class="col-form-label" for="projectName">Project Name</label>
-                <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name" id="projectName">
-                <div *ngIf="form.get('projectName').touched && form.get('projectName').invalid" class="alert alert-danger">Project Name is required</div>
+                <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name *" id="projectName">
+                <div *ngIf="(form.get('projectName').touched && form.get('projectName').invalid) || (form.get('projectName').invalid && form.errors)" class="alert alert-danger">Project Name is required</div>
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="clientName">Client Name</label>
-                <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name" id="clientName">
-                <div *ngIf="form.get('clientName').touched && form.get('clientName').invalid" class="alert alert-danger">Client Name is required</div>
+                <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name *" id="clientName">
+                <div *ngIf="(form.get('clientName').touched && form.get('clientName').invalid) || (form.get('clientName').invalid && form.errors)" class="alert alert-danger">Client Name is required</div>
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="date">Date</label>
                 <div class="input-group">
-                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #d="ngbDatepicker">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd *" name="date"  ngbDatepicker #d="ngbDatepicker">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
                 </div>
                 </div>
+                <div *ngIf="(form.get('date').touched && form.get('date').invalid) || (form.get('date').invalid && form.errors)" class="alert alert-danger">Client Name is required</div>
+
             </div>
-
-
 
             <div class="form-group">
                 <label class="col-form-label" for="description">Description</label>
-                <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-                <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+                <input formControlName="description" type="text" class="form-control" placeholder="Description *" id="description">
+                <div *ngIf="(form.get('description').touched && form.get('description').invalid) || (form.get('description').invalid && form.errors)" class="alert alert-danger">Description is required</div>
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="time">Regular Time</label>
-                <input formControlName="time" type="text" class="form-control" placeholder="Time" id="time">
-                <div *ngIf="form.get('time').touched && form.get('time').invalid" class="alert alert-danger">The time is required</div>
+                <input formControlName="time" type="text" class="form-control" placeholder="Time *" id="time">
+                <div *ngIf="(form.get('time').touched && form.get('time').invalid) || (form.get('time').invalid && form.errors)" class="alert alert-danger">The time is required 
+                    if you don't have Regular Time please add a 0. This will not be required on the next version of the software
+                </div>
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="overTime">Over Time</label>
-                <input formControlName="overTime" type="text" class="form-control" placeholder="Over Time" id="overTime">
-                <div *ngIf="form.get('overTime').touched && form.get('overTime').invalid" class="alert alert-danger">The Overt Time is required</div>
+                <input formControlName="overTime" type="text" class="form-control" placeholder="Over Time *" id="overTime">
+                <div *ngIf="(form.get('overTime').touched && form.get('overTime').invalid) || (form.get('overTime').invalid && form.errors)" class="alert alert-danger">The Overt Time is required
+                  if you don't have overtime please add a 0. This will not be required on the next version of the software
+                </div>
             </div>
 
             <div class="form-group">
@@ -68,50 +69,3 @@
           </form>
     </div>
   </div>
-
-
-
-
-<!-- <div>
-  <br>
-  <mat-card>
-    <section class = "mat-typography>">
-      <h3> New Time</h3>
-    </section>
-
-    <mat-divider></mat-divider>
-
-    <br>
-    <div >
-    <form [formGroup]="createForm" class="create-form">
-
-
-      <mat-form-field>
-          <input matInput [matDatepicker]="date"
-            formControlName="date" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-          <mat-datepicker #date></mat-datepicker>
-      </mat-form-field>
-
-
-      <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Order Number" formControlName="orderNumber" #orderNumber>
-        </mat-form-field>
-
-      <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Description" formControlName="description" #description>
-      </mat-form-field>
-
-      <mat-form-field class="field-full-with">
-        <input matInput placeholder = "Time" formControlName="time" #time>
-      </mat-form-field>
-
-      <mat-divider></mat-divider>
-    </form>
-      <br><br>
-      <button mat-raised-button color = "accent" routerLink="/times">Back</button>
-      <button type="submit" (click)="addTime()"  [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
-    </div>
-  </mat-card>
-</div>
- -->

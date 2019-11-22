@@ -42,11 +42,15 @@ export class ProjectCreateComponent implements OnInit {
       this.project.clientName = this.form.value.clientName;
       this.project.description = this.form.value.description;
       this.project.status = this.form.value.status;
-
-      this.projectService.addProject(this.project)
-         .subscribe((project_id: any) => {
-      });
-      this.router.navigate([`projects/`]);
+      if (!this.form.valid) {
+       this.form.setErrors({invalidAddProject: true});
+      } else {
+        this.projectService.addProject(this.project)
+        .subscribe((project_id: any) => {
+     });
+     this.router.navigate([`projects/`]);
+      }
+      
   }
   /*
     addProject2() {

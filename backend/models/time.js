@@ -27,11 +27,10 @@ function validateTime(time){
         clientName: Joi.required(),
         description: Joi.string().min(3).required(),
         time: Joi.number().required(),
-        overTime: Joi.number().allow(''),
+        overTime: Joi.number().required(),
         isField: Joi.boolean().allow(''),
         userName: Joi.string().required(),
         user_id: Joi.required(),
-        //isField: Joi.bool(),
     };
     return Joi.validate(time, schema);
     //check if there is any error

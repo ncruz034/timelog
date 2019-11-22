@@ -11,14 +11,8 @@ export class ClientService {
   constructor(private http: HttpClient) { }
 
 
-  addClient(clientName, date, address, phone, contact) {
-    const newClient = {
-      clientName: clientName,
-      date: date,
-      address: address,
-      phone: phone,
-      contact: contact,
-    };
+  addClient(newClient) {
+   
     return this.http.post(`${this.uri}/clients`, newClient);
   }
 

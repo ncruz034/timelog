@@ -13,14 +13,6 @@ import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap
 })
 export class ClientCreateComponent {
 
-  /* form = new FormGroup({
-    clientName: new FormControl('',[Validators.required]),
-    date: new FormControl('',[Validators.required]),
-    address: new FormControl('',[Validators.required]),
-    phone: new FormControl('',[Validators.required]),
-    contact: new FormControl('',[Validators.required])
-  }) */
-
   get clientName(){ return this.form.get('clientName');}
 
 form: FormGroup;
@@ -38,14 +30,13 @@ client: Client = new Client();
   }
 
   addClient() {
-    console.log(this.form.value.date);
-      this.clientService.addClient(
-        this.form.value.clientName, this.form.value.date, this.form.value.address,
-        this.form.value.phone, this.form.value.contact)
-         .subscribe((order_id: any) => {
-           
+    if (!this.form.valid ) {
+      this.form.setErrors({invalidAddTime: true });
+    } else {
+      this.clientService.addClient(this.form.value).subscribe((order_id: any) => {     
         });
         this.router.navigate([`clients/`]);
       }
+    }   
   }
 
