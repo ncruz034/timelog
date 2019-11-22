@@ -42,6 +42,7 @@ export class ProjectCreateComponent implements OnInit {
       this.project.clientName = this.form.value.clientName;
       this.project.description = this.form.value.description;
       this.project.status = this.form.value.status;
+      
       if (!this.form.valid) {
        this.form.setErrors({invalidAddProject: true});
       } else {
@@ -50,17 +51,5 @@ export class ProjectCreateComponent implements OnInit {
      });
      this.router.navigate([`projects/`]);
       }
-      
   }
-  /*
-    addProject2() {
-        this.projectService.addProject2(
-          this.form.value.date, this.form.value.projectName,
-          this.client_id, this.form.value.clientName,
-          this.form.value.description, this.form.value.status)
-           .subscribe((project_id: any) => {
-        });
-        this.router.navigate([`projects/`]);
-    }
-    */
 }

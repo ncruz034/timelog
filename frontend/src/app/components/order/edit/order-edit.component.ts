@@ -85,20 +85,17 @@ export class OrderEditComponent implements OnInit {
                   'fileNumber': [this.order.fileNumber, Validators.required],
                   'price': [this.order.price],
                 });
-
     }
-
 
     editOrder() {
-    if (!this.form.valid ) {
-      this.form.setErrors({invalidEditOrder: true });
-    } else {
-      this.orderService.editOrder(this.id, this.form.value).subscribe(() => {
-        //this.snackBar.open('Order updated succesfully', 'OK', {duration: 3000});
-        this.router.navigate(['/orders']);
-      });
-    }
-     
+      if (!this.form.valid ) {
+        this.form.setErrors({invalidEditOrder: true });
+      } else {
+        this.orderService.editOrder(this.id, this.form.value).subscribe(() => {
+          //this.snackBar.open('Order updated succesfully', 'OK', {duration: 3000});
+          this.router.navigate(['/orders']);
+        });
+      }
     }
 
 

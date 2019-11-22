@@ -12,7 +12,6 @@ export class ClientService {
 
 
   addClient(newClient) {
-   
     return this.http.post(`${this.uri}/clients`, newClient);
   }
 

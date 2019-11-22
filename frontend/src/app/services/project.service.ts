@@ -30,31 +30,8 @@ export class ProjectService {
     return this.http.post(`${this.uri}/projects/${project_id}/time`, updatedProjectOrder);
   }
 
-
-  addProject2(date, projectName, client_id, clientName, description, status) {
-    const newProject = {
-      date: date,
-      projectName: projectName,
-      client_id: client_id,
-      clientName: clientName,
-      description: description,
-      status: status
-    };
-
-    return this.http.post(`${this.uri}/projects`, newProject);
-  }
-
   addProject(project) {
-    const newProject = {
-      date: project.date,
-      projectName: project.projectName,
-      client_id: project.client_id,
-      clientName: project.clientName,
-      description: project.description,
-      status: project.status
-    };
-    console.log("Client ID: " + newProject.client_id);
-    return this.http.post(`${this.uri}/projects`, newProject);
+    return this.http.post(`${this.uri}/projects`, project);
   }
   /* deleteProject(_id, time_id) {
     return this.http.delete(`${this.uri}/projects/${_id}/time/${time_id}`);

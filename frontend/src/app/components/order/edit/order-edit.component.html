@@ -2,7 +2,10 @@
 
 <div class="card create-form">
     <div class="card-body">
-        <form [formGroup]='form'>
+        <form [formGroup]='form' (ngSubmit)="editOrder()">
+            <div *ngIf="form.errors" class="alert alert-danger">
+                ERROR! Some fields appear to be invalid
+            </div>
             <legend>Edit Order</legend>
     <hr>
       <div class="row">
@@ -265,7 +268,7 @@
 
         </div>
             <button  class="btn btn-primary" type="button" color = "accent" routerLink="/orders">Back</button>
-            <button class="btn btn-success" type="button" (click)="editOrder()" [disabled]="form.pristine"  >Save</button>
+            <button class="btn btn-success" type="button" (click)="editOrder()" [disabled]="!form.valid">Save</button>
           </form>
     </div>
   </div>

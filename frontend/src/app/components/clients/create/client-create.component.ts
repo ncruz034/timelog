@@ -18,9 +18,8 @@ export class ClientCreateComponent {
 form: FormGroup;
 client: Client = new Client();
   constructor(private clientService: ClientService, private fb: FormBuilder, private router: Router) { }
-
-   ngOnInit() {
-    this.form = this.fb.group({
+  ngOnInit() {
+      this.form = this.fb.group({
       clientName: [this.client.clientName, Validators.required],
       date: [this.client.date, Validators.required],
       address: [this.client.address, Validators.required],
@@ -33,10 +32,9 @@ client: Client = new Client();
     if (!this.form.valid ) {
       this.form.setErrors({invalidAddTime: true });
     } else {
-      this.clientService.addClient(this.form.value).subscribe((order_id: any) => {     
-        });
-        this.router.navigate([`clients/`]);
+      this.clientService.addClient(this.form.value).subscribe((order_id: any) => {});
+      this.router.navigate([`clients/`]);
       }
-    }   
+    }
   }
 

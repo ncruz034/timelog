@@ -30,21 +30,13 @@ export class ClientEditComponent implements OnInit {
       });
      }
 
-     editClient(date, address, phone, contact) {
-      const updatedClient = {
-        clientName: this.form.value.clientName,
-        date: this.form.value.date,
-        address: this.form.value.address,
-        phone: this.form.value.phone,
-        contact: this.form.value.contact,
-      };
-
-     this.clientService.editClient(this.id, updatedClient).subscribe(() => {
-      // this.snackBar.open('Time updated succesfully', 'OK', {
-      //   duration: 3000
-      // });
-       this.router.navigate(['/clients']);
-     });
+     editClient() {
+      if (!this.form.valid ) {
+        this.form.setErrors({invalidAddTime: true });
+      } else {
+        this.clientService.editClient(this.id, this.form.value).subscribe(() => {});
+        this.router.navigate(['/clients']);
+      }
    }
 
   ngOnInit() {
