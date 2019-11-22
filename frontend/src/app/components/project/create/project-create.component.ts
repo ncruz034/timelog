@@ -24,29 +24,24 @@ export class ProjectCreateComponent implements OnInit {
         'clientName': [this.project.clientName, Validators.required],
         'date': [this.project.date, Validators.required],
         'description': [this.project.description, Validators.required],
-        'status': [this.project.status, Validators.required]
+        'status': [this.project.status, Validators.required],
+        'client_id': [this.project.client_id]
       });
      }
 
      ngOnInit() {
       this.route.params.subscribe( params => {
         this.client_id = params.client_id;
+        this.form.get('client_id').setValue(params.client_id);
         this.form.get('clientName').setValue(params.clientName);
      });
     }
 
     addProject() {
-      this.project.date = this.form.value.date;
-      this.project.projectName = this.form.value.projectName;
-      this.project.client_id = this.client_id;
-      this.project.clientName = this.form.value.clientName;
-      this.project.description = this.form.value.description;
-      this.project.status = this.form.value.status;
-
       if (!this.form.valid) {
        this.form.setErrors({invalidAddProject: true});
       } else {
-        this.projectService.addProject(this.project)
+        this.projectService.addProject(this.form.value)
         .subscribe((project_id: any) => {
      });
      this.router.navigate([`projects/`]);

@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-form-label" for="time">Regular Time</label>
                 <input formControlName="time" type="text" class="form-control" placeholder="Time *" id="time">
-                <div *ngIf="(form.get('time').touched && form.get('time').invalid) || (form.get('time').invalid && form.errors)" class="alert alert-danger">The time is required 
+                <div *ngIf="(form.get('time').touched && form.get('time').invalid) || (form.get('time').invalid && form.errors)" class="alert alert-danger">The time is required
                     if you don't have Regular Time please add a 0. This will not be required on the next version of the software
                 </div>
             </div>
@@ -65,7 +65,7 @@
             </div>
 
             <button  class="btn btn-primary" type="button" color = "accent" routerLink="/orders">Back</button>
-            <button class="btn btn-success"  type="submit" (click)="addTime()" [disabled]="form.pristine" >Save</button>
+            <button class="btn btn-success"  type="button" (click)="addTime()" [disabled]="form.pristine" >Save</button>
           </form>
     </div>
   </div>

@@ -23,8 +23,6 @@ router.get('/:id', auth, async (req,res) =>{
      res.send(time);
 });
 
-
-
 // Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
     const data = {
@@ -93,26 +91,7 @@ router.post('/', async (req,res) =>{
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     console.log("After validating time");
-    let time = new Time({
-        _id: mongoose.Types.ObjectId(),
-        date: req.body.date,
-        order_id: req.body.order_id,       //The _id of the work order on which work was prformed
-        orderNumber: req.body.orderNumber,
-        projectName: req.body.projectName,
-        clientName: req.body.clientName,
-        description: req.body.description, //What type of work was done on this job
-        time:req.body.time,                //How much time was invested in this job
-        overTime:req.body.overTime,
-        isField: req.body.isField,
-        userName: req.body.userName,
-        user_id: req.body.user_id          //The _id of the user that work on the job
-    });
-    /*
-    const order = await order.find({orderNumber: req.body.orderId},function(err,order){
-        if(err) return console.log("Error saving time to order...");
-        order.time.push(req.body.user_id);
-    });
-    */
+    let time = new Time(req.body);
     time = await time.save();
     res.send(time._id);
 });

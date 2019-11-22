@@ -30,6 +30,30 @@ router.get('/:id', auth, async (req,res) =>{
 
    });
 
+//================================================================
+/*
+router.get('/', async (req,res) =>{
+
+try {
+const orders = await Order.aggregate([
+        {
+           $lookup: {
+                from: 'times', 
+                localField:'orderNumber', 
+                foreignField:'orderNumber', 
+                as: 'time'
+            }
+        }
+    ]);
+    res.send(orders);
+}
+catch (ex) {
+    res.status(500).send('Error! Something failed on our end, try again later.');
+} 
+});
+*/
+//================================================================
+
 
 router.get('/latest/:last', async (req,res)=>{
     // console.log("getting latest service");
@@ -40,9 +64,7 @@ router.get('/latest/:last', async (req,res)=>{
 
 
 router.get('/', async (req,res) =>{
-    // console.log("getting orders with time");
 
-try {
 const orders = await Order.aggregate([
         //{ $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
         {
@@ -55,12 +77,7 @@ const orders = await Order.aggregate([
         }
        //{$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
     ]);
-    res.send(orders);
-}
-catch (ex) {
-    res.status(500).send('Error! Something failed on our end, try again later.');
-}
-    /*.exec((err, result)=>{
+    res.send(orders).exec((err, result)=>{
         if (err) {
             console.log("error" ,err)
         }
@@ -69,8 +86,7 @@ catch (ex) {
             res.send(result);
         }
         
-  });*/
-  
+  });
 });
   
   //populate({path:'time', model:'Time', select:['date','description','time']});
@@ -96,51 +112,9 @@ res.send(orders);
 //Register a new Order; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{
     const {error} = validate(req.body);
-
     if (error) return res.status(400).send(error.details[0].message);
-   
-    console.log('Saving order');
-
-    let order = new Order({
-      date: req.body.date,
-      clientName:req.body.clientName,
-      address:req.body.address,
-      phoneNumber:req.body.phoneNumber,
-      fieldWorkPromissed:req.body.fieldWorkPromissed,
-      printsPromissed:req.body.printsPromissed,
-      projectName:req.body.projectName,
-      legalDescription:req.body.legalDescription,
-      orderPlacedBy:req.body.orderPlacedBy,
-      orderReceivedBy:req.body.orderReceivedBy,
-      referToFileNo:req.body.referToFileNumber,
-      referToFieldBookNo:req.body.referToFieldBookNumber,
-      referToOrderNumber:req.body.referToOrderNumber,
-      fieldBook:req.body.fieldBook,
-      page:req.body.page,
-      section:req.body.section,
-      township:req.body.township,
-      range:req.body.range,
-      partyChief:req.body.partyChief,
-      dateCompleted:req.body.dateCompleted,
-      mail:req.body.mail,
-      deliver:req.body.deliver,
-      pickup:req.body.pickup,
-      mailPrintsTo:req.body.mailPrintsTo,
-      deliverPrintsTo:req.body.deliverPrintsTo,
-      printsAtTime:req.body.printsAtTime,
-      dateInvoice:req.body.dateInvoice,
-      amountSetBy:req.body.amountSetBy,
-      invoiceTypedBy:req.body.invoiceTypedBy,
-      courierFees:req.body.courierFees,
-      applPermitFees:req.body.applPermitFees,
-      isCOD:req.body.isCOD,
-      orderNumber:req.body.orderNumber,
-      fileNumber:req.body.fileNumber,
-      price:req.body.price
-    });
-    
-    order = await order.save();
-    console.log('After saving order');
+    let order = new Order(req.body);  
+    order = await order.save(); 
     res.send(order);
 });
 

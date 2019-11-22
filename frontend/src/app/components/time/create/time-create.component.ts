@@ -59,22 +59,25 @@ export class TimeCreateComponent implements OnInit{
     addTime() {
       // this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
              // Add new time to time collection, return the new time _id.
-            
-             if(!this.form.value.isField){this.form.get('isField').setValue(false);}
+
+             if (!this.form.value.isField) {
+               this.form.get('isField').setValue(false);
+              }
              this.form.get('userName').setValue(localStorage.getItem('user'));
              this.form.get('user_id').setValue(localStorage.getItem('user_id'));
-            
-             if(!this.form.valid) {
+
+             if (!this.form.valid) {
                this.form.setErrors({invalidAddTime: true });
              } else {
                this.timeService.addTime(this.form.value).subscribe((time_id: any) => {
-                   this.router.navigate(['/times'])});
+                  });
+                  this.router.navigate(['/times']);
              }
-            
+
      }
     }
 
-    
+
     // Gets the order _id by passing an orderNumber; then,
     // Adds new time to the time collection passing the order _id, and user _id; then,
     // Adds new time _id to the current user's document; then,

@@ -26,3 +26,14 @@ table{
 .custom-day.faded {
   background-color: rgba(2, 117, 216, 0.5);
 }
+
+.card {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding-left: 100px;
+  padding-right: 100px;
+}

@@ -36,6 +36,7 @@ export class OrderDetailComponent implements OnInit {
         .subscribe(
           (order: Order) => {
             this.order = order;
+
             if (this.order) {
             for (this.time of this.order.time) {
               if (!this.time.isField) {
@@ -43,7 +44,6 @@ export class OrderDetailComponent implements OnInit {
               } else {
                 this.fieldRegTimeCounter += Number(this.time.time);
               }
-
             }
 
             for (this.ovrTime of this.order.time) {
@@ -52,7 +52,6 @@ export class OrderDetailComponent implements OnInit {
               } else {
                 this.fieldOvrTimeCounter += Number(this.time.time);
               }
-
             }
             this.officeTotalHours = this.officeRegTimeCounter + this.officeOvrTimeCounter;
             this.fieldTotalHours = this.fieldRegTimeCounter + this.fieldOvrTimeCounter;
