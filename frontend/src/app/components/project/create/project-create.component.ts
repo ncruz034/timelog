@@ -12,7 +12,7 @@ import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class ProjectCreateComponent implements OnInit {
-  get projectName(){ return this.form.get('projectName');}
+  get projectName() { return this.form.get('projectName'); }
 
   form: FormGroup;
   project: Project = new Project();
@@ -42,7 +42,7 @@ export class ProjectCreateComponent implements OnInit {
       this.project.clientName = this.form.value.clientName;
       this.project.description = this.form.value.description;
       this.project.status = this.form.value.status;
-      
+
       if (!this.form.valid) {
        this.form.setErrors({invalidAddProject: true});
       } else {
