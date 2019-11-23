@@ -10,7 +10,7 @@ const admin = require('../middleware/admin');
 router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('date').populate('order',['orderNumber'],'Order');
-        console.log("the time is here: " + time);
+        //console.log("the time is here: " + time);
         res.send(times);
 });
 
@@ -19,9 +19,42 @@ router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
      //check if there is any error
      if(!time) return res.status(400).send('The time with the given symbol is not valid');
-    console.log("the time is here: " + time);
+   // console.log("the time is here: " + time);
      res.send(time);
 });
+
+
+router.get('/weekly/:user_id', auth, async (req, res,) => {
+    console.log("In Weekly Route" + req.params.user_id);
+    try {
+        const times = await Time.aggregate([
+            { $match: {user_id: req.params.id}},
+            /*{ 
+                "$project": {
+                    "createdAtWeek": { "$week": "$date" },
+                    "createdAtMonth": { "$month": "$date" },
+                    "rating": 1
+                }
+            },
+            {
+                 "$group": {
+                     "_id": "$createdAtWeek",
+                     "regularTime": { "$sum": "time" },
+                     "overTime": { "$sum": "overTime"},
+                     "month": { "$first": "$createdAtMonth"}
+                 }
+            }*/
+        ])
+    
+        //check if there is any error
+        if(!time) return res.status(400).send('The time with the given symbol is not valid');
+         console.log("the time is here: " + time);
+          res.send(time);
+    } catch(ex) {
+        res.status(500).send('Error! Something failed on our end, try again later.');
+    }
+    
+})
 
 // Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
@@ -87,10 +120,10 @@ router.put('/update/:id',auth, async (req,res) =>{
 
 // Add a new time
 router.post('/', async (req,res) =>{
-    console.log("VAlidating Time");
+    //console.log("VAlidating Time");
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-    console.log("After validating time");
+   // console.log("After validating time");
     let time = new Time(req.body);
     time = await time.save();
     res.send(time._id);
@@ -98,7 +131,7 @@ router.post('/', async (req,res) =>{
 
 // Delete a time
 router.delete('/delete/:id', async (req,res) =>{
-    console.log("Deletting Order id" + req.params.id);
+    //console.log("Deletting Order id" + req.params.id);
     const time = await Time.findByIdAndRemove(req.params.id);
     if(!time) return res.status(404).send('The time was not found');
     res.send(req.params.di);

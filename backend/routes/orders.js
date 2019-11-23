@@ -30,8 +30,9 @@ router.get('/:id', auth, async (req,res) =>{
 
    });
 
+   
 //================================================================
-/*
+
 router.get('/', async (req,res) =>{
 
 try {
@@ -51,7 +52,7 @@ catch (ex) {
     res.status(500).send('Error! Something failed on our end, try again later.');
 } 
 });
-*/
+
 //================================================================
 
 
@@ -62,9 +63,8 @@ router.get('/latest/:last', async (req,res)=>{
     res.send(order);
 });
 
-
+/*
 router.get('/', async (req,res) =>{
-
 const orders = await Order.aggregate([
         //{ $match: { client: "BROAD AND CASSEL, P.A. AND STACY HALPEN"}},
         {
@@ -77,6 +77,7 @@ const orders = await Order.aggregate([
         }
        //{$lookup: {from: 'times',localField:'_id',foreignField: 'order', as: 'time'}}
     ]);
+
     res.send(orders).exec((err, result)=>{
         if (err) {
             console.log("error" ,err)
@@ -89,6 +90,8 @@ const orders = await Order.aggregate([
   });
 });
   
+*/
+
   //populate({path:'time', model:'Time', select:['date','description','time']});
                                                         // populate:{path:'user',model:"User",select:['name','last']}});
 /*
