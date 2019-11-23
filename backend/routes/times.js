@@ -24,7 +24,7 @@ router.get('/:id', auth, async (req,res) =>{
 });
 
 
-router.get('/weekly/:user_id', auth, async (req, res,) => {
+router.get('/weekly/:user_id', auth, async (req, res) => {
     console.log("In Weekly Route" + req.params.user_id);
     try {
         const times = await Time.aggregate([
