@@ -58,6 +58,7 @@ import { ProjectDetailComponent } from './components/project/detail/project-deta
 import { FilterPipe } from './filter.pipe';
 import { AddressComponent } from './common/address/address.component';
 import { ClientDetailComponent } from './components/clients/detail/client-detail.component';
+import { TimeWeeklyComponent } from './components/time/time-weekly/time-weekly.component';
 
 
 
@@ -97,6 +98,7 @@ import { ClientDetailComponent } from './components/clients/detail/client-detail
     AddressComponent,
     ProjectDetailComponent,
     ClientDetailComponent,
+    TimeWeeklyComponent,
   ],
   imports: [
     NgbModule,
