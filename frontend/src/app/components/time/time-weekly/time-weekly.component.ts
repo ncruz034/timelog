@@ -19,7 +19,9 @@ export class TimeWeeklyComponent implements OnInit {
 
   ngOnInit() {
     console.log("Getting user weekly time =====================")
-    this.getUsersWeeklyTime(localStorage.getItem('user_id'))
+    console.log("User Id: " + localStorage.getItem('user_id'));
+    this.getUsersWeeklyTime(localStorage.getItem('user_id'));
+    
   }
 
   getUsersWeeklyTime(user_id) {

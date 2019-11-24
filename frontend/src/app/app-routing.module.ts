@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TimeListComponent } from './components/time/list/time-list.component';
 import { TimeCreateComponent } from './components/time/create/time-create.component';
 import { TimeEditComponent } from './components/time/edit/time-edit.component';
+import { TimeWeeklyComponent } from './components/time/time-weekly/time-weekly.component';
 
 import { OrderListComponent } from './components/order/list/order-list.component';
 import { OrderCreateComponent } from './components/order/create/order-create.component';
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent},
   {path: 'times/create/:order_id/:projectName/:clientName/:orderNumber', component: TimeCreateComponent},
+  {path: 'times/weekly', component: TimeWeeklyComponent},
   {path: 'auth', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'clients-dashboard', component: ClientsDashboardComponent},
