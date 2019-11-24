@@ -28,9 +28,8 @@ export class TimeWeeklyComponent implements OnInit {
     console.log("In weekly function");
     this.timeService.getUsersWeeklyTime(user_id).subscribe(
       (data: any) => {
-        this.userTimes = data.times;
+        this.userTimes = data;
         console.log(this.userTimes);
-
       });
     }
 }
