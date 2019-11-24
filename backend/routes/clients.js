@@ -25,7 +25,7 @@ router.post('/', auth, async (req,res) =>{
     res.send(client);
 });
 
-router.get('/', async (req,res) =>{
+router.get('/', auth, async (req,res) =>{
     const clients = await Client.find();
     if(!clients) return res.status(400).send('The order with the given id is not valid');
     res.send(clients);

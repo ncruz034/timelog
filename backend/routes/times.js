@@ -24,38 +24,70 @@ router.get('/:id', auth, async (req,res) =>{
 });
 
 
-router.get('/weekly/:user_id', auth, async (req, res) => {
+router.get('/order', auth, async (req, res) => {
     console.log("In Weekly Route" + req.params.user_id);
     try {
-        const times = await Time.aggregate([
-            { $match: {user_id: req.params.id}},
-            /*{ 
-                "$project": {
-                    "createdAtWeek": { "$week": "$date" },
-                    "createdAtMonth": { "$month": "$date" },
-                    "rating": 1
+        const time = await Time.aggregate([
+            { $match: {user_id: req.params.user_id}},
+            { 
+                $project: {
+                    "createdAtWeek": { $week: "$date" },
+                    "createdAtMonth": { $month: "$date" },
+                    "time": "$time",
+                    "overTime": "$overTime"
                 }
             },
             {
-                 "$group": {
+                 $group: {
                      "_id": "$createdAtWeek",
-                     "regularTime": { "$sum": "time" },
-                     "overTime": { "$sum": "overTime"},
-                     "month": { "$first": "$createdAtMonth"}
+                     "time": { $sum: "$time" },
+                     "overTime": { $sum: "$overTime"},
+                     "month": { $first: "$createdAtMonth"}
                  }
-            }*/
-        ])
+            }
+        ] )
     
         //check if there is any error
         if(!time) return res.status(400).send('The time with the given symbol is not valid');
-         console.log("the time is here: " + time);
+         console.log("the time is here: " + time[0].user_id);
           res.send(time);
     } catch(ex) {
         res.status(500).send('Error! Something failed on our end, try again later.');
     }
-    
 })
 
+router.get('/weekly/:user_id', auth, async (req, res) => {
+    try {
+        const time = await Time.aggregate([
+            { $match: {}},
+            { 
+                $project: {
+                    "createdAtWeek": { $week: "$date" },
+                    "createdAtMonth": { $month: "$date" },
+                    "time": "$time",
+                    "overTime": "$overTime",
+                    "orderNumber": "$orderNumber"
+                }
+            },
+            {
+                 $group: {
+                     "_id": "$orderNumber",
+                     "time": { $sum: "$time" },
+                     "overTime": { $sum: "$overTime"},
+                     "week": { $first: "$createdAtWeek"},
+                     "month": { $first: "$createdAtMonth"}
+                 }
+            }
+        ] )
+    
+        //check if there is any error
+        if(!time) return res.status(400).send('The time with the given symbol is not valid');
+         console.log("the time is here: " + time[0].user_id);
+          res.send(time);
+    } catch(ex) {
+        res.status(500).send('Error! Something failed on our end, try again later.');
+    }
+})
 // Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
     const data = {
