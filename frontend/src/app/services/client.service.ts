@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
-
+import {theUri} from '../config/config';
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  uri = 'http://localhost:3000/api';
+  uri = theUri;
 
   constructor(private http: HttpClient) { }
 
