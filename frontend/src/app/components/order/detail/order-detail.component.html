@@ -1,5 +1,4 @@
 
-
 <ngb-tabset [justify]="currentJustify">
     <ngb-tab>
         <ng-template ngbTabTitle><b>ORDER</b></ng-template>
@@ -7,8 +6,7 @@
 
 <div *ngIf="order">
     <div>
-    <div class='row'>
-
+    <div class='row top-padding'>
       <div class="col-3 left">
         <p>BROWARD: 954-435-7010</p>
         <p>Dade: 305-652-7010</p>
@@ -39,34 +37,32 @@
   <!--Beginning Client Info-->
     <div class="row top-padding">
       <div class="col-6 left">
-        <h4>DATE</h4>
+        <h4>DATE</h4> {{order.date | date}}
       </div>
       <div class="col-6 right">
         <h4>PHONE</h4> {{order.phoneNumber}}
       </div>
     </div>
+    <hr>
     <div class="row">
       <div class="col left">
         <h4>NAME OF CLIENT</h4> {{order.clientName}}
         <h4>ADDRESS</h4> {{order.address}}
       </div>
     </div>
+    <hr>
     <div class="row top-padding">
       <div class="col-6 left">
-        <h5>LEGAL DESCRIPTION AND SPECIAL INSTRUCTIONS</h5>
+        <h4>LEGAL DESCRIPTION AND SPECIAL INSTRUCTIONS</h4> {{order.legalDescription}}
       </div>
-      <div class="col-3 right">
-        <h5>FIELD WORK PROMISSED  </h5>
-        <H5>PRINTS PROMISSED</H5>
-      </div>
-      <div class="col-3">
-          {{order.fieldWorkPromissed}}
-          {{order.printsPromissed}}
+      <div class="col-6 left">
+        <h4>FIELD WORK PROMISSED</h4>{{order.fieldWorkPromissed}}
+        <h4>PRINTS PROMISSED</h4>{{order.printsPromissed}}
       </div>
     </div>
-    <div class="row left top-padding">
-      <p>{{order.legalDescription}}</p>
-    </div>
+   
+<hr>
+
     <div class="row top-padding">
       <div class="col-6 left">
           <h4>ORDER PLACED BY</h4>{{order.orderPlacedBy}}
@@ -76,31 +72,52 @@
       </div>
 
       <div class="col-6 left">
-        <h4>FB</h4> {{order.fieldBook}}
-        <h4>PG</h4> {{order.page}}
-        <h4>SEC</h4> {{order.section}}
-        <h4>TWP</h4> {{order.township}}
-        <h4>RGE</h4> {{order.range}}
-        <h4>PARTY CHIEF</h4> {{order.partyChief}}
-        <h4>DATE COMPLEDED</h4> {{order.dateCompleted}}
+        <div class="row">
+            <div class="col-6 left">
+                <h4>FB</h4> {{order.fieldBook}}
+              </div>
+              <div class="col-6 left">
+                <h4>PG</h4> {{order.page}}
+              </div>
+        </div>
+        <div class="row top-padding">
+            <div class="col-4 left">
+              <h4>SEC</h4> {{order.section}}
+            </div>
+            <div class="col-4 left">
+              <h4>TWP</h4> {{order.township}}
+            </div>
+            <div class="col-4 left">
+              <h4>RGE</h4> {{order.range}}
+            </div>
+        </div>
+        <div class="row top-padding">
+          <div class="col-6 left">
+              <h4>PARTY CHIEF</h4> {{order.partyChief}}
+          </div>
+          <div class="col-6 left">
+              <h4>DATE COMPLEDED</h4> {{order.dateCompleted | date}}
+          </div>
+        </div>
       </div>
+     
     </div>
-
-    <div class="row left top-padding">
-      <div class="col-4 ">
+    <hr>
+    <div class="row top-padding">
+      <div class="col-4 left">
         <h4>MAIL</h4> {{order.mail}}
         <h4>DELIVER</h4> {{order.deliver}}
         <h4>PICK UP</h4> {{order.pickup}}
         <h4>COURIER FEES</h4> {{order.courierFees}}
       </div>
-      <div class="col-4 ">
+      <div class="col-4 left">
         <h4>PRINTS TO</h4> {{order.mailPrintsTo}}
         <h4>PRINTS TO</h4> {{order.deliverPrintsTo}}
         <h4>PRINTS AT (TIME)</h4> {{order.printsAtTime}}
         <h4>APPL/PERMIT FEES</h4> {{order.applPermitFees}}
       </div>
-      <div class="col-4">
-        <h4>DATE INVOICE</h4> {{order.dateInvoice}}
+      <div class="col-4 left">
+        <h4>DATE INVOICE</h4> {{order.dateInvoice | date}}
         <h4>AMOUNT SET BY</h4> {{order.amountSetBy}}
         <h4>INVOICE TYPED BY</h4> {{order.invoiceTypedBy}}
         <h4>COD</h4> {{order.isCOD}}
@@ -109,23 +126,31 @@
 
   </div>
 
-     <div *ngIf="order">
-        {{order.orderNumber}}
-     </div>
-      </ng-template>
-
+  </ng-template>
     </ngb-tab>
-
-    <!--Field Information-->
+    <!--Office Information-->
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
       <ng-template ngbTabContent >
 
-        <ul *ngFor="let time of order.time;">
-          <li>{{time.date | date}} {{time.projectName}} {{time.description}} {{time.clientName}} {{time.userName}} {{time.time}}</li>
-        </ul>
+        <div *ngFor="let time of order.time;">
+          <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-3">
+              
+            </div>
+              <div class="col-3">
+              
+                </div>
+          </div>
+          <h4>{{time.date | date}} {{time.projectName}} {{time.description}} {{time.clientName}} {{time.userName}} {{time.time}}</h4>
+        </div>
       </ng-template>
     </ngb-tab>
+
+    <!--Field Information-->
     <ngb-tab>
       <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
       <ng-template ngbTabContent>
