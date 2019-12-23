@@ -1,20 +1,46 @@
+<div class="card" style="border:none">
+    <legend>Times</legend>
+</div>
 <div class="card">
   <div class="card-body">
-      <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/create"></i></h1>
-      <div *ngFor="let key of userTimes" >
+    <!--<h1><i class="fas fa-plus-circle pointerCursor" routerLink="/create"></i></h1>-->
+    <div class="card">
+    <div>
+      <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+      </ngb-datepicker>
+
+      <ng-template #t let-date let-focused="focused">
+        <span class="custom-day"
+              [class.focused]="focused"
+              [class.range]="isRange(date)"
+              [class.faded]="isHovered(date) || isInside(date)"
+              (mouseenter)="hoveredDate = date"
+              (mouseleave)="hoveredDate = null">
+           {{ date.day }}
+        </span>
+      </ng-template>
+    </div>
+    </div>
+    <hr>
+    <div>
+        <app-time-weekly></app-time-weekly>
+    </div>
+      <div *ngFor="let key of filteredDates" >
           <zippy title="{{key._id.date | date}}">
 
               <table class="table table-hover">
                   <tr>
                     <th>Order</th>
                     <th>Description</th>
-                    <th>Time</th>
+                    <th>RG Time</th>
+                    <th>OV Time</th>
                     <th>Actions</th>
                   </tr>
                   <tr *ngFor="let data of key.times" >
                     <td>{{data.orderNumber}}</td>
                     <td>{{data.description}}</td>
                     <td>{{data.time}}</td>
+                    <td>{{data.overTime}}</td>
                     <td>
                         <div class="form-group form-inline" >
                             <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>

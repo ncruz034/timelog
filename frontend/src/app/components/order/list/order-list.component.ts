@@ -3,6 +3,7 @@ import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
 import { Order } from '../../../models/order.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Time } from 'src/app/models/timeDetail';
 
 
 @Component({
@@ -41,13 +42,13 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchOrders();
-
   }
 
   getOrderId(id) {
     this.currentOrderId = id;
   }
 
+  
   fetchOrders() {
     this.orderService.getOrders().subscribe(
       (data: Order[]) => {
@@ -64,6 +65,7 @@ export class OrderListComponent implements OnInit {
       }
     );
   }
+
 
   editOrder(id) {
     this.router.navigate([`orders/edit/${id}`]);

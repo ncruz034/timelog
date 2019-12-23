@@ -10,6 +10,7 @@ const admin = require('../middleware/admin');
 router.get('/',auth,  async (req, res,) => {
        // throw new Error({error:'Error'});
         const times = await Time.find().sort('date').populate('order',['orderNumber'],'Order');
+        //console.log("the time is here: " + time);
         res.send(times);
 });
 
@@ -18,23 +19,92 @@ router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
      //check if there is any error
      if(!time) return res.status(400).send('The time with the given symbol is not valid');
-    res.send(time);
+   // console.log("the time is here: " + time);
+     res.send(time);
 });
 
+
+router.get('/order', auth, async (req, res) => {
+    console.log("In Weekly Route" + req.params.user_id);
+    try {
+        const time = await Time.aggregate([
+            { $match: {user_id: req.params.user_id}},
+            { 
+                $project: {
+                    "createdAtWeek": { $week: "$date" },
+                    "createdAtMonth": { $month: "$date" },
+                    "time": "$time",
+                    "overTime": "$overTime"
+                }
+            },
+            {
+                 $group: {
+                     "_id": "$createdAtWeek",
+                     "time": { $sum: "$time" },
+                     "overTime": { $sum: "$overTime"},
+                     "month": { $first: "$createdAtMonth"}
+                 }
+            }
+        ] )
+    
+        //check if there is any error
+        if(!time) return res.status(400).send('The time with the given symbol is not valid');
+         console.log("the time is here: " + time[0].user_id);
+          res.send(time);
+    } catch(ex) {
+        res.status(500).send('Error! Something failed on our end, try again later.');
+    }
+})
+
+router.get('/weekly/:user_id', auth, async (req, res) => {
+    try {
+        const time = await Time.aggregate([
+            { $match: {}},
+            { 
+                $project: {
+                    "createdAtWeek": { $week: "$date" },
+                    "createdAtMonth": { $month: "$date" },
+                    "time": "$time",
+                    "overTime": "$overTime",
+                    "orderNumber": "$orderNumber"
+                }
+            },
+            {
+                 $group: {
+                     "_id": "$orderNumber",
+                     "time": { $sum: "$time" },
+                     "overTime": { $sum: "$overTime"},
+                     "week": { $first: "$createdAtWeek"},
+                     "month": { $first: "$createdAtMonth"}
+                 }
+            }
+        ] )
+    
+        //check if there is any error
+        if(!time) return res.status(400).send('The time with the given symbol is not valid');
+         console.log("the time is here: " + time[0].user_id);
+          res.send(time);
+    } catch(ex) {
+        res.status(500).send('Error! Something failed on our end, try again later.');
+    }
+})
 // Get all times for a user
 router.get('/user/:user_id',auth,  async (req, res,) => {
     const data = {
-        times:[],orders:[]
+         times:[],
+        orders:[]
     }
+
     // throw new Error({error:'Error'});
     const times =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
             times: {
-                $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
+                $push:{_id:"$_id", time:"$time", overTime:"$overTime", description:"$description",orderNumber:"$orderNumber", isField:"$isField"}
             }
     }}
     ]);
+
     const byOrders =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
         {"$group":
@@ -82,34 +152,18 @@ router.put('/update/:id',auth, async (req,res) =>{
 
 // Add a new time
 router.post('/', async (req,res) =>{
+    //console.log("VAlidating Time");
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-    
-    let time = new Time({
-        _id: mongoose.Types.ObjectId(),
-        date: req.body.date,
-        order_id: req.body.order_id,       //The _id of the work order on which work was prformed
-        orderNumber: req.body.orderNumber,
-        projectName: req.body.projectName,
-        clientName: req.body.clientName,
-        description: req.body.description, //What type of work was done on this job
-        time:req.body.time,                //How much time was invested in this job
-        userName: req.body.userName,
-        user_id: req.body.user_id          //The _id of the user that work on the job
-    });
-    /*
-    const order = await order.find({orderNumber: req.body.orderId},function(err,order){
-        if(err) return console.log("Error saving time to order...");
-        order.time.push(req.body.user_id);
-    });
-    */
+   // console.log("After validating time");
+    let time = new Time(req.body);
     time = await time.save();
     res.send(time._id);
 });
 
 // Delete a time
 router.delete('/delete/:id', async (req,res) =>{
-    console.log("Deletting Order id" + req.params.id);
+    //console.log("Deletting Order id" + req.params.id);
     const time = await Time.findByIdAndRemove(req.params.id);
     if(!time) return res.status(404).send('The time was not found');
     res.send(req.params.di);

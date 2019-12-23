@@ -1,5 +1,6 @@
 
 export class Order {
+_id: {};
 date: { type: Date };
 clientName: { type: String };
 address: { type: String };

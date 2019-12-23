@@ -1,0 +1,47 @@
+<div class="card" style="border:none">
+    <legend>Project Details</legend>
+</div>
+<div class="card" style="border:none">
+<ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle><b>PROJECT</b></ng-template>
+      <ng-template ngbTabContent>
+        <div class="container">
+           <div *ngIf="project">
+                <div class="card">
+                  <div class="card-body">
+                    <!--Beginning Client Info-->
+                    <h5><div class="card-title"> PROJECT INFORMATION</div></h5>
+                    <h5>Project Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.projectName}}</h6>
+                    <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.date | date}}</h6>
+                    <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.clientName}}</h6>
+                    <h5>Description:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
+                  </div>
+                </div>
+           </div>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+
+      <ngb-tab>
+        <ng-template ngbTabTitle><b>OVERVIEW</b></ng-template>
+        <ng-template ngbTabContent >
+          <div class="container top-padding">
+            <p>Statistics about this project will be displayed in this area.</p>
+          </div>
+        </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle><b>NOTES</b></ng-template>
+          <ng-template ngbTabContent>
+          <div class="container">
+            <p>Notes about this project will be logged in this area</p>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+    <div>
+    <button  class="btn btn-primary" color = "accent" routerLink="/projects">Back</button>
+    </div>
+</div>

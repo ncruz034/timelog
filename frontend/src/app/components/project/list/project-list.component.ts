@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class ProjectListComponent implements OnInit {
 
-  addOrder = false;
+  addProject = false;
   public projectname = 'The Project';
   projects: Project[];
   filteredProjects: Project[];
@@ -40,12 +40,11 @@ export class ProjectListComponent implements OnInit {
   filterProjects(){
 
   }
-  addOrderToggle(){
-    this.addOrder = !this.addOrder;
+  addProjectToggle() {
+    this.addProject = !this.addProject;
   }
 
   addNewOrder(project_id, projectName, clientName){
-    //this.router.navigate([`projects/new/${id}`]);
     this.router.navigate([`orders/create/${project_id}/ ${projectName}/ ${clientName}`]);
   }
 
@@ -66,8 +65,11 @@ export class ProjectListComponent implements OnInit {
   }
 
   editProject(id) {
-    console.log('Edditing project id: ' + id);
     this.router.navigate([`projects/edit/${id}`]);
+  }
+
+  detailProject(id) {
+    this.router.navigate([`projects/detail/${id}`]);
   }
 
   deleteProject(id) {

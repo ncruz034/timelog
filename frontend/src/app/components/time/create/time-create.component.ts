@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Order } from '../../../models/order.model';
 import { Time } from '../../../models/time.model';
 import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import { Type } from '@angular/compiler';
 //import { MomentModule } from 'ngx-moment';
 
 
@@ -25,6 +26,7 @@ export class TimeCreateComponent implements OnInit{
   orders: Order[] = null;
   user_id;
   order_id: String;
+ isField: Boolean;
 
   constructor(private route: ActivatedRoute, private orderService: OrderService, private userService: UserService,
               private timeService: TimeService, private fb: FormBuilder, private router: Router) {
@@ -37,6 +39,10 @@ export class TimeCreateComponent implements OnInit{
                   'orderNumber': [this.time.orderNumber, Validators.required],
                   'description': [this.time.description, Validators.required],
                   'time': [this.time.time, Validators.required],
+                  'overTime': [this.time.overTime, Validators.required],
+                  'isField' : [this.time.isField],
+                  'userName' : [this.time.userName],
+                  'user_id': [this.time.user_id],
                 });
     }
 
@@ -51,20 +57,27 @@ export class TimeCreateComponent implements OnInit{
     }
 
     addTime() {
-     // this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
-            // Add new time to time collection, return the new time _id.
+      // this.orderService.getOrderIdByOrderNumber(this.form.value.orderNumber).subscribe((order_id: any) => {
+             // Add new time to time collection, return the new time _id.
 
-            this.timeService.addTime(
-                  this.form.value.date, this.form.value.orderNumber,
-                  this.form.value.order_id, this.form.value.projectName,
-                  this.form.value.clientName, this.form.value.description,
-                  this.form.value.time,
-                  localStorage.getItem('user'),
-                  localStorage.getItem('user_id')).subscribe((time_id: any) => {
-                    this.router.navigate(['/times'])});
-     // });
+             if (!this.form.value.isField) {
+               this.form.get('isField').setValue(false);
+              }
+             this.form.get('userName').setValue(localStorage.getItem('user'));
+             this.form.get('user_id').setValue(localStorage.getItem('user_id'));
+
+             if (!this.form.valid) {
+               this.form.setErrors({invalidAddTime: true });
+             } else {
+               this.timeService.addTime(this.form.value).subscribe((time_id: any) => {
+                  });
+                  this.router.navigate(['/times']);
+             }
+
+     }
     }
-  }
+
+
     // Gets the order _id by passing an orderNumber; then,
     // Adds new time to the time collection passing the order _id, and user _id; then,
     // Adds new time _id to the current user's document; then,

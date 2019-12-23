@@ -13,7 +13,16 @@ import { Time } from '../../../models/time.model';
 export class OrderDetailComponent implements OnInit {
   order: Order;
   id: '';
+  time: Time;
+  ovrTime: Time;
   times: Time[];
+  officeRegTimeCounter = 0;
+  fieldRegTimeCounter = 0;
+  officeOvrTimeCounter = 0;
+  fieldOvrTimeCounter = 0;
+  officeTotalHours = 0;
+  fieldTotalHours = 0;
+
   displayedColumns = ['date', 'user', 'description', 'time'];
   currentJustify = 'fill';
   constructor(private route: ActivatedRoute,
@@ -27,8 +36,26 @@ export class OrderDetailComponent implements OnInit {
         .subscribe(
           (order: Order) => {
             this.order = order;
-           console.log(this.order);
-          });
+            if (this.order) {
+              for (this.time of this.order.time) {
+                if(this.time.isField){
+                  this.fieldRegTimeCounter += Number(this.time.time);
+                  this.fieldOvrTimeCounter += Number(this.time.overTime)
+                }else{
+                  console.log('Office Reg: ' + this.officeRegTimeCounter  + ' + ' + this.time.time)
+                  this.officeRegTimeCounter += Number(this.time.time);
+                  console.log('Office Over: ' + this.officeOvrTimeCounter  + ' + ' + this.time.overTime)
+                  this.officeOvrTimeCounter += Number(this.time.overTime);
+                }
+              }
+
+            this.officeTotalHours = this.officeRegTimeCounter + this.officeOvrTimeCounter;
+            this.fieldTotalHours = this.fieldRegTimeCounter + this.fieldOvrTimeCounter;
+        
+          } else {
+            console.log('No order available!');
+          }
+        });
 
         });
     }

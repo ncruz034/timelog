@@ -4,7 +4,10 @@
     min-width: 150px;
     width:auto;
 }
-
-.field-full-width{
-    width: auto;
+.card{
+  padding: 100px;
 }
+.field-full-width{
+    width: 50%;
+}
+

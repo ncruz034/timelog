@@ -1,38 +1,30 @@
 <div class="card">
     <div class="card-body">
-        <form [formGroup]='form'>
-            <legend>Edit Project Details</legend>
+        <form [formGroup]='form' (ngSubmit)="editProject()">
+            <div *ngIf="form.errors" class="alert alert-danger">
+                ERROR! Some field(s) appear to be invalid
+            </div>
+            <legend>Edit Project</legend>
             <div class="form-group">
               <label class="col-form-label" for="projectName">Project Name</label>
-              <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name"  id="projectName">
-              <div *ngIf="form.get('projectName').touched && form.get('projectName').invalid" class="alert alert-danger">Project name is required</div>
+              <input formControlName="projectName" type="text" class="form-control" placeholder="Project *"  id="projectName">
+              <div *ngIf="(form.get('projectName').touched && form.get('projectName').invalid) || (form.get('projectName').invalid && form.errors)" class="alert alert-danger">Project name is required</div>
             </div>
-
-            <!-- <div class="form-group">
-                <label class="col-form-label" for="date">Date</label>
-                <div class="input-group">
-                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd" name="date"  ngbDatepicker #d="ngbDatepicker">
-                <div class="input-group-append">
-
-                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
-                </div>
-                </div>
-            </div> -->
 
             <div class="form-group">
                 <label class="col-form-label" for="description">Description</label>
-                <input formControlName="description" type="text" class="form-control" placeholder="Description" id="description">
-                <div *ngIf="form.get('description').touched && form.get('description').invalid" class="alert alert-danger">Description is required</div>
+                <input formControlName="description" type="text" class="form-control" placeholder="Description *" id="description">
+                <div *ngIf="(form.get('description').touched && form.get('description').invalid) || (form.get('description').invalid && form.errors)" class="alert alert-danger">Description is required</div>
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" for="status">Status</label>
-                <input formControlName="status" type="text" class="form-control" placeholder="Status" id="status">
-                <div *ngIf="form.get('status').touched && form.get('status').invalid" class="alert alert-danger">Status is required</div>
+                <input formControlName="status" type="text" class="form-control" placeholder="Status *" id="status">
+                <div *ngIf="(form.get('status').touched && form.get('status').invalid) || (form.get('status').invalid && form.errors)" class="alert alert-danger">Status is required</div>
             </div>
 
-            <button routerLink="/projects" class="btn btn-primary">Back</button>
-            <button type="submit" class="btn btn-success" (click)="editProject()">Submit</button>
           </form>
+          <button type="submit" routerLink="/projects" class="btn btn-primary">Back</button>
+          <button type="submit" class="btn btn-success" (click)="editProject()"  [disabled]="!form.valid">Submit</button>
     </div>
   </div>

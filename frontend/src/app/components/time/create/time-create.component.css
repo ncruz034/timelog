@@ -3,9 +3,11 @@
     flex-direction:column;
     min-width: 150px;
     width:auto;
-    
-}
 
+}
+.card{
+  padding: 100px;
+}
 .field-full-width{
     width: 50%;
 }

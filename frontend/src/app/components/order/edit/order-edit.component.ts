@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import {DatePipe } from '@angular/common';
 //import {MatSnackBar } from '@angular/material';
-import { Order } from '../../../models/order.model';
+//import { Order } from '../../../models/order.model';
 
 export interface Billed {
   value: boolean;
@@ -85,55 +85,17 @@ export class OrderEditComponent implements OnInit {
                   'fileNumber': [this.order.fileNumber, Validators.required],
                   'price': [this.order.price],
                 });
-
     }
 
     editOrder() {
-      const order = {
-      date: this.form.value.date,
-      clientName: this.form.value.clientName,
-      address: this.form.value.address,
-      phoneNumber: this.form.value.phoneNumber,
-      fieldWorkPromissed: this.form.value.fieldWorkPromissed,
-      printsPromissed: this.form.value.printsPromissed,
-      projectName: this.form.value.projectName,
-      legalDescription: this.form.value.legalDescription,
-      orderPlacedBy: this.form.value.orderPlacedBy,
-      orderReceivedBy: this.form.value.orderReceivedBy,
-      referToFileNumber: this.form.value.referToFieldBookNumber,
-      referToFieldBookNumber: this.form.value.referToFieldBookNumber,
-      referToOrderNumber: this.form.value.referToOrderNumber,
-      fieldBook: this.form.value.fieldBook,
-      page: this.form.value.page,
-      section: this.form.value.section,
-      township: this.form.value.township,
-      range: this.form.value.range,
-      partyChief: this.form.value.partyChief,
-      dateCompleted: this.form.value.dateCompleted,
-      mail: this.form.value.mail,
-      deliver: this.form.value.deliver,
-      pickup: this.form.value.pickup,
-      mailPrintsTo: this.form.value.mailPrintsTo,
-      deliverPrintsTo: this.form.value.deliverPrintsTo,
-      printsAtTime: this.form.value.printsAtTime,
-      dateInvoice: this.form.value.dateInvoice,
-      amountSetBy: this.form.value.amountSetBy,
-      invoiceTypedBy: this.form.value.invoiceTypedBy,
-      courierFees: this.form.value.courierFees,
-      applPermitFees: this.form.value.applPermitFees,
-      isCOD: this.form.value.isCOD,
-      orderNumber: this.form.value.orderNumber,
-      fileNumber: this.form.value.fileNumber,
-      price: this.form.value.price
-        };
-      this.orderService.editOrder(this.id, order).subscribe(() => {
-        console.log(this.order.isCOD);
-        console.log(this.order.projectName);
-        /* this.snackBar.open('Order updated succesfully', 'OK', {
-          duration: 3000
-        }); */
-        this.router.navigate(['/orders']);
-      });
+      if (!this.form.valid ) {
+        this.form.setErrors({invalidEditOrder: true });
+      } else {
+        this.orderService.editOrder(this.id, this.form.value).subscribe(() => {
+          //this.snackBar.open('Order updated succesfully', 'OK', {duration: 3000});
+          this.router.navigate(['/orders']);
+        });
+      }
     }
 
 
@@ -144,7 +106,6 @@ export class OrderEditComponent implements OnInit {
       this.orderService.getOrderById(this.id).subscribe(res => {
 
       this.order = res;
-      console.log(this.order);
       this.form.get('date').setValue(new Date(this.order.date));
       this.form.get('clientName').setValue(this.order.clientName);
       this.form.get('address').setValue(this.order.address);

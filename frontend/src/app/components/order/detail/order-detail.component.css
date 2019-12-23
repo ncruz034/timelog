@@ -13,7 +13,10 @@ table{
     background-color: #428bcf;
     border: 2px solid #2E333A
   }
-
+  .card{
+    padding-left: 100px;
+    padding-right: 100px;
+  }
 .box{
     width: auto;
     height: auto;

@@ -1,42 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { isFulfilled } from 'q';
+import {theUri} from '../config/config';
 @Injectable({
   providedIn: 'root'
 })
 export class TimeService {
 
-  uri = 'http://localhost:3000/api';
+  uri = theUri;
 
   constructor(private http: HttpClient) { }
 
   getTimes() {
     return this.http.get(`${this.uri}/times`);
   }
+
   getUsersTime(user_id) {
     return this.http.get(`${this.uri}/times/user/${user_id}`);
   }
+  getUsersWeeklyTime(user_id) {
+    return this.http.get(`${this.uri}/times/weekly/${user_id}`);
+  }
+  getUsersTimeRange(user_id, from, to) {
+    return this.http.get(`${this.uri}/times/user/${user_id}`);
+  }
+
   getTimeById(id) {
     return this.http.get(`${this.uri}/times/${id}`);
   }
+
 
   geTimesByOrderId(order_id) {
     return this.http.get(`${this.uri}/times/order/${order_id}`);
   }
 
-  addTime(date, orderNumber, order_id, projectName, clientName, description, time, userName, user_id) {
-    const newTime = {
-      date: date,
-      orderNumber: orderNumber,
-      order_id: order_id,
-      projectName: projectName,
-      clientName: clientName,
-      description: description,
-      time: time,
-      userName: userName,
-      user_id: user_id
-    };
-    console.log(newTime);
+  addTime(newTime) {
     return this.http.post(`${this.uri}/times`, newTime);
   }
 

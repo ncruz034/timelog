@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
-
+import {theUri} from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  uri = 'http://localhost:3000/api';
+  uri = theUri;
   constructor(private http: HttpClient) { }
 
 
@@ -14,8 +14,8 @@ export class ProjectService {
     return this.http.get(`${this.uri}/projects`);
   }
 
-  getProjectById(project_id) {
-    return this.http.get(`${this.uri}/projects/${project_id}`);
+  getProjectById(id) {
+    return this.http.get(`${this.uri}/projects/${id}`);
   }
 
   getProjectByName(projectName) {
@@ -30,20 +30,9 @@ export class ProjectService {
     return this.http.post(`${this.uri}/projects/${project_id}/time`, updatedProjectOrder);
   }
 
-
-  addProject(date, projectName, client_id, clientName, description, status) {
-    const newProject = {
-      date: date,
-      projectName: projectName,
-      client_id: client_id,
-      clientName: clientName,
-      description: description,
-      status: status
-    };
-
-    return this.http.post(`${this.uri}/projects`, newProject);
+  addProject(project) {
+    return this.http.post(`${this.uri}/projects`, project);
   }
-
   /* deleteProject(_id, time_id) {
     return this.http.delete(`${this.uri}/projects/${_id}/time/${time_id}`);
   } */

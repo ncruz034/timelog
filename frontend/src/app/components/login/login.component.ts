@@ -15,31 +15,36 @@ export class LoginComponent {
   email = new FormControl(null, [Validators.required, Validators.email]);
   password: String = '';
 
-  loginForm: FormGroup;
+  form: FormGroup;
   user: User;
   data = <any>{};
 
   constructor(private authService: AuthService, private fb: FormBuilder,
               private http: HttpClient, private router: Router) {
-    this.loginForm = fb.group({
+    this.form = fb.group({
       'email': this.email,
       'password': [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(16)])]
     });
   }
 
     onLogin(user) {
-      this.authService.login(user.email, user.password).subscribe(
-        data => {
-          if (data) {
-            this.data = data;
-           this.authService.storeUserData(this.data.token, this.data.name, user.email, this.data.user_id);
-           this.router.navigate(['/dashboard']);
-          } else {
-            console.log('Error: Login in...');
-          }
-        },
-        err => {console.log(err); }
-      );
+
+      if (!this.form.valid ) {
+        this.form.setErrors({invalidOnLogin: true});
+      } else {
+        this.authService.login(user.email, user.password).subscribe(
+          data => {
+            if (data) {
+              this.data = data;
+             this.authService.storeUserData(this.data.token, this.data.name, user.email, this.data.user_id);
+             this.router.navigate(['/home']);
+            } else {
+              console.log('Error: Login in...');
+            }
+          },
+          err => {console.log(err); }
+        );
+      }
     }
 
     getErrorMessage() {

@@ -1,3 +1,4 @@
+<!--
 <div class="card">
   <div class="card-body">
     <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/clients/create"></i></h1>
@@ -9,7 +10,7 @@
     </form>
 
 
-    <!-- <div *ngFor="let client of clients$ | async; index as i"> -->
+    -- <div *ngFor="let client of clients$ | async; index as i"> --
         <div *ngFor="let client of filteredClients">
       <zippy title="{{client.clientName}}">
 
@@ -53,5 +54,47 @@
         <h3>Orders</h3>
         </zippy>
     </div>
+  </div>
+</div>
+-->
+<div class="card" style="border:none">
+    <legend>Clients</legend>
+</div>
+<div class="card" style="border:none">
+  <div class="card-body">
+     <!--<h1><i class="fas fa-plus-circle pointerCursor" routerLink="/projects/create/:client_id/:clientName"></i></h1>-->
+     <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/clients/create"></i></h1>
+      <form>
+          <div class="form-group form-inline">
+              Client search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="orderSearch" [(ngModel)]="searchTerm"/>
+          </div>
+      </form>
+
+      <div *ngFor="let client of filteredClients; let i = index;" >
+          <div class = "card">
+              <div class = "card-body ">
+                <div class="row">
+                    <div class="col-2">
+                        <h5><a style=" padding-right: 10px"><i  class="fas fa-eye pointerCursor" (click) = "detailClient(client._id)"></i></a></h5>
+
+                      </div>
+                  <!--<div class="col-3">
+                      <p>{{project.status}}</p>
+                  </div>-->
+                  <div class="col-6">
+                      <h4>{{client.clientName}}</h4>
+                      <p>{{client.date | date}}</p>
+                      <p>{{client.phone}}</p>
+                  </div>
+                  <div class="form-group form-inline">
+                    <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editClient(client._id)"></i></a></h5>
+                    <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteClient(client._id)"></i></a></h4>
+                    <h4><a style="padding-right: 10px"><i  class="fas fa-project-diagram pointerCursor"
+                                  (click) = "addProject(client._id, client.clientName)"></i></a></h4>
+                </div>
+                </div>
+              </div>
+              </div>
+      </div>
   </div>
 </div>

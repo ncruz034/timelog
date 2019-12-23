@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="card">
 
     <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
 
@@ -31,7 +31,7 @@
       </form>
   </div>
 
-<!-- 
+<!--
     <mat-card >
       <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
       <div class="example-container">
@@ -42,7 +42,7 @@
         <mat-form-field >
             <input matInput placeholder="Last" required formControlName = "last">
         </mat-form-field>
-   
+
         <mat-form-field>
           <input matInput placeholder="Enter your email" [formControl]="email" required formControlName = "email">
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -56,7 +56,7 @@
             <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required formControlName = "password2">
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
- 
+
         <div class="button-row">
             <button mat-fab color="primary" type="submit" value="Submit Form" [disabled]="!registerForm.valid">Register</button>
             <button mat-fab color="accent" routerLink="/home">Cancel</button>
