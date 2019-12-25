@@ -223,138 +223,10 @@
                     <button  class="btn btn-primary" color = "accent" routerLink="/orders">Back</button>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!--
-      <div class="container">
-        <div *ngIf="order">
-          <div>
-            <div class='row'>
-            <div class="col-3 left">
-                <p>BROWARD: 954-435-7010</p>
-                <p>Dade: 305-652-7010</p>
-              </div>
-              <div class="col-6 center">
-                <h3>Schwebke-Shiskin & Associates, Inc.</h3>
-              </div>
-              <div class="col-3 right">
-                <p>3240 CORPORATE WAY</p>
-                <p>MIRAMAR, FL 33025</p>
-              </div>
-            </div>
-
-
-            <div class='row'>
-              <div class="col-4 left">
-                <h5>LAND SURVEYORS</h5>
-              </div>
-              <div class="col-4 center">
-              <h5>ENGINEERS</h5>
-              </div>
-              <div class="col-4 right">
-                <h5>LAND PLANNERS</h5>
-              </div>
-            </div>
-            </div>
-
-
-
-            <div class="row top-padding">
-              <div class="col-6 left">
-                <h5>DATE</h5>
-              </div>
-              <div class="col-6 right">
-                <h5>PHONE</h5> {{order.phoneNumber}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col left">
-                <h5>NAME OF CLIENT</h5> {{order.clientName}}
-                <h5>ADDRESS</h5> {{order.address}}
-              </div>
-            </div>
-            <div class="row top-padding">
-              <div class="col-6 left">
-                <h5>LEGAL DESCRIPTION AND SPECIAL INSTRUCTIONS</h5>
-              </div>
-              <div class="col-3 right">
-                <h5>FIELD WORK PROMISSED  </h5>
-                <H5>PRINTS PROMISSED</H5>
-              </div>
-              <div class="col-3">
-                  {{order.fieldWorkPromissed}}
-                  {{order.printsPromissed}}
-              </div>
-            </div>
-            <div class="row left top-padding">
-              <p>{{order.legalDescription}}</p>
-            </div>
-            <div class="row top-padding">
-              <div class="col-6 left">
-                  <h5>ORDER PLACED BY</h5>{{order.orderPlacedBy}}
-                  <h5>REFER TO FILE No.</h5>{{order.referToFileNumber}}
-                  <h5>REFER TO FB No.</h5>{{order.referToFieldBookNumber}}
-                  <h5>REFER ORDER No.</h5>{{order.referToOrderNumber}}
-              </div>
-
-              <div class="col-6 left">
-                <h5>FB</h5> {{order.fieldBook}}
-                <h5>PG</h5> {{order.page}}
-                <h5>SEC</h5> {{order.section}}
-                <h5>TWP</h5> {{order.township}}
-                <h5>RGE</h5> {{order.range}}
-                <h5>PARTY CHIEF</h5> {{order.partyChief}}
-                <h5>DATE COMPLEDED</h5> {{order.dateCompleted}}
-              </div>
-            </div>
-
-            <div class="row left top-padding">
-              <div class="col-4 ">
-                <h5>MAIL</h5> {{order.mail}}
-                <h5>DELIVER</h5> {{order.deliver}}
-                <h5>PICK UP</h5> {{order.pickup}}
-                <h5>COURIER FEES</h5> {{order.courierFees}}
-              </div>
-              <div class="col-4 ">
-                <h5>PRINTS TO</h5> {{order.mailPrintsTo}}
-                <h5>PRINTS TO</h5> {{order.deliverPrintsTo}}
-                <h5>PRINTS AT (TIME)</h5> {{order.printsAtTime}}
-                <h5>APPL/PERMIT FEES</h5> {{order.applPermitFees}}
-              </div>
-              <div class="col-4">
-                <h5>DATE INVOICE</h5> {{order.dateInvoice}}
-                <h5>AMOUNT SET BY</h5> {{order.amountSetBy}}
-                <h5>INVOICE TYPED BY</h5> {{order.invoiceTypedBy}}
-                <h5>COD</h5> {{order.isCOD}}
-              </div>
-            </div>
-          </div>
-
-          <div *ngIf="order">
-              <h3>No.{{order.orderNumber}}</h3>
-          </div>
-          </div>
--->
-
     </ng-template>
   </ngb-tab>
 
-    <!--Field Information-->
-
+    <!--Office Information-->
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
       <ng-template ngbTabContent >
@@ -392,8 +264,9 @@
                     <h4>OT</h4>
                 </div>
           </div>
-          <div *ngFor="let time of order.time;">
-          <div class="row left">
+
+        <div *ngFor="let time of order.time;">
+          <div *ngIf='!time.isField' class="row left">
             <div class="col-2">
               <h5>{{time.date | date}}</h5>
             </div>
@@ -403,7 +276,7 @@
             <div class="col-3">
               <h5>{{time.description}}</h5>
             </div>
-              <div class="col-2">
+              <div  class="col-2">
                 <h5>{{time.time}}</h5>
             </div>
             <div class="col-2">
@@ -414,12 +287,11 @@
         </div>
       </ng-template>
       </ngb-tab>
+
       <ngb-tab>
         <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
         <ng-template ngbTabContent>
-
             <div class="container top-padding">
-
                 <div class = "row left">
                   <div class="col-2">
                     <h5>Total OT:</h5>
@@ -472,84 +344,6 @@
                 </div>
               </div>
               </div>
-
-
-
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
-
-<!-- <mat-card class="order-card">
-=======
-<div>
-    <h1>{{order.orderNumber}}</h1>
-    <h2>{{order.project}}</h2>
-    <h3>{{order.client}}</h3>
-
-    <mat-grid-list cols="6" rowHeight=300px>
-        <mat-grid-tile [colspan]=3 [rowspan]=1>
-
-          <div class="child">
-              <h2><p>Date:</p></h2>
-              <h2><p>Description:</p></h2>
-              <h2><p>Status:</p></h2>
-              <h2><p>Billed:</p></h2>
-           </div>
-           <div class="child">
-           <h2><p>{{order.date | date}}</p></h2>
-              <h2><p>{{order.description}}</p></h2>
-              <h2><p>{{order.status}}</p></h2>
-              <h2><p>{{order.isBilled}}</p></h2>
-            </div>
-        </mat-grid-tile>
-
-        <mat-grid-tile [colspan]=3 [rowspan]=1>
-            <div class="child">
-                <h2>Regular Time: </h2>
-                <h2>Overtime: </h2>
-                <h2>Total Time: </h2>
-                <h2>Progress: </h2>
-            </div>
-            <div class="child">
-              <h2><p>Get the regular time</p></h2>
-                <h2><p>Get the Overtime</p></h2>
-                <h2><p>Get Total Time</p></h2>
-                <h2><p>Get Progress</p></h2>
-              </div>
-          </mat-grid-tile>
-
-      </mat-grid-list>
-    </div>
-    </section>
-  </mat-card>
-
-  <div >
-      <mat-card style="background-color: #2E333A;">
-        <table mat-table [dataSource] = "order.time" style="background-color: #2E333A;">
-          <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>Date</th>
-            <td mat-cell *matCellDef="let element"> {{ element.date | date}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="user">
-            <th mat-header-cell *matHeaderCellDef>User</th>
-            <td mat-cell *matCellDef="let element"> {{element.user}} {{element.user.last}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Description</th>
-            <td mat-cell *matCellDef="let element"> {{element.description}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="time">
-            <th mat-header-cell *matHeaderCellDef>Time</th>
-            <td mat-cell *matCellDef="let element"> {{element.time}}</td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
-          <tr mat-row *matRowDef = "let row; columns: displayedColumns;"></tr>
-        </table>
-      </mat-card>
-
-    </div> -->
-

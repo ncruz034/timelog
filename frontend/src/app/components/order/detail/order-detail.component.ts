@@ -36,25 +36,22 @@ export class OrderDetailComponent implements OnInit {
         .subscribe(
           (order: Order) => {
             this.order = order;
-
             if (this.order) {
-            for (this.time of this.order.time) {
-              if (!this.time.isField) {
-                this.officeRegTimeCounter += Number(this.time.time);
-              } else {
-                this.fieldRegTimeCounter += Number(this.time.time);
+              for (this.time of this.order.time) {
+                if(this.time.isField){
+                  this.fieldRegTimeCounter += Number(this.time.time);
+                  this.fieldOvrTimeCounter += Number(this.time.overTime)
+                }else{
+                  console.log('Office Reg: ' + this.officeRegTimeCounter  + ' + ' + this.time.time)
+                  this.officeRegTimeCounter += Number(this.time.time);
+                  console.log('Office Over: ' + this.officeOvrTimeCounter  + ' + ' + this.time.overTime)
+                  this.officeOvrTimeCounter += Number(this.time.overTime);
+                }
               }
-            }
 
-            for (this.ovrTime of this.order.time) {
-              if (!this.ovrTime.isField) {
-                this.officeOvrTimeCounter += Number(this.ovrTime.overTime);
-              } else {
-                this.fieldOvrTimeCounter += Number(this.time.time);
-              }
-            }
             this.officeTotalHours = this.officeRegTimeCounter + this.officeOvrTimeCounter;
             this.fieldTotalHours = this.fieldRegTimeCounter + this.fieldOvrTimeCounter;
+        
           } else {
             console.log('No order available!');
           }

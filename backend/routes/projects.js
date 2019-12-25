@@ -8,6 +8,7 @@ const router = express.Router();
 const {Project, validate} = require('../models/project');
 const { Global } = require('../models/global');
 const asyncMIddleware = require('../middleware/async');
+const ObjectId = mongoose.Types.ObjectId;
 
 //Create a new Project; this route should be protected to only admin users.
 router.post('/', auth, async (req,res) =>{
@@ -39,13 +40,32 @@ router.put('/:id', async (req,res) =>{
 });
 
 // Get a project by id
-router.get('/:id', auth, async (req,res) =>{
+/*
+router.get('/:idd', auth, async (req,res) =>{
     const project = await Project.findById(req.params.id);
      //check if there is any error
      if(!project) return res.status(400).send('The project with the given id is not valid');
     res.send(project);
    });
+*/
+// Get an Project by id
+    router.get('/:id', auth, async (req,res) =>{
+        console.log("Inside Project ================" + req.params.id)
+ 
+         const project = await Project.aggregate([
+             { $match: {_id: ObjectId(req.params.id)}},
+            {$lookup: {from: 'orders', localField:'projectName',foreignField: 'projectName', as: 'projectOrders'}},
+            {$lookup: {from: 'times', localField:'projectName',foreignField: 'projectName', as: 'times'}}]);
+     
+          //check if there is any error
+          if(!project) {
+              return res.status(400).send('The projectt with the given id is not valid');
+             }
 
+         res.send(project[0]);
+    });
+     
+   
 // Get all projects sorted by project name
 router.get('/', async (req,res) =>{
     const projects = await Project.find().sort('projectName');//.populate('order',['orderNumber'],'Order');

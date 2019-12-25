@@ -28,7 +28,23 @@
         <ng-template ngbTabTitle><b>OVERVIEW</b></ng-template>
         <ng-template ngbTabContent >
           <div class="container top-padding">
-            <p>Statistics about this project will be displayed in this area.</p>
+
+            <h5>Orders In This Project</h5>
+            <div *ngFor='let order of project.projectOrders'>
+              <ul>
+                <li>{{order.orderNumber}}</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Office</h4>
+              <p>Regular Time: <span>{{officeRegTimeCounter}}</span></p>
+              <p>Over Time: <span>{{officeOvrTimeCounter}}</span></p>
+            </div>
+            <div>
+              <h4>Field</h4>
+              <p>Regular Time: <span>{{fieldRegTimeCounter}}</span></p>
+              <p>Over Time: <span>{{fieldOvrTimeCounter}}</span></p>
+            </div>
           </div>
         </ng-template>
         </ngb-tab>

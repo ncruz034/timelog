@@ -6,8 +6,7 @@ const app = express();
 
 //Remove cors in production app
 app.use(cors());
-
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + 'dist'));
 require('./startup/routes')(app);
 require('./startup/logging');
 require('./startup/databaseInit')();

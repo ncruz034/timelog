@@ -14,8 +14,8 @@ export class ProjectService {
     return this.http.get(`${this.uri}/projects`);
   }
 
-  getProjectById(project_id) {
-    return this.http.get(`${this.uri}/projects/${project_id}`);
+  getProjectById(id) {
+    return this.http.get(`${this.uri}/projects/${id}`);
   }
 
   getProjectByName(projectName) {

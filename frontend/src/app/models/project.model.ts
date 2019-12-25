@@ -6,4 +6,6 @@ export class Project {
     date: { type: Date };
     description: {type: string};
     status: { type: string};
+    projectOrders:[];
+    times:[];
 }
