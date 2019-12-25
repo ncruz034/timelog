@@ -8,6 +8,7 @@
 }
 
 .example-container {
+  background-color: var(--background-color);;
   width: flex;
   height: flex;
 }
