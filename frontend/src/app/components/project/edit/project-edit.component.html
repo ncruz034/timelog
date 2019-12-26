@@ -1,4 +1,5 @@
-<div class="card">
+<div class="container">
+  <div class="card">
     <div class="card-body">
         <form [formGroup]='form' (ngSubmit)="editProject()">
             <div *ngIf="form.errors" class="alert alert-danger">
@@ -28,3 +29,5 @@
           <button type="submit" class="btn btn-success" (click)="editProject()"  [disabled]="!form.valid">Submit</button>
     </div>
   </div>
+
+</div>

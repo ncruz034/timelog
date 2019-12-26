@@ -1,4 +1,5 @@
-<div class="card">
+<div class="container">
+  <div class="card">
     <div class="card-body">
         <form [formGroup]='form'  (ngSubmit)="addProject()">
             <div *ngIf="form.errors" class="alert alert-danger">
@@ -45,3 +46,5 @@
           </div>
     </div>
   </div>
+
+</div>

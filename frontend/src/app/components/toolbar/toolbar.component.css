@@ -5,5 +5,5 @@
   }
 
   .navbar {
-     background-color: grey;
+     background-color: var(--navbar-color);
   }

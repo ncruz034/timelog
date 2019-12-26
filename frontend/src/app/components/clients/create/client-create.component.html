@@ -1,96 +1,54 @@
-
-<div class="card">
-  <div class="card-body">
-      <form [formGroup]='form' (ngSubmit)="addClient()">
-          <div *ngIf="form.errors" class="alert alert-danger">
-              ERROR! Some fields appear to be invalid
-          </div>
-          <legend>New Client</legend>
-          <div class="form-group">
-            <label class="col-form-label" for="clientName">Client Name</label>
-            <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name *" id="clientName">
-            <div *ngIf="(clientName.touched && clientName.invalid) || (form.get('clientName').invalid && form.errors)" class="alert alert-danger">Client name is required</div>
-          </div>
-
-          <div class="form-group">
-              <label class="col-form-label" for="date">Date</label>
-              <div class="input-group">
-              <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd *" name="date"  id="date" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-
-                <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
-              </div>
-              </div>
-              <div *ngIf="(form.get('date').touched && form.get('date').invalid) || (form.get('date').invalid && form.errors)" class="alert alert-danger">Date is required</div>
-          </div>
-
-          <div class="form-group">
-              <label class="col-form-label" for="address">Address</label>
-              <input formControlName="address" type="text" class="form-control" placeholder="Address *" id="address">
-              <div *ngIf="(form.get('address').touched && form.get('address').invalid) || (form.get('address').invalid && form.errors)" class="alert alert-danger">Address is required</div>
-          </div>
-
-          <div class="form-group">
-              <label class="col-form-label" for="contact">Contact</label>
-              <input formControlName="contact" type="text" class="form-control" placeholder="Contact *" id="contact">
-              <div *ngIf="(form.get('contact').touched && form.get('contact').invalid) || (form.get('contact').invalid && form.errors)" class="alert alert-danger">Contact is required</div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+        <form [formGroup]='form' (ngSubmit)="addClient()">
+            <div *ngIf="form.errors" class="alert alert-danger">
+                ERROR! Some fields appear to be invalid
+            </div>
+            <legend>New Client</legend>
+            <div class="form-group">
+              <label class="col-form-label" for="clientName">Client Name</label>
+              <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name *" id="clientName">
+              <div *ngIf="(clientName.touched && clientName.invalid) || (form.get('clientName').invalid && form.errors)" class="alert alert-danger">Client name is required</div>
             </div>
 
-          <div class="form-group">
-            <label class="col-form-label" for="phoneNumber">Phone Number</label>
-            <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number *" id="phoneNumber">
-            <div *ngIf="(form.get('phone').touched && form.get('phone').invalid) || (form.get('phone').invalid && form.errors)" class="alert alert-danger">Phone number is required</div>
+            <div class="form-group">
+                <label class="col-form-label" for="date">Date</label>
+                <div class="input-group">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd *" name="date"  id="date" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+                </div>
+                </div>
+                <div *ngIf="(form.get('date').touched && form.get('date').invalid) || (form.get('date').invalid && form.errors)" class="alert alert-danger">Date is required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="address">Address</label>
+                <input formControlName="address" type="text" class="form-control" placeholder="Address *" id="address">
+                <div *ngIf="(form.get('address').touched && form.get('address').invalid) || (form.get('address').invalid && form.errors)" class="alert alert-danger">Address is required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="contact">Contact</label>
+                <input formControlName="contact" type="text" class="form-control" placeholder="Contact *" id="contact">
+                <div *ngIf="(form.get('contact').touched && form.get('contact').invalid) || (form.get('contact').invalid && form.errors)" class="alert alert-danger">Contact is required</div>
+              </div>
+
+            <div class="form-group">
+              <label class="col-form-label" for="phoneNumber">Phone Number</label>
+              <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number *" id="phoneNumber">
+              <div *ngIf="(form.get('phone').touched && form.get('phone').invalid) || (form.get('phone').invalid && form.errors)" class="alert alert-danger">Phone number is required</div>
+            </div>
+          </form>
+          <div>
+            <button routerLink="/clients" class="btn btn-primary">Back</button>
+            <button type="submit" class="btn btn-success"   [disabled]="!form.valid" (click)="addClient()">Submit</button>
           </div>
-        </form>
-        <div>
-          <button routerLink="/clients" class="btn btn-primary">Back</button>
-          <button type="submit" class="btn btn-success"   [disabled]="!form.valid" (click)="addClient()">Submit</button>
-        </div>
+    </div>
   </div>
 </div>
 
 
 
-<!--
-<div>
-    <br>
-
-      <section class = "mat-typography>">
-        <h3> New Client</h3>
-      </section>
-
-      <mat-divider></mat-divider>
-      <br>
-      <form [formGroup]="createForm" class="create-form">
-
-          <mat-form-field class="field-full-with">
-              <input matInput placeholder = "Name" formControlName="clientName" #clientName>
-            </mat-form-field>
-
-        <mat-form-field>
-          <input matInput [matDatepicker]="date"
-            formControlName="date" placeholder="Date">
-          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-          <mat-datepicker #date></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Address" formControlName="address" #address>
-        </mat-form-field>
-
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Phone No." formControlName="phone" #phone>
-        </mat-form-field>
-
-        <mat-form-field class="field-full-with">
-          <input matInput placeholder = "Contact" formControlName="contact" #contact>
-        </mat-form-field>
-
-
-      </form>
-        <br><br>
-        <button mat-raised-button color = "accent" routerLink="/clients">Back</button>
-        <button type="submit" (click)="addClient()" [disabled]="createForm.pristine" mat-raised-button color="primary">Save</button>&nbsp;
-
-  </div>
--->

@@ -1,6 +1,6 @@
 
-
-<div class="card create-form">
+<div class="container">
+  <div class="card create-form">
     <div class="card-body">
         <form [formGroup]='form' (ngSubmit)="addOrder()">
           <div *ngIf="form.errors" class="alert alert-danger">
@@ -271,3 +271,5 @@
           </div>
     </div>
 </div>
+</div>
+
