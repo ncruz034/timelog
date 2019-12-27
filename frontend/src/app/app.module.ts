@@ -59,6 +59,7 @@ import { FilterPipe } from './filter.pipe';
 import { AddressComponent } from './common/address/address.component';
 import { ClientDetailComponent } from './components/clients/detail/client-detail.component';
 import { TimeWeeklyComponent } from './components/time/time-weekly/time-weekly.component';
+import { BillingRatesComponent } from './components/accounting/billing-rates/billing-rates.component';
 
 
 
@@ -99,6 +100,7 @@ import { TimeWeeklyComponent } from './components/time/time-weekly/time-weekly.c
     ProjectDetailComponent,
     ClientDetailComponent,
     TimeWeeklyComponent,
+    BillingRatesComponent,
   ],
   imports: [
     NgbModule,
