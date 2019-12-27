@@ -1,13 +1,14 @@
-<div class="card" style="border:none">
+<div class="container">
+  <div class="heading">
     <legend>Projects</legend>
 </div>
-<div class="card" style="border:none">
+<div class="card borderless" >
     <div class="card-body">
       <!-- <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/projects/create/:client_id/:clientName"></i></h1>-->
 
         <form>
             <div class="form-group form-inline">
-                Orders search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="orderSearch" [(ngModel)]="searchTerm"/>
+                Project search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="orderSearch" [(ngModel)]="searchTerm"/>
             </div>
         </form>
 
@@ -38,59 +39,5 @@
         </div>
     </div>
 </div>
-
-<!--
-    <div class="row">
-      <div class="col-sm">
-          <div class="card">
-              <div class="card-body">-->
-                  <!-- <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/projects/create"></i></h1> -->
-                  <!--<form>
-                      <div class="form-group form-inline">
-                          Project search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="projectSearch" [(ngModel)]="searchTerm"/>
-                      </div>
-                  </form>
-                  <div *ngFor="let project of filteredProjects" >
-                      <zippy title="{{project.projectName}}">
-                          <table class="table table-hover">
-                              <tr>
-
-                                <th>Project</th>
-                                <th>Description</th>
-                                <th>status</th>
-                                <th>Actions</th>
-                              </tr>
-                              <tr>
-                                <td>
-                                  {{project.projectName}}
-                                </td>
-                                <td>
-                                  {{project.description}}
-                                </td>
-                                <td>
-                                  {{project.status}}
-                                </td>
-                                <td>
-                                  <div class="form-group form-inline" >
-                                    <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editProject(project._id)"></i></a></h5>
-                                    <h4><a style="padding-right: 10px"><i  class="fas fa-newspaper pointerCursor" (click) = "addNewOrder(project._id, project.projectName, project.clientName)"></i></a></h4>
-                                    <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)"></i></a></h4>
-                                  </div>
-                                </td>
-                              </tr>
-                            </table>
-                            <h3>Orders</h3>
-                      </zippy>
-                      </div>
-              </div>
-            </div>
-
-      </div>
-      <div class="col-sm" *ngIf="addOrder">
-          <app-order-create [PROJECTNAME]="projectname"></app-order-create>
-      </div>
-    </div>-->
-
-
-
+</div>
 

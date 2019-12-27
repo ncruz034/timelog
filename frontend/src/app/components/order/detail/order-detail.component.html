@@ -1,15 +1,13 @@
-<div class="card" style="border:none">
+<div class="container">
+  <div class="card" style="border:none">
     <legend>Order Details</legend>
-</div>
+  </div>
 <ngb-tabset [justify]="currentJustify">
-
   <ngb-tab>
     <ng-template ngbTabTitle><b>ORDER</b></ng-template>
     <ng-template ngbTabContent>
-
-        <div *ngIf="order" class="card create-form">
+        <div *ngIf="order" class="card">
             <div class="card-body">
-
                <div>
               <div class='row'>
               <div class="col-3 left">
@@ -230,9 +228,7 @@
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
       <ng-template ngbTabContent >
-
-        <div class="container top-padding">
-
+        <div  class="card">
           <div class = "row left">
             <div class="col-2">
               <h5>Total OT:</h5>
@@ -291,7 +287,7 @@
       <ngb-tab>
         <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
         <ng-template ngbTabContent>
-            <div class="container top-padding">
+            <div class="card">
                 <div class = "row left">
                   <div class="col-2">
                     <h5>Total OT:</h5>
@@ -347,3 +343,4 @@
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
+</div>

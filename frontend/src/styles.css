@@ -2,6 +2,41 @@
 
 
 
+body {
+  background-color: var(--background-color);
+}
+
+nav {
+  background-color: red;
+}
+
+.card
+{
+background-color: var(--card-background-color);
+border-left-color: var(--card-border-color);
+border-left-width: 5px;
+margin-bottom: 5px;
+}
+
+.right-border {
+  border-right-color: var(--card-border-color);
+  border-right-width: var(--card-border-width);
+}
+.bordered {
+  border-color: var(--card-border-color);
+  border-width: var(--card-border-width);
+}
+
+.bottom-border {
+  border-bottom-color: var(--card-border-color);
+  border-bottom-width: var(--card-border-width);
+}
+.borderless {
+  border-width: 0px;
+}
+.heading {
+  color: rgb(233, 178, 142);
+}
 /*
 body {
   font-family: "Open Sans", "Helvetica", "sans-serif";
@@ -43,5 +78,5 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-} 
+}
 */

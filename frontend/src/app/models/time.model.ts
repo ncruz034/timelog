@@ -10,4 +10,5 @@ export class Time {
     isField: {type: Boolean};
     userName: {type: string};
     user_id: {type: string};
+    employee_hourly_rate: {type: Number};
 }
