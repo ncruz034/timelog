@@ -30,6 +30,7 @@ import { AssociatesDashboardComponent } from './components/dashobard/associates-
 import { AdminDashboardComponent } from './components/dashobard/admin-dashboard/admin-dashboard.component';
 import { AccessComponent } from './components/access/access.component';
 import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
+import { BillingListComponent } from './components/billing/list/billing-list.component';
 
 const routes: Routes = [
   {path: 'create', component: TimeCreateComponent,canActivate: [AuthGuard]},
@@ -61,8 +62,9 @@ const routes: Routes = [
   {path: 'access-code', component: AccessComponent, canActivate: [AuthGuard] },
   {path: 'home', component: HomeComponent},
   {path: 'tree-file-creator' , component: TreeFileCreatorComponent, canActivate: [AuthGuard]},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}];
-
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'billing', component: BillingListComponent, canActivate: [AuthGuard]}];
+  
 @NgModule({
   imports: [ RouterModule.forRoot(routes)],
   exports: [RouterModule]
