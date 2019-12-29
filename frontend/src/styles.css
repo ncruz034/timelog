@@ -35,7 +35,7 @@ margin-bottom: 5px;
   border-width: 0px;
 }
 .heading {
-  color: rgb(233, 178, 142);
+  color: var(--page-title-color);
 }
 /*
 body {
