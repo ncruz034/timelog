@@ -14,6 +14,12 @@ export class ProjectService {
     return this.http.get(`${this.uri}/projects`);
   }
 
+  getProjectStats() {
+    console.log("Hello billing")
+    return this.http.get(`${this.uri}/billing`);
+    //return this.http.get(`${this.uri}/project-stats`);
+  }
+
   getProjectById(id) {
     return this.http.get(`${this.uri}/projects/${id}`);
   }

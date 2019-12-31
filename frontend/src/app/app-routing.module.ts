@@ -40,7 +40,7 @@ const routes: Routes = [
   {path: 'orders/create', component: OrderCreateComponent, canActivate: [AuthGuard]},
   {path: 'orders/edit/:id', component: OrderEditComponent, canActivate: [AuthGuard]},
   {path: 'orders/detail/:id', component: OrderDetailComponent, canActivate: [AuthGuard]},
-  {path: 'clients/create', component: ClientCreateComponent,canActivate: [AuthGuard]},
+  {path: 'clients/create', component: ClientCreateComponent, canActivate: [AuthGuard]},
   {path: 'clients', component: ClientListComponent, canActivate: [AuthGuard]},
   {path: 'clients/edit/:id', component: ClientEditComponent, canActivate: [AuthGuard]},
   {path: 'clients/detail/:id', component: ClientDetailComponent, canActivate: [AuthGuard]},
@@ -52,7 +52,7 @@ const routes: Routes = [
 
   {path: 'times', component: TimeListComponent, canActivate: [AuthGuard]},
   {path: 'times/edit/:id', component: TimeEditComponent, canActivate: [AuthGuard]},
-  {path: 'times/create/:order_id/:projectName/:clientName/:orderNumber', component: TimeCreateComponent,canActivate: [AuthGuard]},
+  {path: 'times/create/:order_id/:projectName/:clientName/:orderNumber', component: TimeCreateComponent, canActivate: [AuthGuard]},
   {path: 'times/weekly', component: TimeWeeklyComponent, canActivate: [AuthGuard]},
   {path: 'auth', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
@@ -64,7 +64,7 @@ const routes: Routes = [
   {path: 'tree-file-creator' , component: TreeFileCreatorComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'billing', component: BillingListComponent, canActivate: [AuthGuard]}];
-  
+
 @NgModule({
   imports: [ RouterModule.forRoot(routes)],
   exports: [RouterModule]
