@@ -16,11 +16,9 @@ router.get('/', async (req,res) =>{
      const project = await Project.aggregate([
          //{ $match: {_id: ObjectId(req.params.id)}},
          { $match: {"projectName": "Westview Logistics"}},
-        {$lookup: {from: 'orders', localField:'projectName',foreignField: 'projectName', as: 'projectOrders'}},
-        {$lookup: {from: 'times', localField:'projectName',foreignField: 'projectName', as: 'times'}},
-        { $group: {"_id": "$isField",
-        "time": { $sum: "$time" },
-        "overTime": { $sum: "$overTime"},}}
+         {$lookup: {from: 'orders', localField:'projectName',foreignField: 'projectName', as: 'projectOrders'}},
+         {$lookup: {from: 'times', localField:'projectName',foreignField: 'projectName', as: 'times'}},
+         { $group: {_id: {orderNumber: "$orderNumber"},}}
     
     ]);
  
