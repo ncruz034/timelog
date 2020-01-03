@@ -4,6 +4,7 @@
   "description": "SSA work performed time keeping app",
   "main": "server.js",
   "scripts": {
+    "start":"node server.js",
     "test": "jest",
     "dev": "babel-watch server.js"
   },
@@ -22,10 +23,12 @@
   "homepage": "https://github.com/ncruz034/timelog#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
+    "compression": "^1.7.4",
     "config": "^2.0.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-async-errors": "^3.0.0",
+    "helmet": "^3.21.2",
     "joi": "^13.6.0",
     "jsonwebtoken": "^8.3.0",
     "loadash": "^1.0.0",
@@ -42,5 +45,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-watch": "^2.0.7",
     "jest": "^23.5.0"
+  },
+  "engines":{
+    "node":"12.14.0"
   }
 }
