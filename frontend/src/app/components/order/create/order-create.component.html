@@ -1,15 +1,16 @@
 
 <div class="container">
-  <div class="card create-form">
+  <div class="heading">
+    <legend>Order New</legend>
+</div>
+  <div class="card borderless">
     <div class="card-body">
         <form [formGroup]='form' (ngSubmit)="addOrder()">
           <div *ngIf="form.errors" class="alert alert-danger">
               ERROR! Some fields appear to be invalid
           </div>
 
-          <div>
-              <legend>New Order</legend>
-          </div>
+
             <h2>No. {{orderNumber}}</h2>
     <hr>
       <div class="row">

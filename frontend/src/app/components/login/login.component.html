@@ -1,5 +1,8 @@
-
-<div class="card">
+<div class="container">
+  <div class="heading">
+    <legend>Login</legend>
+  </div>
+  <div class="card borderless">
     <form [formGroup]="form" (ngSubmit)="onLogin(form.value)">
         <div *ngIf="form.errors" class="alert alert-danger">
             ERROR! Some field(s) appear to be invalid
@@ -16,6 +19,8 @@
         <button type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!form.valid">Submit</button>
       </form>
   </div>
+</div>
+
 
 <!--
   <form  [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">

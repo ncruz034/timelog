@@ -5,11 +5,7 @@
     width:auto;
     background-color: #ffffffce;
 }
-.card{
-  padding-left: 100px;
-  padding-right: 100px;
-  border: none;
-}
+
 .field-full-width{
     width: 50%;
 }

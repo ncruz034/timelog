@@ -1,4 +1,8 @@
-<div class="card">
+<div class="container">
+  <div class="heading">
+    <legend>Register</legend>
+  </div>
+  <div class="card borderless">
 
     <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
 
@@ -30,6 +34,8 @@
         <button type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!registerForm.valid">Submit</button>
       </form>
   </div>
+</div>
+
 
 <!--
     <mat-card >

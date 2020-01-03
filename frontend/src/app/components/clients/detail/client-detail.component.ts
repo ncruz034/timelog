@@ -14,7 +14,7 @@ export class ClientDetailComponent implements OnInit {
   client: Client;
   id: '';
 
-  
+
   constructor(private route: ActivatedRoute,
               private clientService: ClientService,
               http: HttpClient, router: Router) { }
@@ -22,12 +22,12 @@ export class ClientDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params.id;
-      console.log(this.id);
+      //console.log(this.id);
       this.clientService.getClientById(this.id)
       .subscribe(
         (client: Client) => {
           this.client = client;
-         console.log(this.client);
+         //console.log(this.client);
       });
 
       });

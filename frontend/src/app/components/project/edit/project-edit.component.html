@@ -1,11 +1,14 @@
 <div class="container">
-  <div class="card">
+  <div class="heading">
+    <legend>Edit Project</legend>
+  </div>
+  <div class="card borderless">
     <div class="card-body">
         <form [formGroup]='form' (ngSubmit)="editProject()">
             <div *ngIf="form.errors" class="alert alert-danger">
                 ERROR! Some field(s) appear to be invalid
             </div>
-            <legend>Edit Project</legend>
+
             <div class="form-group">
               <label class="col-form-label" for="projectName">Project Name</label>
               <input formControlName="projectName" type="text" class="form-control" placeholder="Project *"  id="projectName">

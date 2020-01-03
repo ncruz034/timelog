@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="card" style="border:none">
+<div class="heading">
     <legend>Project Details</legend>
 </div>
-<div class="card" style="border:none">
+
+<div class="card borderless">
 <ngb-tabset>
     <ngb-tab>
       <ng-template ngbTabTitle><b>PROJECT</b></ng-template>
@@ -24,31 +25,34 @@
       </ng-template>
     </ngb-tab>
 
-
       <ngb-tab>
         <ng-template ngbTabTitle><b>OVERVIEW</b></ng-template>
         <ng-template ngbTabContent >
-          <div class="container top-padding">
 
-            <h5>Orders In This Project</h5>
+          <div class="card">
+            <h5>ORDERS</h5>
             <div *ngFor='let order of project.projectOrders'>
               <ul>
                 <li>{{order.orderNumber}}</li>
               </ul>
             </div>
+            <hr>
             <div>
-              <h4>Office</h4>
+              <h5>OFFICE TIME</h5>
               <p>Regular Time: <span>{{officeRegTimeCounter}}</span></p>
               <p>Over Time: <span>{{officeOvrTimeCounter}}</span></p>
             </div>
+
             <div>
-              <h4>Field</h4>
+              <h5>FIELD TIME</h5>
               <p>Regular Time: <span>{{fieldRegTimeCounter}}</span></p>
               <p>Over Time: <span>{{fieldOvrTimeCounter}}</span></p>
             </div>
           </div>
         </ng-template>
         </ngb-tab>
+
+
         <ngb-tab>
           <ng-template ngbTabTitle><b>NOTES</b></ng-template>
           <ng-template ngbTabContent>
