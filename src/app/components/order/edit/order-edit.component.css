@@ -1,0 +1,11 @@
+.create-form{
+    display:flex;
+    flex-direction:column;
+    min-width: 150px;
+    width:auto;
+}
+
+.field-full-width{
+    width: 50%;
+}
+

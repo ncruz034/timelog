@@ -1,0 +1,63 @@
+table{
+  width: 100%;
+}
+.mat-column-right{
+  text-align: center;
+}
+
+.box{
+width: auto;
+height: auto;
+margin: 0 auto;
+padding: 5px;
+text-align: center;
+border: 2px solid #2E333A
+}
+.child{
+display: inline-block;
+padding: 25px;
+text-align: left;
+}
+.example-chip-list {
+width: 100%;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+flex-basis: 0;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+justify-content: space-between;
+text-align: center;
+}
+
+.order-card {
+max-width: auto;
+padding: 15px;
+margin-bottom: 5px;
+margin-top: 5px;
+background-color: #428bcf;
+border: 2px solid #2E333A;
+}
+
+.pointerCursor {
+cursor: pointer;
+}
+.a
+{
+padding-left: 10px;
+}
+
+/*
+.card{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.card .card
+{
+border-left-color: rgb(19, 68, 230);
+border-left-width: 5px;
+margin-bottom: 5px;
+}
+*/

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="heading">
+    <legend>Edit Client</legend>
+  </div>
+  <div class="card borderless">
+    <div class="card-body">
+        <form [formGroup]='form'(ngSubmit)="editClient()">
+            <div *ngIf="form.errors" class="alert alert-danger">
+                ERROR! Some field(s) appear to be invalid
+            </div>
+
+            <div class="form-group">
+              <label class="col-form-label" for="clientName">Client Name</label>
+              <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name *" id="clientName">
+              <div *ngIf="(form.get('clientName').touched && form.get('clientName').invalid) || (form.get('clientName').invalid && form.errors)" class="alert alert-danger">Client Name is required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="date">Date</label>
+                <div class="input-group">
+                <input formControlName="date" type="text" class="form-control" placeholder="yyyy-mm-dd *" name="date"  id="date" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+                </div>
+                </div>
+                <div *ngIf="(form.get('date').touched && form.get('date').invalid) || (form.get('date').invalid && form.errors)" class="alert alert-danger">A date is required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="address">Address</label>
+                <input formControlName="address" type="text" class="form-control" placeholder="Address *" id="address">
+                <div *ngIf="(form.get('address').touched && form.get('address').invalid) || (form.get('address').invalid && form.errors)" class="alert alert-danger">Address is required</div>
+              </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="contact">Contact</label>
+                <input formControlName="contact" type="text" class="form-control" placeholder="Contact *" id="contact">
+                <div *ngIf="(form.get('contact').touched && form.get('contact').invalid) || (form.get('contact').invalid && form.errors)" class="alert alert-danger">A Contact is required</div>
+              </div>
+
+            <div class="form-group">
+              <label class="col-form-label" for="phone">Phone Number</label>
+              <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number *" id="phone">
+              <div *ngIf="(form.get('phone').touched && form.get('phone').invalid) || (form.get('phone').invalid && form.errors)" class="alert alert-danger">Phone Number is required</div>
+            </div>
+
+          </form>
+          <div>
+              <button routerLink="/clients" class="btn btn-primary">Back</button>
+              <button type="submit"  class="btn btn-success" [disabled]="!form.valid" (click)="editClient()">Submit</button>
+          </div>
+    </div>
+  </div>
+
+</div>

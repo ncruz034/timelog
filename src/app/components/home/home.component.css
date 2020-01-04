@@ -1,0 +1,16 @@
+
+
+.background {
+  max-width: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: auto;
+}
+
+.example-container {
+  background-color: var(--background-color);;
+  width: flex;
+  height: flex;
+}
+
+

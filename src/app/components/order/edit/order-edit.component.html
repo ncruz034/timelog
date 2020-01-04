@@ -1,0 +1,279 @@
+
+<div class="container">
+  <div class="heading">
+    <legend>Edit Order</legend>
+  </div>
+  <div class="card borderless">
+    <div class="card-body">
+        <form [formGroup]='form' (ngSubmit)="editOrder()">
+            <div *ngIf="form.errors" class="alert alert-danger">
+                ERROR! Some fields appear to be invalid
+            </div>
+
+    <hr>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="date">DATE</label>
+                <div class="input-group">
+                <input formControlName ="date" type="text"  class="form-control" placeholder="yyyy-mm-dd *" name="date"  id="date" ngbDatepicker #date="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="date.toggle()" type="button"></button>
+                </div>
+                </div>
+                <div *ngIf="(form.get('date').touched && form.get('date').invalid) || (form.get('date').invalid && form.errors)" class="alert alert-danger">A date is required</div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="clientName">NAME OF CLIENT</label>
+                <input formControlName="clientName" type="text" class="form-control" placeholder="Name of client *" id="clientName">
+                <div *ngIf="(form.get('clientName').touched && form.get('clientName').invalid) || (form.get('clientName').invalid && form.errors)" class="alert alert-danger">Client Name is required</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="address">ADDRESS</label>
+                <input formControlName="address" type="text" class="form-control" placeholder="Address *" id="address">
+                <div *ngIf="(form.get('address').touched && form.get('address').invalid) || (form.get('address').invalid && form.errors)" class="alert alert-danger">Address is required</div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="phoneNumber">PHONE</label>
+                <input formControlName="phoneNumber" type="text" class="form-control" placeholder="Phone Number *" id="phoneNumber">
+                <div *ngIf="(form.get('phoneNumber').touched && form.get('phoneNumber').invalid) || (form.get('phoneNumber').invalid && form.errors)" class="alert alert-danger">Phone No. is required</div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-form-label" for="fieldWorkPromissed">FIELD WORK PROMISSED</label>
+              <div class="input-group">
+              <input formControlName="fieldWorkPromissed" type="text" class="form-control" placeholder="yyyy-mm-dd" name="fieldWorkPromissed"  ngbDatepicker #dFieldWork="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="dFieldWork.toggle()" type="button"></button>
+              </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-form-label" for="printsPromissed">PRINTS PROMISSED</label>
+              <div class="input-group">
+              <input formControlName="printsPromissed" type="text" class="form-control" placeholder="yyyy-mm-dd" name="printsPromissed"  ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+              </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-form-label" for="projectName">PROJECT NAME</label>
+          <input formControlName="projectName" type="text" class="form-control" placeholder="Project Name *" id="projectName">
+          <div *ngIf="(form.get('projectName').touched && form.get('projectName').invalid) || (form.get('projectName').invalid && form.errors)" class="alert alert-danger">Project Name is required</div>
+      </div>
+
+      <hr>
+      <div class="form-group">
+          <label class="col-form-label" for="legalDescription">LEGAL DESCRIPTION</label>
+          <textarea formControlName="legalDescription" type="text" class="form-control" placeholder="Legal Description *" id="legalDescription"></textarea>
+          <div *ngIf="(form.get('legalDescription').touched && form.get('legalDescription').invalid) || (form.get('legalDescription').invalid && form.errors)" class="alert alert-danger">Legal Description is required</div>
+      </div>
+      <hr>
+     <div class="row">
+       <div class="col-md-6">
+         <div class="row">
+         <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="orderPlacedBy">ORDER PLACED BY</label>
+                <input formControlName="orderPlacedBy" type="text" class="form-control" placeholder="Order Placed By *" id="orderPlacedBy">
+                <div *ngIf="(form.get('orderPlacedBy').touched && form.get('orderPlacedBy').invalid) || (form.get('orderPlacedBy').invalid && form.errors)" class="alert alert-danger">Order Placed By is required</div>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="orderReceivedBy">RECEIVED BY</label>
+                <input formControlName="orderReceivedBy" type="text" class="form-control" placeholder="Order received by *" id="orderReceivedBy">
+                <div *ngIf="(form.get('orderReceivedBy').touched && form.get('orderReceivedBy').invalid) || (form.get('orderReceivedBy').invalid && form.errors)" class="alert alert-danger">Order received by is required</div>
+            </div>
+         </div>
+       </div>
+       <div class="form-group">
+          <label class="col-form-label" for="referToFileNumber">REFER TO FILE No.</label>
+          <input formControlName="referToFileNumber" type="text" class="form-control" placeholder="Refer to file No." id="referToFileNumber">
+      </div>
+      <div class="form-group">
+          <label class="col-form-label" for="referToFieldBookNumber">REFER TO FB No.</label>
+          <input formControlName="referToFieldBookNumber" type="text" class="form-control" placeholder="Refer to FB No." id="referToFieldBookNumber">
+      </div>
+      <div class="form-group">
+          <label class="col-form-label" for="referToOrderNumber">REFER ORDER No.</label>
+          <input formControlName="referToOrderNumber" type="text" class="form-control" placeholder="Refer to order No." id="referToOrderNumber">
+      </div>
+      </div>
+       <div class="col-md-6">
+          <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-form-label" for="fieldBook">FB</label>
+                    <input formControlName="fieldBook" type="text" class="form-control" placeholder="Field Book" id="fieldBook">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="col-form-label" for="page">PG</label>
+                    <input formControlName="page" type="text" class="form-control" placeholder="Page" id="page">
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="section">SEC</label>
+                    <input formControlName="section" type="text" class="form-control" placeholder="Section" id="section">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="township">TWP</label>
+                    <input formControlName="township" type="text" class="form-control" placeholder="Township" id="township">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="range">RGE</label>
+                    <input formControlName="range" type="text" class="form-control" placeholder="Range" id="range">
+                </div>
+            </div>
+          </div>
+
+              <div class="form-group">
+                  <label class="col-form-label" for="partyChief">PARTY CHIEF</label>
+                  <input formControlName="partyChief" type="text" class="form-control" placeholder="Party Chief" id="partyChief">
+              </div>
+
+              <div class="form-group">
+                <label class="col-form-label" for="dateCompleted">DATE COMPLETED</label>
+                <div class="input-group">
+                <input formControlName="dateCompleted" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dateCompleted"  ngbDatepicker #dCompleted="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="dCompleted.toggle()" type="button"></button>
+                </div>
+                </div>
+              </div>
+
+       </div>
+      </div>
+      <hr>
+      <div class="row">
+          <div class="col-md-6">
+           <div class="row">
+             <div class="col-md-4">
+                 <div class="form-group">
+                     <label class="col-form-label" for="mail">MAIL</label>
+                     <input formControlName="mail" type="text" class="form-control" placeholder="Mail" id="mail">
+                 </div>
+                 <div class="form-group">
+                    <label class="col-form-label" for="deliver">DELIVER</label>
+                    <input formControlName="deliver" type="text" class="form-control" placeholder="Deliver" id="deliver">
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="pickup">PICK UP</label>
+                    <input formControlName="pickup" type="text" class="form-control" placeholder="Pick up" id="pickup">
+                </div>
+             </div>
+             <div class="col-md-8">
+                 <div class="form-group">
+                     <label class="col-form-label" for="mailPrintsTo">PRINTS TO</label>
+                     <input formControlName="mailPrintsTo" type="text" class="form-control" placeholder="Prints To" id="mailPrintsTo">
+                 </div>
+                 <div class="form-group">
+                    <label class="col-form-label" for="deliverPrintsTo">PRINTS TO</label>
+                    <input formControlName="deliverPrintsTo" type="text" class="form-control" placeholder="Prints to" id="deliverPrintsTo">
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="printsAtTime">PRINTS AT (TIME)</label>
+                    <input formControlName="printsAtTime" type="text" class="form-control" placeholder="Prints at time" id="printsAtTime">
+                </div>
+             </div>
+           </div>
+          </div>
+          <div class="col-md-6">
+
+              <div class="form-group">
+                  <label class="col-form-label" for="dateInvoice">DATE INVOICE</label>
+                  <div class="input-group">
+                  <input formControlName="dateInvoice" type="text" class="form-control" placeholder="yyyy-mm-dd" name="dateInvoice"  ngbDatepicker #dInvoice="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary fas fa-calendar-alt" (click)="dInvoice.toggle()" type="button"></button>
+                  </div>
+                  </div>
+                </div>
+
+             <div class="form-group">
+                 <label class="col-form-label" for="amountSetBy">AMOUNT SET BY:</label>
+                 <input formControlName="amountSetBy" type="text" class="form-control" placeholder="Amount set by" id="amountSetBy">
+             </div>
+             <div class="form-group">
+                <label class="col-form-label" for="invoiceTypedBy">INVOICE TYPED BY:</label>
+                <input formControlName="invoiceTypedBy" type="text" class="form-control" placeholder="Invoice typed by" id="invoiceTypedBy">
+            </div>
+           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+             <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="col-form-label" for="courierFees">COURIER FEES</label>
+                      <input formControlName="courierFees" type="text" class="form-control" placeholder="Courrier Fees" id="courierFees">
+
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                      <label class="col-form-label" for="applPermitFees">APPLICATIONS/PERMIT FEES</label>
+                      <input formControlName="applPermitFees" type="text" class="form-control" placeholder="Application Permit Fee" id="applPermitFees">
+                  </div>
+               </div>
+             </div>
+          </div>
+
+              <div class="col-md-6">
+                <div class="form-check form-check-inline">
+                  <input formControlName="isCOD" class="form-check-input" type="checkbox" id="isCOD">
+                  <label class="form-check-label" for="isCOD">COD</label>
+                </div>
+              </div>
+          </div>
+
+        <div class="row">
+          <div class="col-md-4">
+              <div class="form-group">
+                  <label class="col-form-label" for="orderNumber">ORDER No.</label>
+                  <input formControlName="orderNumber" type="text" class="form-control" placeholder="Order Number *" id="orderNumber">
+                  <div *ngIf="(form.get('orderNumber').touched && form.get('orderNumber').invalid) || (form.get('orderNumber').invalid && form.errors)" class="alert alert-danger">Order Number is required</div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group">
+                  <label class="col-form-label" for="fileNumber">FILE NO.</label>
+                  <input formControlName="fileNumber" type="text" class="form-control" placeholder="File Number" id="fileNumber">
+                  <div *ngIf="form.get('fileNumber').touched && form.get('fileNumber').invalid" class="alert alert-danger">File Number is required</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="price">PRICE $</label>
+                    <input formControlName="price" type="text" class="form-control" placeholder="price" id="price">
+                </div>
+            </div>
+
+        </div>
+            <button  class="btn btn-primary" type="button" color = "accent" routerLink="/orders">Back</button>
+            <button class="btn btn-success" type="button" (click)="editOrder()" [disabled]="!form.valid">Save</button>
+          </form>
+    </div>
+  </div>
+</div>
+

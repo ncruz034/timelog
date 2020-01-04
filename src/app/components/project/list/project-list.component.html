@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="heading">
+    <legend>Projects</legend>
+</div>
+<div class="card borderless" >
+    <div class="card-body">
+      <!-- <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/projects/create/:client_id/:clientName"></i></h1>-->
+
+        <form>
+            <div class="form-group form-inline">
+                Project search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="orderSearch" [(ngModel)]="searchTerm"/>
+            </div>
+        </form>
+
+        <div *ngFor="let project of filteredProjects; let i = index;" >
+            <div class = "card">
+                <div class = "card-body ">
+                  <div class="row">
+                      <div class="col-2">
+                          <h5><a style=" padding-right: 10px"><i  class="fas fa-eye pointerCursor" (click) = "detailProject(project._id)"></i></a></h5>
+
+                        </div>
+                    <!--<div class="col-3">
+                        <p>{{project.status}}</p>
+                    </div>-->
+                    <div class="col-6">
+                        <h4>{{project.projectName}}</h4>
+                        <p>{{project.status}}</p>
+                    </div>
+                    <div class="col-4 form-group form-inline">
+                        <h5><a style=" padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editProject(project._id)"></i></a></h5>
+                        <h4><a style="padding-right: 10px"><i  class="fas fa-newspaper pointerCursor" (click) = "addNewOrder(project._id, project.projectName, project.clientName)"></i></a></h4>
+                        <!--<h4><a style="padding-right: 10px"><i  class="fas fa-newspaper pointerCursor" routerLink="/orders/create/:order_id/:projectName/:clientName"></i></a></h4>-->
+                        <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)"></i></a></h4>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
