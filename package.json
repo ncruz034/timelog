@@ -69,7 +69,8 @@
     "typescript": "^3.4.5",
     "winston": "^2.4.0",
     "winston-mongodb": "^5.0.1",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.21",
@@ -79,7 +80,6 @@
     "@types/node": "~8.9.4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-watch": "^7.0.0",
     "codelyzer": "^5.2.1",
