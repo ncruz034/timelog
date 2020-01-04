@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  uri = 'http://localhost:3000/api';
+  //uri = 'http://localhost:3000/api';
+  uri = 'https://ssa-timelog.herokuapp.com/api';
+
   authToken;
   user;
   constructor(private router: Router, private http: HttpClient) { }
