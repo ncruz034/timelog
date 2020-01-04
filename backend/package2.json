@@ -1,0 +1,53 @@
+{
+  "name": "timelog",
+  "version": "1.0.0",
+  "description": "SSA work performed time keeping app",
+  "main": "server.js",
+  "scripts": {
+    "start":"node server.js",
+    "test": "jest",
+    "dev": "babel-watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncruz034/timelog.git"
+  },
+  "keywords": [
+    "timelog"
+  ],
+  "author": "Nelson Cruz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ncruz034/timelog/issues"
+  },
+  "homepage": "https://github.com/ncruz034/timelog#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "compression": "^1.7.4",
+    "config": "^2.0.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-async-errors": "^3.0.0",
+    "helmet": "^3.21.2",
+    "joi": "^13.6.0",
+    "jsonwebtoken": "^8.3.0",
+    "loadash": "^1.0.0",
+    "mongodb": "^3.4.1",
+    "mongoose": "^5.7.3",
+    "node-binance-api": "^0.8.1",
+    "winston": "^2.4.0",
+    "winston-mongodb": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7",
+    "jest": "^23.5.0"
+  },
+  "engines":{
+    "node":"12.14.0"
+  }
+}
+
