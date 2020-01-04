@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Joi = require('Joi');
+const Joi = require('joi');
 
 
 const Client = mongoose.model('Client',new mongoose.Schema({
     date:{type: Date, required: true},
     clientName: {type:String, required:true},
     address: {type:String, required:true},
-    phone:{type:String, required:true}, 
+    phone:{type:String, required:true},
     contact:{type:String, require:true},
     projects:[{type: mongoose.Schema.ObjectId, ref:'Order'}]
     }));

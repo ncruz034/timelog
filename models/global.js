@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Joi = require('Joi');
+const Joi = require('joi');
 
 
 const Global = mongoose.model('Global',new mongoose.Schema({
@@ -7,7 +7,7 @@ const Global = mongoose.model('Global',new mongoose.Schema({
     currentOrderId: [{type: mongoose.Schema.ObjectId, ref:'Order'}],
     }));
 
-    
+
 function validateGlobal(global){
     const schema = {
         currentOrderNumber: Joi.string().required(),

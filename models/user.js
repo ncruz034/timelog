@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const mongoose = require('mongoose');
-const Joi = require('Joi');
+const Joi = require('joi');
 
 //const {User, validate} = require('./models/user');
 
@@ -33,7 +33,7 @@ function validateUser(user){
        // salary: Joi.number().required(),
        // position: Joi.string().required(),
         email: Joi.string().min(5).max(255).required().email(),
-        password: Joi.string().min(5).max(255).required(),   
+        password: Joi.string().min(5).max(255).required(),
       // isAdmin: Joi.bool().required(),
     };
     return Joi.validate(user, schema);

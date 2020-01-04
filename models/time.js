@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //import mongoose from 'mongoose';
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const Time = mongoose.model('Time',new mongoose.Schema({
     date:{type: Date, default: Date.now},
@@ -8,7 +8,7 @@ const Time = mongoose.model('Time',new mongoose.Schema({
     order_id:{type: mongoose.Schema.Types.ObjectId, ref: 'Order', required:true},
     projectName:{type: String, required: true},
     clientName: {type: String, required: true},
-    description:{type:String, required:true}, 
+    description:{type:String, required:true},
     time:{type:Number, required:true},
     overTime:{type:Number},
     isField: {type: Boolean},
