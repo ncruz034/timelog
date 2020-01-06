@@ -23,9 +23,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/dist/'));
 }
 
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, '/dist/'));
-  });
 
 require('./startup/routes')(app);
 require('./startup/logging');
