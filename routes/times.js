@@ -29,7 +29,7 @@ router.get('/order', auth, async (req, res) => {
     try {
         const time = await Time.aggregate([
             { $match: {user_id: req.params.user_id}},
-            { 
+            {
                 $project: {
                     "createdAtWeek": { $week: "$date" },
                     "createdAtMonth": { $month: "$date" },
@@ -46,7 +46,7 @@ router.get('/order', auth, async (req, res) => {
                  }
             }
         ] )
-    
+
         //check if there is any error
         if(!time) return res.status(400).send('The time with the given symbol is not valid');
          console.log("the time is here: " + time[0].user_id);
@@ -60,7 +60,7 @@ router.get('/weekly/:user_id', auth, async (req, res) => {
     try {
         const time = await Time.aggregate([
             { $match: {}},
-            { 
+            {
                 $project: {
                     "createdAtWeek": { $week: "$date" },
                     "createdAtMonth": { $month: "$date" },
@@ -79,7 +79,7 @@ router.get('/weekly/:user_id', auth, async (req, res) => {
                  }
             }
         ] )
-    
+
         //check if there is any error
         if(!time) return res.status(400).send('The time with the given symbol is not valid');
          console.log("the time is here: " + time[0].user_id);
@@ -117,7 +117,7 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
       /*   {"$group": {_id:{date:"$date"}}} */
 
     ]);
-    
+
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
      data.times = times;
      data.orders = byOrders;
@@ -139,7 +139,7 @@ router.get('/user/:user_id/:date',auth,  async (req, res,) => {
      res.send(times);
 });
 
-// Update time 
+// Update time
 router.put('/update/:id',auth, async (req,res) =>{
     //validate the input
     const {error} = validate(req.body);
@@ -152,10 +152,10 @@ router.put('/update/:id',auth, async (req,res) =>{
 
 // Add a new time
 router.post('/', async (req,res) =>{
-    //console.log("VAlidating Time");
+    console.log("VAlidating Time");
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-   // console.log("After validating time");
+   console.log("After validating time");
     let time = new Time(req.body);
     time = await time.save();
     res.send(time._id);
@@ -179,7 +179,7 @@ module.exports = router;
      const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
      res.send(times);
-}); */ 
+}); */
 
 /* router.get('/user/:userName',auth,  async (req, res,) => {
     console.log("Sending the times for: ....." + req.params.userName);
@@ -190,7 +190,7 @@ module.exports = router;
             entry: {
                 $push:{_id:"$_id", time:"$time", description:"$description",orderNumber:"$orderNumber"}
             }
-    }} 
+    }}
     ])
     console.log(times);
      //const times = await Time.find({user : req.params.user_id}).sort('date').populate('order',['orderNumber'],'Order');
@@ -216,28 +216,28 @@ module.exports = router;
     });
 }); */
 
-/* 
+/*
 db.users.aggregate([
-    {$unwind:"$time"}, 
+    {$unwind:"$time"},
     {
         $lookup: {from:"times",
         localField:"time",
         foreignField:"_id",
         as:"time"
-        } 
-    }, 
-    {$project:{name: 1, order:1, description:1, date:1, time:1}} 
+        }
+    },
+    {$project:{name: 1, order:1, description:1, date:1, time:1}}
     ]).pretty()
 
     db.times.aggregate([
-        {$match: {user:"5b90741f721b5bf5f8a699a4"}}, 
+        {$match: {user:"5b90741f721b5bf5f8a699a4"}},
         {
             $lookup: {from:"orders",
             localField:"order",
             foreignField:"_id",
             as:"order"
             },
-        }, 
+        },
         {$unwind: "$order"},
         {$project:{description:1, date:1, time:1, order:{orderNumber:1}}} ,
         ]).pretty() */

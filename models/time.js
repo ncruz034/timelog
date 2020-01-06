@@ -14,7 +14,7 @@ const Time = mongoose.model('Time',new mongoose.Schema({
     isField: {type: Boolean},
     userName:{type:String, required:true},
     user_id:{type: String, required: true},
-    employee_hourly_rate: {type: Number},
+    //employee_hourly_rate: {type: Number},
     //user_id:{type: mongoose.Schema.Types.ObjectId, ref: 'User', required:true},
 }));
 
@@ -32,7 +32,7 @@ function validateTime(time){
         isField: Joi.boolean().allow(''),
         userName: Joi.string().required(),
         user_id: Joi.required(),
-        employee_hourly_rate: Joi.number.required(),
+        //employee_hourly_rate: Joi.number().required(),
     };
     return Joi.validate(time, schema);
     //check if there is any error
