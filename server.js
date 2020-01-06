@@ -6,6 +6,7 @@ const app = express();
 //Remove cors in production app
 app.use(cors());
 
+/*
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
@@ -15,10 +16,11 @@ app.use((req, res, next) => {
   );
   next();
 });
+*/
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/dist/', 'index.html'));
+  app.use(express.static(__dirname + '/dist/'));
 }
 
 require('./startup/routes')(app);
@@ -28,5 +30,6 @@ require('./startup/config')();
 require('./startup/prod')(app);
 //require('./startup/validation')();
 
+//const port = process.env.PORT || 3000;
 const port = process.env.PORT || 8080;
 app.listen(port ,()=>winston.info(`Listening on port ${port}...`));
