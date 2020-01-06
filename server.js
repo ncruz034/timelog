@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/dist/'));
+  app.use(express.static(__dirname + '/dist/', 'index.html'));
 }
 
 require('./startup/routes')(app);
