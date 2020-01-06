@@ -40,7 +40,7 @@ export class OrderDetailComponent implements OnInit {
               for (this.time of this.order.time) {
                 if(this.time.isField){
                   this.fieldRegTimeCounter += Number(this.time.time);
-                  this.fieldOvrTimeCounter += Number(this.time.overTime)
+                  this.fieldOvrTimeCounter += Number(this.time.overTime);
                 }else{
                   console.log('Office Reg: ' + this.officeRegTimeCounter  + ' + ' + this.time.time)
                   this.officeRegTimeCounter += Number(this.time.time);
@@ -51,7 +51,7 @@ export class OrderDetailComponent implements OnInit {
 
             this.officeTotalHours = this.officeRegTimeCounter + this.officeOvrTimeCounter;
             this.fieldTotalHours = this.fieldRegTimeCounter + this.fieldOvrTimeCounter;
-        
+
           } else {
             console.log('No order available!');
           }
