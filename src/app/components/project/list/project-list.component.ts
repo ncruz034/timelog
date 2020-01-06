@@ -45,7 +45,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   addNewOrder(project_id, projectName, clientName){
-    this.router.navigate([`orders/create/${project_id}/ ${projectName}/ ${clientName}`]);
+    this.router.navigate([`orders/create/${project_id}/${projectName}/${clientName}`]);
   }
 
   fetchProjects() {

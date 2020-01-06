@@ -20,7 +20,7 @@ import { Type } from '@angular/compiler';
   styleUrls: ['./time-create.component.css'],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
-export class TimeCreateComponent implements OnInit{
+export class TimeCreateComponent implements OnInit {
  time: Time = new Time();
   form: FormGroup;
   orders: Order[] = null;

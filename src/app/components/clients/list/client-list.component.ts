@@ -56,7 +56,7 @@ export class ClientListComponent implements OnInit {
       }
     );
   }
-  addProject(client_id, clientName){
+  addProject(client_id, clientName) {
     this.router.navigate([`projects/create/${client_id}/${clientName}`]);
   }
   editClient(id) {

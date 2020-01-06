@@ -48,7 +48,7 @@ export class OrderListComponent implements OnInit {
     this.currentOrderId = id;
   }
 
-  
+
   fetchOrders() {
     this.orderService.getOrders().subscribe(
       (data: Order[]) => {
@@ -81,7 +81,7 @@ export class OrderListComponent implements OnInit {
 
   addTime(order_id, projectName, clientName, orderNumber){
     this.toggle();
-    this.router.navigate([`times/create/${order_id}/ ${projectName}/ ${clientName}/ ${orderNumber}`]);
+    this.router.navigate([`times/create/${order_id}/${projectName}/${clientName}/${orderNumber}`]);
 
   }
 
