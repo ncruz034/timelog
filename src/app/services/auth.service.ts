@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import {theUri} from '../config/config';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  //uri = 'http://localhost:3000/api';
-  uri = 'https://ssa-timelog.herokuapp.com/api';
+  uri = theUri;
+  //uri = 'http://localhost:8080/api';
+  //uri = 'https://ssa-timelog.herokuapp.com/api';
 
   authToken;
   user;
