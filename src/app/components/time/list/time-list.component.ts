@@ -46,7 +46,7 @@ export class TimeListComponent implements OnInit {
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
       this.filterDate();
-
+      console.log(this.filteredUserTimesBySelectedDate);
     } else {
       this.toDate = null;
       this.fromDate = date;
@@ -109,15 +109,12 @@ export class TimeListComponent implements OnInit {
      });
 
      this.filteredUserTimesBySelectedDate = this.timesBySelectedDate.filter((element) => {
-      const theDate = new Date(element._id.date);
-      return (dateFrom <= theDate && dateTo >= theDate);
+      return element.dates.filter(date => {
+       // console.log(date.date)
+        const theDate = new Date(date.date);
+        return (dateFrom <= theDate && dateTo >= theDate);
+       })
      });
-
-    //this.filteredUserTimesBySelectedDate2 = this.filteredUserTimesBySelectedDate.filter((element) => {
-     // console.log(element.date);
-      //const theDate = new Date(element.date);
-      //return (dateFrom <= theDate && dateTo >= theDate);
-     //});
    }
 
   editTime(_id) {

@@ -116,17 +116,11 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
 
             dates: {
                     $push:{time:"$time",overTime:"$overTime", date:"$date"}
-                }
+                },
+                totalTime:{$sum:"$time"},
+                totalOvertime:{$sum:"$overTime"}
             }
         },
-       /* {"$group":
-            {_id:{date:"$date"},count:{$sum: 1},
-                dates: {
-                  $push:{_id:"$_id", time:"$time",date:"$date"}
-                }
-            }
-        }*/
-
     ]);
 
 /*
