@@ -30,6 +30,10 @@ export class TimeListComponent implements OnInit {
   toDate: NgbDate;
   filteredDates: any[] = [];
 
+  timesBySelectedDate: any[] = [];
+  filteredUserTimesBySelectedDate: any[];
+  filteredUserTimesBySelectedDate2: any[];
+
   constructor(private orderService: OrderService, private timeService: TimeService, private router: Router, calendar: NgbCalendar) {
     this.fromDate = calendar.getNext(calendar.getToday(), 'd', - 7);
     this.toDate = calendar.getToday();
@@ -77,9 +81,14 @@ export class TimeListComponent implements OnInit {
     this.timeService.getUsersTime(user_id).subscribe(
       (data: any) => {
         this.userTimes = data.times;
+        this.timesBySelectedDate = data.orders;
+        console.log(this.timesBySelectedDate);
         this.filteredDates = data.times;
-        console.log(this.userTimes);
-
+        this.filterDate();
+        //this.filteredDates = this.filterDate();
+       // console.log(data.orders);
+        // console.log(this.filteredDates);
+        console.log(this.filteredUserTimesBySelectedDate);
       });
 
       /* (data: Time[]) => {
@@ -89,7 +98,7 @@ export class TimeListComponent implements OnInit {
   }
 
   filterDate() {
-    console.log("Filter date called:");
+    // console.log("Filter date called:");
     if ( this.toDate == null ) { this.toDate = this.defaultDate; }
     const dateFrom = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
     const dateTo = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day);
@@ -98,6 +107,17 @@ export class TimeListComponent implements OnInit {
       const theDate = new Date(date._id.date);
       return (dateFrom <= theDate && dateTo >= theDate);
      });
+
+     this.filteredUserTimesBySelectedDate = this.timesBySelectedDate.filter((element) => {
+      const theDate = new Date(element._id.date);
+      return (dateFrom <= theDate && dateTo >= theDate);
+     });
+
+    //this.filteredUserTimesBySelectedDate2 = this.filteredUserTimesBySelectedDate.filter((element) => {
+     // console.log(element.date);
+      //const theDate = new Date(element.date);
+      //return (dateFrom <= theDate && dateTo >= theDate);
+     //});
    }
 
   editTime(_id) {

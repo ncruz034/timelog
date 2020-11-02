@@ -19,7 +19,7 @@ router.get('/:id', auth, async (req,res) =>{
     const time = await Time.findById(req.params.id);
      //check if there is any error
      if(!time) return res.status(400).send('The time with the given symbol is not valid');
-   // console.log("the time is here: " + time);
+    //console.log("the time is here: " + time);
      res.send(time);
 });
 
@@ -89,6 +89,8 @@ router.get('/weekly/:user_id', auth, async (req, res) => {
     }
 })
 // Get all times for a user
+
+
 router.get('/user/:user_id',auth,  async (req, res,) => {
     const data = {
          times:[],
@@ -100,12 +102,35 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
         {"$match":{"user_id": req.params.user_id}},
         {"$group":{_id:{date:"$date"},count:{$sum: 1},
             times: {
-                $push:{_id:"$_id", time:"$time", overTime:"$overTime", description:"$description",orderNumber:"$orderNumber", isField:"$isField"}
+                $push:{_id:"$_id", time:"$time", overTime:"$overTime",
+                description:"$description",orderNumber:"$orderNumber", isField:"$isField"}
             }
     }}
     ]);
 
+
     const byOrders =  await Time.aggregate([
+        {"$match":{"user_id": req.params.user_id}},
+        {"$group":
+            {_id:{order:"$orderNumber",date:"$date"},
+
+            dates: {
+                    $push:{time:"$time",overTime:"$overTime", date:"$date"}
+                }
+            }
+        },
+       /* {"$group":
+            {_id:{date:"$date"},count:{$sum: 1},
+                dates: {
+                  $push:{_id:"$_id", time:"$time",date:"$date"}
+                }
+            }
+        }*/
+
+    ]);
+
+/*
+const byOrders =  await Time.aggregate([
         {"$match":{"user_id": req.params.user_id}},
         {"$group":
             {_id:{order:"$orderNumber"},count:{$sum: 1},
@@ -114,13 +139,27 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
                 }
             }
         },
+        {"$group":
+        {_id:{date:"$date"},count:{$sum:1}},
+         times: {
+           $push:{_id:"$_id", time:"$dime",overTime:"$overTime",date:"$date"}
+         }
+      }
       /*   {"$group": {_id:{date:"$date"}}} */
 
-    ]);
+
+
+
+
+
+
+
+
 
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
      data.times = times;
      data.orders = byOrders;
+     console.log(data);
      res.send(data);
 });
 

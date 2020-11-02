@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ClientService } from '../../../services/client.service';
 import { Router } from '@angular/router';
 import { Client } from '../../../models/client.model';
@@ -11,6 +11,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./client-list.component.css'],
 })
 export class ClientListComponent implements OnInit {
+
+
   panelOpenState = false;
 
   clients: Client[];
@@ -66,11 +68,14 @@ export class ClientListComponent implements OnInit {
   detailClient(id){
     this.router.navigate([`clients/detail/${id}`]);
   }
+
   deleteClient(id) {
+
     this.clientService.deleteClient(id).subscribe(() => {
       this.fetchClients();
     });
   }
+
 }
 
 
