@@ -109,19 +109,28 @@ router.get('/user/:user_id',auth,  async (req, res,) => {
     ]);
 
 
-    const byOrders =  await Time.aggregate([
+    const byOrders = await Time.aggregate([{"$match":{"user_id": req.params.user_id}}]);
+
+
+      /*
         {"$match":{"user_id": req.params.user_id}},
         {"$group":
             {_id:{order:"$orderNumber",date:"$date"},
-
-            dates: {
-                    $push:{time:"$time",overTime:"$overTime", date:"$date"}
-                },
-                totalTime:{$sum:"$time"},
-                totalOvertime:{$sum:"$overTime"}
-            }
+*/
+            /*dates: {
+                    $push:{orderNumber:"$orderNumber", time:"$time",overTime:"$overTime", date:"$date"}
+                },*/
+/*
+              orderNumber:"$orderNumber",
+              time:"$time",
+              overTime:"$overTime",
+              date:"$date",
+              totalTime:{$sum:"$time"},
+              totalOvertime:{$sum:"$overTime"}
+              }
         },
     ]);
+*/
 
 /*
 const byOrders =  await Time.aggregate([
@@ -142,18 +151,17 @@ const byOrders =  await Time.aggregate([
       /*   {"$group": {_id:{date:"$date"}}} */
 
 
-
-
-
-
-
-
-
-
      if(!times) return res.status(400).send('The user with the given user _id is not valid');
      data.times = times;
+    /* byOrders.forEach(time =>{
+       data.orders.push(
+         {"date":time.date,
+          "order":time.orderNumber,
+          "time":time.time,
+          "overTime":time.overTime})
+     })*/
      data.orders = byOrders;
-     console.log(data);
+     console.log(data.orders);
      res.send(data);
 });
 
