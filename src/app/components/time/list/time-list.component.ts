@@ -32,10 +32,7 @@ export class TimeListComponent implements OnInit {
   toDate: NgbDate;
   filteredDates: any[] = [];
   filteredDates2: any[] = [];
-
   timesBySelectedDate: any[] = [];
-
-
 
   newOrderTotal = {
     orderNumber: '',
@@ -61,7 +58,6 @@ export class TimeListComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
-
   }
 
   isHovered(date: NgbDate) {
@@ -75,7 +71,6 @@ export class TimeListComponent implements OnInit {
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
-
 
   ngOnInit() {
      this.getUsersTime(localStorage.getItem('user_id'));
@@ -96,11 +91,6 @@ export class TimeListComponent implements OnInit {
         this.filteredDates2 = data.orders;
         this.filterDate();
       });
-
-      /* (data: Time[]) => {
-        this.userTimes = data;
-        console.log(this.userTimes);
-      }); */
   }
 
   filterDate() {
@@ -120,39 +110,23 @@ export class TimeListComponent implements OnInit {
      }).sort((a, b) => {
        return (a.orderNumber - b.orderNumber);
       });
-      console.log(this.filteredDates2)
 
-      this.currentOrder = this.filteredDates2[0].orderNumber;
-
-     this.filteredDates2.forEach(data => {
-        if ( data.orderNumber === this.currentOrder) {
-          this.checkOrderNumber(data);
-           //  this.newOrderTotal.orderNumber = data.orderNumber;
-          // this.newOrderTotal.regularTimeTotal += data.time;
-           // this.newOrderTotal.overTimeTotal += data.overTime;
-        } else {
-          this.currentOrder = data.orderNumber;
-          this.filteredOrderTotals.push(this.newOrderTotal);
-          this.newOrderTotal.orderNumber = '';
-          this.newOrderTotal.overTimeTotal = 0;
-          this.newOrderTotal.regularTimeTotal = 0;
-          this.checkOrderNumber(data);
-          // this.newOrderTotal.orderNumber = data.orderNumber;
-          // this.newOrderTotal.regularTimeTotal += data.time;
-          // this.newOrderTotal.overTimeTotal += data.overTime;
-        }
-
-        // console.log(data);
-     });
-      console.log(this.filteredOrderTotals)
-   }
-
-   checkOrderNumber(data) {
-    this.newOrderTotal.orderNumber = data.orderNumber;
-    this.newOrderTotal.regularTimeTotal += data.time;
-    this.newOrderTotal.overTimeTotal += data.overTime;
-   }
-
+      let temp;
+      for (let i = 0; i < this.filteredDates2.length; i++) {
+          if (this.filteredDates2[i].orderNumber !== temp) {
+            this.filteredOrderTotals.push(
+              {
+                orderNumber: this.filteredDates2[i].orderNumber,
+                totalTime: this.filteredDates2[i].time,
+                totalOverTime: this.filteredDates2[i].overTime
+              });
+            temp = this.filteredDates2[i].orderNumber;
+          } else {
+            this.filteredOrderTotals[this.filteredOrderTotals.length - 1].totalTime += this.filteredDates2[i].time;
+          }
+      }
+      console.log(this.filteredOrderTotals);
+     }
 
   editTime(_id) {
     this.router.navigate([`times/edit/${_id}`]);
