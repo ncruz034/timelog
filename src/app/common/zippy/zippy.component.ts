@@ -7,6 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class ZippyComponent{
 @Input('title') title : string;
+@Input('data1') data1 : string;
+@Input('data2') data2 : string;
+@Input('data3') data3 : string;
+@Input('data4') data4 : string;
 isExpanded: boolean;
 
 toggle(){

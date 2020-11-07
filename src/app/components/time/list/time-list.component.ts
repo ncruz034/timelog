@@ -53,6 +53,7 @@ export class TimeListComponent implements OnInit {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
+      this.filteredOrderTotals = [];
       this.filterDate();
     } else {
       this.toDate = null;

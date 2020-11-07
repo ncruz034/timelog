@@ -1,5 +1,10 @@
 <div class="zippy">
   <div class="zippy-heading" [class.expanded]="isExpanded" (click)="toggle()">
+    <table>
+      <tr>
+        <td>{{data1}}</td><td>{{data2}}</td><td>{{data3}}</td><td>{{data4}}</td>
+      </tr>
+    </table>
     {{title}}
     <span class = "fontIcon" [ngClass]="isExpanded ? 'fas fa-chevron-down' : 'fas fa-chevron-up'"></span>
     </div>

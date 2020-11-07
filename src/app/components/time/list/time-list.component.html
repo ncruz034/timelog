@@ -58,18 +58,58 @@
           </div>
           <hr>
         -->
+
+
+        <div class="">
+          <ul *ngFor = "let key of filteredOrderTotals">
+            <li>{{key.orderNumber}} {{key.totalTime}} {{key.totalOverTime}}</li>
+          </ul>
+        </div>
+        <div>
+        </div>
+          <div *ngFor="let key of filteredOrderTotals" >
+              <zippy data1="{{key.orderNumber}}" data2="{{key.totlTime}}" data3={{key.totalOverTime}} data4={{key.totalTime}}>
+                  <table class="table table-hover">
+                      <tr>
+                        <th>Order</th>
+                        <th>Description</th>
+                        <th>RG Time</th>
+                        <th>OV Time</th>
+                        <th>Actions</th>
+                      </tr>
+                      <tr *ngFor="let data of key.times" >
+                        <td>{{data.orderNumber}}</td>
+                        <td>{{data.description}}</td>
+                        <td>{{data.time}}</td>
+                        <td>{{data.overTime}}</td>
+                        <td>
+                            <div class="form-group form-inline" >
+                                <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>
+                                <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteTime(data._id)"></i></a></h4>
+                            </div>
+                        </td>
+                      </tr>
+                    </table>
+              </zippy>
+              </div>
+
+              <hr>
+
+
           <div >
                 <table>
                     <tr>
                       <th>Order Number</th>
                       <th>Total Time</th>
                       <th>Total OverTime</th>
+                      <th>Total</th>
                       <th>Actions</th>
                     </tr>
                     <tr *ngFor = "let data of filteredOrderTotals" >
                       <td>{{data.orderNumber}}</td>
                       <td>{{data.totalTime}}</td>
                       <td>{{data.totalOverTime}}</td>
+                      <td>{{data.totalTime + data.totalOverTime}}</td>
                       <td>
                           <div class="form-group form-inline" >
                               <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>
