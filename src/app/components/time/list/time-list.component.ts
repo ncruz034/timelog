@@ -33,6 +33,9 @@ export class TimeListComponent implements OnInit {
   filteredDates: any[] = [];
   filteredDates2: any[] = [];
   timesBySelectedDate: any[] = [];
+  timeByOrder: any[] = [];
+  isExpanded: Boolean = false;
+  selectedOrder: String;
 
   newOrderTotal = {
     orderNumber: '',
@@ -58,6 +61,19 @@ export class TimeListComponent implements OnInit {
     } else {
       this.toDate = null;
       this.fromDate = date;
+    }
+  }
+
+  toggle(data) {
+    this.timeByOrder = [];
+    this.filteredDates2.forEach((time) => {
+      if (time.orderNumber === data) {
+        this.timeByOrder.push(time);
+      }
+    });
+
+    if (this.isExpanded === false) {
+      this.isExpanded = !this.isExpanded;
     }
   }
 
