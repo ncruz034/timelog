@@ -23,96 +23,41 @@
     </div>
     </div>
     <hr>
-
-    <!--
-    <div class="">
-      <ul *ngFor = "let key of filteredOrderTotals">
-        <li>{{key.orderNumber}} {{key.totalTime}} {{key.totalOverTime}}</li>
-      </ul>
-    </div>
-    <div>
-    </div>
-      <div *ngFor="let key of filteredDates" >
-          <zippy title="{{key._id.date | date}}">
-              <table class="table table-hover">
-                  <tr>
-                    <th>Order</th>
-                    <th>Description</th>
-                    <th>RG Time</th>
-                    <th>OV Time</th>
-                    <th>Actions</th>
-                  </tr>
-                  <tr *ngFor="let data of key.times" >
-                    <td>{{data.orderNumber}}</td>
-                    <td>{{data.description}}</td>
-                    <td>{{data.time}}</td>
-                    <td>{{data.overTime}}</td>
-                    <td>
-                        <div class="form-group form-inline" >
-                            <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>
-                            <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteTime(data._id)"></i></a></h4>
-                        </div>
-                    </td>
-                  </tr>
-                </table>
-          </zippy>
-          </div>
-          <hr>
-
-          <div *ngFor="let key of filteredOrderTotals" >
-              <zippy data1="{{key.orderNumber}}" data2="{{key.totlTime}}" data3={{key.totalOverTime}} data4={{key.totalTime}}>
-                  <table class="table table-hover">
-                      <tr>
-                        <th>Order</th>
-                        <th>Description</th>
-                        <th>RG Time</th>
-                        <th>OV Time</th>
-                        <th>Actions</th>
-                      </tr>
-                      <tr *ngFor="let data of key.times" >
-                        <td>{{data.orderNumber}}</td>
-                        <td>{{data.description}}</td>
-                        <td>{{data.time}}</td>
-                        <td>{{data.overTime}}</td>
-                        <td>
-                            <div class="form-group form-inline" >
-                                <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>
-                                <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteTime(data._id)"></i></a></h4>
-                            </div>
-                        </td>
-                      </tr>
-                    </table>
-              </zippy>
-              </div>
-  -->
+<!--
           <hr>
           <div *ngIf="isExpanded">
-            <table>
-              <tr>
-                <th>Order No.</th>
-                <th>Regular Time</th>
-                <th>Overtime</th>
-                <th>Total</th>
-                <th>Actions</th>
-              </tr>
-              <tr *ngFor="let data of timeByOrder">
+            <table class="table table-bordered">
+              <thead class="table-light">
+                <tr>
+                  <th>Order No.</th>
+                  <th>Regular Time</th>
+                  <th>Overtime</th>
+                  <th>Total</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of timeByOrder">
                   <td>{{data.orderNumber}}</td>
                   <td>{{data.time}}</td>
                   <td>{{data.overTime}}</td>
                   <td>{{data.time + data.overTime}}</td>
                   <td>
                       <div class="form-group form-inline" >
-                        <!--<h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "toggle(data.orderNumber)"></i></a></h5>-->
+                        <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "toggle(data.orderNumber)"></i></a></h5>
                           <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>
                           <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteTime(data._id)"></i></a></h4>
                       </div>
                   </td>
               </tr>
+              </tbody>
             </table>
           </div>
+        -->
           <hr>
           <div >
-                <table>
+                <table class="table table-striped table-hover table-bordered">
+                  <thead class="table-dark">
                     <tr>
                       <th>Order No.</th>
                       <th>Regular Time</th>
@@ -120,7 +65,9 @@
                       <th>Total</th>
                      <!-- <th>Actions</th>-->
                     </tr>
-                    <tr class="pointerCursor" *ngFor = "let data of filteredOrderTotals" (click) = "toggle(data.orderNumber)" >
+                  </thead>
+                  <tbody>
+                      <tr class="pointerCursor" *ngFor = "let data of filteredOrderTotals" (click) = "toggle(data.orderNumber)" >
                       <td>{{data.orderNumber}}</td>
                       <td>{{data.totalTime}}</td>
                       <td>{{data.totalOverTime}}</td>
@@ -133,6 +80,8 @@
                           </div>
                       </td>-->
                     </tr>
+                  </tbody>
+
                   </table>
             </div>
   </div>

@@ -1,1 +1,33 @@
-<p>time-per-order works!</p>
+
+         <div class="container">
+          <div class="heading">
+            <legend>ORDER No. {{timeByOrder[0].orderNumber}}</legend>
+        </div>
+         <div class="card">
+            <table class="table table-striped table-hover table-bordered">
+              <thead class="table-dark">
+                <tr>
+                  <th>Order No.</th>
+                  <th>Regular Time</th>
+                  <th>Overtime</th>
+                  <th>Total</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of timeByOrder">
+                  <td>{{data.orderNumber}}</td>
+                  <td>{{data.time}}</td>
+                  <td>{{data.overTime}}</td>
+                  <td>{{data.time + data.overTime}}</td>
+                  <td>
+                      <div class="form-group form-inline" >
+                          <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editTime(data._id)"></i></a></h5>
+                          <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteTime(data._id)"></i></a></h4>
+                      </div>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+</div>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { isFulfilled } from 'q';
 import {theUri} from '../config/config';
 @Injectable({
   providedIn: 'root'
@@ -8,6 +7,7 @@ import {theUri} from '../config/config';
 export class TimeService {
 
   uri = theUri;
+  timeByOrder: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -45,5 +45,11 @@ export class TimeService {
 
   deleteTime(id) {
     return this.http.delete(`${this.uri}/times/delete/${id}`);
+  }
+  getTimeByOrder() {
+    return this.timeByOrder;
+  }
+  sendTimeByOrder(timeByOrder: any[]) {
+    this.timeByOrder = timeByOrder;
   }
 }

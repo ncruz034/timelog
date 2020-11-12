@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { TimeService } from '../../../services/time.service';
 import { OrderService } from '../../../services/order.service';
 import { Router } from '@angular/router';
@@ -7,8 +7,7 @@ import { Order } from '../../../models/order.model';
 import { MomentModule } from 'ngx-moment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbDate, NgbCalendar, NgbDateAdapter, NgbDateStruct, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { element } from 'protractor';
+import { weekdays } from 'moment';
 
 
 @Component({
@@ -20,6 +19,7 @@ import { element } from 'protractor';
 export class TimeListComponent implements OnInit {
   @Input() currentOrderId: String;
   @Input() isOrderRequest: Boolean;
+  timeByOrder: any[] = [];
   times: Time[];
   userTimes: any[];
   userTimes2: any[];
@@ -33,7 +33,7 @@ export class TimeListComponent implements OnInit {
   filteredDates: any[] = [];
   filteredDates2: any[] = [];
   timesBySelectedDate: any[] = [];
-  timeByOrder: any[] = [];
+
   isExpanded: Boolean = false;
   selectedOrder: String;
 
@@ -46,8 +46,10 @@ export class TimeListComponent implements OnInit {
   filteredOrderTotals: any[] = [];
 
   constructor(private orderService: OrderService, private timeService: TimeService, private router: Router, calendar: NgbCalendar) {
-    this.fromDate = calendar.getNext(calendar.getToday(), 'd', - 7);
-    this.toDate = calendar.getToday();
+    const weekDay = calendar.getWeekday(calendar.getToday());
+    this.fromDate =  calendar.getNext(calendar.getToday(), 'd', - weekDay);
+    // this.fromDate =  calendar.getNext(calendar.getToday(), 'd', - 7);
+    this.toDate = calendar.getNext(calendar.getToday(), 'd', + (6 - weekDay)); // calendar.getToday();
     this.defaultDate = calendar.getToday();
   }
 
@@ -65,16 +67,21 @@ export class TimeListComponent implements OnInit {
   }
 
   toggle(data) {
+
     this.timeByOrder = [];
     this.filteredDates2.forEach((time) => {
       if (time.orderNumber === data) {
         this.timeByOrder.push(time);
       }
     });
+   this.timeService.sendTimeByOrder(this.timeByOrder);
 
+    this.router.navigate([`times/time-per-order`]);
+/*
     if (this.isExpanded === false) {
       this.isExpanded = !this.isExpanded;
     }
+*/
   }
 
   isHovered(date: NgbDate) {
@@ -145,8 +152,11 @@ export class TimeListComponent implements OnInit {
       console.log(this.filteredOrderTotals);
      }
 
+  listTimeByOrder(id) {
+    this.router.navigate([`orders/detail/${id}`]);
+  }
   editTime(_id) {
-    this.router.navigate([`times/edit/${_id}`]);
+   this.router.navigate([`times/edit/${_id}`]);
   }
 
   deleteTime(_id) {

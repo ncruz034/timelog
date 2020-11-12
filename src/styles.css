@@ -1,6 +1,5 @@
 @import url("theme.css");
-
-
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 body {
   background-color: var(--background-color);
@@ -14,8 +13,8 @@ nav {
 .card
 {
 background-color: var(--card-background-color);
-border-left-color: var(--card-border-color);
-border-left-width: 5px;
+/*border-left-color: var(--card-border-color);
+border-left-width: 5px;*/
 margin-bottom: 5px;
 margin-top: 5px;
 padding:5px;
