@@ -3,66 +3,65 @@
     <legend>Project Details</legend>
 </div>
 
-<div class="card borderless">
-<ngb-tabset>
-    <ngb-tab>
-      <ng-template ngbTabTitle><b>PROJECT</b></ng-template>
-      <ng-template ngbTabContent>
-        <div class="container">
-           <div *ngIf="project">
-                <div class="card">
-                  <div class="card-body">
-                    <!--Beginning Client Info-->
-                    <h5><div class="card-title"> PROJECT INFORMATION</div></h5>
-                    <h5>Project Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.projectName}}</h6>
-                    <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.date | date}}</h6>
-                    <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.clientName}}</h6>
-                    <h5>Description:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
-                  </div>
-                </div>
-           </div>
+<div *ngIf="project" class="card text-white bg-secondary mb-3row">
+      <div class="card-header">{{project.projectName}}</div>
+        <div class="card-body">
+          <h5 class="card-title">Project Name: <span>{{project.projectName}}</span></h5>
+          <h5 class="card-title">Project Date: <span>{{project.date | date}}</span></h5>
+          <h5 class="card-title">Client Name: <span>{{project.clientName}}</span></h5>
+          <h5 class="card-title">Project Description: <span>{{project.description}}</span></h5>
         </div>
-      </ng-template>
-    </ngb-tab>
-
-      <ngb-tab>
-        <ng-template ngbTabTitle><b>OVERVIEW</b></ng-template>
-        <ng-template ngbTabContent >
-
-          <div class="card">
-            <h5>ORDERS</h5>
-            <div *ngFor='let order of project.projectOrders'>
-              <ul>
-                <li>{{order.orderNumber}}</li>
-              </ul>
-            </div>
-            <hr>
-            <div>
-              <h5>OFFICE TIME</h5>
-              <p>Regular Time: <span>{{officeRegTimeCounter}}</span></p>
-              <p>Over Time: <span>{{officeOvrTimeCounter}}</span></p>
-            </div>
-
-            <div>
-              <h5>FIELD TIME</h5>
-              <p>Regular Time: <span>{{fieldRegTimeCounter}}</span></p>
-              <p>Over Time: <span>{{fieldOvrTimeCounter}}</span></p>
-            </div>
-          </div>
-        </ng-template>
-        </ngb-tab>
-
-        <ngb-tab>
-          <ng-template ngbTabTitle><b>NOTES</b></ng-template>
-          <ng-template ngbTabContent>
-          <div class="container">
-            <p>Notes about this project will be logged in this area</p>
-          </div>
-        </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
-    <div>
-    <button  class="btn btn-primary" color = "accent" routerLink="/projects">Back</button>
+        
+    <div class="card col-sm-4">
     </div>
+    <div class="card col-sm-6">
+
+    </div>
+
 </div>
+
+<!--
+  <div *ngIf="project">
+       <div class="card row">
+
+         <div class="card-body">
+           <h5><div class="card-title">{{project.projectName}}</div></h5>
+           <h5>Project Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.projectName}}</h6>
+           <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.date | date}}</h6>
+           <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.clientName}}</h6>
+           <h5>Description:</h5><h6 class="card-subtitle mb-2 text-muted">{{project.description}}</h6>
+         </div>
+
+       </div>
+  </div>
+-->
+    <div class="row">
+      <div class="card text-white bg-dark mb-3 col-sm" >
+        <div class="card-header">OPEN ORDERS</div>
+        <div *ngFor='let order of project.projectOrders'>
+          <ul>
+            <li>{{order.orderNumber}}</li>
+          </ul>
+        </div>
+      </div>
+   </div>
+
+  <div class="row">
+    <div class="card text-white bg-primary mb-3 col-sm" >
+      <div class="card-header">OFFICE TIME</div>
+      <div class="card-body">
+        <h5 class="card-title">Regular Time: <span>{{officeRegTimeCounter}}</span></h5>
+        <h5 class="card-title">Overtime: <span>{{officeOvrTimeCounter}}</span></h5>
+      </div>
+    </div>
+
+    <div class="card text-white bg-info mb-3 col-sm">
+      <div class="card-header">FIELD TIME</div>
+      <div class="card-body">
+        <h5 class="card-title">Regular Time: <span>{{fieldRegTimeCounter}}</span></h5>
+        <h5 class="card-title">Overtime: <span>{{fieldOvrTimeCounter}}</span></h5>
+      </div>
+    </div>
+  </div>
+
 </div>
