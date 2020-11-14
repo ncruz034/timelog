@@ -3,22 +3,26 @@
     <legend>Project Details</legend>
 </div>
 
-<div *ngIf="project" class="card text-white bg-secondary mb-3row">
-      <div class="card-header">{{project.projectName}}</div>
-        <div class="card-body">
-          <h5 class="card-title">Project Name: <span>{{project.projectName}}</span></h5>
-          <h5 class="card-title">Project Date: <span>{{project.date | date}}</span></h5>
-          <h5 class="card-title">Client Name: <span>{{project.clientName}}</span></h5>
-          <h5 class="card-title">Project Description: <span>{{project.description}}</span></h5>
+  <div *ngIf="project" class=" card row text-white bg-secondary ">
+    <div class="card-header">{{project.projectName}}</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-2">
+          <h5 class="card-title">Name:</h5>
+          <h5 class="card-title">Date:</h5>
+          <h5 class="card-title">Client:</h5>
+          <h5 class="card-title">Description:</h5>
         </div>
-        
-    <div class="card col-sm-4">
+        <div class="col-sm-10">
+          <h5 class="card-title"><span>{{project.projectName}}</span></h5>
+          <h5 class="card-title"><span>{{project.date | date}}</span></h5>
+          <h5 class="card-title"><span>{{project.clientName}}</span></h5>
+          <h5 class="card-title"><span>{{project.description}}</span></h5>
+        </div>
+      </div>
     </div>
-    <div class="card col-sm-6">
-
-    </div>
-
 </div>
+
 
 <!--
   <div *ngIf="project">

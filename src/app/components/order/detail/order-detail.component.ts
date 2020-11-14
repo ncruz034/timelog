@@ -38,13 +38,13 @@ export class OrderDetailComponent implements OnInit {
             this.order = order;
             if (this.order) {
               for (this.time of this.order.time) {
-                if(this.time.isField){
+                if (this.time.isField) {
                   this.fieldRegTimeCounter += Number(this.time.time);
                   this.fieldOvrTimeCounter += Number(this.time.overTime);
-                }else{
-                  console.log('Office Reg: ' + this.officeRegTimeCounter  + ' + ' + this.time.time)
+                } else {
+                 // console.log('Office Reg: ' + this.officeRegTimeCounter  + ' + ' + this.time.time);
                   this.officeRegTimeCounter += Number(this.time.time);
-                  console.log('Office Over: ' + this.officeOvrTimeCounter  + ' + ' + this.time.overTime)
+                  // console.log('Office Over: ' + this.officeOvrTimeCounter  + ' + ' + this.time.overTime);
                   this.officeOvrTimeCounter += Number(this.time.overTime);
                 }
               }
@@ -58,5 +58,8 @@ export class OrderDetailComponent implements OnInit {
         });
 
         });
+    }
+    onPrintOrder() {
+
     }
   }
