@@ -227,8 +227,44 @@
 
     <!--Office Information-->
     <ngb-tab>
-      <ng-template ngbTabTitle><b>OFFICE</b> order</ng-template>
+      <ng-template ngbTabTitle><b>OFFICE</b></ng-template>
       <ng-template ngbTabContent >
+
+        <div  class="card">
+          <div class = "row left">
+            <div class="col-2">
+              <h5>Overtime:</h5>
+              <h5>Regular:</h5>
+              <h5>Total:</h5>
+            </div>
+
+            <div class="col-2">
+                <h5>{{officeOvrTimeCounter}}</h5>
+                <h5>{{officeRegTimeCounter}}</h5>
+                <h5>{{officeTotalHours}}</h5>
+              </div>
+          </div>
+        </div>
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Employee</th>
+              <th>Regular Time</th>
+              <th>Overtime</th>
+              <th>Total</th>
+             <!-- <th>Actions</th>-->
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let time of order.time;">
+              <td>{{time.userName}}</td>
+              <td>{{time.time}}</td>
+              <td>{{time.overTime}}</td>
+              <td>{{time.time + time.overTime}}</td>
+            </tr>
+          </tbody>
+          </table>
+        <!--
         <div  class="card">
           <div class = "row left">
             <div class="col-2">
@@ -282,12 +318,49 @@
           </div>
         </div>
         </div>
+      -->
       </ng-template>
       </ngb-tab>
 
       <ngb-tab>
         <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
         <ng-template ngbTabContent>
+          <div class="card">
+            <div class = "row left">
+              <div class="col-2">
+                <h5>Overtime:</h5>
+                <h5>Regular:</h5>
+                <h5>Total:</h5>
+              </div>
+
+              <div class="col-2">
+                  <h5>{{fieldOvrTimeCounter}}</h5>
+                  <h5>{{fieldRegTimeCounter}}</h5>
+                  <h5>{{fieldTotalHours}}</h5>
+                </div>
+            </div>
+          </div>
+          <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th>Employee</th>
+                <th>Regular Time</th>
+                <th>Overtime</th>
+                <th>Total</th>
+               <!-- <th>Actions</th>-->
+              </tr>
+            </thead>
+            <tbody *ngFor=" let time of order.time;">
+                <tr  *ngIf="time.isField">
+                <td>{{time.userName}}</td>
+                <td>{{time.time}}</td>
+                <td>{{time.overTime}}</td>
+                <td>{{time.time + time.overTime}}</td>
+              </tr>
+            </tbody>
+            </table>
+
+          <!--
             <div class="card">
                 <div class = "row left">
                   <div class="col-2">
@@ -341,6 +414,7 @@
                 </div>
               </div>
               </div>
+            -->
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
