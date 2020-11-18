@@ -11,7 +11,7 @@ export class DataService {
 
   constructor() { }
 
-  changeOrderNumber(orderNumber: string){
+  changeOrderNumber(orderNumber: string) {
     this.orderNumber.next(orderNumber);
   }
 }

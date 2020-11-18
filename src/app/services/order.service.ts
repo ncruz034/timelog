@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
-//import { NG_PROJECT_AS_ATTR_NAME } from '@angular/core/src/render3/interfaces/projection';
+// import { NG_PROJECT_AS_ATTR_NAME } from '@angular/core/src/render3/interfaces/projection';
 import { Order } from '../models/order.model';
 import {theUri} from '../config/config';
 @Injectable({
@@ -8,7 +8,7 @@ import {theUri} from '../config/config';
 })
 export class OrderService {
 
-  
+
   uri = theUri;
 
   constructor(private http: HttpClient) { }
@@ -22,7 +22,6 @@ export class OrderService {
   }
 
   getLatestOrder() {
-    // console.log('In order services Latest');
     return this.http.get(`${this.uri}/orders/latest/-1`);
   }
 

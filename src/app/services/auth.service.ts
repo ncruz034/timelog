@@ -7,8 +7,8 @@ import {theUri} from '../config/config';
 })
 export class AuthService {
   uri = theUri;
-  //uri = 'http://localhost:8080/api';
-  //uri = 'https://ssa-timelog.herokuapp.com/api';
+  // uri = 'http://localhost:8080/api';
+  // uri = 'https://ssa-timelog.herokuapp.com/api';
 
   authToken;
   user;
@@ -26,7 +26,6 @@ export class AuthService {
     return !!localStorage.getItem('x-auth-token');
   }
 
-  // register(name, last, salary, position, email, password, isAdmin) {
   register(name, last, email, password) {
     const auth = {
       name: name,
@@ -63,6 +62,4 @@ export class AuthService {
     localStorage.removeItem('name');
     this.router.navigate(['./home']);
   }
-
-
 }

@@ -15,9 +15,7 @@ export class ProjectService {
   }
 
   getProjectStats() {
-    console.log("Hello billing")
     return this.http.get(`${this.uri}/billing`);
-    //return this.http.get(`${this.uri}/project-stats`);
   }
 
   getProjectById(id) {
@@ -39,9 +37,6 @@ export class ProjectService {
   addProject(project) {
     return this.http.post(`${this.uri}/projects`, project);
   }
-  /* deleteProject(_id, time_id) {
-    return this.http.delete(`${this.uri}/projects/${_id}/time/${time_id}`);
-  } */
 
   editProject(_id, updatedProject) {
     return this.http.put(`${this.uri}/projects/${_id}`, updatedProject);

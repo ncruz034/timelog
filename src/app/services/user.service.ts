@@ -6,7 +6,7 @@ import {theUri} from '../config/config';
 })
 export class UserService {
 
-  uri = theUri; 
+  uri = theUri;
 
   constructor(private http: HttpClient) { }
 

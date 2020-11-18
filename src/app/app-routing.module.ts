@@ -8,7 +8,7 @@ import { TimeListComponent } from './components/time/list/time-list.component';
 import { TimeCreateComponent } from './components/time/create/time-create.component';
 import { TimeEditComponent } from './components/time/edit/time-edit.component';
 import { TimeWeeklyComponent } from './components/time/time-weekly/time-weekly.component';
-import {TimePerOrderComponent } from './components/time/time-per-order/time-per-order.component';
+import { TimePerOrderComponent } from './components/time/time-per-order/time-per-order.component';
 
 import { OrderListComponent } from './components/order/list/order-list.component';
 import { OrderCreateComponent } from './components/order/create/order-create.component';
@@ -32,10 +32,12 @@ import { AdminDashboardComponent } from './components/dashobard/admin-dashboard/
 import { AccessComponent } from './components/access/access.component';
 import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
 import { BillingListComponent } from './components/billing/list/billing-list.component';
+import { UserListComponent } from './components/users/list/user-list.component';
 
 const routes: Routes = [
   {path: 'create', component: TimeCreateComponent, canActivate: [AuthGuard]},
   {path: 'users/register', component: RegisterComponent},
+  {path: 'users/list', component: UserListComponent, canActivate: [AuthGuard]},
   {path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
   {path: 'orders/create/:order_id/:projectName/:clientName', component: OrderCreateComponent, canActivate: [AuthGuard]},
   {path: 'orders/create', component: OrderCreateComponent, canActivate: [AuthGuard]},
