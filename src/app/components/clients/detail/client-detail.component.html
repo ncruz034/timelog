@@ -1,51 +1,17 @@
 <div class="container">
   <div class="heading">
     <legend>Client Details</legend>
-</div>
-<div class="card borderless">
-<ngb-tabset>
-  <ngb-tab>
-    <ng-template ngbTabTitle><b>Client</b></ng-template>
-    <ng-template ngbTabContent>
-      <div class="container">
-         <div *ngIf="client">
-              <div class="card">
-                <div class="card-body">
-                  <!--Beginning Client Info-->
-                  <h5><div class="card-title"> CLIENT INFORMATION</div></h5>
-                  <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.clientName}}</h6>
-                  <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.date | date}}</h6>
-                  <h5>Address:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.address}}</h6>
-                  <h5>Phone:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.phone}}</h6>
-                  <h5>Contact:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.contact}}</h6>
-                </div>
-              </div>
-         </div>
-      </div>
-    </ng-template>
-  </ngb-tab>
-
-
-    <ngb-tab>
-      <ng-template ngbTabTitle><b>OVERVIEW</b></ng-template>
-      <ng-template ngbTabContent >
-        <div class="container top-padding">
-          <p>Statistics about this project will be displayed in this area.</p>
-        </div>
-      </ng-template>
-      </ngb-tab>
-      <ngb-tab>
-        <ng-template ngbTabTitle><b>NOTES</b></ng-template>
-        <ng-template ngbTabContent>
-        <div class="container">
-          <p>Notes about this project will be logged in this area</p>
-        </div>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
+  </div>
+<div class="card">
+    <div *ngIf="client">
+             <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.clientName}}</h6>
+             <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.date | date}}</h6>
+             <h5>Address:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.address}}</h6>
+             <h5>Phone:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.phone}}</h6>
+             <h5>Contact:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.contact}}</h6>
+    </div>
   <div>
     <button  class="btn btn-primary" color = "accent" routerLink="/clients">Back</button>
   </div>
 </div>
-
 </div>

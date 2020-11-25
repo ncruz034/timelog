@@ -40,7 +40,7 @@
   <div class="heading">
     <legend>PROJECTS</legend>
 </div>
- 
+
     <table class="table table-striped table-hover table-bordered">
       <thead class="table-dark">
         <tr>
@@ -50,7 +50,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let project of filteredProjects;  let i = index;" (click) = "detailProject(project._id)">
+        <tr class="pointerCursor" *ngFor="let project of filteredProjects;  let i = index;" (click) = "detailProject(project._id)">
           <td>{{project.projectName}}</td>
           <td>{{project.status}}</td>
           <td>

@@ -44,7 +44,6 @@
   <div class="heading">
     <legend>CLIENTS</legend>
 </div>
- <div class="card">
     <table class="table table-striped table-hover table-bordered">
       <thead class="table-dark">
         <tr>
@@ -54,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let client of filteredClients; let i = index;"  (click) = "detailClient(client._id)">
+        <tr class="pointerCursor" *ngFor="let client of filteredClients; let i = index;"  (click) = "detailClient(client._id)">
           <td>{{client.clientName}}</td>
           <td>{{client.phone}}</td>
           <td>
@@ -67,5 +66,4 @@
       </tr>
       </tbody>
     </table>
-  </div>
 </div>
