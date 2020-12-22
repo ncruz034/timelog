@@ -63,6 +63,7 @@ import { BillingListComponent } from './components/billing/list/billing-list.com
 import { BillingCreateComponent } from './components/billing/create/billing-create.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { TimePerOrderComponent } from './components/time/time-per-order/time-per-order.component';
+import { UserAccessComponent } from './components/admin/user-access/user-access.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { TimePerOrderComponent } from './components/time/time-per-order/time-per
     BillingCreateComponent,
     DialogComponent,
     TimePerOrderComponent,
+    UserAccessComponent,
   ],
   imports: [
     NgbModule,

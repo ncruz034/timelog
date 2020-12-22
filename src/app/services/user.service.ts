@@ -17,4 +17,7 @@ export class UserService {
 
     return this.http.post(`${this.uri}/users/${user_id}/time`, updatedUserTime);
   }
+  getUsers() {
+    return this.http.get(`${this.uri}/users`);
+  }
 }

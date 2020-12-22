@@ -33,6 +33,7 @@ import { AccessComponent } from './components/access/access.component';
 import { TreeFileCreatorComponent } from './components/applications/tree-file-creator/tree-file-creator.component';
 import { BillingListComponent } from './components/billing/list/billing-list.component';
 import { UserListComponent } from './components/users/list/user-list.component';
+import { UserAccessComponent } from './components/admin/user-access/user-access.component';
 
 const routes: Routes = [
   {path: 'create', component: TimeCreateComponent, canActivate: [AuthGuard]},
@@ -67,8 +68,9 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'tree-file-creator' , component: TreeFileCreatorComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'billing', component: BillingListComponent, canActivate: [AuthGuard]}];
-
+  {path: 'billing', component: BillingListComponent, canActivate: [AuthGuard]},
+  {path: 'user-access', component: UserAccessComponent, canActivate: [AuthGuard]}];
+  
 @NgModule({
   imports: [ RouterModule.forRoot(routes)],
   exports: [RouterModule]
