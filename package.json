@@ -82,7 +82,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "babel-watch": "^7.0.0",
+    "babel-watch": "^7.3.0",
     "codelyzer": "^5.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
