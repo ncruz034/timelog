@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TimeListComponent } from './time-list.component';
 
@@ -6,7 +6,7 @@ describe('ListComponent', () => {
   let component: TimeListComponent;
   let fixture: ComponentFixture<TimeListComponent>;
   let panelExpanded = false;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ TimeListComponent ]
     })

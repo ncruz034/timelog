@@ -72,7 +72,7 @@ const routes: Routes = [
   {path: 'user-access', component: UserAccessComponent, canActivate: [AuthGuard]}];
   
 @NgModule({
-  imports: [ RouterModule.forRoot(routes)],
+  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
