@@ -1,8 +1,8 @@
 <div class="container">
     <div class="heading">
-      <legend>ORDERS</legend>
+      <legend>USERS ACCESS</legend>
   </div>
-  
+
       <table class="table table-striped table-hover table-bordered">
         <thead class="table-dark">
           <tr>
@@ -12,7 +12,7 @@
             <th>Role</th>
             <th>Access</th>
           </tr>
-        </thead>Last
+        </thead>
         <tbody>
           <tr class="pointerCursor" *ngFor="let user of filteredUsers; let i = index;">
             <td>{{user.email}}</td>
@@ -26,14 +26,21 @@
                   </select>
             </td>
             <td>
+
+                <select class="form-control" id="userTypeSelect">
+                    <option>high</option>
+                    <option>medium</option>
+                    <option>low</option>
+                  </select>
+
+              <!--
               <div class="form-group form-inline" >
                 <h5><a style=" padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editUser(user._id)" ngbTooltip="Edit User"></i></a></h5>
                 <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteUser(user._id)" ngbTooltip="Delete User"></i></a></h4>
               </div>
+            -->
             </td>
         </tr>
         </tbody>
       </table>
-  
   </div>
-  
