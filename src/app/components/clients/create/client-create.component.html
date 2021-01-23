@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="heading">
+  <div class="heading text-center">
     <legend>Client New</legend>
   </div>
   <div class="card borderless">
@@ -45,7 +45,7 @@
               <div *ngIf="(form.get('phone').touched && form.get('phone').invalid) || (form.get('phone').invalid && form.errors)" class="alert alert-danger">Phone number is required</div>
             </div>
           </form>
-          <div>
+          <div class="text-center">
             <button routerLink="/clients" class="btn btn-primary">Back</button>
             <button type="submit" class="btn btn-success"   [disabled]="!form.valid" (click)="addClient()">Submit</button>
           </div>

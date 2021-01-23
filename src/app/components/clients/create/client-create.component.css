@@ -9,3 +9,8 @@
   width: 50%;
 }
 
+.card{
+  padding-left: 100px;
+  padding-right: 100px;
+  border: none;
+}

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="heading">
+  <div class="heading text-center">
     <legend>New Project</legend>
   </div>
   <div class="card borderless">
@@ -43,7 +43,7 @@
                 <div *ngIf="(form.get('status').touched && form.get('status').invalid) || (form.get('status').invalid && form.errors)" class="alert alert-danger">Status is required</div>
               </div>
           </form>
-          <div>
+          <div class="text-center">
               <button routerLink="/clients" class="btn btn-primary">Back</button>
               <button type="submit" class="btn btn-success" [disabled]="!form.valid" (click)="addProject()">Submit</button>
           </div>

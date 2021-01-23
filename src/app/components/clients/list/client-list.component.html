@@ -41,16 +41,15 @@
 -->
 
 <div class="container">
-  <div class="heading">
-    <legend>CLIENTS</legend>
-</div>
+  <div class="heading text-center"><legend>CLIENTS</legend></div>
+  <div class="text-center"> <h1><i class="fas fa-plus-circle pointerCursor" routerLink="/clients/create" ngbTooltip="Add New Client"></i></h1></div>
 <div class="form-group form-inline">
   Client search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="orderSearch" [(ngModel)]="searchTerm"/>
 </div>
-    <table class="table table-striped table-hover table-bordered">
+      <table class="table table-striped table-hover table-sm table-bordered">
       <thead class="table-dark">
         <tr>
-          <th>Client Name.</th>
+          <th>Client Name</th>
           <th>Phone No.</th>
           <th>Actions</th>
         </tr>
@@ -60,13 +59,13 @@
           <td>{{client.clientName}}</td>
           <td>{{client.phone}}</td>
           <td>
-            <div class="form-group form-inline">
-              <h5><a style="padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editClient(client._id)" ngbTooltip="Edit Client"></i></a></h5>
-              <h4><a style="padding-right: 10px"><i  class="fas fa-project-diagram pointerCursor"(click) = "addProject(client._id, client.clientName)" ngbTooltip="Add Project"></i></a></h4>
-             <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteClient(client._id)" ngbTooltip="Delete Client"></i></a></h4>
+            <div class="form-inline">
+              <h5><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-edit pointerCursor" (click) = "editClient(client._id)" ngbTooltip="Edit Client"></i></a></h5>
+              <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-project-diagram pointerCursor"(click) = "addProject(client._id, client.clientName)" ngbTooltip="Add Project"></i></a></h4>
+             <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteClient(client._id)" ngbTooltip="Delete Client"></i></a></h4>
             </div>
           </td>
       </tr>
       </tbody>
     </table>
-</div>
+    </div>

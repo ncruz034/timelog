@@ -37,16 +37,14 @@
 -->
 
 <div class="container">
-  <div class="heading">
-    <legend>PROJECTS</legend>
-</div>
+  <div class="heading text-center"><legend>PROJECTS</legend></div>
 <div class="form-group form-inline">
   Project search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="orderSearch" [(ngModel)]="searchTerm"/>
 </div>
-    <table class="table table-striped table-hover table-bordered">
+    <table class="table table-striped table-hover table-sm table-bordered">
       <thead class="table-dark">
         <tr>
-          <th>Project Name.</th>
+          <th>Project Name</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -56,10 +54,10 @@
           <td>{{project.projectName}}</td>
           <td>{{project.status}}</td>
           <td>
-            <div class=" form-group form-inline">
-              <h5><a style=" padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "editProject(project._id)" placement="top" ngbTooltip="Edit Project"></i></a></h5>
-              <h4><a style="padding-right: 10px"><i  class="fas fa-newspaper pointerCursor" (click) = "addNewOrder(project._id, project.projectName, project.clientName)" placement="top" ngbTooltip="New Order"></i></a></h4>
-              <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)" placement="top" ngbTooltip="Delete Project"></i></a></h4>
+            <div class="form-inline">
+              <h5><a style=" padding-right: 10px; font-size: 1em"><i  class="fas fa-edit pointerCursor" (click) = "editProject(project._id)" placement="top" ngbTooltip="Edit Project"></i></a></h5>
+              <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-newspaper pointerCursor" (click) = "addNewOrder(project._id, project.projectName, project.clientName)" placement="top" ngbTooltip="New Order"></i></a></h4>
+              <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)" placement="top" ngbTooltip="Delete Project"></i></a></h4>
           </div>
           </td>
       </tr>

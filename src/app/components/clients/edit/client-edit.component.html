@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="heading">
+  <div class="heading text-center">
     <legend>Edit Client</legend>
   </div>
   <div class="card borderless">
@@ -45,7 +45,7 @@
             </div>
 
           </form>
-          <div>
+          <div class=text-center>
               <button routerLink="/clients" class="btn btn-primary">Back</button>
               <button type="submit"  class="btn btn-success" [disabled]="!form.valid" (click)="editClient()">Submit</button>
           </div>
