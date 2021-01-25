@@ -1,8 +1,8 @@
 <div class="container">
 
-  <div class="card">
-    <div class="card-header">
-      <legend>Edit Time</legend>
+  <div>
+    <div class="text-center">
+      <legend>EDIT TIME</legend>
     </div>
     <div class="card-body">
         <form  [formGroup]="form">
@@ -30,9 +30,11 @@
                 <input type="text" class="form-control" formControlName="overTime" #time id="overTime" placeholder="Over time">
             </div>
         </form>
+        <div class="text-center">
+          <button class="btn btn-primary" routerLink="/times">Back</button>
+          <button class="btn btn-success" type="submit" (click)="editTime()" >Save</button>
+        </div>
 
-      <button class="btn btn-primary" routerLink="/times">Back</button>
-      <button class="btn btn-success" type="submit" (click)="editTime()" >Save</button>
     </div>
 
 </div>

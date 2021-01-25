@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="heading">
-<legend>Time New</legend>
+  <div class="heading text-center">
+<legend>ADD NEW TIME</legend>
   </div>
-  <div class="card borderless">
-    <div class="card-body">
+  <div>
+    <div>
         <form [formGroup]='form' (ngSubmit)="addTime()">
             <div *ngIf="form.errors" class="alert alert-danger">
                 ERROR! Some fields appear to be invalid
@@ -66,9 +66,11 @@
                     <label class="form-check-label" for="Field">Is Field</label>
                 </div>
             </div>
+            <div class="text-center">
+              <button  class="btn btn-primary" type="button" color = "accent" routerLink="/orders">Back</button>
+              <button class="btn btn-success"  type="button" (click)="addTime()" [disabled]="form.pristine" >Save</button>
+            </div>
 
-            <button  class="btn btn-primary" type="button" color = "accent" routerLink="/orders">Back</button>
-            <button class="btn btn-success"  type="button" (click)="addTime()" [disabled]="form.pristine" >Save</button>
           </form>
     </div>
   </div>

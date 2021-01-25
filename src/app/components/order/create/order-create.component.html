@@ -1,7 +1,7 @@
 
 <div class="container">
-  <div class="heading">
-    <legend>New Order</legend>
+  <div class="heading text-center">
+    <legend>ADD NEW ORDER</legend>
 </div>
   <div class="card borderless">
     <div class="card-body">
@@ -266,7 +266,7 @@
             </div>
         </div>
           </form>
-          <div>
+          <div class="text-center">
             <button  class="btn btn-primary" color = "accent" routerLink="/orders">< Back to Orders</button>
             <button class="btn btn-success" type="submit" (click)="addOrder()" [disabled]="!form.valid">Save</button>
           </div>

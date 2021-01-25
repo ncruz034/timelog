@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="heading">
-    <legend>Edit Project</legend>
+  <div class="heading text-center">
+    <legend>EDIT PROJECT</legend>
   </div>
-  <div class="card borderless">
+  <div>
     <div class="card-body">
         <form [formGroup]='form' (ngSubmit)="editProject()">
             <div *ngIf="form.errors" class="alert alert-danger">
@@ -28,8 +28,11 @@
             </div>
 
           </form>
+         <div class="text-center">
           <button type="submit" routerLink="/projects" class="btn btn-primary">Back</button>
           <button type="submit" class="btn btn-success" (click)="editProject()"  [disabled]="!form.valid">Submit</button>
+         </div>
+
     </div>
   </div>
 
