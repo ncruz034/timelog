@@ -11,6 +11,7 @@
             <th>Last</th>
             <th>Role</th>
             <th>Access</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +40,9 @@
                 <h4><a style="padding-right: 10px"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteUser(user._id)" ngbTooltip="Delete User"></i></a></h4>
               </div>
             -->
+            </td>
+            <td>
+              <h5><a style=" padding-right: 10px"><i  class="fas fa-edit pointerCursor" (click) = "aditAccessLevel(user._id)" ngbTooltip="Edit User's Access"></i></a></h5>
             </td>
         </tr>
         </tbody>
