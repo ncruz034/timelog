@@ -21,15 +21,15 @@ router.post('/', async (req,res) =>{
     //If all the checks are negative, a token is generated and return to the calling app.
     const token = user.generateAuthToken();
     //res.json(token);
-  
-    res.json({"token":token,"name":user.name, "email":user.email,"user_id": user._id});
+
+    res.json({"token":token,"name":user.name, "email":user.email,"user_id": user._id,"isAdmin": user.isAdmin});
 });
 
 //Validate the input provided by the calling application.
 function validate(req){
     const schema = {
         email: Joi.string().min(5).max(255).required().email(),
-        password: Joi.string().min(5).max(255).required(),   
+        password: Joi.string().min(5).max(255).required(),
     };
     return Joi.validate(req, schema);
 }

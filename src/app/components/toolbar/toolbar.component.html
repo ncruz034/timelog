@@ -2,16 +2,17 @@
 <nav class="navbar navbar-expand-lg" style="height: 100px;">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Schwebke-Shiskin & Associates, inc.</a>
-    <span  class="text-accent-color" >{{ authService.getUser() }}</span>
+    <span  class="text-accent-color logged-in-user" >{{ authService.getUser() }}</span>
   </div>
 </nav>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div>
+    <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <a class="navbar-brand" routerLink="/"><i class="fa fa-cogs" aria-hidden="true"> </i> Timelog ERP</a>
+    <span>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto" *ngIf="authService.loggedIn()">
         <li class="nav-item">
@@ -29,13 +30,16 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="/times">Times</a>
           </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/user-access">User-Access</a>
+
+        <li class="nav-item" *ngIf="authService.isAdmin()">
+          <a class="nav-link" routerLink="/user-access">Admin</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link active" (click)="authService.logout()">Logout</a>
         </li>
       </ul>
+
       <ul class="navbar-nav mr-auto" *ngIf="!authService.loggedIn()">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/auth">Login</a>
@@ -45,6 +49,7 @@
         </li>
       </ul>
     </div>
+    </span>
     </div>
   </nav>
 

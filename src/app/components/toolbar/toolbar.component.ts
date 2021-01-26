@@ -11,8 +11,11 @@ export class ToolbarComponent implements OnInit {
   backgroundColor = environment.navBarBackgroundColor;
   constructor(public authService: AuthService) { }
   currentUser = '';
+
+
   ngOnInit() {
     this.currentUser = this.authService.getUser();
+
   }
 
 }

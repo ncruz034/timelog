@@ -36,7 +36,8 @@ export class LoginComponent {
           data => {
             if (data) {
               this.data = data;
-             this.authService.storeUserData(this.data.token, this.data.name, user.email, this.data.user_id);
+             this.authService.storeUserData(this.data.token, this.data.name, user.email, this.data.user_id, this.data.isAdmin);
+             console.log('The admin role is: ' + this.data.isAdmin);
              this.router.navigate(['/home']);
             } else {
               console.log('Error: Login in...');

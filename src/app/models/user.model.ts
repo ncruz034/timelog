@@ -3,6 +3,7 @@ export interface User {
     username: {type: String};
     name: {type: String};
     last: {type: String};
+    isAdmin: {type: Boolean};
 }
 /*
 export interface User {
