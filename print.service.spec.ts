@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PrintService } from './print.service';
+import { PrintService } from './src/app/services/print.service';
 
 describe('PrintService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
