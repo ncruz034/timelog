@@ -1,25 +1,40 @@
+<div class="container">
+  <main>
+    <div class="admin-menu">
+        <div class="card client-card-color">
+            <h5>CLIENTS</h5>
+            <div style="font-size: 30px; text-align:center;"><i class="fa fa-handshake" aria-hidden="true"></i></div>
+        </div>
+        <div class="card project-card-color">
+            <h5>PROJECTS</h5>
+            <div style="font-size: 30px; text-align:center;"><i class="fa fa-project-diagram" aria-hidden="true"></i></div>
+        </div>
+        <div class="card order-card-color">
+            <h5>ORDERS</h5>
+            <div style="font-size: 30px; text-align:center;"><i class="fa fa-newspaper" aria-hidden="true"></i></div>
+        </div>
+        <div class="card user-card-color">
+            <h5>EMPLOYEES</h5>
+            <div style="font-size: 30px; text-align:center;"><i class="fa fa-users" aria-hidden="true"></i></div>
+        </div>
+        <div class="card setting-card-color">
+            <h5>SETTINGS</h5>
+            <div style="font-size: 30px; text-align:center;"><i class="fa fa-cogs" aria-hidden="true"></i></div>
+        </div>
+    </div>
 <!--
-<mat-grid-list cols="3" rowHeight="400px">
-    <mat-grid-tile matTooltip="Administrator can use this area to authorize user's registration">
-            <span>
-                <button class="text-accent-color" mat-button routerLink="/access-code">
-                    <img src="../assets/images/access-code.jpg" alt="associates" style="width:300px"></button>
-            </span>
-    </mat-grid-tile>
-
-    <mat-grid-tile matTooltip="SSA employees login area">
-            <span>
-                    <button class="text-accent-color" mat-button routerLink="/associates-dashboard">
-                        <img src="../assets/images/associates.png" alt="associates" style="width:300px">
-                    </button>
-                </span>
-
-    </mat-grid-tile>
-    <mat-grid-tile matTooltip="SSA system administrator's area">
-            <button class="text-accent-color" mat-button routerLink="/admin-dashboard">
-                <img src="../assets/images/admin.png" alt="admin" style="width:300px">
-            </button>
-    </mat-grid-tile>
- 
-</mat-grid-list>
--->
+    <div class="admin-sidebar">
+        <ul style="padding-left: 0px; padding-top: 100%;">
+            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fa fa-handshake" aria-hidden="true"> </i> CLIENTS</a></li>
+            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fas fa-project-diagram" aria-hidden="true"> </i> PROJECTS</a></li>
+            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fas fa-newspaper" aria-hidden="true"> </i> ORDERS</a></li>
+            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fa fa-users" aria-hidden="true"> </i> EMPLOYEES</a></li>
+            <li  class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fa fa-cogs" aria-hidden="true"> </i> SETTINGS</a></li>
+        </ul>
+    </div>
+  -->
+    <div class="admin-master-view">Master</div>
+    <div class="admin-detail-view">Details</div>
+    <div class="admin-footer">Footer</div>
+  </main>
+</div>

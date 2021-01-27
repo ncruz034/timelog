@@ -8,6 +8,7 @@
               <thead class="text-center" style="background-color: var(--navbar-color); color:white">
                 <tr>
                   <th>Order No.</th>
+                  <th>Date</th>
                   <th>Regular Time</th>
                   <th>Overtime</th>
                   <th>Total</th>
@@ -17,6 +18,7 @@
               <tbody>
                 <tr *ngFor="let data of timeByOrder">
                   <td>{{data.orderNumber}}</td>
+                  <td>{{data.date | date}}</td>
                   <td>{{data.time}}</td>
                   <td>{{data.overTime}}</td>
                   <td>{{data.time + data.overTime}}</td>
