@@ -3,6 +3,7 @@ import { ProjectService } from '../../../services/project.service';
 import { Router } from '@angular/router';
 import { Project } from '../../../models/project.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-project-list',
@@ -18,7 +19,7 @@ export class ProjectListComponent implements OnInit {
   filteredProjects: Project[];
   private _searchTerm: string;
 
-  constructor(private projectService: ProjectService, private router: Router) {}
+  constructor(private authService: AuthService, private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
     this.fetchProjects();

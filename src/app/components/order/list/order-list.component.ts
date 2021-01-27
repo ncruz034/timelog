@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Order } from '../../../models/order.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Time } from 'src/app/models/timeDetail';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class OrderListComponent implements OnInit {
   toggleAddTime: boolean;
   private _searchTerm: string;
   currentOrderId: String;
-
+  
   get searchTerm(): string {
     return this._searchTerm;
   }
@@ -34,7 +35,7 @@ export class OrderListComponent implements OnInit {
   }
 
 
-  constructor(private orderService: OrderService, private router: Router) { }
+  constructor(private orderService: OrderService, private router: Router, private authService: AuthService) { }
 
   toggle(){
     this.toggleAddTime = !this.toggleAddTime;

@@ -3,6 +3,7 @@ import { ClientService } from '../../../services/client.service';
 import { Router } from '@angular/router';
 import { Client } from '../../../models/client.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ClientListComponent implements OnInit {
   filteredClients: Client[];
   private _searchTerm: string;
 
-  constructor(private clientService: ClientService, private router: Router) {}
+  constructor(private authService: AuthService, private clientService: ClientService, private router: Router) {}
 
   ngOnInit() {
     this.fetchClients();

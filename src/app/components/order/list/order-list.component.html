@@ -63,15 +63,17 @@
       <thead class="text-center" style="background-color: var(--navbar-color); color:white">
         <tr>
           <th>Order No.</th>
+          <th>Project Name</th>
           <th>Client</th>
-          <th>Actions</th>
+          <th *ngIf="authService.isAdmin()">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr class="pointerCursor" *ngFor="let order of filteredOrders; let i = index;" (click) = "detailOrder(order._id)">
           <td>{{order.orderNumber}}</td>
+          <td>{{order.projectName}}</td>
           <td>{{order.clientName}}</td>
-          <td>
+          <td  *ngIf="authService.isAdmin()">
             <div class="form-inline" >
               <h5><a style=" padding-right: 10px; font-size:1em"><i  class="fas fa-edit pointerCursor" (click) = "editOrder(order._id)" ngbTooltip="Edit Order"></i></a></h5>
               <h4><a style="padding-right: 10px; font-size:1em"><i  class="fas fa-hourglass-half pointerCursor" (click) = "addTime(order._id, order.projectName, order.clientName, order.orderNumber)" ngbTooltip="Add Time"></i></a></h4>
