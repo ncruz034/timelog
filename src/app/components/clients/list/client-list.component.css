@@ -1,50 +1,29 @@
-table{
-  width: 100%;
-}
-.mat-column-right{
-  text-align: center;
+.table {
+  width: flex;
 }
 
-
-.box{
-width: auto;
-height: auto;
-margin: 0 auto;
-padding: 5px;
-text-align: center;
-border: 2px solid #2E333A
-}
-.child{
-display: inline-block;
-padding: 25px;
-text-align: left;
-}
-.example-chip-list {
-width: 100%;
+.card {
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
 }
 
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-flex-basis: 0;
-}
-.example-headers-align .mat-expansion-panel-header-description {
-justify-content: space-between;
-text-align: center;
-}
-.pointerCursor {
-  cursor: pointer;
-}
-.a
-{
-padding-left: 10px;
+.container {
+  padding:20px;
+  margin:0;
 }
 
-.btn-circle { 
-  width: 50px; 
-  height: 50px; 
-  padding-top:0px; 
-  border-radius: 25px; 
+.btn-circle {
+  padding:0;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
   font-size: 30px;
-  font-weight: bold; 
-  text-align: center;
-} 
+  font-weight: bold;
+  border: 1px solid #17A2B8;
+  background-color: transparent;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

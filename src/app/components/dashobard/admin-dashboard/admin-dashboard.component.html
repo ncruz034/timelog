@@ -1,44 +1,112 @@
 <div class="container">
   <main>
-    <div class="admin-menu"  *ngIf="authService.loggedIn() && authService.isAdmin()">
-        <div class="card client-card-color">
-            <h5><a class="nav-link" routerLink="/clients">CLIENTS</a></h5>
-            <div style="font-size: 30px; text-align:center;"><i class="fa fa-handshake" aria-hidden="true"></i></div>
+    <div class="admin-menu "  *ngIf="authService.loggedIn() && authService.isAdmin()">
+      <div class="card" routerLink="/clients">
+        <div class="card-image">
+          <i class="fa fa-handshake" aria-hidden="true"></i>
         </div>
-        <div class="card project-card-color">
-            <h5><a class="nav-link" routerLink="/projects">PROJECTS</a></h5>
-            <div style="font-size: 30px; text-align:center;"><i class="fa fa-project-diagram" aria-hidden="true"></i></div>
+        <div class="card-header">
+          <h2>CLIENTS</h2>
+          <p>Feb 01</p>
         </div>
-        <div class="card order-card-color">
-            <h5><a class="nav-link" routerLink="/orders">ORDERS</a></h5>
-            <div style="font-size: 30px; text-align:center;"><i class="fa fa-newspaper" aria-hidden="true"></i></div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="value">65</div>
+            <div class="type">existing</div>
+          </div>
+          <div class="stat stat-border">
+            <div class="value">2</div>
+            <div class="type">today</div>
+          </div>
         </div>
-        <div class="card user-card-color">
-            <h5><a class="nav-link" routerLink="/users">EMPLOYEES</a></h5>
-            <div style="font-size: 30px; text-align:center;"><i class="fa fa-users" aria-hidden="true"></i></div>
+      </div>
+
+      <div class="card" routerLink="/orders">
+        <div class="card-image">
+          <i class="fa fa-newspaper" aria-hidden="true"></i>
         </div>
-        <div class="card setting-card-color">
-            <h5><a class="nav-link" routerLink="/user-access">SETTINGS</a></h5>
-            <div style="font-size: 30px; text-align:center;"><i class="fa fa-cogs" aria-hidden="true"></i></div>
+        <div class="card-header">
+          <h2>ORDERS</h2>
+          <p>Feb 01</p>
         </div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="value">35</div>
+            <div class="type">open</div>
+          </div>
+          <div class="stat stat-border">
+            <div class="value">5</div>
+            <div class="type">today</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" routerLink="/projects">
+        <div class="card-image">
+          <i class="fa fa-project-diagram" aria-hidden="true"></i>
+        </div>
+        <div class="card-header">
+          <h2>PROJECTS</h2>
+          <p>Feb 01</p>
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="value">10</div>
+            <div class="type">existing</div>
+          </div>
+          <div class="stat stat-border">
+            <div class="value">1</div>
+            <div class="type">today</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" routerLink="/employees">
+        <div class="card-image">
+          <i class="fa fa-users" aria-hidden="true"></i>
+        </div>
+        <div class="card-header">
+          <h2>EMPLOYEES</h2>
+          <p>Feb 01</p>
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="value">41</div>
+            <div class="type">current</div>
+          </div>
+          <div class="stat stat-border">
+            <div class="value">0</div>
+            <div class="type">today</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" routerLink="/user-access">
+        <div class="card-image">
+          <i class="fa fa-cogs" aria-hidden="true"></i>
+        </div>
+        <div class="card-header">
+          <h2>SETTINGS</h2>
+          <p>Feb 01</p>
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <div class="value">yes</div>
+            <div class="type">ok</div>
+          </div>
+          <div class="stat stat-border">
+            <div class="value">1</div>
+            <div class="type">changed today</div>
+          </div>
+        </div>
+      </div>
     </div>
-<!--
-    <div class="admin-sidebar">
-        <ul style="padding-left: 0px; padding-top: 100%;">
-            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fa fa-handshake" aria-hidden="true"> </i> CLIENTS</a></li>
-            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fas fa-project-diagram" aria-hidden="true"> </i> PROJECTS</a></li>
-            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fas fa-newspaper" aria-hidden="true"> </i> ORDERS</a></li>
-            <li class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fa fa-users" aria-hidden="true"> </i> EMPLOYEES</a></li>
-            <li  class="sidebar-list-item"><a  routerLink="/admin-dashboard"><i class="fa fa-cogs" aria-hidden="true"> </i> SETTINGS</a></li>
-        </ul>
-    </div>
-  -->
+
     <div class="admin-master-view">
       <div>
         <router-outlet></router-outlet>
       </div>
     </div>
-<!--<div class="admin-detail-view"></div>-->
     <div class="admin-footer">Footer</div>
   </main>
 </div>

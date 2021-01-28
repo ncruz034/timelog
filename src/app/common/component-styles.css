@@ -1,0 +1,72 @@
+
+/* body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+} */
+
+.card {
+  display:grid;
+  max-width: 200px;
+  grid-template-columns: 200px;
+  grid-template-rows: 60px 100px 60px;
+  grid-template-areas: "image" "header" "stats";
+  font-family: roboto;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  text-align: center;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.card-image {
+  grid-area: image;
+  font-size: 60px;
+}
+.card-header {
+  margin:10PX;
+  grid-area: header;
+}
+.card-header p {
+  color: rgb(255,7,110);
+  font-size: 15px;
+  font-weight: 300px;
+}
+.card-header h2 {
+  margin-top: 0px;
+  font-size: 28px;
+}
+.card-stats {
+  grid-area: stats;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background:black;
+}
+
+.card-stats .stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding:10px;
+  color: white;
+}
+.card-stats .type {
+  font-size:11px;
+  font-weight: 30px;
+  text-transform: uppercase;
+}
+.card-stats .border {
+  border-left: 1px solid rgb(172,26,87);
+}
+
+.card:hover {
+  transform: scale(1.2);
+  box-shadow: 5px 5px 15px rgb(0,0,0,0.6);
+}
