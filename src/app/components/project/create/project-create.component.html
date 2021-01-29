@@ -1,14 +1,15 @@
 <div class="container">
-  <div class="heading text-center">
-    <legend>ADD NEW PROJECT</legend>
-  </div>
   <div class="card borderless">
+    <div class="heading text-center">
+      <legend>ADD NEW PROJECT</legend>
+    </div>
     <div class="card-body">
         <form [formGroup]='form'  (ngSubmit)="addProject()">
             <div *ngIf="form.errors" class="alert alert-danger">
                 ERROR! Some fields appear to be invalid
             </div>
-
+            <div class="main">
+              <div class="box-1">
             <div class="form-group">
                 <label class="col-form-label" for="clientName">Client Name</label>
                 <input formControlName="clientName" type="text" class="form-control" placeholder="Client Name *" id="clientName">
@@ -30,7 +31,8 @@
                 </div>
                 <div *ngIf="(form.get('date').touched && form.get('date').invalid) || (form.get('date').invalid && form.errors)" class="alert alert-danger">A date is required</div>
             </div>
-
+              </div>
+              <div class="box-2">
             <div class="form-group">
                 <label class="col-form-label" for="description">Description</label>
                 <input formControlName="description" type="text" class="form-control" placeholder="Description *" id="description">
@@ -42,6 +44,8 @@
                 <input formControlName="status" type="text" class="form-control" placeholder="Status *" id="status">
                 <div *ngIf="(form.get('status').touched && form.get('status').invalid) || (form.get('status').invalid && form.errors)" class="alert alert-danger">Status is required</div>
               </div>
+            </div>
+            </div>
           </form>
           <div class="text-center">
               <button routerLink="/clients" class="btn btn-primary">Back</button>

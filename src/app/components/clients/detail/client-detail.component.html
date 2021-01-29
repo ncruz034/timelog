@@ -1,17 +1,19 @@
 <div class="container">
+  <div class="card">
   <div class="heading text-center"><legend >CLIENT DETAILS</legend></div>
-<div class="main">
-    <div class="box1" style="width: 50%;" *ngIf="client">
-             <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.clientName}}</h6>
-             <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.date | date}}</h6>
-             <h5>Address:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.address}}</h6>       
-    </div>
-     
-    <div class="box2" style ="width: 50%;" *ngIf="client">
-      <h5>Phone:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.phone}}</h6>
-      <h5>Contact:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.contact}}</h6>
-    </div>
-  <div class="text-center">
+  <div class="main">
+      <div class="box1" style="width: 50%;" *ngIf="client">
+              <h5>Client Name:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.clientName}}</h6>
+              <h5>Date:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.date | date}}</h6>
+              <h5>Address:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.address}}</h6>
+      </div>
+
+      <div class="box2" style ="width: 50%;" *ngIf="client">
+        <h5>Phone:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.phone}}</h6>
+        <h5>Contact:</h5><h6 class="card-subtitle mb-2 text-muted">{{client.contact}}</h6>
+      </div>
+  </div>
+  <div class="text-center" style="padding: 20px">
     <button  class="btn btn-primary" color = "accent" routerLink="/clients">Back</button>
   </div>
 </div>

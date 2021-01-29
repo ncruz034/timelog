@@ -1,3 +1,45 @@
-<p>
-  user-list works!
-</p>
+<div class="container">
+  <div class="card">
+    <div class="heading text-center">
+      <legend>EMPLOYEES</legend>
+    </div>
+    <div *ngIf="authService.isAdmin()" class="text-center">
+      <button type="button" class="btn btn-outline-info btn-circle" routerLink="/users/register" ngbTooltip="Add New User">+</button>
+    </div>
+    <div class="form-group form-inline">
+      User search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="userSearch" [(ngModel)]="searchTerm"/>
+      <div style="padding-left: 20px; padding-right: 10px;">
+        Filter by:
+        <select class="form-control" id="userTypeSelect">
+          <option>All</option>
+          <option>New</option>
+        </select>
+      </div>
+    </div>
+    <table class="table table-striped table-hover table-sm table-bordered">
+    <thead class="text-center" style="background-color: var(--navbar-color); color:white">
+      <tr>
+        <th>Name</th>
+        <th>Last</th>
+        <th>User Name</th>
+        <th>Is Admin</th>
+        <th *ngIf="authService.isAdmin()">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="pointerCursor" *ngFor="let user of filteredUsers; let i = index;"  (click) = "userDetails(user._id)">
+        <td>{{user.name}}</td>
+        <td>{{user.last}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.isAdmin}}</td>
+        <td *ngIf="authService.isAdmin()">
+          <div class="form-inline">
+            <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(50, 129, 248); cursor: pointer;"><i  class="fas fa-edit" (click) = "editUser(user._id)" ngbTooltip="Edit User"></i></a></h5>
+            <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(247, 137, 86); cursor: pointer;"><i  class="fas fa-trash-alt" (click) = "deleteUser(user._id)" ngbTooltip="Delete User"></i></a></h5>
+          </div>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

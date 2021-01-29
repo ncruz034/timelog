@@ -7,6 +7,7 @@
   .navbar {
      background-color: var(--navbar-color);
      color:white;
+     height: 40px;
   }
 
 .logged-in-user {
@@ -18,3 +19,4 @@
   padding-bottom: 5px;
   border-radius: 15px;
 }
+

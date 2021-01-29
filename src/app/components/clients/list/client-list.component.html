@@ -73,9 +73,9 @@
         <td>{{client.phone}}</td>
         <td *ngIf="authService.isAdmin()">
           <div class="form-inline">
-            <h5><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-edit pointerCursor" (click) = "editClient(client._id)" ngbTooltip="Edit Client"></i></a></h5>
-            <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-project-diagram pointerCursor"(click) = "addProject(client._id, client.clientName)" ngbTooltip="Add Project"></i></a></h4>
-            <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteClient(client._id)" ngbTooltip="Delete Client"></i></a></h4>
+            <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(50, 129, 248); cursor: pointer;"><i  class="fas fa-edit" (click) = "editClient(client._id)" ngbTooltip="Edit Client"></i></a></h5>
+            <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(118, 224, 150); cursor: pointer;"><i  class="fas fa-project-diagram"(click) = "addProject(client._id, client.clientName)" ngbTooltip="Add Project"></i></a></h5>
+            <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(247, 137, 86); cursor: pointer;"><i  class="fas fa-trash-alt" (click) = "deleteClient(client._id)" ngbTooltip="Delete Client"></i></a></h5>
           </div>
         </td>
     </tr>

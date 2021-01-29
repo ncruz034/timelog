@@ -1,15 +1,48 @@
+
+<!-- <div class="container">
+  <div class="card borderless">
+    <div class="heading text-center">
+      <legend>ORDER DETAILS</legend>
+    </div>
+      <div *ngIf="order">
+      <div class="main">
+        <div class="box1">
+          <h6>DATE</h6>
+          <p>{{order.date | date}}</p>
+          <h6>NAME OF CLIENT</h6>
+          <p>{{order.clientName}}</p>
+          <h6>ADDRESS</h6>
+          <p>{{order.address}}</p>
+          <h6>PROJECT NAME</h6>
+          <p>{{order.projectName}}</p>
+      </div>
+      <div class="box2">
+          <h6>PHONE</h6>
+          <p>{{order.phoneNumber}}</p>
+          <h6>FIELD WORK PROMISSED</h6>
+          <p>{{order.fieldWorkPromissed}}</p>
+          <h6>PRINTS PROMISSED</h6>
+          <p>{{order.printsPromissed}}</p>
+        </div>
+      </div>
+      </div>
+    </div> -->
+
 <div class="container">
-  <div class="heading text-center">
-   <!--<legend>ORDER DETAILS<span><button type="button"  class="btn btn-info" (click)="onPrintOrder()">print</button></span></legend>-->
-    <legend>ORDER DETAILS</legend>
-  </div>
+
 <div class="card borderless">
+  <div class="heading text-center">
+    <!--<legend>ORDER DETAILS<span><button type="button"  class="btn btn-info" (click)="onPrintOrder()">print</button></span></legend>-->
+     <legend>ORDER DETAILS</legend>
+   </div>
 <ngb-tabset>
   <ngb-tab>
     <ng-template ngbTabTitle><b>ORDER</b></ng-template>
+
     <ng-template ngbTabContent>
-        <div *ngIf="order" class="card">
-            <div class="card-body">
+
+        <div *ngIf="order">
+            <div>
                <div>
               <div class='row'>
               <div class="col-3 left">
@@ -361,63 +394,132 @@
               </tr>
             </tbody>
             </table>
-
-          <!--
-            <div class="card">
-                <div class = "row left">
-                  <div class="col-2">
-                    <h5>Total OT:</h5>
-                    <h5>Total RT</h5>
-                    <h5>Total Hours</h5>
-                  </div>
-
-                  <div class="col-2">
-                      <h5>{{fieldOvrTimeCounter}}</h5>
-                      <h5>{{fieldRegTimeCounter}}</h5>
-                      <h5>{{fieldTotalHours}}</h5>
-                    </div>
-                </div>
-                <hr>
-                <div class="row left">
-                      <div class="col-2">
-                          <h4>Date</h4>
-                      </div>
-                      <div class="col-3">
-                          <h4>Employee</h4>
-                      </div>
-                      <div class="col-3">
-                          <h4>Description</h4>
-                      </div>
-                      <div class="col-2">
-                          <h4>RT</h4>
-                      </div>
-                      <div class="col-2">
-                          <h4>OT</h4>
-                      </div>
-                </div>
-                <div *ngFor="let time of order.time;">
-
-                <div *ngIf="time.isField" class="row left">
-                  <div class="col-2">
-                    <h5>{{time.date | date}}</h5>
-                  </div>
-                  <div class="col-3">
-                      <h5>{{time.userName}}</h5>
-                    </div>
-                  <div class="col-3">
-                    <h5>{{time.description}}</h5>
-                  </div>
-                    <div class="col-2">
-                      <h5>{{time.time}}</h5>
-                  </div>
-                  <div class="col-2">
-                      <h5>{{time.overTime}}</h5>
-                  </div>
-                </div>
-              </div>
-              </div>
-            -->
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
 </div>
+
+<!--
+    <div class="box-3">
+        <label class="col-form-label" for="legalDescription">LEGAL DESCRIPTION</label>
+        <h6>{{order.legalDescription}}</h6>
+    </div>
+
+		<div class="box-4">
+			<h6>ORDER PLACED BY</h6>
+          <p>{{order.orderPlacedBy}}</p>
+          <h6>RECEIVED BY</h6>
+          <p>{{order.orderReceivedBy}}</p>
+		</div>
+
+    </div>
+      <label class="col-form-label" for="referToFileNumber">REFER TO FILE No.</label>
+      <h6>{{order.referToFileNumber}}</h6>
+      <label class="col-form-label" for="referToFieldBookNumber">REFER TO FB No.</label>
+      <h6>{{order.referToFieldBookNumber}}</h6>
+      <label class="col-form-label" for="referToOrderNumber">REFER ORDER No.</label>
+      <h6>{{order.referToOrderNumber}}</h6>
+    </div>
+
+               <h6>FB</h6>
+               <p>{{order.fieldBook}}</p>
+
+               <h6>PG</h6>
+               <p>{{order.page}}</p>
+
+                            <h6>SEC</h6>
+                            <h6>{{order.section}}</h6>
+
+                            <h6>TWP</h6>
+                            <p>{{order.township}}</p>
+
+                            <h6>RGE</h6>
+                            <p>{{order.range}}</p>
+
+                      <div class="form-group">
+                          <h6>PARTY CHIEF</h6>
+                          <p>{{order.partyChief}}</p>
+                      </div>
+                        <h6>DATE COMPLETED</h6>
+                        <p>{{order.dateCompleted}}</p>
+
+                            <div>
+                              <h6>MAIL</h6>
+                              <p>{{order.mail}}</p>
+                            </div>
+
+                            <div>
+                                <label class="col-form-label" for="deliver">DELIVER</label>
+                                <h6>{{order.deliver}}</h6>
+                            </div>
+                            <div>
+                                <h6>PICK UP</h6>
+                                <p>{{order.pickup}}</p>
+                            </div>
+
+                         <div>
+                             <h6>PRINTS TO</h6>
+                             <p>{{order.mailPrintsTo}}</p>
+                         </div>
+
+                         <div>
+                            <h6>PRINTS TO</h6>
+                            <p>{{order.deliverPrintsTo}}</p>
+                        </div>
+
+                        <div>
+                            <h6>PRINTS AT (TIME)</h6>
+                            <p>{{order.printsAtTime}}</p>
+                        </div>
+
+
+                      <div>
+                          <h6>DATE INVOICE</h6>
+                          <p>{{order.dateInvoice}}</p>
+                        </div>
+
+                     <div>
+                         <h6>AMOUNT SET BY:</h6>
+                         <p>{{order.amountSetBy}}</p>
+                     </div>
+
+                     <div>
+                        <h6>INVOICE TYPED BY:</h6>
+                        <p>{{order.invoiceTypedBy}}</p>
+                    </div>
+
+                   </div>
+                </div>
+
+                          <div>
+                              <h6>COURIER FEES</>
+                              <h6>{{order.courierFees}}</h6>
+                          </div>
+
+                          <div>
+                              <h6>APPLICATIONS/PERMIT FEES</h6>
+                              <p>{{order.applPermitFees}}</p>
+                          </div>
+
+                          <h6>COD</h6>
+                          <p>{{order.isCOD}}</p>
+
+                      <div>
+                          <h6>ORDER No.</h6>
+                          <p>{{order.orderNumber}}</p>
+                      </div>
+
+                      <div>
+                          <h6>FILE NO.</h6>
+                          <p>{{order.fileNumber}}</p>
+                      </div>
+
+                        <div>
+                            <h6>PRICE $</h6>
+                            <p>{{order.price}}</p>
+                        </div>
+
+                <div class="text-center"><button  class="btn btn-primary" color = "accent" routerLink="/orders">Back</button></div>
+
+
+-->

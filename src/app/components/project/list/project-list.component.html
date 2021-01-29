@@ -34,9 +34,9 @@
           <td>{{project.status}}</td>
           <td *ngIf="authService.isAdmin()">
             <div class="form-inline">
-              <h5><a style=" padding-right: 10px; font-size: 1em"><i  class="fas fa-edit pointerCursor" (click) = "editProject(project._id)" placement="top" ngbTooltip="Edit Project"></i></a></h5>
-              <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-newspaper pointerCursor" (click) = "addNewOrder(project._id, project.projectName, project.clientName)" placement="top" ngbTooltip="New Order"></i></a></h4>
-              <h4><a style="padding-right: 10px; font-size: 1em"><i  class="fas fa-trash-alt pointerCursor" (click) = "deleteProject(project._id)" placement="top" ngbTooltip="Delete Project"></i></a></h4>
+              <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(50, 129, 248); cursor: pointer;"><i  class="fas fa-edit"  (click) = "editProject(project._id)" placement="top" ngbTooltip="Edit Project"></i></a></h5>
+              <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(118, 224, 150); cursor: pointer; "><i  class="fas fa-newspaper" (click) = "addNewOrder(project._id, project.projectName, project.clientName)" placement="top" ngbTooltip="New Order"></i></a></h5>
+              <h5><a style="padding-right: 10px; font-size: 1em; color:rgb(247, 137, 86); cursor: pointer;"><i  class="fas fa-trash-alt" (click) = "deleteProject(project._id)" placement="top" ngbTooltip="Delete Project"></i></a></h5>
           </div>
           </td>
       </tr>

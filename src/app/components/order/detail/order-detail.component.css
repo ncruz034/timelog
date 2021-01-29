@@ -1,4 +1,4 @@
-/*
+
 table{
     width: 100%;
 }
@@ -46,4 +46,31 @@ table{
   .top-padding {
     padding-top: 40px;
   }
-*/
+
+
+/* .main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "box1 box2 box3";
+}
+.box1 {
+width:100%;
+  grid-area: box1;
+}
+
+.box2 {
+  width: 1fr;
+  grid-area: box2;
+}
+
+.card {
+align-items: center;
+justify-content: center;
+box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+.container {
+padding:20px;
+margin:0;
+} */

@@ -19,7 +19,7 @@ export class ProjectListComponent implements OnInit {
   filteredProjects: Project[];
   private _searchTerm: string;
 
-  constructor(private authService: AuthService, private projectService: ProjectService, private router: Router) {}
+  constructor (private authService: AuthService, private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
     this.fetchProjects();

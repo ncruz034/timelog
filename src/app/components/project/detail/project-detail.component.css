@@ -1,0 +1,12 @@
+p {
+  padding:0px;
+  margin:0px;
+}
+h5 {
+  padding:0px;
+  margin:0px;
+}
+
+.card {
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  }

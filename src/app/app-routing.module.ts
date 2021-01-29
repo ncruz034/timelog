@@ -35,10 +35,11 @@ import { BillingListComponent } from './components/billing/list/billing-list.com
 import { UserListComponent } from './components/users/list/user-list.component';
 import { UserAccessComponent } from './components/admin/user-access/user-access.component';
 
+
 const routes: Routes = [
   {path: 'create', component: TimeCreateComponent, canActivate: [AuthGuard]},
   {path: 'users/register', component: RegisterComponent},
-  {path: 'users/list', component: UserListComponent, canActivate: [AuthGuard]},
+  {path: 'users', component: UserListComponent, canActivate: [AuthGuard]},
   {path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
   {path: 'orders/create/:order_id/:projectName/:clientName', component: OrderCreateComponent, canActivate: [AuthGuard]},
   {path: 'orders/create', component: OrderCreateComponent, canActivate: [AuthGuard]},
@@ -70,7 +71,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'billing', component: BillingListComponent, canActivate: [AuthGuard]},
   {path: 'user-access', component: UserAccessComponent, canActivate: [AuthGuard]}];
-  
+
 @NgModule({
   imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]

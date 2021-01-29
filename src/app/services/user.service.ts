@@ -20,4 +20,8 @@ export class UserService {
   getUsers() {
     return this.http.get(`${this.uri}/users`);
   }
+
+  deleteUser(_id) {
+    return this.http.delete(`${this.uri}/users/delete/${_id}`);
+  }
 }
