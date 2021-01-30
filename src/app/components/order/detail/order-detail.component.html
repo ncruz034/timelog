@@ -284,6 +284,7 @@
           <thead class="table-dark">
             <tr>
               <th>Employee</th>
+              <th>Date</th>
               <th>Regular Time</th>
               <th>Overtime</th>
               <th>Total</th>
@@ -293,6 +294,7 @@
           <tbody>
               <tr *ngFor="let time of order.time;">
               <td>{{time.userName}}</td>
+              <td>{{time.date |date}}</td>
               <td>{{time.time}}</td>
               <td>{{time.overTime}}</td>
               <td>{{time.time + time.overTime}}</td>
@@ -326,6 +328,7 @@
             <thead class="table-dark">
               <tr>
                 <th>Employee</th>
+                <th>Date</th>
                 <th>Regular Time</th>
                 <th>Overtime</th>
                 <th>Total</th>
@@ -335,6 +338,7 @@
             <tbody *ngFor=" let time of order.time;">
                 <tr  *ngIf="time.isField">
                 <td>{{time.userName}}</td>
+                <td>{{time.date}}</td>
                 <td>{{time.time}}</td>
                 <td>{{time.overTime}}</td>
                 <td>{{time.time + time.overTime}}</td>

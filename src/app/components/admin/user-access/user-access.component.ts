@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class UserAccessComponent implements OnInit {
 
-  users:User[];
-  filteredUsers:User[];
-  constructor(private userService:UserService, private router:Router) { }
+  users: User[];
+  filteredUsers: User[];
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.fetchUsers();
@@ -34,5 +34,7 @@ export class UserAccessComponent implements OnInit {
       }
     );
   }
+  aditAccessLevel(user) {
 
+  }
 }

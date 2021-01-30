@@ -27,11 +27,12 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/orders">Orders</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/times">Times</a>
-        </li>
+
       </ul>
       <ul class="navbar-nav mr-auto" *ngIf="authService.loggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/times">Times</a>
+      </li>
         <li class="nav-item">
           <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">Logout</a>
         </li>
