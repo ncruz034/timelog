@@ -1,3 +1,15 @@
+.container {
+  padding:20px;
+  margin:0;
+}
+.card {
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+
+/*
 .create-form{
     display:flex;
     flex-direction:column;
@@ -9,4 +21,5 @@
 .field-full-width{
     width: 50%;
 }
+ */
 

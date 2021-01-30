@@ -2,8 +2,8 @@
 <div class="container">
   <div class="heading text-center">
     <legend>ADD NEW ORDER</legend>
-</div>
-  <div class="card borderless">
+ </div>
+  <div class="card alert-warning">
     <div class="card-body">
         <form [formGroup]='form' (ngSubmit)="addOrder()">
           <div *ngIf="form.errors" class="alert alert-danger">
@@ -267,7 +267,7 @@
         </div>
           </form>
           <div class="text-center">
-            <button  class="btn btn-primary" color = "accent" routerLink="/orders">< Back to Orders</button>
+            <button  class="btn btn-primary" style="margin-right:5px" color = "accent" routerLink="/orders">Back to Orders</button>
             <button class="btn btn-success" type="submit" (click)="addOrder()" [disabled]="!form.valid">Save</button>
           </div>
     </div>

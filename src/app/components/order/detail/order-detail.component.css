@@ -48,6 +48,16 @@ table{
   }
 
 
+  .card {
+    padding:20px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  }
+
+  .container {
+    padding:20px;
+    margin:0;
+  }
+
 /* .main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

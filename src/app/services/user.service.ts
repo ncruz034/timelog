@@ -25,3 +25,4 @@ export class UserService {
     return this.http.delete(`${this.uri}/users/delete/${_id}`);
   }
 }
+

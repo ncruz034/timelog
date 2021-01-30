@@ -26,7 +26,8 @@ export class AuthService {
     return localStorage.getItem('x-auth-token');
   }
 
-  register(name, last, email, password) {
+  register(name, last, email, password, isAdmin) {
+    console.log("In Auth Service Is Admin: " + isAdmin);
     const auth = {
       name: name,
       last: last,
@@ -34,7 +35,7 @@ export class AuthService {
       // position: position,
       email: email,
       password: password,
-      // isAdmin: isAdmin
+      isAdmin: isAdmin
     };
     return this.http.post(`${this.uri}/users`, auth);
   }

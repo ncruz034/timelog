@@ -27,7 +27,7 @@ export class RegisterComponent {
   last: String = '';
   // salary: Number = null;
   // position: String = '';
-  // isAdmin: Boolean = false;
+  isAdmin: Boolean = false;
   password: String = '';
   registerForm: FormGroup;
   user: User;
@@ -59,16 +59,17 @@ export class RegisterComponent {
           Validators.minLength(6),
           Validators.maxLength(16)
         ])
-      ]
-      // 'isAdmin': this.isAdmin,
+      ],
+      isAdmin: this.isAdmin,
     });
   }
 
   onRegister(user) {
-    this.authService.register(user.name, user.last, user.email, user.password)
+    console.log("is Admin: " + user.isAdmin);
+    this.authService.register(user.name, user.last, user.email, user.password, user.isAdmin)
       .subscribe(
         token => {
-          this.router.navigate(['/auth']);
+          this.router.navigate(['/users']);
         },
         error => {
           console.log('There was an error...');

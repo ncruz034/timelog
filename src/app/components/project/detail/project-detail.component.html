@@ -24,18 +24,18 @@
         </div>
     </div>
 </div>
-
-<div>
-    <h5 style="padding-top:10px; text-align: center;">OPEN ORDERS</h5>
-    <div *ngFor='let order of project.projectOrders' class="bg-info" style="padding:10px 10px">
+<div class="card" style="padding:20px; margin:20px">
+  <div>
+    <h5 style="padding:10px; text-align: center;" class="alert-primary">OPEN ORDERS</h5>
+    <div *ngFor='let order of project.projectOrders' style="padding:10px 10px">
       <ul>
         <li>{{order.orderNumber}}</li>
       </ul>
     </div>
 </div>
 
-    <div  style="text-align:center"><h5>OFFICE TIME</h5></div>
-    <div class="bg-info" style="padding: 10px 10px;">
+    <div  style="text-align:center" class="alert-info"><h5>OFFICE TIME</h5></div>
+    <div  style="padding: 10px 10px;">
       <div class="row">
         <div class="col-sm-2">
           <h5>Regular Time:</h5>
@@ -48,19 +48,22 @@
       </div>
     </div>
 
-    <div  style="text-align:center"><h5>FIELD TIME</h5></div>
-    <div class="bg-info" style="padding:10px 10px; margin-bottom: 20px;">
-    <div class="row">
-      <div class="col-sm-2">
-        <h5>Regular Time:</h5>
-        <h5>Overtime:</h5>
-      </div>
-      <div class="col-sm-10">
-        <p><span>{{fieldRegTimeCounter}}</span></p>
-        <p><span>{{fieldOvrTimeCounter}}</span></p>
+    <div  style="text-align:center" class="alert-info"><h5>FIELD TIME</h5></div>
+    <div style="padding:10px 10px; margin-bottom: 20px;">
+      <div class="row">
+        <div class="col-sm-2">
+          <h5>Regular Time:</h5>
+          <h5>Overtime:</h5>
+        </div>
+        <div class="col-sm-10">
+          <p><span>{{fieldRegTimeCounter}}</span></p>
+          <p><span>{{fieldOvrTimeCounter}}</span></p>
+        </div>
       </div>
     </div>
-    </div>
+</div>
+
+
   <div class="text-center">
     <button  class="btn btn-primary" style="margin-bottom: 10px"  routerLink="/projects">Back</button>
   </div>

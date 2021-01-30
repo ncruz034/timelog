@@ -29,12 +29,12 @@
     </div> -->
 
 <div class="container">
-
-<div class="card borderless">
   <div class="heading text-center">
     <!--<legend>ORDER DETAILS<span><button type="button"  class="btn btn-info" (click)="onPrintOrder()">print</button></span></legend>-->
      <legend>ORDER DETAILS</legend>
-   </div>
+  </div>
+<div class="card alert-warning">
+
 <ngb-tabset>
   <ngb-tab>
     <ng-template ngbTabTitle><b>ORDER</b></ng-template>
@@ -264,8 +264,8 @@
     <ngb-tab>
       <ng-template ngbTabTitle><b>OFFICE</b></ng-template>
       <ng-template ngbTabContent >
-
-        <div  class="card">
+      <div>
+        <div>
           <div class = "row left">
             <div class="col-2">
               <h5>Overtime:</h5>
@@ -280,7 +280,7 @@
               </div>
           </div>
         </div>
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" style="background-color: white;">
           <thead class="table-dark">
             <tr>
               <th>Employee</th>
@@ -299,68 +299,15 @@
             </tr>
           </tbody>
           </table>
-        <!--
-        <div  class="card">
-          <div class = "row left">
-            <div class="col-2">
-              <h5>Total OT:</h5>
-              <h5>Total RT</h5>
-              <h5>Total Hours</h5>
-            </div>
-
-            <div class="col-2">
-                <h5>{{officeOvrTimeCounter}}</h5>
-                <h5>{{officeRegTimeCounter}}</h5>
-                <h5>{{officeTotalHours}}</h5>
-              </div>
-          </div>
-          <hr>
-          <div class="row left">
-                <div class="col-2">
-                    <h4>Date</h4>
-                </div>
-                <div class="col-3">
-                    <h4>Employee</h4>
-                </div>
-                <div class="col-3">
-                    <h4>Description</h4>
-                </div>
-                <div class="col-2">
-                    <h4>RT</h4>
-                </div>
-                <div class="col-2">
-                    <h4>OT</h4>
-                </div>
-          </div>
-
-        <div *ngFor="let time of order.time;">
-          <div *ngIf='!time.isField' class="row left">
-            <div class="col-2">
-              <h5>{{time.date | date}}</h5>
-            </div>
-            <div class="col-3">
-                <h5>{{time.userName}}</h5>
-              </div>
-            <div class="col-3">
-              <h5>{{time.description}}</h5>
-            </div>
-              <div  class="col-2">
-                <h5>{{time.time}}</h5>
-            </div>
-            <div class="col-2">
-                <h5>{{time.overTime}}</h5>
-            </div>
-          </div>
         </div>
-        </div>
-      -->
       </ng-template>
       </ngb-tab>
 
       <ngb-tab>
-        <ng-template ngbTabTitle><b>FIELD</b> order</ng-template>
+        <ng-template ngbTabTitle><b>FIELD</b></ng-template>
         <ng-template ngbTabContent>
-          <div class="card">
+          <div>
+          <div>
             <div class = "row left">
               <div class="col-2">
                 <h5>Overtime:</h5>
@@ -375,7 +322,7 @@
                 </div>
             </div>
           </div>
-          <table class="table table-striped table-bordered">
+          <table class="table table-striped table-bordered" style="background-color: white;">
             <thead class="table-dark">
               <tr>
                 <th>Employee</th>
@@ -394,8 +341,10 @@
               </tr>
             </tbody>
             </table>
+          </div>
       </ng-template>
     </ngb-tab>
+
   </ngb-tabset>
 </div>
 

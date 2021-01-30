@@ -38,7 +38,10 @@ grid-area: admin-master-view;
   background-color: #343A40;
   grid-area: admin-footer;
 }
-
+.copyright {
+  color:#17a2b8;
+  text-align: center;
+}
 .card {
   display:grid;
   margin: 10px;

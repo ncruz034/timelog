@@ -1,3 +1,7 @@
+.container {
+  margin:0;
+  padding:20px;
+}
 p {
   padding:0px;
   margin:0px;

@@ -4,7 +4,7 @@
       <legend>EMPLOYEES</legend>
     </div>
     <div *ngIf="authService.isAdmin()" class="text-center">
-      <button type="button" class="btn btn-outline-info btn-circle" routerLink="/users/register" ngbTooltip="Add New User">+</button>
+      <button type="button" class="btn btn-outline-info btn-circle" routerLink="/users/register" ngbTooltip="Add New Employee"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
     <div class="form-group form-inline">
       User search: <input class="form-control ml-2" placeholder=" . . . " type="text" name="userSearch" [(ngModel)]="searchTerm"/>

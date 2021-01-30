@@ -9,3 +9,14 @@
     width: 50%;
 }
 
+
+.card {
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+.container {
+  padding:20px;
+  margin:0;
+}
