@@ -28,6 +28,7 @@ export class TimeListComponent implements OnInit {
   displayedColumns = ['orderNumber', 'date', 'description', 'time', 'overTime', 'actions'];
   hoveredDate: NgbDate;
 
+  
   fromDate: NgbDate;
   toDate: NgbDate;
   filteredDates: any[] = [];

@@ -46,21 +46,22 @@ grid-area: admin-master-view;
   display:grid;
   margin: 10px;
   grid-template-columns: 200px;
-  grid-template-rows: 60px 100px 60px;
+  grid-template-rows: 50px 80px 50px;
   grid-template-areas: "image" "header" "stats";
-  font-family: roboto;
+  font-family: century 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:#445055;
   border:none;
   /* border: 1px solid #17a2b8; */
   border-radius: 10px;
   background: white;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  box-shadow: 5px 5px 15px rgba(43, 58, 77, 0.9);
   text-align: center;
   transition: 0.5s ease;
   cursor: pointer;
 }
 .card-image {
   grid-area: image;
-  font-size: 60px;
+  font-size: 50px;
 }
 .card-header {
   border:none;

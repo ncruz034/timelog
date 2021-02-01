@@ -50,7 +50,7 @@ table{
 
   .card {
     padding:20px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
   }
 
   .container {

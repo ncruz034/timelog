@@ -7,7 +7,7 @@
     <!--<h1><i class="fas fa-plus-circle pointerCursor" routerLink="/create"></i></h1>-->
     <div class="card">
     <div>
-      <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
+      <ngb-datepicker #d (select)="onDateSelection($event)" [startDate]="{year:2021, month:2}" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
       </ngb-datepicker>
 
       <ng-template #t let-date let-focused="focused">

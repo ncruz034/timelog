@@ -1,5 +1,7 @@
 
 .container {
+  padding:20px;
+  margin:0;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -21,11 +23,12 @@
 }
 
 .card {
+
   height: 600px;
   width: 600px;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 
 .mat-card {
