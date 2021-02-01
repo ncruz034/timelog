@@ -5,6 +5,7 @@ import { Order } from '../../../models/order.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Time } from 'src/app/models/timeDetail';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class OrderListComponent implements OnInit {
   toggleAddTime: boolean;
   private _searchTerm: string;
   currentOrderId: String;
-  
+  closeResult = '';
   get searchTerm(): string {
     return this._searchTerm;
   }
@@ -35,9 +36,10 @@ export class OrderListComponent implements OnInit {
   }
 
 
-  constructor(private orderService: OrderService, private router: Router, private authService: AuthService) { }
+  constructor(private orderService: OrderService, private router: Router, private authService: AuthService,
+              private modalService: NgbModal) { }
 
-  toggle(){
+  toggle() {
     this.toggleAddTime = !this.toggleAddTime;
   }
 
@@ -66,6 +68,25 @@ export class OrderListComponent implements OnInit {
       }
     );
   }
+
+  // open(content) {
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
+
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     console.log(this.closeResult);
+  //     return `with: ${reason}`;
+  //   }
+  // }
 
 
   editOrder(id) {

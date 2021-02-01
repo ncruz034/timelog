@@ -291,8 +291,8 @@
              <!-- <th>Actions</th>-->
             </tr>
           </thead>
-          <tbody>
-              <tr *ngFor="let time of order.time;">
+          <tbody *ngFor="let time of order.time;">
+              <tr *ngIf="!time.isField">
               <td>{{time.userName}}</td>
               <td>{{time.date |date}}</td>
               <td>{{time.time}}</td>
@@ -338,7 +338,7 @@
             <tbody *ngFor=" let time of order.time;">
                 <tr  *ngIf="time.isField">
                 <td>{{time.userName}}</td>
-                <td>{{time.date}}</td>
+                <td>{{time.date | date}}</td>
                 <td>{{time.time}}</td>
                 <td>{{time.overTime}}</td>
                 <td>{{time.time + time.overTime}}</td>

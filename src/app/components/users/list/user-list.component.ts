@@ -52,6 +52,7 @@ export class UserListComponent implements OnInit {
     );
   }
 
+  
   editUser(id) {
     console.log('Edditing user id: ' + id);
     this.router.navigate([`users/edit/${id}`]);

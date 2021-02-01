@@ -13,16 +13,27 @@
   height: flex;
 } */
 
+.card {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+.container {
+  padding:20px;
+  margin:0;
+}
 
 .wrapper {
   display:grid;
-  height:100vh;
+  height:auto;
   margin-bottom:50px;
   padding:0pX;
 
   background-color:white;
   grid-template-columns: 1fr 0.5fr 1fr;
-  grid-template-rows: 1fr 1fr 0.5fr 1fr 0.5fr 1fr;
+  grid-template-rows: 0.5fr 1fr 0.5fr 1fr 0.5fr 1fr;
   grid-template-areas:
     "box1 box1 box1"
     "box2 box3 box4"
@@ -36,11 +47,11 @@
   display: block;
   text-align: center;
   justify-content: center;
-  background-color:grey;
+  background-color:rgb(159, 171, 172);
   padding-top: 10px;
   margin-bottom:10px;
   grid-area: box1;
-
+  border-radius: 20px;
 }
 #box2 {
   display: flex;

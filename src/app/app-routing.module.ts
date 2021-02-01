@@ -40,6 +40,8 @@ const routes: Routes = [
   {path: 'create', component: TimeCreateComponent, canActivate: [AuthGuard]},
   {path: 'users/register', component: RegisterComponent},
   {path: 'users', component: UserListComponent, canActivate: [AuthGuard]},
+  {path: 'users/edit/:id', component: UserListComponent, canActivate: [AuthGuard]},
+  {path: 'users/detail/:id', component: UserListComponent, canActivate: [AuthGuard]},
   {path: 'orders', component: OrderListComponent, canActivate: [AuthGuard]},
   {path: 'orders/create/:order_id/:projectName/:clientName', component: OrderCreateComponent, canActivate: [AuthGuard]},
   {path: 'orders/create', component: OrderCreateComponent, canActivate: [AuthGuard]},
